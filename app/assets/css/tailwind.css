@@ -1,0 +1,85 @@
+@import "tailwindcss";
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+
+  --muted: 220 17% 95%;
+  --muted-foreground: 220 17% 50%;
+
+  --active: 221, 83%, 53%;
+  --active-foreground: 0 0% 100%;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+
+  --border: 0 0% 85%;
+  --input: 0 0% 85%;
+
+  --primary: 221, 83%, 53%;
+  --primary-foreground: 0 0% 100%;
+
+  --secondary: 168 84% 78%;
+  --secondary-foreground: 0 0% 0%;
+
+  --accent: 0 0% 95%;
+  --accent-foreground: 0 0% 0%;
+
+  --destructive-foreground: 0 0% 0%;
+  --destructive: 353 96% 82%;
+
+  --ring: 0 0% 85%;
+
+  --radius: 0.5rem;
+
+  --shade: 0 0% 95%;
+  --shade-100: 220 3% 97%;
+  --shade-200: 0 0% 96%;
+  --shade-300: 0 0% 90%;
+
+  --inverted: 0 0% 0%;
+  --inverted-foreground: 0 0% 100%;
+
+  --neutral: 0 0% 0%;
+  --neutral-foreground: 0 0% 100%;
+
+  --info-foreground: 0 0% 0%;
+  --info: 213 97% 87%;
+  --positive: 156 72% 67%;
+  --positive-foreground: 0 0% 0%;
+
+  --warning-foreground: 0 0% 0%;
+  --warning: 48 97% 77%;
+
+  --buy: 0 0% 0%;
+  --buy-foreground: 0 0% 100%;
+  --checkout: 269 97% 85%;
+  --checkout-foreground: 0 0% 0%;
+  --highlight-foreground: 0 0% 0%;
+  --highlight: 142 77% 73%;
+  --sale: 327 87% 82%;
+  --sale-foreground: 0 0% 0%;
+
+  --discount: 327 87% 82%;
+  --discount-foreground: 0 0% 0%;
+
+  --new: 213 97% 87%;
+  --new-foreground: 0 0% 0%;
+  --price: 0 0% 53%;
+  --price-foreground: 0 0% 0%;
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}

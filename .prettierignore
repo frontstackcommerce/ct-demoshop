@@ -1,0 +1,11 @@
+/node_modules/**
+/dist/**
+/.nuxt/
+/static/
+/public/
+
+.pnpm-store
+pnpm-lock.yaml
+
+# ignore ui-components from shadcn to make diffs easier
+/components/ui/

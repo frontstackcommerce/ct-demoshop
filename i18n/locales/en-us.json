@@ -1,0 +1,393 @@
+{
+  "actions": {
+    "add": "Add",
+    "add-item": "Add {item}",
+    "close": "close",
+    "remove": "Remove",
+    "remove-item": "Remove {item}",
+    "update": "Update",
+    "update-item": "Update {item}",
+    "show-all": "All",
+    "shop-all": "Shop All",
+    "back": "Back"
+  },
+  "brand": "Flagship Store",
+  "carousel": {
+    "goto": "Go to slide {slide}",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "cart": {
+    "discount": {
+      "placeholder": "Enter discount code",
+      "submit": "Redeem Discount",
+      "title": "Discount Code"
+    },
+    "empty": {
+      "title": "You have no items in your cart",
+      "recommended": "Our picks we think you'll love"
+    },
+    "items": {
+      "quantity-placeholder": "Select quantity"
+    },
+    "notify": {
+      "action": {
+        "checkout": "Checkout",
+        "cart": "Your Cart"
+      },
+      "recommended": "Fits perfectly with..."
+    },
+    "summary": {
+      "free": "Free",
+      "items": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Taxes",
+      "title": "Order Summary",
+      "total": "Total",
+      "count": "1 Item | {count} Items"
+    },
+    "title": "Cart",
+    "title-long": "Your Shopping Cart"
+  },
+  "categories": {
+    "accessories": "Accessories",
+    "backpacks": "Backpacks",
+    "beanies": "Beanies",
+    "clothing": "Clothing",
+    "equipment": "Equipment",
+    "gloves": "Gloves",
+    "goggles": "Goggles",
+    "helmets": "Helmets",
+    "jackets": "Jackets",
+    "kids": "Kids",
+    "men": "Men",
+    "running-shoes": "Running Shoes",
+    "sale": "Sale",
+    "shoes": "Shoes",
+    "shop": "Shop",
+    "snapbacks": "Snapbacks",
+    "sunglasses": "Sunglasses",
+    "trousers": "Trousers",
+    "winter": "Winter",
+    "women": "Women"
+  },
+  "checkout": {
+    "account": {
+      "fields": {
+        "email": "Email or mobile number",
+        "newsletter": "Email me with news and offers"
+      },
+      "login": "Log in",
+      "title": "Contact Information"
+    },
+    "customer": {
+      "firstname": "First name (optional)",
+      "lastname": "Last name"
+    },
+    "delivery": {
+      "fields": {
+        "address": {
+          "no-address": "Address not found",
+          "placeholder": "Address",
+          "search": "Search address..."
+        },
+        "apartment": {
+          "placeholder": "Apartment, suite, etc. (optional)"
+        },
+        "city": {
+          "placeholder": "City"
+        },
+        "country": {
+          "no-country": "Country not found",
+          "placeholder": "Country / Region",
+          "search": "Search country..."
+        },
+        "zip-code": {
+          "placeholder": "ZIP code"
+        }
+      },
+      "title": "Delivery"
+    },
+    "express": {
+      "or": "OR",
+      "title": "Express Checkout"
+    },
+    "payment": {
+      "credit-card": {
+        "fields": {
+          "card-holder": "Card Holder",
+          "card-holder-placeholder": "Enter card holder name",
+          "card-number": "Card Number",
+          "card-number-placeholder": "Enter card number",
+          "cvv": "CVV",
+          "cvv-help": "A three-digit security code usually found on the back of your card. American Express cards have a four-digit code on the front.",
+          "cvv-placeholder": "Enter CVV",
+          "expiration-date": "Expiration Date (MM/YY)",
+          "expiration-date-placeholder": "MM/YY"
+        },
+        "title": "Credit Card"
+      },
+      "description": "All transactions are secure and encrypted.",
+      "invoice": {
+        "title": "Invoice"
+      },
+      "invoice-address": "Use delivery address as billing address",
+      "paypal": {
+        "title": "Paypal"
+      },
+      "title": "Payment"
+    },
+    "shipping": {
+      "alert": "Enter your delivery address to view available shipping methods.",
+      "free-shipping": "free",
+      "shipping-info": {
+        "dhl": "Delivery within 1-2 business days to pickup point",
+        "dpd": "Delivery within 3-4 business days (Monday - Friday)",
+        "fedex": "Delivery within 24 hours (Monday - Saturday)",
+        "ups": "Delivery by tomorrow morning 9 AM (Monday - Saturday)"
+      },
+      "title": "Shipping method"
+    },
+    "submit": "Place Order",
+    "terms": {
+      "label": "I accept the terms and conditions",
+      "title": "Terms and Conditions"
+    }
+  },
+  "context": {
+    "location": {
+      "label": "Shipping Location",
+      "placeholder": "Select Region"
+    },
+    "language": {
+      "label": "Language",
+      "placeholder": "Select Language"
+    },
+    "submit": "Submit",
+    "title": "Select your shipping location and language",
+    "suggest": {
+      "title": "We found a better match",
+      "description": "The page you're looking for doesn't match your current settings. But we found a better match for you.",
+      "deny": "Thanks, but no thanks",
+      "accept": "Yes, take me to {locale} version"
+    }
+  },
+  "control": {
+    "button": "Filter & Sort",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "showed": "{count} of {total} products viewed",
+      "next": "Load more",
+      "add-filter": "Filter & Sort",
+      "edit-filter": "Adjust filter",
+      "goto-top": "Back to top"
+    },
+    "reset": "Reset all filters",
+    "reset-sm": "Reset",
+    "submit": "Show {count} results",
+    "submit-sm": "Show",
+    "search": {
+      "placeholder": "Enter keywords...",
+      "title": "Search in {category}"
+    },
+    "sort": {
+      "options": {
+        "default": "Recommendation",
+        "name:asc": "Name ascending",
+        "name:desc": "Name descending",
+        "price:asc": "Price ascending",
+        "price:desc": "Price descending"
+      },
+      "title": "Sort by"
+    }
+  },
+  "default": {
+    "times": "x ",
+    "colon": ": ",
+    "in-brackets": "({text})"
+  },
+  "error": {
+    "404": {
+      "subtitle": "404",
+      "title": "Page not found",
+      "description": "Sorry, we couldn't find the page you're looking for.",
+      "back": "Back to home"
+    }
+  },
+  "favorites": {
+    "empty": "You have no favorites yet.",
+    "title": "Your Favorites",
+    "recommended": "Our picks we think you'll love"
+  },
+  "footer": {
+    "copyright": "© 2025 All rights reserved.",
+    "menu": {
+      "about": {
+        "about": "About Us",
+        "order-status": "Order Status",
+        "store-locator": "Store Locator",
+        "contact": "Contact",
+        "help": "Help Center",
+        "title": "About Us"
+      },
+      "support": {
+        "contact": "Contact",
+        "order": "Order Status",
+        "return-policy": "Returns",
+        "shipping": "Shipping",
+        "size-guide": "Size Guide",
+        "support": "Support / Help",
+        "title": "Support",
+        "warranty": "Warranty"
+      }
+    },
+    "newsletter": {
+      "accept": "I agree to the",
+      "description": "Subscribe to our newsletter to get 10% off your first order.",
+      "divider": "and",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "title": "Newsletter"
+    },
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "header": {
+    "teaser": "++ Free Shipping & Returns on all orders ++",
+    "utils": {
+      "login": "Login",
+      "stores": "Stores"
+    }
+  },
+  "home": {
+    "teaser": {
+      "category": {
+        "men": "Shop Men's",
+        "women": "Shop Women's"
+      },
+      "adventure": {
+        "button": "Explore Adventure Collection"
+      },
+      "mtb": {
+        "button": "Gear up for the ride ahead",
+        "title": "Unleash Your Adventure"
+      },
+      "season": {
+        "button": "Apparel That Goes the Distance",
+        "title": "Gear up for All Seasons"
+      }
+    }
+  },
+  "listing": {
+    "counter": "No Result | 1 Result | {count} Results",
+    "filters": {
+      "activity": "Activity",
+      "color": "Color",
+      "feature": "Feature",
+      "glove-type": "Glove Type",
+      "lens-shape": "Lens Shape",
+      "material": "Material",
+      "pronation": "Pronation",
+      "purpose": "Purpose",
+      "size": "Size",
+      "usage": "Usage",
+      "windproof": "Windproof"
+    }
+  },
+  "locales": {
+    "de-de": "German",
+    "en-us": "English"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "description": "Navigate to your favorite section",
+    "account": "Account",
+    "cart": "Cart",
+    "close": "Close",
+    "menu": "Menu",
+    "search": "Search",
+    "checkout": "Checkout",
+    "goto-checkout": "Checkout Now",
+    "continue-shopping": "Continue Shopping"
+  },
+  "product": {
+    "buy": {
+      "add-to-cart": "Add to Cart"
+    },
+    "details": {
+      "bullet-points": {
+        "first": "Free Shipping & Returns",
+        "second": "30-Day Return Policy",
+        "third": "Fast Delivery"
+      },
+      "features": {
+        "key-features": "Key Features",
+        "materials-care": "Materials & Care",
+        "specifications": "Specifications"
+      },
+      "reviews": {
+        "average-rating": "Average rating",
+        "count": "No Reviews | {count} Review | {count} Reviews",
+        "count-plain": "({count})",
+        "likes": "Helpful",
+        "review-count": "Based on",
+        "show-all": "Show all reviews",
+        "show-less": "Show less reviews",
+        "show-more": "Show more reviews",
+        "title": "Reviews",
+        "verified": "Verified purchase"
+      },
+      "sections": {
+        "description": "Description",
+        "reviews": "Reviews",
+        "showroom": "Showroom",
+        "similar": "Similar Products"
+      },
+      "size-table": {
+        "title": "Size & Fit"
+      },
+      "tag": {
+        "new": "New",
+        "outdoor": "Outdoor"
+      }
+    },
+    "variant": {
+      "color": {
+        "title": "Color"
+      },
+      "select": {
+        "empty": "No variants found",
+        "missing": "No template implemented for this option"
+      },
+      "size": {
+        "size-guide": "Size Guide",
+        "size-model": "The model is 5'4\" (162cm) and wears size S.",
+        "title": "Size"
+      }
+    }
+  },
+  "regions": {
+    "ch": "Switzerland",
+    "de": "Germany",
+    "gb": "United Kingdom",
+    "us": "United States"
+  },
+  "search": {
+    "back": "Back to Home",
+    "counter": "{count} products found for \"{term}\"",
+    "total": "Search in {count} products",
+    "empty": "Search for products",
+    "suggest": "Suggested searches",
+    "results": "Products",
+    "no-results": "No results found for \"{term}\"",
+    "placeholder": "Search our shop",
+    "suggestions": "schnee, falke, glide",
+    "search-listing": "View all {count} results"
+  },
+  "social": {
+    "description": "Tag {'@'}flagshipstore on Instagram for a chance to see your image here.",
+    "title": "Become part of the Adventure Community"
+  }
+}

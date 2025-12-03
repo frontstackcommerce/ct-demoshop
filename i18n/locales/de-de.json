@@ -1,0 +1,393 @@
+{
+  "actions": {
+    "add": "Hinzufügen",
+    "add-item": "{item} hinzufügen",
+    "close": "schließen",
+    "remove": "Entfernen",
+    "remove-item": "{item} entfernen",
+    "update": "Aktualisieren",
+    "update-item": "{item} aktualisieren",
+    "show-all": "Alle",
+    "shop-all": "Alle Produkte",
+    "back": "Zurück"
+  },
+  "brand": "Flagship Store",
+  "carousel": {
+    "goto": "Gehe zu Bild {slide}",
+    "next": "Nächste",
+    "previous": "Vorherige"
+  },
+  "cart": {
+    "discount": {
+      "placeholder": "Rabattcode eingeben",
+      "submit": "Rabatt einlösen",
+      "title": "Rabattcode"
+    },
+    "empty": {
+      "title": "Du hast noch nichts im Warenkorb",
+      "recommended": "Unsere Empfehlungen für dich"
+    },
+    "items": {
+      "quantity-placeholder": "Anzahl auswählen"
+    },
+    "notify": {
+      "action": {
+        "checkout": "Zur Kasse",
+        "cart": "Warenkorb"
+      },
+      "recommended": "Passt perfekt dazu..."
+    },
+    "summary": {
+      "free": "Gratis",
+      "items": "Produkte",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "title": "Bestellübersicht",
+      "total": "Gesamt",
+      "count": "1 Produkt | {count} Produkte"
+    },
+    "title": "Warenkorb",
+    "title-long": "Dein Warenkorb"
+  },
+  "categories": {
+    "accessories": "Zubehör",
+    "backpacks": "Rucksäcke",
+    "beanies": "Mützen",
+    "clothing": "Kleidung",
+    "equipment": "Ausrüstung",
+    "gloves": "Handschuhe",
+    "goggles": "Goggles",
+    "helmets": "Helme",
+    "jackets": "Jacken",
+    "kids": "Kinder",
+    "men": "Männer",
+    "running-shoes": "Laufschuhe",
+    "sale": "Sale",
+    "shoes": "Schuhe",
+    "shop": "Shop",
+    "snapbacks": "Snapbacks",
+    "sunglasses": "Sonnenbrillen",
+    "trousers": "Hosen",
+    "women": "Frauen",
+    "winter": "Winter"
+  },
+  "checkout": {
+    "account": {
+      "fields": {
+        "email": "E-Mail oder Mobiltelefonnummer",
+        "newsletter": "Neuigkeiten und Angebote via E-Mail erhalten"
+      },
+      "login": "Anmelden",
+      "title": "Kontaktdaten"
+    },
+    "customer": {
+      "firstname": "Vorname (optional)",
+      "lastname": "Nachname"
+    },
+    "delivery": {
+      "fields": {
+        "address": {
+          "no-address": "Adresse nicht gefunden",
+          "placeholder": "Adresse",
+          "search": "Adresse suchen..."
+        },
+        "apartment": {
+          "placeholder": "Wohnung, Zimmer, usw. (optional)"
+        },
+        "city": {
+          "placeholder": "Stadt"
+        },
+        "country": {
+          "no-country": "Land nicht gefunden",
+          "placeholder": "Land / Region",
+          "search": "Land suchen..."
+        },
+        "zip-code": {
+          "placeholder": "Postleitzahl"
+        }
+      },
+      "title": "Lieferung"
+    },
+    "express": {
+      "or": "ODER",
+      "title": "Express Checkout"
+    },
+    "payment": {
+      "credit-card": {
+        "fields": {
+          "card-holder": "Karteninhaber",
+          "card-holder-placeholder": "Karteninhaber eingeben",
+          "card-number": "Kartennummer",
+          "card-number-placeholder": "Kartennummer eingeben",
+          "cvv": "Sicherheitscode (CVV)",
+          "cvv-help": "Ein dreistelliger Sicherheitscode, der normalerweise auf der Rückseite deiner Karte zu finden ist. American Express-Karten haben einen vierstelligen Code auf der Vorderseite.",
+          "cvv-placeholder": "CVV eingeben",
+          "expiration-date": "Ablaufdatum (MM/YY)",
+          "expiration-date-placeholder": "MM/YY"
+        },
+        "title": "Kreditkarte"
+      },
+      "description": "Alle Transaktionen sind sicher und verschlüsselt.",
+      "invoice": {
+        "title": "Kauf aufRechnung"
+      },
+      "invoice-address": "Lieferadresse als Rechnungsadresse verwenden",
+      "paypal": {
+        "title": "Paypal"
+      },
+      "title": "Zahlung"
+    },
+    "shipping": {
+      "alert": "Gib deine Lieferadresse ein, um verfügbare Versandarten anzuzeigen.",
+      "free-shipping": "gratis",
+      "shipping-info": {
+        "dhl": "Lieferung innerhalb von 1-2 Werktagen zum Paketshop",
+        "dpd": "Lieferung innerhalb von 3-4 Werktagen (Montag - Freitag)",
+        "fedex": "Lieferung innerhalb von 24 Stunden (Montag - Samstag)",
+        "ups": "Lieferung bis morgen früh 9 Uhr (Montag - Samstag)"
+      },
+      "title": "Versand"
+    },
+    "submit": "Bestellung aufgeben",
+    "terms": {
+      "label": "Ich akzeptiere die Allgemeinen Geschäftsbedingungen",
+      "title": "Allgemeine Geschäftsbedingungen"
+    }
+  },
+  "context": {
+    "location": {
+      "label": "Versenden nach",
+      "placeholder": "Region auswählen"
+    },
+    "language": {
+      "label": "Sprache",
+      "placeholder": "Sprache auswählen"
+    },
+    "suggest": {
+      "title": "Wir haben eine bessere Übereinstimmung gefunden",
+      "description": "Die Seite, die du suchst, passt nicht zu deiner gewählten Sprache. Aber wir haben eine bessere Übereinstimmung für dich gefunden.",
+      "deny": "Nein, ich möchte bleiben",
+      "accept": "Ja, bring mich zur {locale} Version"
+    },
+    "submit": "Speichern",
+    "title": "Wähle deinen Standort und deine Sprache"
+  },
+  "control": {
+    "button": "Filter & Sortieren",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "showed": "{count} von {total} Produkten angesehen",
+      "next": "Mehr anzeigen",
+      "add-filter": "Filter & Sortieren",
+      "edit-filter": "Filter bearbeiten",
+      "goto-top": "Nach oben"
+    },
+    "reset": "Filter zurücksetzen",
+    "reset-sm": "Reset",
+    "submit": "Zeige {count} Produkte",
+    "submit-sm": "Anzeigen",
+    "search": {
+      "placeholder": "Suchbegriffe eingeben...",
+      "title": "In {category} suchen"
+    },
+    "sort": {
+      "options": {
+        "default": "Unsere Empfehlung",
+        "name:asc": "Name aufsteigend",
+        "name:desc": "Name absteigend",
+        "price:asc": "Preis aufsteigend",
+        "price:desc": "Preis absteigend"
+      },
+      "title": "Sortieren nach"
+    }
+  },
+  "default": {
+    "times": "x ",
+    "colon": ": ",
+    "in-brackets": "({text})"
+  },
+  "error": {
+    "404": {
+      "subtitle": "404",
+      "title": "Seite nicht gefunden",
+      "description": "Entschuldigung, wir konnten die Seite nicht finden, die du suchst.",
+      "back": "Zur Startseite"
+    }
+  },
+  "favorites": {
+    "empty": "Du hast noch keine Favoriten.",
+    "title": "Deine Favoriten",
+    "recommended": "Unsere Empfehlungen für dich"
+  },
+  "footer": {
+    "copyright": "© 2025 Alle Rechte vorbehalten.",
+    "menu": {
+      "about": {
+        "about": "Über uns",
+        "order-status": "Bestellstatus",
+        "store-locator": "Store Locator",
+        "contact": "Kontakt",
+        "help": "Hilfe & Support",
+        "title": "Über uns"
+      },
+      "support": {
+        "contact": "Kontakt",
+        "order": "Bestellstatus",
+        "return-policy": "Rückgaben",
+        "shipping": "Versand",
+        "size-guide": "Größentabelle",
+        "support": "Support / Hilfe",
+        "title": "Support",
+        "warranty": "Garantie"
+      }
+    },
+    "newsletter": {
+      "accept": "Ich akzeptiere die",
+      "description": "Abonniere unseren Newsletter, um 10% Rabatt auf deinen ersten Bestellung zu erhalten.",
+      "divider": "und",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen",
+      "title": "Newsletter"
+    },
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
+  },
+  "header": {
+    "teaser": "++ Gratis Versand und Retoure für alle Bestellungen ++",
+    "utils": {
+      "login": "Login",
+      "stores": "Stores"
+    }
+  },
+  "home": {
+    "teaser": {
+      "category": {
+        "men": "Für Männer",
+        "women": "Für Frauen"
+      },
+      "adventure": {
+        "button": "Entdecke die Adventure Collection"
+      },
+      "mtb": {
+        "button": "Bereit für den nächsten Schritt?",
+        "title": "Unleash Your Adventure"
+      },
+      "season": {
+        "button": "Bekleidung für jeden Weg",
+        "title": "Rüsten Sie sich für alle Jahreszeiten"
+      }
+    }
+  },
+  "listing": {
+    "counter": "Keine Treffer | 1 Produkt | {count} Produkte",
+    "filters": {
+      "activity": "Aktivität",
+      "color": "Farbe",
+      "feature": "Merkmal",
+      "glove-type": "Handschuhart",
+      "lens-shape": "Linsenform",
+      "material": "Material",
+      "pronation": "Pronation",
+      "purpose": "Verwendungszweck",
+      "size": "Grösse",
+      "usage": "Einsatzzweck",
+      "windproof": "Winddicht"
+    }
+  },
+  "locales": {
+    "de-de": "Deutsch",
+    "en-us": "Englisch"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "description": "Navigiere zu deinem Lieblingsbereich",
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "close": "Schließen",
+    "menu": "Menü",
+    "search": "Suchen",
+    "checkout": "Zur Kasse",
+    "goto-checkout": "Zur Kasse",
+    "continue-shopping": "Weiter Einkaufen"
+  },
+  "product": {
+    "buy": {
+      "add-to-cart": "In den Warenkorb"
+    },
+    "details": {
+      "bullet-points": {
+        "first": "Kostenloser Versand & Rückversand",
+        "second": "30 Tage Rückgaberecht",
+        "third": "Schnelle Lieferung"
+      },
+      "features": {
+        "key-features": "Key Features",
+        "materials-care": "Materialien & Pflege",
+        "specifications": "Spezifikationen"
+      },
+      "reviews": {
+        "average-rating": "Durchschnittliche Bewertung",
+        "count": "Keine Bewertungen | 1 Bewertung | {count} Bewertungen",
+        "count-plain": "({count})",
+        "likes": "Hilfreich",
+        "review-count": "Basierend auf",
+        "show-all": "Alle Bewertungen anzeigen",
+        "show-less": "Weniger Bewertungen anzeigen",
+        "show-more": "Mehr Bewertungen anzeigen",
+        "title": "Produktbewertungen",
+        "verified": "Verifizierter Kauf"
+      },
+      "sections": {
+        "description": "Beschreibung",
+        "reviews": "Produktbewertungen",
+        "showroom": "Showroom",
+        "similar": "Ähnliche Produkte"
+      },
+      "size-table": {
+        "title": "Grösse & Passform"
+      },
+      "tag": {
+        "new": "Neu",
+        "outdoor": "Outdoor"
+      }
+    },
+    "variant": {
+      "color": {
+        "title": "Farbe"
+      },
+      "select": {
+        "empty": "Keine Varianten gefunden",
+        "missing": "Keine Template implementiert für diese Option"
+      },
+      "size": {
+        "size-guide": "Größentabelle",
+        "size-model": "Das Model ist 162cm groß und trägt Größe S.",
+        "title": "Größe"
+      }
+    }
+  },
+  "regions": {
+    "ch": "Schweiz",
+    "de": "Deutschland",
+    "gb": "Großbritannien",
+    "us": "USA"
+  },
+  "search": {
+    "back": "Zurück zur Startseite",
+    "counter": "{count} Suchergebnisse für \"{term}\"",
+    "total": "Suche in {count} Produkten",
+    "empty": "Suche nach Produkten",
+    "suggest": "Vorgeschlagene Suchen",
+    "results": "Produkte",
+    "no-results": "Keine Ergebnisse gefunden für \"{term}\"",
+    "placeholder": "Durchsuche unseren Shop",
+    "suggestions": "schnee, falke, glide",
+    "search-listing": "Alle {count} Ergebnisse anzeigen"
+  },
+  "social": {
+    "description": "Tagge  {'@'}flagshipstore auf Instagram für die Chance, dein Bild hier zu sehen.",
+    "title": "Werde Teil der Adventure Community"
+  }
+}
