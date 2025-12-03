@@ -50,6 +50,10 @@
     "title-long": "Your Shopping Cart"
   },
   "categories": {
+    "furniture": "Furniture",
+    "kitchen": "Kitchen",
+    "new-arrivals": "New Arrivals",
+    "home-decor": "Home Decor",
     "accessories": "Accessories",
     "backpacks": "Backpacks",
     "beanies": "Beanies",

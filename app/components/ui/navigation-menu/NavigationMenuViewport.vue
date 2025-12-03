@@ -14,12 +14,12 @@ const forwardedProps = useForwardProps(delegatedProps)
 </script>
 
 <template>
-  <div class="absolute top-full left-0 flex w-full justify-start bg-amber-300">
+  <div class="absolute top-full left-0 flex w-full justify-start">
     <NavigationMenuViewport
       v-bind="forwardedProps"
       :class="
         cn(
-          'origin-top-center text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative h-[calc(100vh-10rem)] w-full overflow-hidden rounded-b-md border bg-blue-300 shadow-xl',
+          'origin-top-center text-popover-foreground data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 relative h-[calc(100vh-10rem)] w-full overflow-hidden rounded-b-md border bg-white shadow-xl',
           'menu-animation',
           props.class
         )

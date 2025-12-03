@@ -5,12 +5,36 @@
 
 
 export interface paths {
+  "/block/brand/card/{key}": {
+    /**
+     * Fetch BrandCard
+     * @description Fetch BrandCard
+     */
+    post: operations["getBrandCardBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
   "/block/brand/full/{key}": {
     /**
      * Fetch BrandFull
      * @description Fetch BrandFull
      */
     post: operations["getBrandFullBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
+  "/listing/brand/listing": {
+    /**
+     * Fetch BrandListing
+     * @description Fetch BrandListing
+     */
+    post: operations["getBrandListingBlock"];
     parameters: {
       header?: {
         "fs-request-url"?: components["parameters"]["FsRequestUrl"];
@@ -59,6 +83,42 @@ export interface paths {
      * @description Fetch CategoryItem
      */
     post: operations["getCategoryItemBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
+  "/block/category/menu/{key}": {
+    /**
+     * Fetch CategoryMenu
+     * @description Fetch CategoryMenu
+     */
+    post: operations["getCategoryMenuBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
+  "/block/category/nested/{key}": {
+    /**
+     * Fetch CategoryNested
+     * @description Fetch CategoryNested
+     */
+    post: operations["getCategoryNestedBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
+  "/listing/category/nested/childs": {
+    /**
+     * Fetch CategoryNestedChilds
+     * @description Fetch CategoryNestedChilds
+     */
+    post: operations["getCategoryNestedChildsBlock"];
     parameters: {
       header?: {
         "fs-request-url"?: components["parameters"]["FsRequestUrl"];
@@ -300,6 +360,13 @@ export interface components {
       /** @description Will search fields that are marked as searchable */
       search?: string;
     };
+    BrandCard: {
+      hero?: components["schemas"]["Media"];
+      key: components["schemas"]["String"];
+      logo?: components["schemas"]["Media"];
+      name?: components["schemas"]["String"];
+      slug?: components["schemas"]["String"];
+    };
     BrandFull: {
       active?: components["schemas"]["Boolean"];
       description?: components["schemas"]["String"];
@@ -308,6 +375,14 @@ export interface components {
       logo?: components["schemas"]["Media"];
       name?: components["schemas"]["String"];
       slug?: components["schemas"]["String"];
+    };
+    BrandListing: {
+      items?: components["schemas"]["BrandCard"][];
+      filter?: components["schemas"]["_filter"];
+      aggregation?: components["schemas"]["_aggregation"];
+      sort?: components["schemas"]["_sort"];
+      page?: components["schemas"]["_page"];
+      total?: components["schemas"]["_total"];
     };
     BrandProducts: {
       items?: components["schemas"]["ProductCard"][];
@@ -336,11 +411,36 @@ export interface components {
       slug?: components["schemas"]["String"];
     };
     CategoryItem: {
+      children?: components["schemas"]["CategoryNestedChilds"];
       key: components["schemas"]["String"];
       link?: components["schemas"]["PageRoute"];
       name?: components["schemas"]["String"];
       orderHint?: components["schemas"]["Float"];
       parent?: components["schemas"]["String"];
+    };
+    CategoryMenu: {
+      ancestors?: components["schemas"]["String"][];
+      children?: components["schemas"]["CategoryChilds"];
+      key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
+      name?: components["schemas"]["String"];
+      orderHint?: components["schemas"]["Float"];
+      parent?: components["schemas"]["String"];
+    };
+    CategoryNested: {
+      key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
+      name?: components["schemas"]["String"];
+      orderHint?: components["schemas"]["Float"];
+      parent?: components["schemas"]["String"];
+    };
+    CategoryNestedChilds: {
+      items?: components["schemas"]["CategoryNested"][];
+      filter?: components["schemas"]["_filter"];
+      aggregation?: components["schemas"]["_aggregation"];
+      sort?: components["schemas"]["_sort"];
+      page?: components["schemas"]["_page"];
+      total?: components["schemas"]["_total"];
     };
     CategoryProducts: {
       items?: components["schemas"]["ProductCard"][];
@@ -351,6 +451,7 @@ export interface components {
       total?: components["schemas"]["_total"];
     };
     ProductCard: {
+      brand?: components["schemas"]["String"];
       key: components["schemas"]["String"];
       link?: components["schemas"]["PageRoute"];
       name?: components["schemas"]["String"];
@@ -359,12 +460,14 @@ export interface components {
     };
     ProductFull: {
       active?: components["schemas"]["Boolean"];
+      brand?: components["schemas"]["String"];
       categoryIds?: components["schemas"]["String"][];
       description?: components["schemas"]["String"];
       key: components["schemas"]["String"];
       name?: components["schemas"]["String"];
       reviews?: components["schemas"]["ProductReviews"];
       slug?: components["schemas"]["String"];
+      variants?: components["schemas"]["ProductVariant"][];
     };
     ProductReview: {
       active?: components["schemas"]["Boolean"];
@@ -389,6 +492,13 @@ export interface components {
       key: components["schemas"]["String"];
       price?: components["schemas"]["Price"];
     };
+    /** @description Available query options (filters and sortings) for BrandListing blocks */
+    BrandListingQueryOptions: {
+      /** @description Sort options for BrandListing blocks */
+      sort: Record<string, never>;
+      /** @description Filter options for BrandListing blocks */
+      filter: Record<string, never>;
+    };
     /** @description Available query options (filters and sortings) for BrandProducts blocks */
     BrandProductsQueryOptions: {
       /** @description Sort options for BrandProducts blocks */
@@ -403,6 +513,13 @@ export interface components {
       /** @description Sort options for CategoryChilds blocks */
       sort: Record<string, never>;
       /** @description Filter options for CategoryChilds blocks */
+      filter: Record<string, never>;
+    };
+    /** @description Available query options (filters and sortings) for CategoryNestedChilds blocks */
+    CategoryNestedChildsQueryOptions: {
+      /** @description Sort options for CategoryNestedChilds blocks */
+      sort: Record<string, never>;
+      /** @description Filter options for CategoryNestedChilds blocks */
       filter: Record<string, never>;
     };
     /** @description Available query options (filters and sortings) for CategoryProducts blocks */
@@ -507,6 +624,33 @@ export type external = Record<string, never>;
 export interface operations {
 
   /**
+   * Fetch BrandCard
+   * @description Fetch BrandCard
+   */
+  getBrandCardBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+      path: {
+        /** @description Description missing for key */
+        key: string;
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BrandCard"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
    * Fetch BrandFull
    * @description Fetch BrandFull
    */
@@ -534,6 +678,29 @@ export interface operations {
     };
   };
   /**
+   * Fetch BrandListing
+   * @description Fetch BrandListing
+   */
+  getBrandListingBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["BrandListing"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
    * Fetch BrandProducts
    * @description Fetch BrandProducts
    */
@@ -541,6 +708,17 @@ export interface operations {
     parameters: {
       header?: {
         "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    /** @description Description missing for param */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["_searchQueryOptions"] & {
+          param?: {
+            /** @description Description missing for brandKey */
+            brandKey: string;
+          };
+        };
       };
     };
     responses: {
@@ -636,6 +814,94 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CategoryItem"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch CategoryMenu
+   * @description Fetch CategoryMenu
+   */
+  getCategoryMenuBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+      path: {
+        /** @description Description missing for key */
+        key: string;
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CategoryMenu"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch CategoryNested
+   * @description Fetch CategoryNested
+   */
+  getCategoryNestedBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+      path: {
+        /** @description Description missing for key */
+        key: string;
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CategoryNested"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch CategoryNestedChilds
+   * @description Fetch CategoryNestedChilds
+   */
+  getCategoryNestedChildsBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    /** @description Description missing for param */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["_searchQueryOptions"] & {
+          param?: {
+            /** @description Description missing for key */
+            key: string;
+          };
+        };
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CategoryNestedChilds"];
         };
       };
       /** @description Not Found */

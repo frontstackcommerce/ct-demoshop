@@ -1,5 +1,10 @@
 <script setup lang="ts">
-const { aboutMenu } = useMenu()
+const aboutMenu = ref([
+  {
+    label: 'About',
+    href: '/about',
+  },
+])
 </script>
 
 <template>

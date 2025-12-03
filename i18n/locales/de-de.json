@@ -50,6 +50,10 @@
     "title-long": "Dein Warenkorb"
   },
   "categories": {
+    "furniture": "Möbel",
+    "kitchen": "Küche",
+    "new-arrivals": "Neuheiten",
+    "home-decor": "Dekoration",
     "accessories": "Zubehör",
     "backpacks": "Rucksäcke",
     "beanies": "Mützen",

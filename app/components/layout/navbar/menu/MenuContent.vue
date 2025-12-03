@@ -1,14 +1,11 @@
 <script setup lang="ts">
 const props = defineProps<{
   categoryId: string
+  category?: CategoryMenu
 }>()
 
-function closeMenu() {
-  console.log('closeMenu')
-}
+const { closeMenu } = useMenu()
 
-const categories = ref<CategoryCard['children']>([])
-const category = ref<CategoryCard | undefined>(undefined)
 const stateCategoryId = ref<string | undefined>(undefined)
 
 onMounted(() => {
@@ -17,9 +14,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="flex h-full bg-red-500">
+  <div class="flex h-full">
     <div class="flex h-full w-1/2 flex-col justify-between">
-      <ul v-if="categories?.items && categories?.items.length > 0" class="mt-8 flex flex-col gap-8">
+      <ul v-if="category" class="mt-8 flex flex-col gap-8">
         <li>
           <NavigationMenuLink as-child>
             <NuxtLink
@@ -32,13 +29,13 @@ onMounted(() => {
           </NavigationMenuLink>
         </li>
 
-        <li v-for="child in categories?.items" :key="child.key">
+        <li v-for="child in category.children?.items" :key="child.key">
           <NavigationMenuLink as-child>
             <NuxtLink
               :to="child.link?.path"
               class="group relative inline-block overflow-hidden pb-2"
             >
-              <div class="relative z-10 text-3xl leading-none font-medium">{{ child.title }}</div>
+              <div class="relative z-10 text-3xl leading-none font-medium">{{ child.name }}</div>
               <div
                 class="bg-inverted absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
               ></div>

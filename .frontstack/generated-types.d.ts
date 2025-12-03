@@ -35,10 +35,24 @@ type RequestOptions = {
 
 /* List of all types used to fetch block parameters */
 
+export type BrandListingParameters = {
+}
+
 export type BrandProductsParameters = {
+    /**
+     * @description Description missing for brandKey
+     */
+    brandKey: string;
 }
 
 export type CategoryChildsParameters = {
+    /**
+     * @description Description missing for key
+     */
+    key: string;
+}
+
+export type CategoryNestedChildsParameters = {
     /**
      * @description Description missing for key
      */
@@ -63,8 +77,10 @@ export type ProductReviewsParameters = {
 /* List of all blocks, used for IDE autocompletion */
 
 type ListingParameters = {
+    BrandListing: BrandListingParameters
     BrandProducts: BrandProductsParameters
     CategoryChilds: CategoryChildsParameters
+    CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
     ProductReviews: ProductReviewsParameters
 }
@@ -75,9 +91,12 @@ type Endpoints = {
 
 /* Types for split block/listing methods */
 export type Blocks = {
+    BrandCard: never
     BrandFull: never
     CategoryFull: never
     CategoryItem: never
+    CategoryMenu: never
+    CategoryNested: never
     ProductCard: never
     ProductFull: never
     ProductReview: never
@@ -85,18 +104,25 @@ export type Blocks = {
 }
 
 export type Listings = {
+    BrandListing: BrandListingParameters
     BrandProducts: BrandProductsParameters
     CategoryChilds: CategoryChildsParameters
+    CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
     ProductReviews: ProductReviewsParameters
 }
 
 declare global {
+export type BrandCard = components['schemas']['BrandCard']
 export type BrandFull = components['schemas']['BrandFull']
+export type BrandListing = components['schemas']['BrandListing']
 export type BrandProducts = components['schemas']['BrandProducts']
 export type CategoryChilds = components['schemas']['CategoryChilds']
 export type CategoryFull = components['schemas']['CategoryFull']
 export type CategoryItem = components['schemas']['CategoryItem']
+export type CategoryMenu = components['schemas']['CategoryMenu']
+export type CategoryNested = components['schemas']['CategoryNested']
+export type CategoryNestedChilds = components['schemas']['CategoryNestedChilds']
 export type CategoryProducts = components['schemas']['CategoryProducts']
 export type ProductCard = components['schemas']['ProductCard']
 export type ProductFull = components['schemas']['ProductFull']
@@ -106,11 +132,16 @@ export type ProductVariant = components['schemas']['ProductVariant']
 }
 
 export type Responses = {
+    BrandCard: BrandCard
     BrandFull: BrandFull
+    BrandListing: BrandListing
     BrandProducts: BrandProducts
     CategoryChilds: CategoryChilds
     CategoryFull: CategoryFull
     CategoryItem: CategoryItem
+    CategoryMenu: CategoryMenu
+    CategoryNested: CategoryNested
+    CategoryNestedChilds: CategoryNestedChilds
     CategoryProducts: CategoryProducts
     ProductCard: ProductCard
     ProductFull: ProductFull
@@ -120,25 +151,34 @@ export type Responses = {
 }
 
 export type ListingQueryFilters = {
+    BrandListing: components['schemas']['BrandListingQueryOptions']['filter']
     BrandProducts: components['schemas']['BrandProductsQueryOptions']['filter']
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['filter']
+    CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['filter']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
 }
 
 export type ListingQuerySorts = {
+    BrandListing: components['schemas']['BrandListingQueryOptions']['sort']
     BrandProducts: components['schemas']['BrandProductsQueryOptions']['sort']
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['sort']
+    CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['sort']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
 }
 
 type FetchMode = {
+    BrandCard: 'key';
     BrandFull: 'key';
+    BrandListing: 'query';
     BrandProducts: 'query';
     CategoryChilds: 'query';
     CategoryFull: 'key';
     CategoryItem: 'key';
+    CategoryMenu: 'key';
+    CategoryNested: 'key';
+    CategoryNestedChilds: 'query';
     CategoryProducts: 'query';
     ProductCard: 'key';
     ProductFull: 'key';

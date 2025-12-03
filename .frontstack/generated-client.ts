@@ -141,11 +141,16 @@ export interface FrontstackClient {
 }
 
 const endpoints: Endpoints = {
+  BrandCard: '/block/brand/card/{key}',
   BrandFull: '/block/brand/full/{key}',
+  BrandListing: '/listing/brand/listing',
   BrandProducts: '/listing/brand/products',
   CategoryChilds: '/listing/category/childs',
   CategoryFull: '/block/category/full/{key}',
   CategoryItem: '/block/category/item/{key}',
+  CategoryMenu: '/block/category/menu/{key}',
+  CategoryNested: '/block/category/nested/{key}',
+  CategoryNestedChilds: '/listing/category/nested/childs',
   CategoryProducts: '/listing/category/products',
   ProductCard: '/block/product/card/{key}',
   ProductFull: '/block/product/full/{key}',
