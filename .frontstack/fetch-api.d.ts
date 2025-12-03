@@ -332,10 +332,12 @@ export interface components {
       name?: components["schemas"]["String"];
       orderHint?: components["schemas"]["Float"];
       parent?: components["schemas"]["String"];
+      products?: components["schemas"]["CategoryProducts"];
       slug?: components["schemas"]["String"];
     };
     CategoryItem: {
       key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
       name?: components["schemas"]["String"];
       orderHint?: components["schemas"]["Float"];
       parent?: components["schemas"]["String"];
@@ -350,9 +352,9 @@ export interface components {
     };
     ProductCard: {
       key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
       name?: components["schemas"]["String"];
       price?: components["schemas"]["Price"];
-      slug?: components["schemas"]["String"];
       variants?: components["schemas"]["ProductVariant"][];
     };
     ProductFull: {
