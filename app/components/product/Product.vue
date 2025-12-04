@@ -3,10 +3,14 @@ const props = defineProps<{
   product: ProductFull
 }>()
 
+const { query } = useRoute()
+
 const selectedVariant = ref<ProductVariant | null>(null)
 
 onMounted(() => {
-  if (Array.isArray(props.product.variants) && props.product.variants.length > 0) {
+  if(query.sku && typeof query.sku === 'string' && props.product.variants?.some(variant => variant.key === query.sku)) {
+    selectedVariant.value = props.product.variants.find(variant => variant.key === query.sku) ?? null
+  } else  if (Array.isArray(props.product.variants) && props.product.variants.length > 0) {
     selectedVariant.value = props.product.variants[0] ?? null
   } else {
     selectedVariant.value = null
@@ -23,7 +27,7 @@ const formatPrice = (price: Price) => {
 </script>
 
 <template>
-  <div class="absolute inset-0 w-screen top-40 h-[40%] bg-gray-200 z-0 overflow-hidden">
+  <div class="absolute inset-0 w-screen top-40 h-[40%] min-h-[340px] bg-gray-200 z-0 overflow-hidden">
     <img :src="selectedVariant?.images?.[0]?.src" :alt="selectedVariant?.images?.[0]?.altText" class="size-full object-cover blur-lg opacity-10" />
   </div>
 
@@ -61,14 +65,14 @@ const formatPrice = (price: Price) => {
           </span>
         </div>
 
-        <div v-if="Array.isArray(product.variants) && product.variants.length > 1" class="flex gap-4">
+        <div v-if="Array.isArray(product.variants) && product.variants.length > 1" class="grid grid-cols-5 gap-4">
           <div
             v-for="variant in product.variants"
             :key="variant.key"
-            class="aspect-square rounded-full overflow-hidden bg-white size-20 cursor-pointer opacity-50 hover:opacity-100 transition-opacity duration-300"
-            @click="selectedVariant = variant"
+            class="aspect-square rounded-full overflow-hidden bg-white size-20 cursor-pointer shadow-xs"
+            @click="selectedVariant = variant">
+            <img :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full object-contain p-4 bg-white hover:scale-105 transition-all opacity-50 hover:opacity-100 duration-300" :class="{ 'opacity-100': selectedVariant?.key === variant.key }" />
             :class="{ 'opacity-100': selectedVariant?.key === variant.key }">
-            <img :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full object-contain p-4 bg-white hover:scale-105 transition-transform duration-300" />
           </div>
         </div>
       </div>

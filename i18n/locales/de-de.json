@@ -12,6 +12,10 @@
     "back": "Zurück"
   },
   "brand": "Flagship Store",
+  "brands": {
+    "label": "Marken",
+    "description": "Entdecken Sie unsere ausgewählte Auswahl an Premium-Marken"
+  },
   "carousel": {
     "goto": "Gehe zu Bild {slide}",
     "next": "Nächste",
@@ -321,6 +325,9 @@
       "add-to-cart": "In den Warenkorb"
     },
     "details": {
+      "description": {
+        "missing": "Keine Beschreibung verfügbar"
+      },
       "bullet-points": {
         "first": "Kostenloser Versand & Rückversand",
         "second": "30 Tage Rückgaberecht",
