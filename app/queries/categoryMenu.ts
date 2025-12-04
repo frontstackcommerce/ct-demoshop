@@ -6,10 +6,11 @@ export const CATEGORY_MENU_QUERY_KEYS = {
 }
 
 export const categoryMenuByKeyQuery = ({ key }: { key: MaybeRef<string> }) => {
+  const { token } = useContext()
   return {
     key: CATEGORY_MENU_QUERY_KEYS.byKey(key),
     query: async () => {
-      return await client.block('CategoryMenu', unref(key))
+      return await client.block('CategoryMenu', unref(key), { contextKey: token.value as string })
     },
     staleTime: 1000 * 60 * 60,
   }
