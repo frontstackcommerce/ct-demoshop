@@ -6,7 +6,7 @@ const { fullMenu } = useShopMenu()
 </script>
 
 <template>
-  <div v-if="fullMenu.items && fullMenu.items.length > 0" class="items-center gap-8">
+  <div v-if="fullMenu?.items && fullMenu.items.length > 0" class="items-center gap-8">
     <NavigationMenuList>
       <NavigationMenuItem v-for="item in fullMenu.items" :key="item.key">
         <NuxtLink

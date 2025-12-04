@@ -1,13 +1,13 @@
-import type { DeepReadonly, ShallowRef } from 'vue'
+import type { ShallowRef } from 'vue'
 import { shopMenuQuery } from '@/queries/shopMenu'
 
 interface IUseShopMenu {
   menuState: ShallowRef<MenuState>
   isOpen: ComputedRef<boolean>
-  aboutMenu: DeepReadonly<Ref<MenuItem[]>>
-  supportMenu: DeepReadonly<Ref<MenuItem[]>>
-  footerCategories: DeepReadonly<Ref<MenuItem[]>>
-  fullMenu: DeepReadonly<Ref<MenuTree>>
+  aboutMenu: ShallowRef<MenuItem[] | undefined>
+  supportMenu: ShallowRef<MenuItem[] | undefined>
+  footerCategories: ShallowRef<MenuItem[] | undefined>
+  fullMenu: ShallowRef<MenuTree | undefined>
   openCart: () => void
   closeMenu: () => void
 }
