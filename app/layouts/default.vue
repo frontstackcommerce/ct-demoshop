@@ -1,9 +1,13 @@
 <template>
-  <div class="min-h-screen bg-gray-50">
-    <main class="container mx-auto px-4 py-8">
-      <LayoutNavbar />
+  <div class="w-full">
+    <div>
+      <LayoutHeader />
+    </div>
+    <main class="mt-56">
       <slot />
     </main>
-    <LayoutFooter />
+    <div>
+      <LayoutFooter />
+    </div>
   </div>
 </template>

@@ -1,7 +1,7 @@
 import type { DeepReadonly, ShallowRef } from 'vue'
 import { shopMenuQuery } from '@/queries/shopMenu'
 
-interface IUseMenu {
+interface IUseShopMenu {
   menuState: ShallowRef<MenuState>
   isOpen: ComputedRef<boolean>
   aboutMenu: DeepReadonly<Ref<MenuItem[]>>
@@ -12,7 +12,7 @@ interface IUseMenu {
   closeMenu: () => void
 }
 
-export const useShopMenu = (): IUseMenu => {
+export const useShopMenu = (): IUseShopMenu => {
   const { $i18n } = useNuxtApp()
   const { locale, t } = $i18n
   const { token } = useContext()
