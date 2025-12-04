@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import 'flag-icons/css/flag-icons.min.css'
 
-const { context, contextList, updateContext, _fixRelativePath, getRegionLabel, getLocaleLabel } =
-  useContext()
+const { context, contextList, updateContext, getRegionLabel, getLocaleLabel } = useContext()
 const identifierSeparator = ':::'
 
 const selectLocale = async (value: string) => {
@@ -21,7 +20,7 @@ const selectLocale = async (value: string) => {
           ) {
             // No-op if current context configuration was selected
             await updateContext({ region: contextOption.region, locale: localeOption.key })
-            const url = _fixRelativePath(localeOption.url)
+            const url = localeOption.url
             navigateTo(url)
           }
         }

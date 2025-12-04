@@ -1,12 +1,5 @@
 import type { DeepReadonly, ShallowRef } from 'vue'
-import { categoryMenuByKeyQuery } from '@/queries/categoryMenu'
-
-const MAIN_NAV = {
-  HOMEDECOR: 'eac3db8c-71e5-4ac2-905a-7b23abadceb8',
-  FURNITURE: 'e964e0a3-1ac9-4f9a-9679-20180b3f6cef',
-  KITCHEN: '8ea36869-576b-44c0-bfda-8ca81ba1efd7',
-  NEW_ARRIVALS: 'a3a959b3-6f13-450a-80e8-7fc9ce5fb26c',
-}
+import { categoryMenuByKeyQuery, CATEGORY_MENU_QUERY_KEYS } from '@/queries/categoryMenu'
 
 interface IUseMenu {
   menuState: ShallowRef<MenuState>
@@ -21,31 +14,41 @@ interface IUseMenu {
 }
 
 export const useMenu = (): IUseMenu => {
-  const { t, locale } = useI18n()
+  const { $i18n } = useNuxtApp()
+  const { locale, t } = $i18n
+  const { token } = useContext()
 
   const { data: furnitureMenu } = useQuery(categoryMenuByKeyQuery, {
     key: MAIN_NAV.FURNITURE,
+    contextKey: token.value,
   })
 
   const { data: kitchenMenu } = useQuery(categoryMenuByKeyQuery, {
     key: MAIN_NAV.KITCHEN,
+    contextKey: token.value,
   })
 
   const { data: newArrivalsMenu } = useQuery(categoryMenuByKeyQuery, {
     key: MAIN_NAV.NEW_ARRIVALS,
+    contextKey: token.value,
   })
 
   const { data: homeDecorMenu } = useQuery(categoryMenuByKeyQuery, {
     key: MAIN_NAV.HOMEDECOR,
+    contextKey: token.value,
   })
 
-  const shopCategories = computed(() => [
-    furnitureMenu.value,
-    kitchenMenu.value,
-    homeDecorMenu.value,
-    newArrivalsMenu.value,
-  ])
-
+  const { data: shopCategories } = useQuery({
+    key: () => CATEGORY_MENU_QUERY_KEYS.catogories(),
+    query: async () => {
+      return [furnitureMenu.value, kitchenMenu.value, newArrivalsMenu.value, homeDecorMenu.value]
+    },
+    enabled: () =>
+      !!furnitureMenu.value &&
+      !!kitchenMenu.value &&
+      !!newArrivalsMenu.value &&
+      !!homeDecorMenu.value,
+  })
   const menuState = useState<MenuState>('menuState', () => undefined)
   const isOpen = computed(() => !!menuState.value)
 

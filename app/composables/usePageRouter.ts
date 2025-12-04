@@ -13,7 +13,7 @@ interface IUsePageRouter {
 
 export const usePageRouter = (): IUsePageRouter => {
   const route = useRoute()
-
+  const { token } = useContext()
   const url = computed(() => {
     if (route.fullPath === '/') {
       return ''
@@ -24,7 +24,7 @@ export const usePageRouter = (): IUsePageRouter => {
     return ''
   })
   // Context token is now handled server-side in the proxy route
-  const { data: page, status } = useQuery(pageByUrlQuery, { url })
+  const { data: page, status } = useQuery(pageByUrlQuery, { url, contextKey: token.value })
 
   const suggestRedirect = useState<boolean>('suggestRedirect', () => false)
   // Watch for suggested routes

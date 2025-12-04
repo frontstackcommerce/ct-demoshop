@@ -26,10 +26,9 @@ const handleSubmit = async () => {
 
   const regionOption = contextList.value?.find((option) => option.region === selectedRegion.value)
   const localeOption = regionOption?.locales.find((locale) => locale.key === selectedLocale.value)
-
   if (regionOption && localeOption) {
     await updateContext({ region: regionOption.region, locale: localeOption.key })
-    const url = localeOption.url
+    const url = localeOption.url.replace('ct.demo-shop.com', '')
     navigateTo(url)
     emit('success')
   }
@@ -47,7 +46,7 @@ const handleSubmit = async () => {
       >
         <SelectTrigger class="">
           <div class="flex items-center gap-2.5">
-            <SharedRegionFlag :code="selectedRegion" />
+            <StoreRegionFlag :code="selectedRegion" />
             {{
               selectedRegion ? getRegionLabel(selectedRegion) : $t('context.location.placeholder')
             }}
@@ -60,7 +59,7 @@ const handleSubmit = async () => {
             :value="contextOption.region"
           >
             <div class="flex items-center gap-2.5">
-              <SharedRegionFlag :code="contextOption.region" />
+              <StoreRegionFlag :code="contextOption.region" />
               {{ getRegionLabel(contextOption.region) }}
             </div>
           </SelectItem>

@@ -6,11 +6,13 @@ import {
   API_CONTEXT_QUERY_KEYS,
   apiContextListQuery,
 } from '~/queries/apiContext'
+import { CATEGORY_MENU_QUERY_KEYS } from '~/queries/categoryMenu'
 
 interface IUseContext {
   token: ShallowRef<ContextToken | undefined>
   context: ShallowRef<Context | undefined>
   contextList: ShallowRef<ContextOption[] | undefined>
+  shops: ShallowRef<Shops>
   newContext: (context: { region: string; locale: string }) => Promise<void>
   updateContext: (context: { region: string; locale: string }) => Promise<Context>
   getLocaleLabel: (locale: string) => string
@@ -43,12 +45,30 @@ export const useContext = (): IUseContext => {
         { region: context.region, locale: context.locale },
         token.value as string
       )
-      await setLocale(
-        context.locale.includes('de') ? 'de' : context.locale.includes('uk') ? 'uk' : 'us'
-      )
+
+      const newSnippet =
+        context.region === 'eu' && context.locale === 'de-DE'
+          ? 'de'
+          : context.region === 'uk'
+            ? 'uk'
+            : context.region === 'us'
+              ? 'us'
+              : 'eu'
+      await setLocale(newSnippet)
       return Promise.resolve(result)
     },
-    onSettled: (data) => {
+    onSuccess: async (data) => {
+      await queryCache.invalidateQueries({
+        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.FURNITURE),
+      })
+      await queryCache.invalidateQueries({ key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.KITCHEN) })
+      await queryCache.invalidateQueries({
+        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.NEW_ARRIVALS),
+      })
+      await queryCache.invalidateQueries({
+        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.HOMEDECOR),
+      })
+      await queryCache.invalidateQueries({ key: CATEGORY_MENU_QUERY_KEYS.catogories() })
       if (data) {
         queryCache.setQueryData(API_CONTEXT_QUERY_KEYS.byKey(token), data)
       }
@@ -59,10 +79,12 @@ export const useContext = (): IUseContext => {
   })
   function getLocaleLabel(locale: string) {
     switch (locale) {
-      case 'de-de':
-        return t('locales.de-de')
+      case 'de-DE':
+        return shops.value.DE.localeLabel
+      case 'en-GB':
+        return shops.value.UK.localeLabel
       case 'en-us':
-        return t('locales.en-us')
+        return shops.value.US.localeLabel
       default:
         return locale
     }
@@ -70,23 +92,58 @@ export const useContext = (): IUseContext => {
 
   function getRegionLabel(region: string) {
     switch (region) {
-      case 'de':
-        return t('regions.de')
-      case 'ch':
-        return t('regions.ch')
-      case 'gb':
-        return t('regions.gb')
+      case 'eu':
+        return shops.value.EU.regionLabel
+      case 'uk':
+        return shops.value.UK.regionLabel
       case 'us':
-        return t('regions.us')
+        return shops.value.US.regionLabel
       default:
         return region
     }
   }
+  const shops = computed(() => {
+    return {
+      DE: {
+        path: '/de',
+        region: 'eu',
+        regionLabel: t('regions.eu'),
+        locale: 'de-DE',
+        localeLabel: t('locales.de'),
+        snippet: 'de',
+      },
+      UK: {
+        path: '/uk',
+        region: 'uk',
+        regionLabel: t('regions.uk'),
+        locale: 'en-GB',
+        localeLabel: t('locales.en'),
+        snippet: 'uk',
+      },
+      EU: {
+        path: '/',
+        region: 'eu',
+        regionLabel: t('regions.eu'),
+        locale: 'en-GB',
+        localeLabel: t('locales.en'),
+        snippet: 'eu',
+      },
+      US: {
+        path: '/us',
+        region: 'us',
+        regionLabel: t('regions.us'),
+        locale: 'en-us',
+        localeLabel: t('locales.en'),
+        snippet: 'us',
+      },
+    }
+  })
 
   return {
     token,
     context,
     contextList,
+    shops,
     newContext,
     updateContext,
     getLocaleLabel,

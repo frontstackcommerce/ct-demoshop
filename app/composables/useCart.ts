@@ -18,7 +18,10 @@ export const useCart = (): IUseCart => {
 
   const { data: calculatedCart } = useQuery(shoppingCartQuery({ key: token.value ?? '' }))
 
-  const { data: cartItems, status } = useQuery(shoppingCartItemsQuery({ cart: calculatedCart }))
+  const { data: cartItems, status } = useQuery(shoppingCartItemsQuery, {
+    cart: calculatedCart,
+    contextKey: token.value,
+  })
 
   const cart = computed(() => {
     if (!calculatedCart.value) return calculatedCart.value

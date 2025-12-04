@@ -305,8 +305,8 @@
     }
   },
   "locales": {
-    "de-de": "German",
-    "en-us": "English"
+    "de": "German",
+    "en": "English"
   },
   "navigation": {
     "title": "Navigation",
@@ -380,9 +380,8 @@
     }
   },
   "regions": {
-    "ch": "Switzerland",
-    "de": "Germany",
-    "gb": "United Kingdom",
+    "eu": "Europe",
+    "uk": "United Kingdom",
     "us": "United States"
   },
   "search": {

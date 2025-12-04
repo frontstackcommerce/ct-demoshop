@@ -12,7 +12,6 @@ async function denySuggestion() {
 }
 
 async function acceptSuggestion() {
-  console.log('acceptSuggestion', page.value?.route.context?.suggested)
   if (!page.value?.route.context?.suggested?.path) return
   suggestRedirect.value = false
   await navigateTo(page.value.route.context.suggested.path)
