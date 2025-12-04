@@ -1,7 +1,7 @@
 <script setup lang="ts">
 defineI18nRoute({
   paths: {
-    de: '/marken', // -> accessible at /de/ueber-uns
+    de: '/marken', // -> accessible at /de/marken
   },
 })
 const { brands } = useBrands()
