@@ -6,10 +6,13 @@ export const PAGE_QUERY_KEYS = {
 }
 
 export const pageByUrlQuery = ({ url }: { url: MaybeRef<string> }) => {
+  const { token } = useContext()
   return {
     key: PAGE_QUERY_KEYS.byUrl(url),
     query: async () => {
-      return await client.page('ct.demo-shop.com' + unref(url))
+      return await client.page('ct.demo-shop.com' + unref(url), {
+        contextKey: token.value as string,
+      })
     },
   }
 }

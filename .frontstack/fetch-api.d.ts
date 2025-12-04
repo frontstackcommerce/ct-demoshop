@@ -363,9 +363,10 @@ export interface components {
     BrandCard: {
       hero?: components["schemas"]["Media"];
       key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
       logo?: components["schemas"]["Media"];
       name?: components["schemas"]["String"];
-      slug?: components["schemas"]["String"];
+      products?: components["schemas"]["BrandProducts"];
     };
     BrandFull: {
       active?: components["schemas"]["Boolean"];
@@ -374,6 +375,7 @@ export interface components {
       key: components["schemas"]["String"];
       logo?: components["schemas"]["Media"];
       name?: components["schemas"]["String"];
+      products?: components["schemas"]["BrandProducts"];
       slug?: components["schemas"]["String"];
     };
     BrandListing: {
