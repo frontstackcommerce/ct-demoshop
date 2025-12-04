@@ -6,7 +6,11 @@ defineProps<{
 
 <template>
   <NuxtLink :to="brand.link?.path">
-    <img :src="brand.logo?.src" :alt="brand.name" class="max-w-40" />
-    <h1 class="text-2xl font-bold">{{ brand.name }}</h1>
+    <div class="overflow-hidden aspect-square relative flex items-center justify-center group">
+      <img :src="brand.hero?.src" :alt="brand.name" class="size-full object-cover absolute inset-0 blur-sm scale-110 opacity-50 group-hover:opacity-80 transition-all group-hover:blur-xs duration-500" />
+      <div class="bg-white w-2/3 aspect-[3] bg-white backdrop-blur-sm">
+        <img :src="brand.logo?.src" :alt="brand.name" class="size-full object-contain p-4" />
+      </div>
+    </div>
   </NuxtLink>
 </template>

@@ -12,7 +12,6 @@ const slug = computed(() => {
 })
 
 const { page } = usePageRouter(slug)
-const { brands } = useBrands()
 </script>
 
 <template>
@@ -22,10 +21,5 @@ const { brands } = useBrands()
   <div v-else class="text-center">
     <h1 class="text-3xl font-bold text-gray-900">Commerce Starter</h1>
     <p class="mt-4 text-gray-600">Start selling online today</p>
-    <div v-if="brands">
-      <div class="grid grid-cols-4 gap-4">
-        <BrandCard v-for="brand in brands.items" :key="brand.key" :brand="brand" />
-      </div>
-    </div>
   </div>
 </template>

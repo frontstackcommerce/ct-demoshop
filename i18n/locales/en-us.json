@@ -12,6 +12,10 @@
     "back": "Back"
   },
   "brand": "Flagship Store",
+  "brands": {
+    "label": "Brands",
+    "description": "Discover our curated selection of premium brands"
+  },
   "carousel": {
     "goto": "Go to slide {slide}",
     "next": "Next",

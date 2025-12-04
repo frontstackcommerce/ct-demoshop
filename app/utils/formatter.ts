@@ -8,5 +8,5 @@ export function formatPrice(price: number) {
     currency: 'EUR',
   })
 
-  return EuroPrice.format(price)
+  return EuroPrice.format(price / 100)
 }
