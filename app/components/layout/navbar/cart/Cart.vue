@@ -14,11 +14,11 @@ const hasItems = computed(() => (cart.value?.items?.length || 0) > 0)
           class="size-14 rounded-full border-4 border-transparent p-0 hover:bg-white/20 data-[state=open]:bg-white/20"
         >
           <IconShoppingCart class="size-6" />
-          <SharedCartBadge v-if="hasItems" />
+          <CartBadge v-if="hasItems" />
         </Button>
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <PageDrawerCart />
+        <LayoutDrawerCart />
       </NavigationMenuContent>
     </NavigationMenuItem>
   </NavigationMenuList>

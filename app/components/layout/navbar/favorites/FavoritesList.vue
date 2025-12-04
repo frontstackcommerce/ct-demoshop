@@ -47,7 +47,7 @@ const { data: recommendations } = useAsyncData(`recommended-products`, async () 
         {{ $t('favorites.empty') }}
       </p>
     </div>
-    <SharedProductCardSlider
+    <ProductCardSlider
       v-if="recommendations"
       :products="recommendations"
       :title="$t('favorites.recommended')"

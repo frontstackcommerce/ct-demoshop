@@ -53,6 +53,18 @@ export interface paths {
       };
     };
   };
+  "/listing/cart/products": {
+    /**
+     * Fetch CartProducts
+     * @description Fetch CartProducts
+     */
+    post: operations["getCartProductsBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
   "/listing/category/childs": {
     /**
      * Fetch CategoryChilds
@@ -394,6 +406,14 @@ export interface components {
       page?: components["schemas"]["_page"];
       total?: components["schemas"]["_total"];
     };
+    CartProducts: {
+      items?: components["schemas"]["ProductVariant"][];
+      filter?: components["schemas"]["_filter"];
+      aggregation?: components["schemas"]["_aggregation"];
+      sort?: components["schemas"]["_sort"];
+      page?: components["schemas"]["_page"];
+      total?: components["schemas"]["_total"];
+    };
     CategoryChilds: {
       items?: components["schemas"]["CategoryItem"][];
       filter?: components["schemas"]["_filter"];
@@ -492,6 +512,7 @@ export interface components {
     ProductVariant: {
       images?: components["schemas"]["Media"][];
       key: components["schemas"]["String"];
+      name?: components["schemas"]["String"];
       price?: components["schemas"]["Price"];
     };
     /** @description Available query options (filters and sortings) for BrandListing blocks */
@@ -508,6 +529,13 @@ export interface components {
         name: components["schemas"]["String"];
       };
       /** @description Filter options for BrandProducts blocks */
+      filter: Record<string, never>;
+    };
+    /** @description Available query options (filters and sortings) for CartProducts blocks */
+    CartProductsQueryOptions: {
+      /** @description Sort options for CartProducts blocks */
+      sort: Record<string, never>;
+      /** @description Filter options for CartProducts blocks */
       filter: Record<string, never>;
     };
     /** @description Available query options (filters and sortings) for CategoryChilds blocks */
@@ -728,6 +756,40 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["BrandProducts"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch CartProducts
+   * @description Fetch CartProducts
+   */
+  getCartProductsBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    /** @description Description missing for param */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["_searchQueryOptions"] & {
+          param?: {
+            /** @description Description missing for keys */
+            keys: string[];
+          };
+        };
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CartProducts"];
         };
       };
       /** @description Not Found */

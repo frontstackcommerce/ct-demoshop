@@ -1,44 +1,94 @@
-/**
- * Example composable for a shopping cart using a simple array as state
- */
+import type { ShallowRef } from 'vue'
+import type { UseQueryReturn } from '@pinia/colada'
+import { shoppingCartQuery, shoppingCartItemsQuery } from '~/queries/shoppingCart'
+
 interface IUseCart {
-  total: Ref<number>
-  items: Ref<CartItem[]>
-  addItem: (item: any) => void
-  removeItem: (item: any) => void
-  clearCart: () => void
-  getTotal: () => number
+  cart: ShallowRef<ShoppingCart | undefined>
+  status: UseQueryReturn['status']
+  addItem: (vars: {
+    variant: ProductVariant
+    quantity: number
+  }) => Promise<ShoppingCart | undefined>
+  updateItem: (vars: { cartItemId: string; quantity: number }) => Promise<ShoppingCart | undefined>
+  removeItem: (vars: { cartItemId: string }) => Promise<ShoppingCart | undefined>
 }
 
 export const useCart = (): IUseCart => {
-  const total = ref(0)
-  const items = ref<CartItem[]>([])
+  const { token } = useContext()
 
-  const addItem = (item: CartItem) => {
-    items.value.push(item)
-    total.value += item.price
-  }
+  const { data: calculatedCart } = useQuery(shoppingCartQuery({ key: token.value ?? '' }))
 
-  const removeItem = (item: CartItem) => {
-    items.value = items.value.filter((i) => i.id !== item.id)
-    total.value -= item.price
-  }
+  const { data: cartItems, status } = useQuery(shoppingCartItemsQuery({ cart: calculatedCart }))
 
-  const clearCart = () => {
-    items.value = []
-    total.value = 0
-  }
+  const cart = computed(() => {
+    if (!calculatedCart.value) return calculatedCart.value
+    if (!cartItems.value?.items) return calculatedCart.value
 
-  const getTotal = () => {
-    return total.value
-  }
+    // Create a Map for O(1) lookup performance
+    const blockDataMap = new Map(cartItems.value.items.map((block) => [block.key, block]))
+
+    return {
+      ...calculatedCart.value,
+      items: calculatedCart.value.items.map((item) => ({
+        ...item,
+        data: blockDataMap.get(item.key),
+      })),
+    }
+  })
+
+  const { mutateAsync: addItem } = useMutation({
+    mutation: (vars: { variant: ProductVariant; quantity: number }) => {
+      console.log('addItem', vars)
+      return Promise.resolve(cart.value)
+    },
+    onMutate: (vars) => {
+      console.log('onMutate', vars)
+    },
+    onError: () => {
+      console.log('onError')
+    },
+    onSuccess: (data) => {
+      console.log('onSuccess', data)
+    },
+  })
+  // Update cart item quantity
+  const { mutateAsync: updateItem } = useMutation({
+    mutation: (vars: { cartItemId: string; quantity: number }) => {
+      console.log('updateItem', vars)
+      return Promise.resolve(cart.value)
+    },
+    onMutate: (vars) => {
+      console.log('onMutate', vars)
+    },
+    onError: () => {
+      console.log('onError')
+    },
+    onSuccess: (data) => {
+      console.log('onSuccess', data)
+    },
+  })
+
+  const { mutateAsync: removeItem } = useMutation({
+    mutation: (vars: { cartItemId: string }) => {
+      console.log('removeItem', vars)
+      return Promise.resolve(cart.value)
+    },
+    onMutate: (vars) => {
+      console.log('onMutate', vars)
+    },
+    onError: () => {
+      console.log('onError')
+    },
+    onSuccess: (data) => {
+      console.log('onSuccess', data)
+    },
+  })
 
   return {
-    total,
-    items,
+    cart,
+    status,
     addItem,
+    updateItem,
     removeItem,
-    clearCart,
-    getTotal,
   }
 }

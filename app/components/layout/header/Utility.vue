@@ -9,8 +9,8 @@ const { utilMenu } = useMenu()
       {{ $t('header.teaser') }}
     </div>
     <div class="hidden h-full items-center justify-end divide-x divide-border text-xs sm:flex">
-      <SharedStorePicker>
-        <SharedStorePickerTrigger size="sm" collapsed inverted />
+      <StorePicker>
+        <StorePickerTrigger size="sm" collapsed inverted />
       </SharedStorePicker>
       <NuxtLink
         v-for="(item, index) in utilMenu"
