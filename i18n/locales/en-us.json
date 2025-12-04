@@ -321,6 +321,9 @@
       "add-to-cart": "Add to Cart"
     },
     "details": {
+      "description": {
+        "missing": "No description available"
+      },
       "bullet-points": {
         "first": "Free Shipping & Returns",
         "second": "30-Day Return Policy",
