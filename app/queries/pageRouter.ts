@@ -5,13 +5,18 @@ export const PAGE_QUERY_KEYS = {
   byUrl: (url: MaybeRef<string>) => [...PAGE_QUERY_KEYS.root, unref(url)] as const,
 }
 
-export const pageByUrlQuery = ({ url }: { url: MaybeRef<string> }) => {
-  const { token } = useContext()
+export const pageByUrlQuery = ({
+  url,
+  contextKey,
+}: {
+  url: MaybeRef<string>
+  contextKey?: MaybeRef<string>
+}) => {
   return {
     key: PAGE_QUERY_KEYS.byUrl(url),
     query: async () => {
-      return await client.page('ct.demo-shop.com' + unref(url), {
-        contextKey: token.value as string,
+      return await client.page('localhost:3000' + unref(url), {
+        contextKey: unref(contextKey),
       })
     },
   }

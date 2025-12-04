@@ -73,6 +73,9 @@ export type CategoryProductsParameters = {
     key: string;
 }
 
+export type MenuTreeParameters = {
+}
+
 export type ProductReviewsParameters = {
     /**
      * @description Description missing for key
@@ -90,6 +93,7 @@ type ListingParameters = {
     CategoryChilds: CategoryChildsParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
 }
 
@@ -105,6 +109,7 @@ export type Blocks = {
     CategoryItem: never
     CategoryMenu: never
     CategoryNested: never
+    MenuItem: never
     ProductCard: never
     ProductFull: never
     ProductReview: never
@@ -118,6 +123,7 @@ export type Listings = {
     CategoryChilds: CategoryChildsParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
 }
 
@@ -134,6 +140,8 @@ export type CategoryMenu = components['schemas']['CategoryMenu']
 export type CategoryNested = components['schemas']['CategoryNested']
 export type CategoryNestedChilds = components['schemas']['CategoryNestedChilds']
 export type CategoryProducts = components['schemas']['CategoryProducts']
+export type MenuItem = components['schemas']['MenuItem']
+export type MenuTree = components['schemas']['MenuTree']
 export type ProductCard = components['schemas']['ProductCard']
 export type ProductFull = components['schemas']['ProductFull']
 export type ProductReview = components['schemas']['ProductReview']
@@ -154,6 +162,8 @@ export type Responses = {
     CategoryNested: CategoryNested
     CategoryNestedChilds: CategoryNestedChilds
     CategoryProducts: CategoryProducts
+    MenuItem: MenuItem
+    MenuTree: MenuTree
     ProductCard: ProductCard
     ProductFull: ProductFull
     ProductReview: ProductReview
@@ -168,6 +178,7 @@ export type ListingQueryFilters = {
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['filter']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['filter']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
+    MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
 }
 
@@ -178,6 +189,7 @@ export type ListingQuerySorts = {
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['sort']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['sort']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
+    MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
 }
 
@@ -194,6 +206,8 @@ type FetchMode = {
     CategoryNested: 'key';
     CategoryNestedChilds: 'query';
     CategoryProducts: 'query';
+    MenuItem: 'key';
+    MenuTree: 'query';
     ProductCard: 'key';
     ProductFull: 'key';
     ProductReview: 'key';

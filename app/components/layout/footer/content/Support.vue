@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { supportMenu } = useMenu()
+const { supportMenu } = useShopMenu()
 </script>
 
 <template>
@@ -10,7 +10,7 @@ const { supportMenu } = useMenu()
         v-for="(link, index) in supportMenu"
         :key="index"
         :to="link.href"
-        class="text-shade-300 transition-colors duration-200 hover:text-inverted-foreground"
+        class="text-shade-300 hover:text-inverted-foreground transition-colors duration-200"
         >{{ link.label }}</NuxtLink
       >
     </div>

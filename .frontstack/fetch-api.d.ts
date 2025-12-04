@@ -149,6 +149,30 @@ export interface paths {
       };
     };
   };
+  "/block/menu/item/{key}": {
+    /**
+     * Fetch MenuItem
+     * @description Fetch MenuItem
+     */
+    post: operations["getMenuItemBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
+  "/listing/menu/tree": {
+    /**
+     * Fetch MenuTree
+     * @description Fetch MenuTree
+     */
+    post: operations["getMenuTreeBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
   "/block/product/card/{key}": {
     /**
      * Fetch ProductCard
@@ -472,6 +496,25 @@ export interface components {
       page?: components["schemas"]["_page"];
       total?: components["schemas"]["_total"];
     };
+    MenuItem: {
+      active?: components["schemas"]["Boolean"];
+      categoryId?: components["schemas"]["String"];
+      children?: components["schemas"]["CategoryChilds"];
+      description?: components["schemas"]["String"];
+      image?: components["schemas"]["Media"];
+      key: components["schemas"]["String"];
+      link?: components["schemas"]["PageRoute"];
+      name?: components["schemas"]["String"];
+      path?: components["schemas"]["String"];
+    };
+    MenuTree: {
+      items?: components["schemas"]["MenuItem"][];
+      filter?: components["schemas"]["_filter"];
+      aggregation?: components["schemas"]["_aggregation"];
+      sort?: components["schemas"]["_sort"];
+      page?: components["schemas"]["_page"];
+      total?: components["schemas"]["_total"];
+    };
     ProductCard: {
       brand?: components["schemas"]["String"];
       key: components["schemas"]["String"];
@@ -557,6 +600,13 @@ export interface components {
       /** @description Sort options for CategoryProducts blocks */
       sort: Record<string, never>;
       /** @description Filter options for CategoryProducts blocks */
+      filter: Record<string, never>;
+    };
+    /** @description Available query options (filters and sortings) for MenuTree blocks */
+    MenuTreeQueryOptions: {
+      /** @description Sort options for MenuTree blocks */
+      sort: Record<string, never>;
+      /** @description Filter options for MenuTree blocks */
       filter: Record<string, never>;
     };
     /** @description Available query options (filters and sortings) for ProductReviews blocks */
@@ -1000,6 +1050,56 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CategoryProducts"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch MenuItem
+   * @description Fetch MenuItem
+   */
+  getMenuItemBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+      path: {
+        /** @description Description missing for key */
+        key: string;
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MenuItem"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch MenuTree
+   * @description Fetch MenuTree
+   */
+  getMenuTreeBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["MenuTree"];
         };
       };
       /** @description Not Found */

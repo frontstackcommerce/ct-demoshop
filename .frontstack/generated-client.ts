@@ -153,6 +153,8 @@ const endpoints: Endpoints = {
   CategoryNested: '/block/category/nested/{key}',
   CategoryNestedChilds: '/listing/category/nested/childs',
   CategoryProducts: '/listing/category/products',
+  MenuItem: '/block/menu/item/{key}',
+  MenuTree: '/listing/menu/tree',
   ProductCard: '/block/product/card/{key}',
   ProductFull: '/block/product/full/{key}',
   ProductReview: '/block/product/review/{key}',

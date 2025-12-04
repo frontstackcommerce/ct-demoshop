@@ -4,7 +4,7 @@ const props = defineProps<{
   category?: CategoryMenu
 }>()
 
-const { closeMenu } = useMenu()
+const { closeMenu } = useShopMenu()
 
 const stateCategoryId = ref<string | undefined>(undefined)
 

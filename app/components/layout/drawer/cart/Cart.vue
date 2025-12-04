@@ -4,7 +4,7 @@ const emit = defineEmits<{
 }>()
 
 const { cart, updateItem, status, removeItem } = useCart()
-const { closeMenu } = useMenu()
+const { closeMenu } = useShopMenu()
 
 const close = () => {
   emit('close')
@@ -69,36 +69,7 @@ const handleRemove = async (cartItemId: string) => {
           <div class="pb-40"></div>
         </ScrollArea>
       </div>
-      <div v-else-if="status !== 'error' && !cart?.items?.length" class="px-5">
-        <p class="mt-10 p-6 text-center text-5xl font-semibold">
-          {{ $t('cart.empty.title') }}
-        </p>
-        <!-- <div v-if="cartRecoStatus === 'success'" class="mx-auto max-w-md px-5">
-          <p class="text-muted-foreground mb-5 text-center text-sm font-medium uppercase">
-            {{ $t('cart.empty.recommended') }}
-          </p>
-          <div class="space-y-2">
-            <template v-for="item in cartRecoList?.items" :key="item.key">
-              <NuxtLink :to="item.link?.path">
-                <div class="flex items-center gap-4" @click="close">
-                  <img
-                    :src="cfImageSrc(item.cover, 'card')"
-                    :alt="item.cover?.altText"
-                    class="size-20 rounded-md object-cover"
-                    loading="lazy"
-                  />
-                  <div class="flex w-full flex-col gap-3">
-                    <p class="text-sm font-medium">{{ item.name }}</p>
-                    <p class="text-end text-sm">
-                      <Price v-if="item.price" :price="item.price" />
-                    </p>
-                  </div>
-                </div>
-              </NuxtLink>
-            </template>
-          </div>
-        </div> -->
-      </div>
+      <CartEmpty v-else-if="status !== 'error' && !cart?.items?.length" />
     </div>
     <div v-if="cart?.items?.length" class="hidden w-full flex-col gap-1 md:flex md:max-w-xs">
       <div class="bg-shade-300 my-5 flex flex-col gap-2 rounded-lg px-6 py-4 text-sm">

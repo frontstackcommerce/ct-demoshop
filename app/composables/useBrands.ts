@@ -12,7 +12,8 @@ interface IUseBrands {
  * Composable for managing brand listings with filtering, sorting, and pagination
  */
 export const useBrands = (): IUseBrands => {
-  const { data: brands, status } = useQuery(shopBrandsListAllQuery())
+  const { token } = useContext()
+  const { data: brands, status } = useQuery(shopBrandsListAllQuery, { contextKey: token.value })
 
   return {
     // State

@@ -28,8 +28,13 @@ export const shoppingCartQuery = ({ key }: { key: MaybeRef<string> }) => {
   }
 }
 
-export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<ShoppingCart> }) => {
-  const { token } = useContext()
+export const shoppingCartItemsQuery = ({
+  cart,
+  contextKey,
+}: {
+  cart: MaybeRef<ShoppingCart>
+  contextKey?: MaybeRef<string>
+}) => {
   return {
     key: SHOPPING_CART_QUERY_KEYS.cartItems(cart),
     query: async () => {
@@ -42,7 +47,7 @@ export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<ShoppingCart> 
           query: {
             page: 1,
           },
-          contextKey: token.value,
+          contextKey: unref(contextKey),
         }
       )
     },
