@@ -4,17 +4,6 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
 
-  components: [
-    {
-      path: '~/components/ui',
-      pathPrefix: false,
-    },
-    {
-      path: '~/components/',
-      pathPrefix: true,
-    },
-  ],
-
   devtools: { enabled: true },
 
   vite: {
@@ -32,10 +21,26 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxtjs/device',
     'vue-sonner/nuxt',
+    'shadcn-nuxt',
   ],
 
   lucide: {
     namePrefix: 'Icon',
+  },
+
+  shadcn: {
+    /**
+     * Prefix for all the imported component.
+     * @default "Ui"
+     */
+    prefix: '',
+    /**
+     * Directory that the component lives in.
+     * Will respect the Nuxt aliases.
+     * @link https://nuxt.com/docs/api/nuxt-config#alias
+     * @default "@/components/ui"
+     */
+    componentDir: '@/components/ui',
   },
 
   i18n: {

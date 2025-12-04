@@ -11,7 +11,7 @@ type ShoppingCartItem = {
   quantity: number
   key: string
   label?: string
-  data?: VariantCard
+  data?: ProductVariant
   price?: {
     total: Price
     unit: Price

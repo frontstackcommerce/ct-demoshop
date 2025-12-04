@@ -21,7 +21,7 @@ const logoSrc = computed(() => {
         <img
           :src="logoSrc"
           alt="Flagship Store"
-          class="relative z-10 w-24 transition-transform duration-300 md:h-12"
+          class="relative z-10 transition-transform duration-300 md:h-16"
           :class="{
             'drop-shadow-lg': hasBackdrop,
             'w-36': grow,

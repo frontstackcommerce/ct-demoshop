@@ -45,10 +45,10 @@ const contextLabel = computed(() => {
     @update:model-value="selectLocale"
   >
     <SelectTrigger
-      class="w-50 h-6 border-none bg-transparent ring-offset-background dark:bg-transparent"
+      class="ring-offset-background h-6 w-50 border-none bg-transparent dark:bg-transparent"
     >
       <div class="flex items-center gap-2.5">
-        <SharedRegionFlag v-if="context" :code="context.region" size="sm" />
+        <RegionFlag v-if="context" :code="context.region" size="sm" />
         {{ contextLabel }}
       </div>
     </SelectTrigger>

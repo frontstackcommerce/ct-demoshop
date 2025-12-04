@@ -4,7 +4,7 @@
       <PageFooterContentNewsletterForm />
     </div>
     <div class="col-span-2 mb-8 max-w-lg md:mb-0">
-      <SharedStorePicker />
+      <StorePicker />
     </div>
     <div class="hidden md:block">
       <PageFooterContentAbout />

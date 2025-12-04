@@ -1,32 +1,66 @@
 <script setup lang="ts">
-interface CartItem {
-  id: number
-  name: string
-  price: number
-  quantity: number
-}
-
-defineProps<{
-  item: CartItem
+const props = defineProps<{
+  item: ShoppingCartItem
+  locked?: boolean
+}>()
+const emit = defineEmits<{
+  (e: 'update', cartItemId: string, quantity: number): void
+  (e: 'remove', cartItemId: string): void
+  (e: 'click'): void
 }>()
 
-defineEmits<{
-  'remove-item': [item: CartItem]
-}>()
+const quantity = ref(String(props.item.quantity))
+
+watch(quantity, (newQuantity) => {
+  if (props.item.id) {
+    emit('update', props.item.id, Number(newQuantity))
+  }
+})
 </script>
 
 <template>
-  <div class="flex items-center justify-between rounded-lg border bg-white p-4 shadow">
-    <div class="flex-1">
-      <h3 class="font-semibold text-gray-900">{{ item.name }}</h3>
-      <p class="text-gray-600">Quantity: {{ item.quantity }}</p>
-      <p class="text-gray-600">Price: {{ formatPrice(item.price) }}</p>
+  <div class="bg-background mb-4 flex w-full gap-5 px-6 md:px-0">
+    <div class="w-24 md:w-36">
+      <img
+        v-if="item.data?.images?.[0]"
+        :src="item.data.images[0].src"
+        :alt="item.data.images[0].altText"
+        class="h-full w-full object-cover"
+        @click="$emit('click')"
+      />
     </div>
-    <button
-      class="rounded bg-red-600 px-4 py-2 text-white transition-colors hover:bg-red-700"
-      @click="$emit('remove-item', item)"
-    >
-      Remove
-    </button>
+    <div class="flex-1">
+      <div class="flex items-center justify-between">
+        <p class="max-sm:text-muted-foreground text-sm font-semibold">
+          {{ item.data?.name }}
+        </p>
+        <Button variant="icon" :disabled="locked" @click="$emit('remove', item.id ?? '')">
+          <IconTrash class="size-4" />
+        </Button>
+      </div>
+
+      <p class="max-sm:text-muted-foreground text-sm">
+        <Price v-if="item.price?.unit" :price="item.price?.unit" />
+      </p>
+      <!-- <p
+        v-for="option in item.data?.options"
+        :key="option.attribute"
+        class="max-sm:text-muted-foreground text-xs"
+      >
+        {{ option.label }}{{ $t('default.colon') }} {{ option.value }}
+      </p> -->
+      <div class="mt-4 w-24">
+        <Select v-model="quantity" size="sm" :disabled="locked">
+          <SelectTrigger>
+            <SelectValue :placeholder="$t('cart.items.quantity-placeholder')" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectGroup>
+              <SelectItem v-for="i in 3" :key="i" :value="String(i)"> {{ i }} </SelectItem>
+            </SelectGroup>
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
   </div>
 </template>

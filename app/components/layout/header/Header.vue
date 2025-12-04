@@ -9,15 +9,15 @@ const isHomepage = computed(() => route.path === '/')
     <div>
       <PageHeaderUtility />
     </div>
-    <div class="absolute left-4 top-12 sm:hidden">
-      <SharedLogo
+    <div class="absolute top-12 left-4 sm:hidden">
+      <Logo
         :grow="isHomepage"
         has-backdrop
         :is-inverted="isHomepage"
         class="transition-colors duration-300"
       />
     </div>
-    <div class="absolute left-0 right-0 top-12 hidden sm:block">
+    <div class="absolute top-12 right-0 left-0 hidden sm:block">
       <PageNavbar />
     </div>
   </header>
