@@ -21,11 +21,7 @@ const backdropCloseCursor = computed(
         :delay-duration="0"
         disable-click-trigger
         disable-pointer-leave-close
-        class="shadow-inverted/30 z-50 flex w-full max-w-4xl items-center justify-between bg-white px-5 shadow-lg"
-        :class="{
-          'rounded-lg': !isOpen,
-          'rounded-t-lg': isOpen,
-        }"
+        class="z-50 flex w-full max-w-4xl items-center justify-between bg-gray-300 px-5 shadow-lg shadow-black/30"
       >
         <div>
           <LayoutNavbarMenuMain />

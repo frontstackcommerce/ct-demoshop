@@ -24,7 +24,7 @@ const sizeClass = computed(() => {
     <div
       v-if="cart?.items?.length"
       :class="sizeClass"
-      class="absolute right-1 top-1 flex items-center justify-center rounded-full bg-checkout"
+      class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-amber-200"
     >
       <span class="text-checkout-foreground">{{ cart?.items?.length }}</span>
     </div>
