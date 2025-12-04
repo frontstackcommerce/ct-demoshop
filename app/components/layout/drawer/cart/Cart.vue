@@ -4,7 +4,7 @@ const emit = defineEmits<{
 }>()
 
 const { cart, updateItem, status, removeItem } = useCart()
-const { closeMenu } = useMenu()
+const { closeMenu } = useShopMenu()
 
 const close = () => {
   emit('close')

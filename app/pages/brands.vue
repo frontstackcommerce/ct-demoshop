@@ -1,4 +1,9 @@
 <script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    de: '/marken', // -> accessible at /de/ueber-uns
+  },
+})
 const { brands } = useBrands()
 </script>
 
@@ -7,7 +12,7 @@ const { brands } = useBrands()
     <h1 class="text-3xl font-medium">
       {{ $t('brands.label') }}
     </h1>
-    <p class="text-gray-500 font-light">
+    <p class="font-light text-gray-500">
       {{ $t('brands.description') }}
     </p>
   </div>

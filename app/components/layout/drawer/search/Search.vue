@@ -4,7 +4,7 @@ const emit = defineEmits<{
 }>()
 
 const { t } = useI18n()
-const { closeMenu } = useMenu()
+const { closeMenu } = useShopMenu()
 
 const close = () => {
   emit('close')

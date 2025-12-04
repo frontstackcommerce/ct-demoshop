@@ -6,7 +6,7 @@ import {
   API_CONTEXT_QUERY_KEYS,
   apiContextListQuery,
 } from '~/queries/apiContext'
-import { CATEGORY_MENU_QUERY_KEYS } from '~/queries/categoryMenu'
+import { SHOP_MENU_QUERY_KEYS } from '~/queries/shopMenu'
 
 interface IUseContext {
   token: ShallowRef<ContextToken | undefined>
@@ -58,17 +58,7 @@ export const useContext = (): IUseContext => {
       return Promise.resolve(result)
     },
     onSuccess: async (data) => {
-      await queryCache.invalidateQueries({
-        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.FURNITURE),
-      })
-      await queryCache.invalidateQueries({ key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.KITCHEN) })
-      await queryCache.invalidateQueries({
-        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.NEW_ARRIVALS),
-      })
-      await queryCache.invalidateQueries({
-        key: CATEGORY_MENU_QUERY_KEYS.byKey(MAIN_NAV.HOMEDECOR),
-      })
-      await queryCache.invalidateQueries({ key: CATEGORY_MENU_QUERY_KEYS.catogories() })
+      await queryCache.invalidateQueries({ key: SHOP_MENU_QUERY_KEYS.root })
       if (data) {
         queryCache.setQueryData(API_CONTEXT_QUERY_KEYS.byKey(token), data)
       }

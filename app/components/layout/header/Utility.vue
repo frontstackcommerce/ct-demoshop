@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { utilMenu } = useMenu()
+const { utilMenu } = useShopMenu()
 </script>
 
 <template>
