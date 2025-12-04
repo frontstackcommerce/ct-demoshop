@@ -145,6 +145,7 @@ const endpoints: Endpoints = {
   BrandFull: '/block/brand/full/{key}',
   BrandListing: '/listing/brand/listing',
   BrandProducts: '/listing/brand/products',
+  CartProducts: '/listing/cart/products',
   CategoryChilds: '/listing/category/childs',
   CategoryFull: '/block/category/full/{key}',
   CategoryItem: '/block/category/item/{key}',

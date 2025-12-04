@@ -7,8 +7,8 @@ const { isHomepage } = useNavigation()
     <div>
       <PageHeaderUtility />
     </div>
-    <div class="absolute left-4 top-12">
-      <SharedLogo
+    <div class="absolute top-12 left-4">
+      <Logo
         :grow="isHomepage"
         has-backdrop
         :is-inverted="isHomepage"
