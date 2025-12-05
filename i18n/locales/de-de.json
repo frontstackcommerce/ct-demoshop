@@ -291,17 +291,8 @@
   "listing": {
     "counter": "Keine Treffer | 1 Produkt | {count} Produkte",
     "filters": {
-      "activity": "Aktivität",
-      "color": "Farbe",
-      "feature": "Merkmal",
-      "glove-type": "Handschuhart",
-      "lens-shape": "Linsenform",
-      "material": "Material",
-      "pronation": "Pronation",
-      "purpose": "Verwendungszweck",
-      "size": "Grösse",
-      "usage": "Einsatzzweck",
-      "windproof": "Winddicht"
+      "finish-label": "Finish",
+      "search-color": "Farbe"
     }
   },
   "locales": {
@@ -390,7 +381,7 @@
     "total": "Suche in {count} Produkten",
     "empty": "Suche nach Produkten",
     "suggest": "Vorgeschlagene Suchen",
-    "results": "Produkte",
+    "results": "Suchergebnisse",
     "no-results": "Keine Ergebnisse gefunden für \"{term}\"",
     "placeholder": "Durchsuche unseren Shop",
     "suggestions": "stuhl, bett, sofa",

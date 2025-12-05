@@ -67,14 +67,15 @@ const { listing, searchTerm } = useProductSearch()
           </template>
           <ProductCardSkeleton v-for="index in 5" v-else :key="index" />
         </div>
-        <div
+        <NuxtLink
           v-if="listing?.items && listing?.items.length > 0"
+          to="/search"
           class="mt-8 flex w-full justify-center"
         >
           <Button class="rounded-full" variant="outline" @click="close">
             {{ $t('search.search-listing', { count: listing?.total }) }}
           </Button>
-        </div>
+        </NuxtLink>
       </div>
     </ScrollArea>
   </div>

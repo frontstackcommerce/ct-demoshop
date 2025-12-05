@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    domains: ['storage.googleapis.com', 'placehold.co'],
+    domains: ['storage.googleapis.com', 'placehold.co', 'a.storyblok.com'],
   },
 
   lucide: {
@@ -80,7 +80,7 @@ export default defineNuxtConfig({
       clientId: '',
       clientSecret: '',
       scopes: '',
-    }
+    },
   },
 
   routeRules: {
