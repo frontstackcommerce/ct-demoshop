@@ -30,7 +30,7 @@ const localeCode = computed(() => {
 </script>
 
 <template>
-  <img
+  <NuxtImg
     :src="images[localeCode] ?? images['de']"
     :alt="alt ?? localeCode"
     class="border-px rounded border-muted"

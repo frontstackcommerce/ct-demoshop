@@ -21,7 +21,7 @@ watch(quantity, (newQuantity) => {
 <template>
   <div class="bg-background mb-4 flex w-full gap-5 px-6 md:px-0">
     <div class="w-24 md:w-36">
-      <img
+      <NuxtImg
         v-if="item.data?.images?.[0]"
         :src="item.data.images[0].src"
         :alt="item.data.images[0].altText"

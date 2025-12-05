@@ -51,7 +51,7 @@ onMounted(() => {
     <div class="w-1/2">
       <div v-if="category" class="mt-8 h-full w-auto">
         <NuxtLink :to="category.link?.path" class="grid" @click="closeMenu">
-          <img
+          <NuxtImg
             src="https://placehold.co/600x400"
             :alt="category.cover?.altText"
             class="col-span-full row-span-full aspect-[3/4] w-full object-cover grayscale"

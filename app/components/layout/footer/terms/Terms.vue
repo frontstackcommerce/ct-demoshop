@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex items-end justify-between px-6 md:px-0">
     <div class="flex flex-col gap-2">
-      <!-- <img src="~/assets/images/layout/logo-text-inverted.svg" alt="Logo" class="w-24" /> -->
+      <!-- <NuxtImg src="~/assets/images/layout/logo-text-inverted.svg" alt="Logo" class="w-24" /> -->
       <Logo :is-inverted="true" />
       <div class="text-sm">{{ $t('footer.copyright') }}</div>
     </div>
