@@ -99,8 +99,9 @@ const formatPrice = (price: Price) => {
 
         <button
           v-if="selectedVariant"
+          class="cursor-pointer bg-[#1d1d1f] p-4 font-light text-white transition-all duration-300 hover:bg-[#1d1d1f]/80"
           @click.stop="addLineItem(selectedVariant.key, 1)"
-          class="bg-[#1d1d1f] text-white p-4 font-light hover:bg-[#1d1d1f]/80 transition-all duration-300 cursor-pointer">
+        >
           Add to Cart
         </button>
         <div
@@ -142,7 +143,12 @@ const formatPrice = (price: Price) => {
     <div v-if="product.reviews?.total && product.reviews.total > 0">
       <h2 class="text-xl font-bold">
         {{ $t('product.details.reviews.title') }}
-        {{ (product.reviews?.aggregation?.rating?.total.avg || 0).toFixed(1) + '/5 stars' }}
+        {{
+          product.reviews?.aggregation?.rating?.total.avg
+            ? Number(product.reviews.aggregation.rating.total.avg).toFixed(1).replace(/\.0$/, '') +
+              '/5'
+            : ''
+        }}
       </h2>
       <div v-for="review in product.reviews?.items" :key="review.key">
         <h3 class="text-lg font-bold">{{ review.name }}</h3>

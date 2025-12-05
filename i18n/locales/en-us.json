@@ -291,17 +291,8 @@
   "listing": {
     "counter": "No Result | 1 Result | {count} Results",
     "filters": {
-      "activity": "Activity",
-      "color": "Color",
-      "feature": "Feature",
-      "glove-type": "Glove Type",
-      "lens-shape": "Lens Shape",
-      "material": "Material",
-      "pronation": "Pronation",
-      "purpose": "Purpose",
-      "size": "Size",
-      "usage": "Usage",
-      "windproof": "Windproof"
+      "finish-label": "Finish",
+      "search-color": "Color"
     }
   },
   "locales": {
@@ -390,7 +381,7 @@
     "total": "Search in {count} products",
     "empty": "Search for products",
     "suggest": "Suggested searches",
-    "results": "Products",
+    "results": "Search Results",
     "no-results": "No results found for \"{term}\"",
     "placeholder": "Search our shop",
     "suggestions": "chair, bed, sofa",

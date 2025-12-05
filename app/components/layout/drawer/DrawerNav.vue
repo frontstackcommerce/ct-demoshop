@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { VisuallyHidden } from 'radix-vue'
+import { VisuallyHidden } from 'reka-ui'
 const { section, open, resetDrawer, showDrawerMenuInside, hideDrawerMenu } = useDrawer()
 
 const isMenu = computed(() => section.value === 'menu')
@@ -30,7 +30,7 @@ function handleClose() {
         leave-from-class="transform translate-y-0 opacity-100"
         leave-to-class="transform translate-y-full opacity-80"
       >
-        <PageDrawerNavTrigger v-if="!hideDrawerMenu" />
+        <LayoutDrawerNavTrigger v-if="!hideDrawerMenu" />
       </Transition>
     </div>
     <Drawer :open="open" fixed @close="resetDrawer" @animation-end="toggleNavTrigger">
@@ -41,12 +41,12 @@ function handleClose() {
         <VisuallyHidden as-child>
           <DrawerDescription>{{ $t('navigation.description') }}</DrawerDescription>
         </VisuallyHidden>
-        <PageDrawerMenu v-if="isMenu" @close="handleClose" />
-        <PageDrawerSearch v-if="isSearch" @close="handleClose" />
-        <PageDrawerCart v-if="isCart" @close="handleClose" />
+        <LayoutDrawerMenu v-if="isMenu" @close="handleClose" />
+        <LayoutDrawerSearch v-if="isSearch" @close="handleClose" />
+        <LayoutDrawerCart v-if="isCart" @close="handleClose" />
         <DrawerFooter as-child>
           <DrawerClose as-child>
-            <PageDrawerNavTrigger v-if="showDrawerMenuInside" />
+            <LayoutDrawerNavTrigger v-if="showDrawerMenuInside" />
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
