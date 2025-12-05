@@ -221,6 +221,18 @@ export interface paths {
       };
     };
   };
+  "/listing/product/search": {
+    /**
+     * Fetch ProductSearch
+     * @description Fetch ProductSearch
+     */
+    post: operations["getProductSearchBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
   "/block/product/variant/{key}": {
     /**
      * Fetch ProductVariant
@@ -552,6 +564,14 @@ export interface components {
       page?: components["schemas"]["_page"];
       total?: components["schemas"]["_total"];
     };
+    ProductSearch: {
+      items?: components["schemas"]["ProductCard"][];
+      filter?: components["schemas"]["_filter"];
+      aggregation?: components["schemas"]["_aggregation"];
+      sort?: components["schemas"]["_sort"];
+      page?: components["schemas"]["_page"];
+      total?: components["schemas"]["_total"];
+    };
     ProductVariant: {
       images?: components["schemas"]["Media"][];
       key: components["schemas"]["String"];
@@ -620,6 +640,25 @@ export interface components {
       /** @description Filter options for ProductReviews blocks */
       filter: {
         rating: components["schemas"]["Integer"];
+      };
+    };
+    /** @description Available query options (filters and sortings) for ProductSearch blocks */
+    ProductSearchQueryOptions: {
+      /** @description Sort options for ProductSearch blocks */
+      sort: {
+        "price.amount": components["schemas"]["Price"]["amount"];
+      };
+      /** @description Filter options for ProductSearch blocks */
+      filter: {
+        "options.": components["schemas"]["String"];
+        "properties.manufacturer": components["schemas"]["String"];
+        "properties.new-arrival": components["schemas"]["String"];
+        "properties.new arrival": components["schemas"]["String"];
+        "properties.productspec": components["schemas"]["String"];
+        "properties.product specifications": components["schemas"]["String"];
+        "properties.test price": components["schemas"]["String"];
+        "properties.testpricenew": components["schemas"]["String"];
+        "properties.type": components["schemas"]["String"];
       };
     };
     Page: components["schemas"]["EmptyPage"] | components["schemas"]["BrandPage"] | components["schemas"]["CategoryPage"] | components["schemas"]["ProductPage"];
@@ -1217,6 +1256,40 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["ProductReviews"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch ProductSearch
+   * @description Fetch ProductSearch
+   */
+  getProductSearchBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    /** @description Description missing for param */
+    requestBody?: {
+      content: {
+        "application/json": components["schemas"]["_searchQueryOptions"] & {
+          param?: {
+            /** @description Description missing for categoryKey */
+            categoryKey?: string;
+          };
+        };
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["ProductSearch"];
         };
       };
       /** @description Not Found */

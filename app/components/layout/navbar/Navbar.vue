@@ -27,6 +27,7 @@ const backdropCloseCursor = computed(
           <LayoutNavbarMenuMain />
         </div>
         <div class="flex items-center gap-2">
+          <LayoutNavbarSearch />
           <LayoutNavbarCart />
         </div>
       </NavigationMenu>

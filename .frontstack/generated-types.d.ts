@@ -83,6 +83,13 @@ export type ProductReviewsParameters = {
     key: string;
 }
 
+export type ProductSearchParameters = {
+    /**
+     * @description Description missing for categoryKey
+     */
+    categoryKey?: string;
+}
+
 
 /* List of all blocks, used for IDE autocompletion */
 
@@ -95,6 +102,7 @@ type ListingParameters = {
     CategoryProducts: CategoryProductsParameters
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
+    ProductSearch: ProductSearchParameters
 }
 
 type Endpoints = {
@@ -125,6 +133,7 @@ export type Listings = {
     CategoryProducts: CategoryProductsParameters
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
+    ProductSearch: ProductSearchParameters
 }
 
 declare global {
@@ -146,6 +155,7 @@ export type ProductCard = components['schemas']['ProductCard']
 export type ProductFull = components['schemas']['ProductFull']
 export type ProductReview = components['schemas']['ProductReview']
 export type ProductReviews = components['schemas']['ProductReviews']
+export type ProductSearch = components['schemas']['ProductSearch']
 export type ProductVariant = components['schemas']['ProductVariant']
 }
 
@@ -168,6 +178,7 @@ export type Responses = {
     ProductFull: ProductFull
     ProductReview: ProductReview
     ProductReviews: ProductReviews
+    ProductSearch: ProductSearch
     ProductVariant: ProductVariant
 }
 
@@ -180,6 +191,7 @@ export type ListingQueryFilters = {
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
+    ProductSearch: components['schemas']['ProductSearchQueryOptions']['filter']
 }
 
 export type ListingQuerySorts = {
@@ -191,6 +203,7 @@ export type ListingQuerySorts = {
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
+    ProductSearch: components['schemas']['ProductSearchQueryOptions']['sort']
 }
 
 type FetchMode = {
@@ -212,6 +225,7 @@ type FetchMode = {
     ProductFull: 'key';
     ProductReview: 'key';
     ProductReviews: 'query';
+    ProductSearch: 'query';
     ProductVariant: 'key';
 }
 

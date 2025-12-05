@@ -159,6 +159,7 @@ const endpoints: Endpoints = {
   ProductFull: '/block/product/full/{key}',
   ProductReview: '/block/product/review/{key}',
   ProductReviews: '/listing/product/reviews',
+  ProductSearch: '/listing/product/search',
   ProductVariant: '/block/product/variant/{key}',
 }
 
