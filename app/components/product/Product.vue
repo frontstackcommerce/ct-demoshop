@@ -9,6 +9,8 @@ const { addLineItem } = useCart()
 
 const selectedVariant = ref<ProductVariant | null>(null)
 
+const quantity = ref(1)
+
 onMounted(() => {
   if (
     query.sku &&
@@ -97,12 +99,26 @@ const formatPrice = (price: Price) => {
           </span>
         </div>
 
-        <button
-          v-if="selectedVariant"
-          @click.stop="addLineItem(selectedVariant.key, 1)"
-          class="bg-[#1d1d1f] text-white p-4 font-light hover:bg-[#1d1d1f]/80 transition-all duration-300 cursor-pointer">
-          Add to Cart
-        </button>
+        <div class="flex gap-4 w-full items-center">
+          <div>
+            <Select v-model="quantity" class="h-12">
+              <SelectTrigger class="h-full border-none shadow-none ">
+                <SelectValue :placeholder="String(quantity)" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem v-for="i in 10" :key="i" :value="i">
+                  {{ i }}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <button
+            v-if="selectedVariant"
+            @click.stop="addLineItem(selectedVariant.key, quantity)"
+            class="flex-grow bg-[#1d1d1f] text-white h-14 font-light hover:bg-[#1d1d1f]/80 transition-all duration-300 cursor-pointer">
+            Add to Cart
+          </button>
+        </div>
         <div
           v-if="Array.isArray(product.variants) && product.variants.length > 1"
           class="grid grid-cols-5 gap-4"
@@ -136,18 +152,17 @@ const formatPrice = (price: Price) => {
       </p>
     </div>
 
-    <h3 class="text-lg font-bold">
-      {{ $t('product.details.reviews.count', { count: product.reviews?.total || 0 }) }}
-    </h3>
-    <div v-if="product.reviews?.total && product.reviews.total > 0">
-      <h2 class="text-xl font-bold">
-        {{ $t('product.details.reviews.title') }}
-        {{ (product.reviews?.aggregation?.rating?.total.avg || 0).toFixed(1) + '/5 stars' }}
-      </h2>
-      <div v-for="review in product.reviews?.items" :key="review.key">
-        <h3 class="text-lg font-bold">{{ review.name }}</h3>
+    <ProductReviewList
+      v-if="product.reviews?.total && product.reviews.total > 0"
+      :reviews="product.reviews"
+    />
+    <div v-else class="grid grid-cols-12 gap-8">
+      <div class="col-span-12">
+        <h2 class="text-2xl font-bold mb-2">
+          {{ $t('product.details.reviews.title') }}
+        </h2>
         <p class="text-gray-500">
-          <span class="font-bold">{{ review.rating + '/5:' }}</span> {{ review.text }}
+          {{ $t('product.details.reviews.count', { count: 0 }) }}
         </p>
       </div>
     </div>
