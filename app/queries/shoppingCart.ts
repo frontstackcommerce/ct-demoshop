@@ -1,9 +1,10 @@
 import client from '~~/.frontstack/generated-client'
+import type { Cart, LineItem } from '@commercetools/platform-sdk';
 
 export const SHOPPING_CART_QUERY_KEYS = {
   root: ['shopping-cart'] as const,
   cart: (key: MaybeRef<string>) => [...SHOPPING_CART_QUERY_KEYS.root, unref(key)] as const,
-  cartItems: (cart: MaybeRef<ShoppingCart>) =>
+  cartItems: (cart: MaybeRef<Cart>) =>
     [...SHOPPING_CART_QUERY_KEYS.root, JSON.stringify(unref(cart)), 'items'] as const,
 }
 
@@ -11,24 +12,13 @@ export const shoppingCartQuery = ({ key }: { key: MaybeRef<string> }) => {
   return {
     key: SHOPPING_CART_QUERY_KEYS.cart(key),
     query: async () => {
-      return Promise.resolve({
-        items: [
-          {
-            key: 'MB-0973',
-            quantity: 1,
-          },
-          {
-            key: 'BUCK-023',
-            quantity: 1,
-          },
-        ],
-      })
+      return await $fetch<Cart>(`/api/cart/${key}`);
     },
     staleTime: 1000 * 60 * 60,
   }
 }
 
-export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<ShoppingCart> }) => {
+export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<Cart> }) => {
   const { token } = useContext()
   return {
     key: SHOPPING_CART_QUERY_KEYS.cartItems(cart),
@@ -36,7 +26,7 @@ export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<ShoppingCart> 
       return await client.listing(
         'CartProducts',
         {
-          keys: unref(cart).items?.map((item) => item.key) ?? [],
+          keys: unref(cart).lineItems?.map((item: LineItem) => item.key ?? '') ?? [],
         },
         {
           query: {
@@ -47,6 +37,6 @@ export const shoppingCartItemsQuery = ({ cart }: { cart: MaybeRef<ShoppingCart> 
       )
     },
     staleTime: 1000 * 60 * 5,
-    enabled: () => !!unref(cart)?.items?.length,
+    enabled: () => !!unref(cart)?.lineItems?.length,
   }
 }

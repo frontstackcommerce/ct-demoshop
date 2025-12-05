@@ -6,25 +6,6 @@ interface ProxyResponse<T = any> {
   data?: T
   status?: number
 }
-type ShoppingCartItem = {
-  id?: string
-  quantity: number
-  key: string
-  label?: string
-  data?: ProductVariant
-  price?: {
-    total: Price
-    unit: Price
-  }
-}
-type ShoppingCartPrice = {
-  total: Price
-  net?: Price
-}
-type ShoppingCart = {
-  items: ShoppingCartItem[]
-  price?: ShoppingCartPrice
-}
 
 // Types to handle listings via the Fetch API
 

@@ -69,6 +69,14 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {},
+    commercetools: {
+      apiHost: '',
+      authHost: '',
+      projectKey: '',
+      clientId: '',
+      clientSecret: '',
+      scopes: '',
+    }
   },
 
   routeRules: {

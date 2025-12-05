@@ -2,14 +2,7 @@
 /**
  * Example page for a shopping cart
  */
-const { total, items, addItem, removeItem, clearCart } = useCart()
-
-// Sample products for demonstration
-const sampleProducts = [
-  { id: 1, name: 'Wireless Headphones', price: 99.99, quantity: 1 },
-  { id: 2, name: 'Coffee Mug', price: 15.5, quantity: 1 },
-  { id: 3, name: 'Notebook', price: 8.99, quantity: 1 },
-]
+const { cart, addItem, updateItem, removeItem } = useCart()
 
 const handleAddProduct = (product: any) => {
   addItem(product)
@@ -17,10 +10,6 @@ const handleAddProduct = (product: any) => {
 
 const handleRemoveItem = (item: any) => {
   removeItem(item)
-}
-
-const handleClearCart = () => {
-  clearCart()
 }
 
 const handleCheckout = () => {
@@ -33,14 +22,12 @@ const handleCheckout = () => {
   <div class="mx-auto max-w-4xl p-6">
     <h1 class="mb-8 text-3xl font-bold text-gray-900">Shopping Cart Demo</h1>
 
-    <CartProductGrid :products="sampleProducts" @add-product="handleAddProduct" />
-
-    <CartEmpty v-if="items.length === 0" />
+    <CartEmpty v-if="cart?.lineItems?.length === 0" />
 
     <div v-else class="space-y-4">
-      <CartItem v-for="item in items" :key="item.id" :item="item" @remove-item="handleRemoveItem" />
+      <CartItem v-for="item in cart?.lineItems" :key="item.id" :item="item" @remove-item="handleRemoveItem" />
 
-      <CartSummary :total="total" @clear-cart="handleClearCart" @checkout="handleCheckout" />
+      <CartSummary :total="cart?.totalPrice?.centAmount ?? 0" @clear-cart="" @checkout="handleCheckout" />
     </div>
   </div>
 </template>

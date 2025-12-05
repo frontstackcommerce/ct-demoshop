@@ -1,7 +1,11 @@
 <script setup lang="ts">
-const { cart } = useCart()
+const { lineItems, refreshCart } = useCart()
 
-const hasItems = computed(() => (cart.value?.items?.length || 0) > 0)
+onMounted(async () => {
+  await refreshCart()
+})
+
+const hasItems = computed(() => (lineItems.value?.length || 0) > 0)
 </script>
 
 <template>

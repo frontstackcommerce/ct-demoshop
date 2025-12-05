@@ -18,6 +18,10 @@ export const useContext = (): IUseContext => {
   const { $i18n } = useNuxtApp()
   const { setLocale } = $i18n
 
+  if(!token.value) {
+    token.value = crypto.randomUUID()
+  }
+
   async function newContext(context?: { region: string; locale: string }) {
     token.value = crypto.randomUUID()
     if (context) {

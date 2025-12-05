@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@commercetools/platform-sdk": "^8.18.0",
+    "@commercetools/ts-client": "^4.3.0",
     "@nuxt/image": "2.0.0",
     "@nuxtjs/device": "3.2.4",
     "@nuxtjs/i18n": "10.2.1",

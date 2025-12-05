@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { cart } = useCart()
+const { lineItems } = useCart()
 
 const props = withDefaults(
   defineProps<{
@@ -22,11 +22,11 @@ const sizeClass = computed(() => {
 <template>
   <ClientOnly>
     <div
-      v-if="cart?.items?.length"
+      v-if="lineItems?.length"
       :class="sizeClass"
       class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-amber-200"
     >
-      <span class="text-checkout-foreground">{{ cart?.items?.length }}</span>
+      <span class="text-checkout-foreground">{{ lineItems?.length }}</span>
     </div>
   </ClientOnly>
 </template>
