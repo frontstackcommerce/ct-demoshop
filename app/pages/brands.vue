@@ -8,7 +8,7 @@ const { brands } = useBrands()
 </script>
 
 <template>
-  <div class="mt-20 flex flex-col gap-4">
+  <div class="mx-auto max-w-7xl mt-20 flex flex-col gap-4">
     <h1 class="text-3xl font-medium">
       {{ $t('brands.label') }}
     </h1>
@@ -17,7 +17,7 @@ const { brands } = useBrands()
     </p>
   </div>
 
-  <div class="mt-12">
+  <div class="mx-auto max-w-7xl my-12">
     <div v-if="brands">
       <div class="grid grid-cols-4 gap-4">
         <BrandCard v-for="brand in brands.items" :key="brand.key" :brand="brand" />
