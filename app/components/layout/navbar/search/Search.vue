@@ -11,7 +11,7 @@
         </Button>
       </NavigationMenuTrigger>
       <NavigationMenuContent>
-        <PageDrawerSearch />
+        <LayoutDrawerSearch />
       </NavigationMenuContent>
     </NavigationMenuItem>
   </NavigationMenuList>

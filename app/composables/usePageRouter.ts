@@ -28,14 +28,14 @@ export const usePageRouter = (): IUsePageRouter => {
 
   const suggestRedirect = useState<boolean>('suggestRedirect', () => false)
   // Watch for suggested routes
-  watch(
-    () => page.value?.route.context?.suggested,
-    (suggested) => {
-      const is301 = page.value?.route.code === 301
-      suggestRedirect.value = !!suggested && !is301
-    },
-    { immediate: true }
-  )
+  // watch(
+  //   () => page.value?.route.context?.suggested,
+  //   (suggested) => {
+  //     const is301 = page.value?.route.code === 301
+  //     suggestRedirect.value = !!suggested && !is301
+  //   },
+  //   { immediate: true }
+  // )
   return {
     page,
     status,
