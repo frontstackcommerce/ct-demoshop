@@ -605,7 +605,9 @@ export interface components {
     /** @description Available query options (filters and sortings) for MenuTree blocks */
     MenuTreeQueryOptions: {
       /** @description Sort options for MenuTree blocks */
-      sort: Record<string, never>;
+      sort: {
+        order: components["schemas"]["Integer"];
+      };
       /** @description Filter options for MenuTree blocks */
       filter: Record<string, never>;
     };

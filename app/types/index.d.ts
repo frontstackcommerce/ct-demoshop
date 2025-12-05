@@ -4,11 +4,6 @@ type CartItem = {
   price: number
   quantity: number
 }
-type MenuItem = {
-  label: string
-  href: string
-  children?: MenuItem[]
-}
 
 type CategoryItem = {
   label: string
