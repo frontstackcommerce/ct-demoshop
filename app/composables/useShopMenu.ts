@@ -1,50 +1,25 @@
-import type { DeepReadonly, ShallowRef } from 'vue'
-import { categoryMenuByKeyQuery } from '@/queries/categoryMenu'
+import type { ShallowRef } from 'vue'
+import { shopMenuQuery } from '@/queries/shopMenu'
 
-const MAIN_NAV = {
-  HOMEDECOR: 'eac3db8c-71e5-4ac2-905a-7b23abadceb8',
-  FURNITURE: 'e964e0a3-1ac9-4f9a-9679-20180b3f6cef',
-  KITCHEN: '8ea36869-576b-44c0-bfda-8ca81ba1efd7',
-  NEW_ARRIVALS: 'a3a959b3-6f13-450a-80e8-7fc9ce5fb26c',
-}
-
-interface IUseMenu {
+interface IUseShopMenu {
   menuState: ShallowRef<MenuState>
   isOpen: ComputedRef<boolean>
-  aboutMenu: DeepReadonly<Ref<MenuItem[]>>
-  supportMenu: DeepReadonly<Ref<MenuItem[]>>
-  utilMenu: DeepReadonly<Ref<MenuItem[]>>
-  footerCategories: DeepReadonly<Ref<MenuItem[]>>
-  shopCategories: DeepReadonly<Ref<CategoryMenu[]>>
+  aboutMenu: ShallowRef<MenuItem[] | undefined>
+  supportMenu: ShallowRef<MenuItem[] | undefined>
+  footerCategories: ShallowRef<MenuItem[] | undefined>
+  fullMenu: ShallowRef<MenuTree | undefined>
   openCart: () => void
   closeMenu: () => void
 }
 
-export const useMenu = (): IUseMenu => {
-  const { t, locale } = useI18n()
+export const useShopMenu = (): IUseShopMenu => {
+  const { $i18n } = useNuxtApp()
+  const { locale, t } = $i18n
+  const { token } = useContext()
 
-  const { data: furnitureMenu } = useQuery(categoryMenuByKeyQuery, {
-    key: MAIN_NAV.FURNITURE,
+  const { data: fullMenu } = useQuery(shopMenuQuery, {
+    contextKey: token.value,
   })
-
-  const { data: kitchenMenu } = useQuery(categoryMenuByKeyQuery, {
-    key: MAIN_NAV.KITCHEN,
-  })
-
-  const { data: newArrivalsMenu } = useQuery(categoryMenuByKeyQuery, {
-    key: MAIN_NAV.NEW_ARRIVALS,
-  })
-
-  const { data: homeDecorMenu } = useQuery(categoryMenuByKeyQuery, {
-    key: MAIN_NAV.HOMEDECOR,
-  })
-
-  const shopCategories = computed(() => [
-    furnitureMenu.value,
-    kitchenMenu.value,
-    homeDecorMenu.value,
-    newArrivalsMenu.value,
-  ])
 
   const menuState = useState<MenuState>('menuState', () => undefined)
   const isOpen = computed(() => !!menuState.value)
@@ -59,19 +34,6 @@ export const useMenu = (): IUseMenu => {
   function closeMenu() {
     menuState.value = undefined
   }
-
-  const utilMenu = computed(() => {
-    return [
-      {
-        label: t('header.utils.stores'),
-        href: '/stores',
-      },
-      {
-        label: t('header.utils.login'),
-        href: '/login',
-      },
-    ]
-  })
 
   const aboutMenu = computed(() => {
     return [
@@ -193,9 +155,8 @@ export const useMenu = (): IUseMenu => {
     closeMenu,
     supportMenu,
     menuState,
-    utilMenu,
     footerCategories,
-    shopCategories,
+    fullMenu,
     openCart,
     isOpen,
   }

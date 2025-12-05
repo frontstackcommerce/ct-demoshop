@@ -9,12 +9,12 @@ export interface UseCartReturn {
   /**
    * Total price of the cart in cents
    */
-  totalPrice: Ref<CentPrecisionMoney>;
+  totalPrice: Ref<CentPrecisionMoney | undefined>;
 
   /**
    * Taxed price
    */
-  taxedPrice: Ref<TaxedPrice>;
+  taxedPrice: Ref<TaxedPrice | undefined>;
   
   /**
    * Add a line item to the cart
@@ -199,6 +199,7 @@ export function useCart(): UseCartReturn {
   return {
     lineItems,
     totalPrice,
+    taxedPrice,
     addLineItem,
     removeLineItem,
     updateLineItemQuantity,

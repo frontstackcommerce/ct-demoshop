@@ -2,7 +2,7 @@
 import client from '~~/.frontstack/generated-client'
 
 const { status, favoritesList } = useFavorites()
-const { closeMenu } = useMenu()
+const { closeMenu } = useShopMenu()
 
 const { token } = useContext()
 const { data: recommendations } = useAsyncData(`recommended-products`, async () => {

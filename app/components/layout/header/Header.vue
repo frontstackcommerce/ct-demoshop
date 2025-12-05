@@ -7,7 +7,7 @@ const isHomepage = computed(() => route.path === '/')
 <template>
   <header>
     <div>
-      <PageHeaderUtility />
+      <LayoutHeaderUtility />
     </div>
     <div class="absolute top-12 left-4 sm:hidden">
       <Logo
@@ -18,7 +18,7 @@ const isHomepage = computed(() => route.path === '/')
       />
     </div>
     <div class="absolute top-12 right-0 left-0 hidden sm:block">
-      <PageNavbar />
+      <LayoutNavbar />
     </div>
   </header>
 </template>

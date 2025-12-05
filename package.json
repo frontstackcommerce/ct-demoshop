@@ -30,6 +30,7 @@
     "@nuxt/eslint": "^1.11.0",
     "@nuxt/kit": "^4.2.1",
     "@nuxtjs/tailwindcss": "^6.14.0",
+    "@pinia/colada-devtools": "^0.1.9",
     "@types/node": "^24.10.1",
     "@typescript-eslint/eslint-plugin": "^8.48.0",
     "@typescript-eslint/parser": "^8.48.0",

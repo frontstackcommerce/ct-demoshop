@@ -1,13 +1,10 @@
 <template>
   <footer>
-    <div class="hidden bg-shade-200 py-16 md:block">
-      <PageFooterMenu />
+    <div class="text-inverted-foreground bg-gray-200 py-16">
+      <LayoutFooterContent />
     </div>
-    <div class="bg-inverted py-16 text-inverted-foreground">
-      <PageFooterContent />
-    </div>
-    <div class="bg-neutral py-16 text-neutral-foreground">
-      <PageFooterTerms />
+    <div class="bg-neutral text-neutral-foreground py-16">
+      <LayoutFooterTerms />
     </div>
   </footer>
 </template>

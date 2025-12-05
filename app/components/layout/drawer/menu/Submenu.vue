@@ -17,7 +17,7 @@ const emit = defineEmits<{
     <div class="flex flex-col gap-5 pt-5">
       <div class="flex items-center gap-4 px-5">
         <div class="h-20 w-32 rounded-full border bg-shade-100">
-          <img
+          <NuxtImg
             :src="`${swImageSrc(category?.cover)}`"
             alt="Icon"
             class="size-full rounded-lg object-cover"
@@ -36,7 +36,7 @@ const emit = defineEmits<{
       </div>
       <div v-for="child in children.items" :key="child.key" class="flex items-center gap-4 px-5">
         <div class="h-20 w-32 rounded-full border bg-shade-100">
-          <img
+          <NuxtImg
             :src="`${swImageSrc(child.cover)}`"
             alt="Icon"
             class="size-full rounded-lg object-cover"

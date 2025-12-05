@@ -2,14 +2,14 @@
 /**
  * Example page for a shopping cart
  */
-const { cart, addItem, updateItem, removeItem } = useCart()
+const { lineItems, removeLineItem, refreshCart, totalPrice } = useCart()
 
-const handleAddProduct = (product: any) => {
-  addItem(product)
-}
+onMounted(async () => {
+  await refreshCart()
+})
 
 const handleRemoveItem = (item: any) => {
-  removeItem(item)
+  removeLineItem(item.id)
 }
 
 const handleCheckout = () => {
@@ -22,12 +22,12 @@ const handleCheckout = () => {
   <div class="mx-auto max-w-4xl p-6">
     <h1 class="mb-8 text-3xl font-bold text-gray-900">Shopping Cart Demo</h1>
 
-    <CartEmpty v-if="cart?.lineItems?.length === 0" />
+    <CartEmpty v-if="lineItems?.length === 0" />
 
     <div v-else class="space-y-4">
-      <CartItem v-for="item in cart?.lineItems" :key="item.id" :item="item" @remove-item="handleRemoveItem" />
+      <CartItem v-for="item in lineItems" :key="item.id" :item="item" @remove-item="handleRemoveItem" />
 
-      <CartSummary :total="cart?.totalPrice?.centAmount ?? 0" @clear-cart="" @checkout="handleCheckout" />
+      <CartSummary :total="totalPrice?.centAmount ?? 0" @clear-cart="" @checkout="handleCheckout" />
     </div>
   </div>
 </template>

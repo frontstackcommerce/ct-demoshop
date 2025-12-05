@@ -33,10 +33,10 @@ watch(quantity, (newQuantity) => {
 <template>
   <div class="bg-background mb-4 flex w-full gap-5 px-6 md:px-0">
     <div class="w-24 md:w-36">
-      <img
+      <NuxtImg
         v-if="item.variant?.images?.[0]"
-        :src="item.variant?.images[0].url"
-        :alt="item.variant?.images[0].label"
+        :src="item.variant.images[0].url"
+        :alt="item.variant.images[0].label"
         class="h-full w-full object-cover"
         @click="$emit('click')"
       />

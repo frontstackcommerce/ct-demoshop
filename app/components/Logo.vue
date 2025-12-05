@@ -18,7 +18,7 @@ const logoSrc = computed(() => {
   <div>
     <ClientOnly>
       <button @click="goHome">
-        <img
+        <NuxtImg
           :src="logoSrc"
           alt="Flagship Store"
           class="relative z-10 transition-transform duration-300 md:h-16"

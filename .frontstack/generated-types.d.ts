@@ -73,11 +73,21 @@ export type CategoryProductsParameters = {
     key: string;
 }
 
+export type MenuTreeParameters = {
+}
+
 export type ProductReviewsParameters = {
     /**
      * @description Description missing for key
      */
     key: string;
+}
+
+export type ProductSearchParameters = {
+    /**
+     * @description Description missing for categoryKey
+     */
+    categoryKey?: string;
 }
 
 
@@ -90,7 +100,9 @@ type ListingParameters = {
     CategoryChilds: CategoryChildsParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
+    ProductSearch: ProductSearchParameters
 }
 
 type Endpoints = {
@@ -105,6 +117,7 @@ export type Blocks = {
     CategoryItem: never
     CategoryMenu: never
     CategoryNested: never
+    MenuItem: never
     ProductCard: never
     ProductFull: never
     ProductReview: never
@@ -118,7 +131,9 @@ export type Listings = {
     CategoryChilds: CategoryChildsParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
+    ProductSearch: ProductSearchParameters
 }
 
 declare global {
@@ -134,10 +149,13 @@ export type CategoryMenu = components['schemas']['CategoryMenu']
 export type CategoryNested = components['schemas']['CategoryNested']
 export type CategoryNestedChilds = components['schemas']['CategoryNestedChilds']
 export type CategoryProducts = components['schemas']['CategoryProducts']
+export type MenuItem = components['schemas']['MenuItem']
+export type MenuTree = components['schemas']['MenuTree']
 export type ProductCard = components['schemas']['ProductCard']
 export type ProductFull = components['schemas']['ProductFull']
 export type ProductReview = components['schemas']['ProductReview']
 export type ProductReviews = components['schemas']['ProductReviews']
+export type ProductSearch = components['schemas']['ProductSearch']
 export type ProductVariant = components['schemas']['ProductVariant']
 }
 
@@ -154,10 +172,13 @@ export type Responses = {
     CategoryNested: CategoryNested
     CategoryNestedChilds: CategoryNestedChilds
     CategoryProducts: CategoryProducts
+    MenuItem: MenuItem
+    MenuTree: MenuTree
     ProductCard: ProductCard
     ProductFull: ProductFull
     ProductReview: ProductReview
     ProductReviews: ProductReviews
+    ProductSearch: ProductSearch
     ProductVariant: ProductVariant
 }
 
@@ -168,7 +189,9 @@ export type ListingQueryFilters = {
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['filter']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['filter']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
+    MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
+    ProductSearch: components['schemas']['ProductSearchQueryOptions']['filter']
 }
 
 export type ListingQuerySorts = {
@@ -178,7 +201,9 @@ export type ListingQuerySorts = {
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['sort']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['sort']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
+    MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
+    ProductSearch: components['schemas']['ProductSearchQueryOptions']['sort']
 }
 
 type FetchMode = {
@@ -194,10 +219,13 @@ type FetchMode = {
     CategoryNested: 'key';
     CategoryNestedChilds: 'query';
     CategoryProducts: 'query';
+    MenuItem: 'key';
+    MenuTree: 'query';
     ProductCard: 'key';
     ProductFull: 'key';
     ProductReview: 'key';
     ProductReviews: 'query';
+    ProductSearch: 'query';
     ProductVariant: 'key';
 }
 

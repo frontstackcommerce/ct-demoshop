@@ -14,37 +14,50 @@ onMounted(() => {
     img.src = secondImage.value
   }
 })
+
+async function selectVariant(target: string, sku: string) {
+  await navigateTo({
+    path: target,
+    query: { sku },
+  })
+}
 </script>
 
 <template>
   <NuxtLink :to="product.link?.path">
     <div class="flex flex-col gap-2">
-      <div class="overflow-hidden aspect-[0.75] bg-white shadow-xs relative group">
-        <img 
-          :src="firstImage" 
-          :alt="product.name" 
-          class="size-full object-cover p-4"
-        />
-        <img 
+      <div class="group relative aspect-[0.75] overflow-hidden bg-white shadow-xs">
+        <NuxtImg :src="firstImage" :alt="product.name" class="size-full object-cover p-4" />
+        <NuxtImg
           v-if="hasSecondImage"
-          :src="secondImage" 
-          :alt="product.name" 
-          class="absolute inset-0 size-full object-cover p-4 transition-opacity duration-500 opacity-0 group-hover:opacity-100"
+          :src="secondImage"
+          :alt="product.name"
+          :width="600"
+          class="absolute inset-0 size-full object-cover p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
       </div>
       <div v-if="Array.isArray(product.variants) && product.variants.length > 1">
         <div class="flex gap-2">
-          <div v-for="variant in product.variants" :key="variant.key" class="aspect-square overflow-hidden bg-white size-6 cursor-pointer">
-            <NuxtLink :to="product.link?.path + '?sku=' + variant.key">
-              <img :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full object-contain scale-400 blur-xs saturate-200" />
-            </NuxtLink>
+          <div
+            v-for="variant in product.variants"
+            :key="variant.key"
+            class="aspect-square size-6 cursor-pointer overflow-hidden bg-white"
+            @click="product.link?.path && selectVariant(product.link.path, variant.key)"
+          >
+            <NuxtImg
+              :src="variant.images?.[0]?.src"
+              :alt="variant.images?.[0]?.altText"
+              class="size-full scale-400 object-contain blur-xs saturate-200"
+            />
           </div>
         </div>
       </div>
       <div class="flex flex-col gap-1 text-xs">
-        <p class="text-gray-700 font-lighter">{{ product.name }}</p>
-        <p class="text-gray-500 font-light">{{ product.brand }}</p>
-        <p class="text-gray-500 font-light" v-if="product.price?.amount">{{ formatPrice(product.price?.amount) }}</p>
+        <p class="font-lighter text-gray-700">{{ product.name }}</p>
+        <p class="font-light text-gray-500">{{ product.brand }}</p>
+        <p v-if="product.price?.amount" class="font-light text-gray-500">
+          {{ formatPrice(product.price) }}
+        </p>
       </div>
     </div>
   </NuxtLink>
