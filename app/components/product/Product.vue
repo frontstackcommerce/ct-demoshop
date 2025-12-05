@@ -48,7 +48,7 @@ const formatPrice = (price: Price) => {
     />
   </div>
 
-  <div class="relative mx-auto max-w-7xl z-10 mt-20 flex flex-col gap-12 mb-12">
+  <div class="relative mx-auto max-w-7xl z-10 mt-20 mb-12 flex flex-col gap-12">
     <div class="grid grid-cols-12 gap-8">
       <div v-if="selectedVariant" class="col-span-8">
         <div class="grid grid-cols-2 gap-2">
@@ -98,7 +98,6 @@ const formatPrice = (price: Price) => {
             REF: {{ selectedVariant.key }}
           </span>
         </div>
-
         <div class="flex gap-4 w-full items-center">
           <div>
             <Select v-model="quantity" class="h-12">
@@ -151,7 +150,6 @@ const formatPrice = (price: Price) => {
         {{ $t('product.details.description.missing') }}
       </p>
     </div>
-
     <ProductReviewList
       v-if="product.reviews?.total && product.reviews.total > 0"
       :reviews="product.reviews"

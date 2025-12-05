@@ -25,7 +25,7 @@ export default defineNuxtConfig({
   ],
 
   image: {
-    domains: ['storage.googleapis.com', 'placehold.co'],
+    domains: ['storage.googleapis.com', 'placehold.co', 'a.storyblok.com'],
   },
 
   lucide: {
@@ -80,12 +80,12 @@ export default defineNuxtConfig({
       clientId: '',
       clientSecret: '',
       scopes: '',
-    }
+    },
   },
 
   routeRules: {
     // all routes (by default) will be revalidated every 60 seconds, in the background
     '/**': { isr: 60 },
-    '/api/cart/**': { isr: 0 },
+    '/api/cart/**': { prerender: false, isr: false },
   },
 })
