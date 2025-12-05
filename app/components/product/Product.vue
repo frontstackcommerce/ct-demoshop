@@ -5,6 +5,8 @@ const props = defineProps<{
 
 const { query } = useRoute()
 
+const { addLineItem } = useCart()
+
 const selectedVariant = ref<ProductVariant | null>(null)
 
 onMounted(() => {
@@ -44,7 +46,7 @@ const formatPrice = (price: Price) => {
     />
   </div>
 
-  <div class="relative z-10 mt-20 flex flex-col gap-12">
+  <div class="relative mx-auto max-w-7xl z-10 mt-20 flex flex-col gap-12 mb-12">
     <div class="grid grid-cols-12 gap-8">
       <div v-if="selectedVariant" class="col-span-8">
         <div class="grid grid-cols-2 gap-2">
@@ -95,6 +97,12 @@ const formatPrice = (price: Price) => {
           </span>
         </div>
 
+        <button
+          v-if="selectedVariant"
+          @click.stop="addLineItem(selectedVariant.key, 1)"
+          class="bg-[#1d1d1f] text-white p-4 font-light hover:bg-[#1d1d1f]/80 transition-all duration-300 cursor-pointer">
+          Add to Cart
+        </button>
         <div
           v-if="Array.isArray(product.variants) && product.variants.length > 1"
           class="grid grid-cols-5 gap-4"
@@ -111,7 +119,6 @@ const formatPrice = (price: Price) => {
               class="size-full bg-white object-contain p-4 opacity-50 transition-all duration-300 hover:scale-105 hover:opacity-100"
               :class="{ 'opacity-100': selectedVariant?.key === variant.key }"
             />
-            :class="{ 'opacity-100': selectedVariant?.key === variant.key }">
           </div>
         </div>
       </div>
