@@ -21,7 +21,7 @@ const images = Object.fromEntries(
 </script>
 
 <template>
-  <img
+  <NuxtImg
     :src="images[code] ?? images['us']"
     :alt="alt ?? code"
     class="border-px rounded border-muted"

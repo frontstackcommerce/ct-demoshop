@@ -24,6 +24,10 @@ export default defineNuxtConfig({
     'shadcn-nuxt',
   ],
 
+  image: {
+    domains: ['storage.googleapis.com', 'placehold.co'],
+  },
+
   lucide: {
     namePrefix: 'Icon',
   },

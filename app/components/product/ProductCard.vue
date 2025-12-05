@@ -27,8 +27,8 @@ async function selectVariant(target: string, sku: string) {
   <NuxtLink :to="product.link?.path">
     <div class="flex flex-col gap-2">
       <div class="group relative aspect-[0.75] overflow-hidden bg-white shadow-xs">
-        <img :src="firstImage" :alt="product.name" class="size-full object-cover p-4" />
-        <img
+        <NuxtImg :src="firstImage" :alt="product.name" class="size-full object-cover p-4" />
+        <NuxtImg
           v-if="hasSecondImage"
           :src="secondImage"
           :alt="product.name"
@@ -43,7 +43,7 @@ async function selectVariant(target: string, sku: string) {
             class="aspect-square size-6 cursor-pointer overflow-hidden bg-white"
             @click="product.link?.path && selectVariant(product.link.path, variant.key)"
           >
-            <img
+            <NuxtImg
               :src="variant.images?.[0]?.src"
               :alt="variant.images?.[0]?.altText"
               class="size-full scale-400 object-contain blur-xs saturate-200"

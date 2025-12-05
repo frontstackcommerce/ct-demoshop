@@ -18,7 +18,7 @@ onMounted(() => {
 })
 
 const formatPrice = (price: Price) => {
-  return price.amount 
+  return price.amount
     ? (price.currency
         ? new Intl.NumberFormat(undefined, { style: 'currency', currency: price.currency }).format(price.amount / 100)
         : (price.amount / 100).toLocaleString())
@@ -28,7 +28,7 @@ const formatPrice = (price: Price) => {
 
 <template>
   <div class="absolute inset-0 w-screen top-40 h-[40%] min-h-[340px] bg-gray-200 z-0 overflow-hidden">
-    <img :src="selectedVariant?.images?.[0]?.src" :alt="selectedVariant?.images?.[0]?.altText" class="size-full object-cover blur-lg opacity-10" />
+    <NuxtImg :src="selectedVariant?.images?.[0]?.src" :alt="selectedVariant?.images?.[0]?.altText" class="size-full object-cover blur-lg opacity-10" />
   </div>
 
   <div class="flex flex-col gap-12 mt-20 relative z-10">
@@ -37,14 +37,14 @@ const formatPrice = (price: Price) => {
       <div v-if="selectedVariant" class="col-span-8">
         <div class="grid grid-cols-2 gap-2">
           <div v-for="image in selectedVariant.images?.slice(0, 2) ?? []" :key="image.key" class="overflow-hidden aspect-[0.75]">
-            <img :src="image.src" :alt="image.altText" class="size-full object-contain p-2 bg-white hover:scale-105 transition-transform duration-300" />
+            <NuxtImg :src="image.src" :alt="image.altText" class="size-full object-contain p-2 bg-white hover:scale-105 transition-transform duration-300" />
           </div>
         </div>
-        
+
         <div class="col-span-12 grid grid-cols-3 gap-2 mt-2" v-if="selectedVariant.images && selectedVariant.images.length > 2">
 
           <div v-for="image in selectedVariant.images?.slice(2) ?? []" :key="image.key" class="overflow-hidden">
-            <img :src="image.src" :alt="image.altText" class="size-full object-contain p-2 bg-white hover:scale-105 transition-transform duration-300" />
+            <NuxtImg :src="image.src" :alt="image.altText" class="size-full object-contain p-2 bg-white hover:scale-105 transition-transform duration-300" />
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@ const formatPrice = (price: Price) => {
             :key="variant.key"
             class="aspect-square rounded-full overflow-hidden bg-white size-20 cursor-pointer shadow-xs"
             @click="selectedVariant = variant">
-            <img :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full object-contain p-4 bg-white hover:scale-105 transition-all opacity-50 hover:opacity-100 duration-300" :class="{ 'opacity-100': selectedVariant?.key === variant.key }" />
+            <NuxtImg :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full object-contain p-4 bg-white hover:scale-105 transition-all opacity-50 hover:opacity-100 duration-300" :class="{ 'opacity-100': selectedVariant?.key === variant.key }" />
             :class="{ 'opacity-100': selectedVariant?.key === variant.key }">
           </div>
         </div>
@@ -87,7 +87,7 @@ const formatPrice = (price: Price) => {
         {{ $t('product.details.description.missing') }}
       </p>
     </div>
-    
+
     <h3 class="text-lg font-bold">{{ $t('product.details.reviews.count', { count: product.reviews?.total || 0 }) }}</h3>
     <div v-if="product.reviews?.total && product.reviews.total > 0">
       <h2 class="text-xl font-bold">
