@@ -9,7 +9,7 @@ defineProps<{
     <NuxtImg :src="brand.hero?.src" :alt="brand.name" class="size-full object-cover blur-sm opacity-80" />
   </div>
 
-  <div class="flex flex-col gap-12 mt-20 relative z-10">
+  <div class="mx-auto max-w-7xl flex flex-col gap-12 mt-20 relative z-10">
 
     <div class="aspect-square bg-white size-40 shadow-sm">
       <NuxtImg :src="brand.logo?.src" :alt="brand.name" class="size-full object-contain p-4" />
@@ -21,7 +21,7 @@ defineProps<{
 
   </div>
 
-  <div class="relative grid grid-cols-4 gap-4 mt-12 gap-y-16">
+  <div class="mx-auto max-w-7xl relative grid grid-cols-4 gap-4 my-12 gap-y-16">
     <div v-for="product in brand.products?.items" :key="product.key">
       <ProductCard :product="product" />
     </div>
