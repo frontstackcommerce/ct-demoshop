@@ -7,19 +7,19 @@ defineProps<{
 </script>
 
 <template>
-  <NuxtLink
+  <NuxtLinkLocale
     v-if="href"
     :to="href"
-    class="flex cursor-pointer items-center justify-center rounded-full p-3 text-inverted-foreground hover:bg-background hover:text-foreground hover:opacity-60"
+    class="text-inverted-foreground hover:bg-background hover:text-foreground flex cursor-pointer items-center justify-center rounded-full p-3 hover:opacity-60"
   >
     <IconSearch v-if="icon === 'search'" class="size-6" />
     <IconShoppingCart v-else-if="icon === 'cart'" class="size-6" />
     <IconMenu v-else-if="icon === 'menu'" class="size-6" />
     <IconX v-else-if="icon === 'close'" class="size-6" />
-  </NuxtLink>
+  </NuxtLinkLocale>
   <div
     v-else
-    class="flex cursor-pointer items-center justify-center rounded-full p-3 text-inverted-foreground hover:bg-background hover:text-foreground hover:opacity-60"
+    class="text-inverted-foreground hover:bg-background hover:text-foreground flex cursor-pointer items-center justify-center rounded-full p-3 hover:opacity-60"
   >
     <IconSearch v-if="icon === 'search'" class="size-6" />
     <IconShoppingCart v-else-if="icon === 'cart'" class="size-6" />

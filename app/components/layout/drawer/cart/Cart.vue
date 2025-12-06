@@ -123,7 +123,7 @@ const handleRemove = async (cartItemId: string) => {
           </p>
         </div>
       </div>
-      <NuxtLink to="/checkout">
+      <NuxtLinkLocale to="/checkout">
         <Button
           class="flex w-full items-center gap-5 text-lg"
           :aria-label="$t('navigation.checkout')"
@@ -134,7 +134,7 @@ const handleRemove = async (cartItemId: string) => {
           <IconShoppingCart class="text-checkout-foreground size-6" />
           {{ $t('navigation.goto-checkout') }}
         </Button>
-      </NuxtLink>
+      </NuxtLinkLocale>
       <Button
         class="w-full"
         :aria-label="$t('navigation.continue-shopping')"

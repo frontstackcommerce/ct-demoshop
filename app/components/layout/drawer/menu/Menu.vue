@@ -132,7 +132,7 @@ function handleShowParentCategory() {
             </div>
           </div>
           <Separator />
-          <div class="my-5 px-3">
+          <div class="my-5 mb-20 px-3">
             <LayoutNavbarMenuAboutMenu />
           </div>
         </template>

@@ -50,7 +50,7 @@ onMounted(() => {
     </div>
     <div class="w-1/2">
       <div v-if="category?.image?.src" class="mt-8 h-full w-auto">
-        <NuxtLink :to="category.link?.path" class="grid" @click="closeMenu">
+        <NuxtLinkLocale :to="category.link?.path" class="grid" @click="closeMenu">
           <NuxtImg
             :src="category.image?.src"
             :alt="category.image?.altText"
@@ -70,7 +70,7 @@ onMounted(() => {
               {{ category.name }}
             </h3>
           </div>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </div>
   </div>

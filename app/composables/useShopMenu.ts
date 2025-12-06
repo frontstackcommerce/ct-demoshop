@@ -38,35 +38,35 @@ export const useShopMenu = (): IUseShopMenu => {
         key: 'about',
         name: t('footer.menu.about.about'),
         link: {
-          path: locale.value === 'de' ? '/ueber-uns' : '/about',
+          path: '/content/about',
         },
       },
       {
         key: 'help',
         name: t('footer.menu.about.help'),
         link: {
-          path: locale.value === 'de' ? '/hilfe' : '/help',
+          path: '/content/help',
         },
       },
       {
         key: 'contact',
         name: t('footer.menu.about.contact'),
         link: {
-          path: locale.value === 'de' ? '/kontakt' : '/contact',
+          path: '/content/contact',
         },
       },
       {
         key: 'store-locator',
         name: t('footer.menu.about.store-locator'),
         link: {
-          path: 'stores',
+          path: '/content/stores',
         },
       },
       {
         key: 'order-status',
         name: t('footer.menu.about.order-status'),
         link: {
-          path: '/order-status',
+          path: '/content/order-status',
         },
       },
     ] as MenuItem[]
@@ -78,42 +78,42 @@ export const useShopMenu = (): IUseShopMenu => {
         key: 'support',
         name: t('footer.menu.support.support'),
         link: {
-          path: locale.value === 'de' ? '/support' : '/support',
+          path: '/content/support',
         },
       },
       {
         key: 'contact',
         name: t('footer.menu.support.contact'),
         link: {
-          path: locale.value === 'de' ? '/kontakt' : '/contact',
+          path: '/content/contact',
         },
       },
       {
         key: 'order-status',
         name: t('footer.menu.support.order'),
         link: {
-          path: locale.value === 'de' ? '/bestellstatus' : '/order-status',
+          path: '/content/order-status',
         },
       },
       {
         key: 'shipping',
         name: t('footer.menu.support.shipping'),
         link: {
-          path: locale.value === 'de' ? '/versand' : '/shipping',
+          path: '/content/shipping',
         },
       },
       {
         key: 'return-policy',
         name: t('footer.menu.support.return-policy'),
         link: {
-          path: locale.value === 'de' ? '/rueckgaben' : '/return-policy',
+          path: '/content/return-policy',
         },
       },
       {
         key: 'warranty',
         name: t('footer.menu.support.warranty'),
         link: {
-          path: locale.value === 'de' ? '/garantie' : '/warranty',
+          path: '/content/warranty',
         },
       },
     ] as MenuItem[]

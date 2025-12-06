@@ -50,7 +50,7 @@ watch(
         v-if="isCartOpen && !isCartEmpty"
         class="bg-checkout flex h-16 items-center gap-8 rounded-full px-6 py-1 shadow-md"
       >
-        <NuxtLink to="/checkout">
+        <NuxtLinkLocale to="/checkout">
           <Button
             class="flex items-center gap-5"
             :aria-label="$t('navigation.checkout')"
@@ -62,7 +62,7 @@ watch(
             <IconShoppingCart class="text-checkout-foreground size-6" />
             {{ $t('navigation.checkout') }}
           </Button>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
 
       <!-- Main Navigation -->

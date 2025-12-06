@@ -15,7 +15,7 @@ const { context, getRegionLabel, getLocaleLabel } = useContext()
 
 const sizeClass = computed(() => {
   return {
-    button: props.size === 'sm' ? 'xs' : props.size === 'lg' ? 'xl' : 'default',
+    button: props.size === 'sm' ? 'xs' : props.size === 'lg' ? 'lg' : 'default',
     flag: props.size === 'sm' ? 'sm' : props.size === 'lg' ? 'lg' : undefined,
     icon: props.size === 'sm' ? 'size-4' : props.size === 'lg' ? 'size-4' : 'size-4',
     gap: props.size === 'sm' ? 'gap-2.5' : props.size === 'lg' ? 'gap-5' : 'gap-5',
