@@ -4,10 +4,9 @@ import { shopMenuQuery } from '@/queries/shopMenu'
 interface IUseShopMenu {
   menuState: ShallowRef<MenuState>
   isOpen: ComputedRef<boolean>
-  aboutMenu: ShallowRef<MenuItem[] | undefined>
-  supportMenu: ShallowRef<MenuItem[] | undefined>
-  footerCategories: ShallowRef<MenuItem[] | undefined>
-  fullMenu: ShallowRef<MenuTree | undefined>
+  aboutTree: ComputedRef<MenuItem[] | undefined>
+  supportTree: ComputedRef<MenuItem[] | undefined>
+  fullTree: ShallowRef<MenuTree | undefined>
   openCart: () => void
   closeMenu: () => void
 }
@@ -17,7 +16,7 @@ export const useShopMenu = (): IUseShopMenu => {
   const { locale, t } = $i18n
   const { token } = useContext()
 
-  const { data: fullMenu } = useQuery(shopMenuQuery, {
+  const { data: fullTree } = useQuery(shopMenuQuery, {
     contextKey: token.value,
   })
 
@@ -35,128 +34,99 @@ export const useShopMenu = (): IUseShopMenu => {
     menuState.value = undefined
   }
 
-  const aboutMenu = computed(() => {
+  const aboutTree = computed(() => {
     return [
       {
-        label: t('footer.menu.about.about'),
-        href: locale.value === 'de' ? '/ueber-uns' : '/about',
+        key: 'about',
+        name: t('footer.menu.about.about'),
+        link: {
+          path: locale.value === 'de' ? '/ueber-uns' : '/about',
+        },
       },
       {
-        label: t('footer.menu.about.help'),
-        href: locale.value === 'de' ? '/hilfe' : '/help',
+        key: 'help',
+        name: t('footer.menu.about.help'),
+        link: {
+          path: locale.value === 'de' ? '/hilfe' : '/help',
+        },
       },
       {
-        label: t('footer.menu.about.contact'),
-        href: locale.value === 'de' ? '/kontakt' : '/contact',
+        key: 'contact',
+        name: t('footer.menu.about.contact'),
+        link: {
+          path: locale.value === 'de' ? '/kontakt' : '/contact',
+        },
       },
       {
-        label: t('footer.menu.about.store-locator'),
-        href: 'stores',
+        key: 'store-locator',
+        name: t('footer.menu.about.store-locator'),
+        link: {
+          path: 'stores',
+        },
       },
       {
-        label: t('footer.menu.about.order-status'),
-        href: '/order-status',
+        key: 'order-status',
+        name: t('footer.menu.about.order-status'),
+        link: {
+          path: '/order-status',
+        },
       },
-    ]
+    ] as MenuItem[]
   })
 
-  const supportMenu = computed(() => {
+  const supportTree = computed(() => {
     return [
       {
-        label: t('footer.menu.support.support'),
-        href: locale.value === 'de' ? '/support' : '/support',
+        key: 'support',
+        name: t('footer.menu.support.support'),
+        link: {
+          path: locale.value === 'de' ? '/support' : '/support',
+        },
       },
       {
-        label: t('footer.menu.support.contact'),
-        href: locale.value === 'de' ? '/kontakt' : '/contact',
+        key: 'contact',
+        name: t('footer.menu.support.contact'),
+        link: {
+          path: locale.value === 'de' ? '/kontakt' : '/contact',
+        },
       },
       {
-        label: t('footer.menu.support.order'),
-        href: locale.value === 'de' ? '/bestellstatus' : '/order-status',
+        key: 'order-status',
+        name: t('footer.menu.support.order'),
+        link: {
+          path: locale.value === 'de' ? '/bestellstatus' : '/order-status',
+        },
       },
       {
-        label: t('footer.menu.support.shipping'),
-        href: locale.value === 'de' ? '/versand' : '/shipping',
+        key: 'shipping',
+        name: t('footer.menu.support.shipping'),
+        link: {
+          path: locale.value === 'de' ? '/versand' : '/shipping',
+        },
       },
       {
-        label: t('footer.menu.support.return-policy'),
-        href: locale.value === 'de' ? '/rueckgaben' : '/return-policy',
+        key: 'return-policy',
+        name: t('footer.menu.support.return-policy'),
+        link: {
+          path: locale.value === 'de' ? '/rueckgaben' : '/return-policy',
+        },
       },
       {
-        label: t('footer.menu.support.warranty'),
-        href: locale.value === 'de' ? '/garantie' : '/warranty',
+        key: 'warranty',
+        name: t('footer.menu.support.warranty'),
+        link: {
+          path: locale.value === 'de' ? '/garantie' : '/warranty',
+        },
       },
-      {
-        label: t('footer.menu.support.size-guide'),
-        href: locale.value === 'de' ? '/groessenleitfaden' : '/size-guide',
-      },
-    ]
-  })
-
-  const footerCategories = computed(() => {
-    return [
-      {
-        label: t('categories.women'),
-        href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-        children: [
-          {
-            label: t('categories.shoes'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-          {
-            label: t('categories.clothing'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-        ],
-      },
-      {
-        label: t('categories.men'),
-        href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-        children: [
-          {
-            label: t('categories.shoes'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-          {
-            label: t('categories.clothing'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-        ],
-      },
-      {
-        label: t('categories.kids'),
-        href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-        children: [
-          {
-            label: t('categories.shoes'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-        ],
-      },
-      {
-        label: t('categories.sale'),
-        href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-        children: [
-          {
-            label: t('categories.shoes'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-          {
-            label: t('categories.clothing'),
-            href: '/goggles-0194bcdcdefc7c989023b4dec31c14e3',
-          },
-        ],
-      },
-    ]
+    ] as MenuItem[]
   })
 
   return {
-    aboutMenu,
+    aboutTree,
     closeMenu,
-    supportMenu,
+    supportTree,
     menuState,
-    footerCategories,
-    fullMenu,
+    fullTree,
     openCart,
     isOpen,
   }

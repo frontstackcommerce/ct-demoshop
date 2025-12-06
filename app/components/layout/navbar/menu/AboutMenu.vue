@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const aboutMenu = ref([
+const aboutTree = ref([
   {
     label: 'About',
     href: '/about',
@@ -9,7 +9,7 @@ const aboutMenu = ref([
 
 <template>
   <div class="flex flex-col gap-3 text-lg font-medium md:gap-1">
-    <NuxtLink v-for="(link, index) in aboutMenu" :key="index" :to="link.href" class="">{{
+    <NuxtLink v-for="(link, index) in aboutTree" :key="index" :to="link.href" class="">{{
       link.label
     }}</NuxtLink>
   </div>

@@ -3,7 +3,7 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-const { fullMenu } = useShopMenu()
+const { fullTree } = useShopMenu()
 
 const close = () => {
   emit('close')
@@ -30,9 +30,9 @@ function getItemLink(item: any): PageRoute | undefined {
 // Current menu level
 const currentMenu = computed(() => {
   if (menuStack.value.length === 0) {
-    // Top level - fullMenu items
+    // Top level - fullTree items
     return {
-      items: fullMenu.value?.items || [],
+      items: fullTree.value?.items || [],
       title: undefined,
       link: undefined,
     }
