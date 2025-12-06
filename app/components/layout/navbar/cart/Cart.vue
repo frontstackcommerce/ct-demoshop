@@ -4,8 +4,6 @@ const { lineItems, refreshCart } = useCart()
 onMounted(async () => {
   await refreshCart()
 })
-
-const hasItems = computed(() => (lineItems.value?.length || 0) > 0)
 </script>
 
 <template>
@@ -18,7 +16,7 @@ const hasItems = computed(() => (lineItems.value?.length || 0) > 0)
           class="hover:bg-active/20 data-[state=open]:bg-active/20 size-10 rounded-full border-4 border-transparent p-0"
         >
           <IconShoppingCart class="size-5" />
-          <StoreCartBadge v-if="hasItems" />
+          <StoreCartBadge />
         </Button>
       </NavigationMenuTrigger>
       <NavigationMenuContent>

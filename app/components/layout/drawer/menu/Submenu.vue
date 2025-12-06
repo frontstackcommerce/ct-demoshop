@@ -31,16 +31,12 @@ function getItemLink(item: any): PageRoute | undefined {
 <template>
   <Separator />
   <div class="bg-background z-20 h-full w-full">
-    <p class="mt-3 px-4 text-xl font-semibold">{{ category?.title }}</p>
+    <p class="mt-3 px-4 text-2xl font-extralight">{{ category?.title }}</p>
     <div class="flex flex-col gap-5 pt-5">
       <div class="flex items-center gap-4 px-5">
-        <div class="bg-shade-100 h-20 w-32 rounded-full border">
-          <NuxtImg src="https://placehold.co/600x400" alt="Icon" class="size-full object-cover" />
-        </div>
-
         <NuxtLink
           :to="category?.link?.path"
-          class="flex w-full items-center justify-between text-xl font-semibold"
+          class="font-display flex w-full items-center justify-between py-5 text-4xl font-light"
           @click.stop="emit('close')"
         >
           <span>{{ $t('actions.show-all') }} {{ category?.title }} </span>
@@ -48,13 +44,10 @@ function getItemLink(item: any): PageRoute | undefined {
           <IconChevronRight class="size-8" :stroke-width="1" />
         </NuxtLink>
       </div>
-      <div v-for="child in children" :key="child.key" class="flex items-center gap-4 px-5">
-        <div class="bg-shade-100 h-20 w-32 rounded-full border">
-          <NuxtImg src="https://placehold.co/600x400" alt="Icon" class="size-full object-cover" />
-        </div>
+      <div v-for="child in children" :key="child.key" class="flex items-center gap-4 p-5">
         <NuxtLink
           v-if="hasChildren(child)"
-          class="flex w-full items-center justify-between text-xl font-medium"
+          class="font-display flex w-full items-center justify-between text-3xl font-light"
           @click.stop="emit('show', child)"
         >
           <span>{{ getItemName(child) }}</span>
@@ -63,7 +56,7 @@ function getItemLink(item: any): PageRoute | undefined {
         <NuxtLink
           v-else
           :to="getItemLink(child)?.path"
-          class="flex w-full items-center justify-between text-xl font-medium"
+          class="font-display flex w-full items-center justify-between text-3xl font-light"
           @click.stop="emit('close')"
         >
           <span>{{ getItemName(child) }}</span>

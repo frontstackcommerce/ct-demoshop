@@ -86,7 +86,7 @@ function handleShowParentCategory() {
           @click.stop="handleShowParentCategory"
         >
           <IconArrowLeft class="size-5" />
-          <span class="uppercase">{{ $t('actions.back') }}</span>
+          <span class="text-muted-foreground font-light">{{ $t('actions.back') }}</span>
         </Button>
       </div>
       <div v-if="currentMenu" class="flex w-full flex-col gap-1">
@@ -104,7 +104,7 @@ function handleShowParentCategory() {
         <NuxtLink
           v-if="!isSubCategory && currentMenu.link?.path"
           :to="currentMenu.link.path"
-          class="flex items-center justify-between p-3 text-xl font-semibold"
+          class="font-display flex items-center justify-between p-3 text-3xl font-light"
           @click="close"
         >
           <span>{{ currentMenu.title }}</span>
@@ -114,7 +114,7 @@ function handleShowParentCategory() {
             <div v-for="item in currentMenu.items" :key="item.key">
               <NuxtLink
                 v-if="hasChildren(item)"
-                class="flex w-full items-center justify-between px-3 py-4 text-xl font-medium"
+                class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light"
                 @click.stop="handleShowSubCategory(item)"
               >
                 <span>{{ getItemName(item) }}</span>
@@ -124,7 +124,7 @@ function handleShowParentCategory() {
               <NuxtLink
                 v-else
                 :to="getItemLink(item)?.path"
-                class="flex w-full items-center justify-between px-3 py-4 text-xl font-medium"
+                class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light"
                 @click="close"
               >
                 <span>{{ getItemName(item) }}</span>
