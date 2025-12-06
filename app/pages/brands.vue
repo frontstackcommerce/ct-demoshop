@@ -8,7 +8,7 @@ const { brands } = useBrands()
 </script>
 
 <template>
-  <div class="mx-auto mt-20 flex max-w-7xl flex-col gap-4">
+  <div class="mx-auto mt-40 flex max-w-7xl flex-col gap-4">
     <h1 class="text-3xl font-medium">
       {{ $t('brands.label') }}
     </h1>

@@ -3,37 +3,37 @@ import { filename } from 'pathe/utils'
 
 const props = withDefaults(
   defineProps<{
-    code?: 'de-de' | 'en-us' | string
+    code?: 'de-DE' | 'en-GB' | string
     size?: 'sm' | 'md' | 'lg'
     alt?: string
   }>(),
   {
-    code: 'en-us',
+    code: 'en-GB',
     size: 'md',
     alt: '',
   }
 )
 
 const glob = import.meta.glob<{ default: string }>('@/assets/flags/*.svg', { eager: true })
-const images = Object.fromEntries(
+const flags = Object.fromEntries(
   Object.entries(glob).map(([key, value]) => [filename(key), value.default])
 )
 
 const localeCode = computed(() => {
   switch (props.code) {
-    case 'en-us':
-      return 'gb'
+    case 'de-DE':
+      return 'de'
     default:
-      return props.code.slice(0, 2)
+      return 'uk'
   }
 })
 </script>
 
 <template>
   <NuxtImg
-    :src="images[localeCode] ?? images['de']"
-    :alt="alt ?? localeCode"
-    class="border-px rounded border-muted"
+    :src="flags[localeCode]"
+    :alt="alt ?? code"
+    class="border-px border-muted rounded"
     :width="size === 'sm' ? 20 : size === 'lg' ? 36 : 30"
     :height="size === 'sm' ? 20 : size === 'lg' ? 36 : 30"
   />

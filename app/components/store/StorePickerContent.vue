@@ -7,18 +7,30 @@ const { context, contextList, updateContext, getRegionLabel, getLocaleLabel } = 
 
 const selectedRegion = ref(context.value?.region ?? '')
 const selectedLocale = ref(context.value?.locale ?? '')
+
 const availableLocales = computed(() => {
   const region = contextList.value?.find((option) => option.region === selectedRegion.value)
   return region?.locales ?? []
 })
 
-const handleRegionChange = (value: string) => {
-  selectedRegion.value = value
-  selectedLocale.value = availableLocales.value[0]?.key ?? ''
+const showLocaleSelector = computed(() => {
+  return availableLocales.value.length > 1
+})
+
+const handleRegionSelect = (regionCode: string) => {
+  selectedRegion.value = regionCode
+  const locales = availableLocales.value
+  selectedLocale.value = locales[0]?.key ?? ''
+
+  // Auto-submit if only one locale available
+  if (locales.length === 1) {
+    handleSubmit()
+  }
 }
 
-const handleLocaleChange = (value: string) => {
-  selectedLocale.value = value
+const handleLocaleSelect = (localeKey: string) => {
+  selectedLocale.value = localeKey
+  handleSubmit()
 }
 
 const handleSubmit = async () => {
@@ -36,67 +48,59 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="my-2 flex flex-col gap-8">
-    <div class="flex flex-col gap-3">
-      <Label>{{ $t('context.location.label') }}</Label>
-      <Select
-        class="flex items-center px-4"
-        :model-value="selectedRegion"
-        @update:model-value="handleRegionChange"
-      >
-        <SelectTrigger class="">
-          <div class="flex items-center gap-2.5">
-            <StoreRegionFlag :code="selectedRegion" />
-            {{
-              selectedRegion ? getRegionLabel(selectedRegion) : $t('context.location.placeholder')
-            }}
-          </div>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem
-            v-for="(contextOption, index) in contextList"
-            :key="index"
-            :value="contextOption.region"
-          >
-            <div class="flex items-center gap-2.5">
-              <StoreRegionFlag :code="contextOption.region" />
+  <div class="my-4 flex flex-col gap-6">
+    <!-- Region Selection -->
+    <div class="flex flex-col gap-4">
+      <Label class="text-base font-semibold">{{ $t('context.location.label') }}</Label>
+      <ItemGroup class="grid grid-cols-3 gap-5">
+        <Item
+          v-for="(contextOption, index) in contextList"
+          :key="index"
+          as-child
+          variant="outline"
+          class="cursor-pointer border"
+          :class="{
+            'border-primary bg-inverted/5': selectedRegion === contextOption.region,
+          }"
+          @click="handleRegionSelect(contextOption.region)"
+        >
+          <ItemContent>
+            <ItemMedia>
+              <StoreRegionFlag :code="contextOption.region" size="lg" />
+            </ItemMedia>
+            <ItemTitle>
               {{ getRegionLabel(contextOption.region) }}
-            </div>
-          </SelectItem>
-        </SelectContent>
-      </Select>
+            </ItemTitle>
+          </ItemContent>
+        </Item>
+      </ItemGroup>
     </div>
 
-    <div class="flex flex-col gap-2">
-      <Label>{{ $t('context.language.label') }}</Label>
-      <Select
-        class="flex items-center px-4"
-        :model-value="selectedLocale"
-        :disabled="!selectedRegion"
-        @update:model-value="handleLocaleChange"
-      >
-        <SelectTrigger class="">
-          <div class="flex items-center gap-2.5">
-            {{
-              selectedLocale ? getLocaleLabel(selectedLocale) : $t('context.language.placeholder')
-            }}
-          </div>
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem v-for="(locale, index) in availableLocales" :key="index" :value="locale.key">
-            {{ getLocaleLabel(locale.key) }}
-          </SelectItem>
-        </SelectContent>
-      </Select>
+    <!-- Language Selection (only show if multiple locales available) -->
+    <div v-if="selectedRegion && showLocaleSelector" class="flex flex-col gap-4">
+      <Label class="text-base font-semibold">{{ $t('context.language.label') }}</Label>
+      <ItemGroup class="grid grid-cols-2 gap-5">
+        <Item
+          v-for="(locale, index) in availableLocales"
+          :key="index"
+          as-child
+          variant="outline"
+          class="cursor-pointer border"
+          :class="{
+            'border-primary bg-inverted/5': selectedLocale === locale.key,
+          }"
+          @click="handleLocaleSelect(locale.key)"
+        >
+          <ItemContent>
+            <ItemMedia>
+              <StoreLocaleFlag :code="locale.key" size="lg" />
+            </ItemMedia>
+            <ItemTitle>
+              {{ getLocaleLabel(locale.key) }}
+            </ItemTitle>
+          </ItemContent>
+        </Item>
+      </ItemGroup>
     </div>
-
-    <Button
-      :disabled="!selectedRegion || !selectedLocale"
-      size="xl"
-      class="w-full rounded-full"
-      @click="handleSubmit"
-    >
-      {{ $t('context.submit') }}
-    </Button>
   </div>
 </template>

@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import { filename } from 'pathe/utils'
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
-    code?: 'de' | 'gb' | string
+    code?: 'eu' | 'uk' | 'us' | string
     size?: 'sm' | 'md' | 'lg'
     alt?: string
   }>(),
   {
-    code: 'de',
+    code: 'eu',
     size: 'md',
     alt: '',
   }
@@ -18,14 +18,21 @@ const glob = import.meta.glob<{ default: string }>('@/assets/flags/*.svg', { eag
 const images = Object.fromEntries(
   Object.entries(glob).map(([key, value]) => [filename(key), value.default])
 )
+
+const width = computed(() => {
+  return props.size === 'sm' ? 20 : props.size === 'lg' ? 48 : 30
+})
+const height = computed(() => {
+  return props.size === 'sm' ? 20 : props.size === 'lg' ? 48 : 30
+})
 </script>
 
 <template>
   <NuxtImg
-    :src="images[code] ?? images['us']"
+    :src="images[code] ?? images['eu']"
     :alt="alt ?? code"
-    class="border-px rounded border-muted"
-    :width="size === 'sm' ? 20 : size === 'lg' ? 36 : 30"
-    :height="size === 'sm' ? 20 : size === 'lg' ? 36 : 30"
+    class="border-px border-muted rounded"
+    :width="width"
+    :height="height"
   />
 </template>

@@ -32,7 +32,7 @@ async function selectVariant(target: string, sku: string) {
           v-if="hasSecondImage"
           :src="secondImage"
           :alt="product.name"
-          :width="600"
+          :width="320"
           class="absolute inset-0 size-full object-cover p-4 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         />
       </div>

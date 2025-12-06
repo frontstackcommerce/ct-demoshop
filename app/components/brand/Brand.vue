@@ -15,7 +15,7 @@ defineProps<{
     />
   </div>
 
-  <div class="relative z-10 mx-auto mt-20 flex max-w-7xl flex-col gap-12">
+  <div class="relative z-10 mx-auto mt-40 flex max-w-7xl flex-col gap-12">
     <div class="bg-background aspect-square size-40 shadow-sm">
       <NuxtImg :src="brand.logo?.src" :alt="brand.name" class="size-full object-contain p-4" />
     </div>

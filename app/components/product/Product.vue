@@ -48,7 +48,7 @@ const formatPrice = (price: Price) => {
     />
   </div>
 
-  <div class="relative z-10 mx-auto mt-20 mb-12 flex max-w-7xl flex-col gap-12">
+  <div class="relative z-10 mx-auto mt-40 mb-12 flex max-w-7xl flex-col gap-12">
     <div class="grid grid-cols-12 gap-8">
       <div v-if="selectedVariant" class="col-span-8">
         <div class="grid grid-cols-2 gap-2">
