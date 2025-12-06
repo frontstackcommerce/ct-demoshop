@@ -16,7 +16,6 @@ export const useBrands = (): IUseBrands => {
   const { data: brands, status } = useQuery(shopBrandsListAllQuery, { contextKey: token.value })
 
   return {
-    // State
     brands,
     status,
   }

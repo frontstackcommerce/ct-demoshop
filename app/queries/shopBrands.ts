@@ -8,7 +8,7 @@ export const SHOP_BRANDS_QUERY_KEYS = {
 
 export const shopBrandsListAllQuery = ({ contextKey }: { contextKey?: MaybeRef<string> }) => {
   return {
-    key: SHOP_BRANDS_QUERY_KEYS.listAll,
+    key: SHOP_BRANDS_QUERY_KEYS.listAll(),
     query: async () => {
       return await client.listing('BrandListing', {}, { contextKey: unref(contextKey) })
     },
