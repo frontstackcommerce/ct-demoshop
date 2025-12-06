@@ -26,7 +26,9 @@ const sizeClass = computed(() => {
       :class="sizeClass"
       class="bg-checkout absolute top-1 right-1 flex items-center justify-center rounded-full"
     >
-      <span class="text-checkout-foreground">{{ lineItems?.length }}</span>
+      <span class="font-sans font-bold">{{
+        lineItems?.length > 9 ? '9+' : lineItems?.length
+      }}</span>
     </div>
   </ClientOnly>
 </template>
