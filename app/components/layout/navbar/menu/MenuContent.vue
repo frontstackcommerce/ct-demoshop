@@ -20,7 +20,7 @@ onMounted(() => {
         <li>
           <NavigationMenuLink as-child>
             <NuxtLink
-              class="font-display flex items-center gap-3 text-3xl leading-none font-medium transition-all duration-300 hover:translate-x-2"
+              class="font-display flex items-center gap-3 text-2xl leading-none transition-all duration-300 hover:translate-x-2"
               :to="category?.link?.path"
             >
               <IconArrowRight class="size-6" />
@@ -35,7 +35,7 @@ onMounted(() => {
               :to="child.link?.path"
               class="group relative inline-block overflow-hidden pb-2"
             >
-              <div class="font-display relative z-10 text-3xl leading-none font-medium">
+              <div class="font-display relative z-10 text-2xl leading-none">
                 {{ child.name }}
               </div>
               <div

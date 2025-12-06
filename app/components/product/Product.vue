@@ -29,7 +29,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-shade-100 absolute inset-0 top-40 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
+    class="bg-shade-100 absolute inset-0 top-28 z-0 -mt-1 h-[40%] min-h-[340px] w-screen overflow-hidden"
   >
     <NuxtImg
       :src="selectedVariant?.images?.[0]?.src"
@@ -133,7 +133,7 @@ onMounted(() => {
     </div>
 
     <div class="grid grid-cols-12 gap-8">
-      <h2 class="col-span-12 text-xl font-bold">
+      <h2 class="font-display col-span-12 text-xl">
         {{ $t('product.details.sections.description') }}
       </h2>
       <p v-if="product.description" class="text-muted-foreground col-span-12 font-light">
@@ -149,7 +149,7 @@ onMounted(() => {
     />
     <div v-else class="grid grid-cols-12 gap-8">
       <div class="col-span-12">
-        <h2 class="mb-2 text-2xl font-bold">
+        <h2 class="font-display mb-2 text-2xl">
           {{ $t('product.details.reviews.title') }}
         </h2>
         <p class="text-muted-foreground">

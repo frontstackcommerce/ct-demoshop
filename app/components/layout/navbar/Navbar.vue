@@ -10,8 +10,8 @@ const backdropCloseCursor = computed(
 </script>
 
 <template>
-  <div class="hidden sm:block">
-    <div class="border-border container mx-auto flex h-full justify-between border-b px-6 md:px-0">
+  <div class="bg-background hidden w-full sm:block">
+    <div class="border-border mx-auto flex h-full w-full justify-between border-b">
       <div class="mt-1.5 ml-4">
         <StoreLogo />
       </div>

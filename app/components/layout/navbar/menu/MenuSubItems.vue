@@ -12,7 +12,7 @@ defineProps<{
           :to="child.link?.path"
           class="group relative inline-block overflow-hidden transition-all duration-300 hover:scale-105"
         >
-          <div class="relative z-10 py-1.5 leading-none font-medium">
+          <div class="relative z-10 py-1.5 leading-none font-light">
             {{ child.name }}
           </div>
           <div
