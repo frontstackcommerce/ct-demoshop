@@ -3,49 +3,81 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-const { categoryId, listing: categories, refreshListing, category } = useCategories()
-
-const SHOP_CATEGORY_KEY = '0194bcd116837bd9a18b8d134ee54be2'
-
-onMounted(async () => {
-  categoryId.value = SHOP_CATEGORY_KEY
-  await refreshListing()
-})
+const { fullTree } = useShopMenu()
 
 const close = () => {
   emit('close')
 }
 
-const activeSubmenu = ref<string>('')
+// Navigation state: track menu hierarchy path
+const menuStack = ref<any[]>([])
 
-async function handleShowSubCategory(key: string) {
-  activeSubmenu.value = key
-  categoryId.value = key
-  await refreshListing()
+// Type guard to check if item has children
+function hasChildren(item: any): boolean {
+  return !!(item?.children?.items && item.children.items.length > 0)
 }
 
-async function handleShowParentCategory() {
-  activeSubmenu.value =
-    category.value?.parentKey && category.value?.parentKey !== SHOP_CATEGORY_KEY
-      ? category.value.parentKey
-      : ''
-  const parentKey = category.value?.parentKey || SHOP_CATEGORY_KEY
-  categoryId.value = parentKey
-  await refreshListing()
+// Helper to get name property from any menu item type
+function getItemName(item: any): string | undefined {
+  return item?.name || item?.label
 }
-const isSubCategory = computed(() => {
-  return categoryId?.value !== SHOP_CATEGORY_KEY
+
+// Helper to get link property from any menu item type
+function getItemLink(item: any): PageRoute | undefined {
+  return item?.link || (item?.href ? ({ path: item.href } as PageRoute) : undefined)
+}
+
+// Current menu level
+const currentMenu = computed(() => {
+  if (menuStack.value.length === 0) {
+    // Top level - fullTree items
+    return {
+      items: fullTree.value?.items || [],
+      title: undefined,
+      link: undefined,
+    }
+  }
+
+  const current = menuStack.value[menuStack.value.length - 1]
+  if (!current) {
+    return {
+      items: [],
+      title: undefined,
+      link: undefined,
+    }
+  }
+
+  // Get children items regardless of the specific type
+  const items = current.children?.items || []
+
+  return {
+    items,
+    title: getItemName(current),
+    link: getItemLink(current),
+  }
 })
+
+const isSubCategory = computed(() => menuStack.value.length > 0)
+
+function handleShowSubCategory(item: any) {
+  if (hasChildren(item)) {
+    menuStack.value.push(item)
+  }
+}
+
+function handleShowParentCategory() {
+  menuStack.value.pop()
+}
 </script>
 
 <template>
-  <div class="fixed top-0 z-[2] h-full w-full bg-background">
+  <div class="bg-background z-2 h-full w-full">
     <div class="flex flex-col items-center md:hidden">
       <div class="flex w-full items-center justify-between py-6 pl-5">
-        <Logo @click="close" />
+        <StoreLogo @click="close" />
         <StorePicker v-if="!isSubCategory">
           <StorePickerTrigger collapsed />
-        </SharedStorePicker>
+        </StorePicker>
         <Button
           v-else
           variant="link"
@@ -57,12 +89,12 @@ const isSubCategory = computed(() => {
           <span class="uppercase">{{ $t('actions.back') }}</span>
         </Button>
       </div>
-      <div v-if="category" class="flex w-full flex-col gap-1">
+      <div v-if="currentMenu" class="flex w-full flex-col gap-1">
         <Transition name="submenu">
-          <PageDrawerMenuSubmenu
-            v-if="isSubCategory && categories"
-            :category="category"
-            :children="categories"
+          <LayoutDrawerMenuSubmenu
+            v-if="isSubCategory"
+            :category="currentMenu"
+            :children="currentMenu.items"
             @back="handleShowParentCategory"
             @close="close"
             @show="handleShowSubCategory"
@@ -70,38 +102,38 @@ const isSubCategory = computed(() => {
         </Transition>
 
         <NuxtLink
-          v-if="!isSubCategory"
-          :to="category?.link?.path"
+          v-if="!isSubCategory && currentMenu.link?.path"
+          :to="currentMenu.link.path"
           class="flex items-center justify-between p-3 text-xl font-semibold"
           @click="close"
         >
-          <span>{{ category?.title }}</span>
+          <span>{{ currentMenu.title }}</span>
         </NuxtLink>
         <template v-if="!isSubCategory">
           <div class="flex flex-col gap-1">
-            <div v-for="item in categories?.items" :key="item.key">
+            <div v-for="item in currentMenu.items" :key="item.key">
               <NuxtLink
-                v-if="item.childCount && item.childCount > 0"
+                v-if="hasChildren(item)"
                 class="flex w-full items-center justify-between px-3 py-4 text-xl font-medium"
-                @click.stop="handleShowSubCategory(item.key)"
+                @click.stop="handleShowSubCategory(item)"
               >
-                <span>{{ item.title }}</span>
+                <span>{{ getItemName(item) }}</span>
                 <IconChevronDown class="size-8" :stroke-width="1" />
               </NuxtLink>
 
               <NuxtLink
                 v-else
-                :to="item.link?.path"
-                class="flex w-full items-center justify-between text-xl font-medium"
+                :to="getItemLink(item)?.path"
+                class="flex w-full items-center justify-between px-3 py-4 text-xl font-medium"
                 @click="close"
               >
-                <span>{{ item.title }}</span>
+                <span>{{ getItemName(item) }}</span>
               </NuxtLink>
             </div>
           </div>
           <Separator />
-          <div class="my-5 px-3">
-            <PageNavbarMenuAboutMenu />
+          <div class="my-5 mb-20 px-3">
+            <LayoutNavbarMenuAboutMenu />
           </div>
         </template>
       </div>

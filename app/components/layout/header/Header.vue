@@ -10,7 +10,7 @@ const isHomepage = computed(() => route.path === '/')
       <LayoutHeaderUtility />
     </div>
     <div class="absolute top-12 left-4 sm:hidden">
-      <Logo
+      <StoreLogo
         :grow="isHomepage"
         has-backdrop
         :is-inverted="isHomepage"

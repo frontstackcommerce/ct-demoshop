@@ -6,7 +6,7 @@ const open = ref(false)
   <ClientOnly>
     <Dialog v-model:open="open">
       <DialogTrigger as-child
-        ><slot><StorePickerTrigger size="lg" /></slot
+        ><slot><StorePickerTrigger /></slot
       ></DialogTrigger>
       <DialogContent>
         <DialogHeader>

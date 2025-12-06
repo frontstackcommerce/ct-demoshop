@@ -18,7 +18,7 @@ const hasItems = computed(() => (lineItems.value?.length || 0) > 0)
           class="size-14 rounded-full border-4 border-transparent p-0 hover:bg-white/20 data-[state=open]:bg-white/20"
         >
           <IconShoppingCart class="size-6" />
-          <CartBadge v-if="hasItems" />
+          <StoreCartBadge v-if="hasItems" />
         </Button>
       </NavigationMenuTrigger>
       <NavigationMenuContent>

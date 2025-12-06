@@ -25,7 +25,7 @@ function handleBlur() {
   emit('blur')
 }
 
-// TODO: fix autofocus since when active the input os scrolling out of the view within the drawer (ios native keyboard appears and scrolls the input out of the view)
+// TODO: fix autofocus since when active the input os scrolling out of the view within the navigation (ios native keyboard appears and scrolls the input out of the view)
 // onMounted(() => {
 //   nextTick(() => {
 //     useFocus(autoFocus, { initialValue: true })
@@ -39,19 +39,19 @@ function handleBlur() {
       ref="autoFocus"
       v-model="searchTerm"
       :placeholder="$t('search.placeholder')"
-      class="rounded-full bg-muted py-6 pl-10 pr-5 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 active:ring-0"
+      class="bg-muted rounded-full py-6 pr-5 pl-10 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 active:ring-0"
       @focus="handleFocus"
       @blur="handleBlur"
     />
     <span class="absolute inset-y-0 start-3 flex items-center justify-center">
-      <IconSearch class="size-5 text-muted-foreground" />
+      <IconSearch class="text-muted-foreground size-5" />
     </span>
     <span
       v-if="searchTerm.length > 0"
       class="absolute inset-y-0 end-3 flex items-center justify-center"
     >
       <Button size="sm" variant="icon" @click="clearSearch">
-        <IconX class="size-6 text-muted-foreground" />
+        <IconX class="text-muted-foreground size-6" />
       </Button>
     </span>
   </div>

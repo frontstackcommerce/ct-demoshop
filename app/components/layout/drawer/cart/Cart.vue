@@ -3,7 +3,7 @@ const emit = defineEmits<{
   (e: 'close'): void
 }>()
 
-const { updateLineItemQuantity, removeLineItem, lineItems, totalPrice, refreshCart } = useCart()
+const { updateLineItemQuantity, removeLineItem, lineItems, totalPrice } = useCart()
 const { closeMenu } = useShopMenu()
 
 const close = () => {
@@ -48,11 +48,13 @@ const handleRemove = async (cartItemId: string) => {
             <div class="flex items-center justify-between">
               <p>{{ $t('cart.summary.items') }}</p>
               <p v-if="totalPrice">
-                <Price :price="{
-                  amount: totalPrice.centAmount ?? 0,
-                  currency: totalPrice.currencyCode,
-                  precision: totalPrice.fractionDigits,
-                }" />
+                <Price
+                  :price="{
+                    amount: totalPrice.centAmount ?? 0,
+                    currency: totalPrice.currencyCode,
+                    precision: totalPrice.fractionDigits,
+                  }"
+                />
               </p>
             </div>
             <div class="flex items-center justify-between">
@@ -67,11 +69,15 @@ const handleRemove = async (cartItemId: string) => {
             <Separator class="my-1.5" />
             <div class="flex items-center justify-between text-lg font-semibold">
               <p>{{ $t('cart.summary.total') }}</p>
-              <p v-if="totalPrice"><Price :price="{
-                amount: totalPrice.centAmount ?? 0,
-                currency: totalPrice.currencyCode,
-                precision: totalPrice.fractionDigits,
-              }" /></p>
+              <p v-if="totalPrice">
+                <Price
+                  :price="{
+                    amount: totalPrice.centAmount ?? 0,
+                    currency: totalPrice.currencyCode,
+                    precision: totalPrice.fractionDigits,
+                  }"
+                />
+              </p>
             </div>
           </div>
           <div class="pb-40"></div>
@@ -88,11 +94,15 @@ const handleRemove = async (cartItemId: string) => {
       <div class="bg-shade-300 my-5 flex flex-col gap-2 rounded-lg px-6 py-4 text-sm">
         <div class="flex items-center justify-between">
           <p>{{ $t('cart.summary.items') }}</p>
-          <p v-if="totalPrice"><Price :price="{
-            amount: totalPrice.centAmount ?? 0,
-            currency: totalPrice.currencyCode,
-            precision: totalPrice.fractionDigits,
-          }" /></p>
+          <p v-if="totalPrice">
+            <Price
+              :price="{
+                amount: totalPrice.centAmount ?? 0,
+                currency: totalPrice.currencyCode,
+                precision: totalPrice.fractionDigits,
+              }"
+            />
+          </p>
         </div>
         <div class="flex items-center justify-between">
           <p>{{ $t('cart.summary.shipping') }}</p>
@@ -102,14 +112,18 @@ const handleRemove = async (cartItemId: string) => {
         <Separator class="my-1.5" />
         <div class="flex items-center justify-between text-lg font-semibold">
           <p>{{ $t('cart.summary.total') }}</p>
-          <p v-if="totalPrice"><Price :price="{
-            amount: totalPrice.centAmount ?? 0,
-            currency: totalPrice.currencyCode,
-            precision: totalPrice.fractionDigits,
-          }" /></p>
+          <p v-if="totalPrice">
+            <Price
+              :price="{
+                amount: totalPrice.centAmount ?? 0,
+                currency: totalPrice.currencyCode,
+                precision: totalPrice.fractionDigits,
+              }"
+            />
+          </p>
         </div>
       </div>
-      <NuxtLink to="/checkout">
+      <NuxtLinkLocale to="/checkout">
         <Button
           class="flex w-full items-center gap-5 text-lg"
           :aria-label="$t('navigation.checkout')"
@@ -120,7 +134,7 @@ const handleRemove = async (cartItemId: string) => {
           <IconShoppingCart class="text-checkout-foreground size-6" />
           {{ $t('navigation.goto-checkout') }}
         </Button>
-      </NuxtLink>
+      </NuxtLinkLocale>
       <Button
         class="w-full"
         :aria-label="$t('navigation.continue-shopping')"
