@@ -4,117 +4,128 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* Font families - matching Westwing's typography */
+  --font-family-sans:
+    'Inter', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol', 'Noto Color Emoji';
+  --font-family-serif:
+    'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+  --font-family-mono:
+    ui-monospace, 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New',
+    monospace;
+  --font-display: 'Playfair Display', ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif;
+
   /* Base colors */
-  --color-background: oklch(1 0 0);
-  --color-foreground: oklch(0.141 0.005 285.823);
+  --color-background: oklch(1 0 0); /* White background */
+  --color-foreground: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark text */
 
   /* Card */
-  --color-card: oklch(1 0 0);
-  --color-card-foreground: oklch(0.141 0.005 285.823);
+  --color-card: oklch(1 0 0); /* Pure white for cards */
+  --color-card-foreground: oklch(0.2 0.01 180);
 
   /* Popover */
   --color-popover: oklch(1 0 0);
-  --color-popover-foreground: oklch(0.141 0.005 285.823);
+  --color-popover-foreground: oklch(0.2 0.01 180);
 
   /* Primary */
-  --color-primary: oklch(0.21 0.006 285.885);
-  --color-primary-foreground: oklch(0.985 0 0);
+  --color-primary: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark charcoal */
+  --color-primary-foreground: oklch(1 0 0); /* white text */
 
   /* Secondary */
-  --color-secondary: oklch(0.967 0.001 286.375);
-  --color-secondary-foreground: oklch(0.21 0.006 285.885);
+  --color-secondary: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */
+  --color-secondary-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Muted */
-  --color-muted: oklch(0.967 0.001 286.375);
-  --color-muted-foreground: oklch(0.552 0.016 285.938);
+  --color-muted: oklch(0.93 0.01 85); /* rgb(238, 236, 227) - linen/cream */
+  --color-muted-foreground: oklch(0.44 0.02 175); /* rgb(84, 108, 100) - dimgray */
 
   /* Accent */
-  --color-accent: oklch(0.967 0.001 286.375);
-  --color-accent-foreground: oklch(0.21 0.006 285.885);
+  --color-accent: oklch(0.32 0.15 10); /* Burgundy #710627 */
+  --color-accent-foreground: oklch(1 0 0); /* white text */
 
   /* Destructive */
-  --color-destructive: oklch(0.577 0.245 27.325);
-  --color-destructive-foreground: oklch(0 0 0);
+  --color-destructive: oklch(0.55 0.14 355); /* rgb(188, 92, 124) - palevioletred, same as sale */
+  --color-destructive-foreground: oklch(1 0 0); /* white text */
 
   /* Border & Input */
-  --color-border: oklch(0.92 0.004 286.32);
-  --color-input: oklch(0.92 0.004 286.32);
-  --color-ring: oklch(0.705 0.015 286.067);
+  --color-border: oklch(0.9 0.01 85); /* Light cream border */
+  --color-input: oklch(0.9 0.01 85);
+  --color-ring: oklch(0.73 0.05 175); /* Cadetblue ring for focus states */
 
   /* Active state */
-  --color-active: oklch(0.55 0.18 265);
-  --color-active-foreground: oklch(1 0 0);
+  --color-active: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */
+  --color-active-foreground: oklch(0.2 0.01 180); /* dark text */
 
-  /* Shade variants */
-  --color-shade: oklch(0.96 0 0);
-  --color-shade-100: oklch(0.975 0.005 286);
-  --color-shade-200: oklch(0.97 0 0);
-  --color-shade-300: oklch(0.91 0 0);
+  /* Shade variants - cream/brown tones */
+  --color-shade: oklch(0.97 0.008 75); /* Light cream #f2efe4 */
+  --color-shade-100: oklch(0.95 0.01 75); /* rgb(238, 236, 227) approximation */
+  --color-shade-200: oklch(0.9 0.015 75); /* Medium cream/beige */
+  --color-shade-300: oklch(0.85 0.02 70); /* Darker cream/brown */
 
   /* Inverted */
-  --color-inverted: oklch(0 0 0);
-  --color-inverted-foreground: oklch(1 0 0);
+  --color-inverted: oklch(0.38 0.02 185); /* rgb(76, 92, 92) - dark slate gray */
+  --color-inverted-foreground: oklch(1 0 0); /* white text */
 
   /* Neutral */
-  --color-neutral: oklch(0 0 0);
+  --color-neutral: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark charcoal */
   --color-neutral-foreground: oklch(1 0 0);
 
   /* Info */
-  --color-info: oklch(0.88 0.095 255);
-  --color-info-foreground: oklch(0 0 0);
+  --color-info: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue for info */
+  --color-info-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Positive */
-  --color-positive: oklch(0.72 0.11 178);
-  --color-positive-foreground: oklch(0 0 0);
+  --color-positive: oklch(0.41 0.05 160); /* rgb(76, 100, 73) - dark slate gray green */
+  --color-positive-foreground: oklch(1 0 0); /* white text */
 
   /* Warning */
-  --color-warning: oklch(0.88 0.12 95);
-  --color-warning-foreground: oklch(0 0 0);
+  --color-warning: oklch(0.7 0.08 75); /* Warm tone matching palette */
+  --color-warning-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Buy */
-  --color-buy: oklch(0 0 0);
+  --color-buy: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark primary color */
   --color-buy-foreground: oklch(1 0 0);
 
   /* Checkout */
-  --color-checkout: oklch(0.86 0.15 295);
-  --color-checkout-foreground: oklch(0 0 0);
+  --color-checkout: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */
+  --color-checkout-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Highlight */
-  --color-highlight: oklch(0.78 0.14 155);
-  --color-highlight-foreground: oklch(0 0 0);
+  --color-highlight: oklch(0.32 0.15 10); /* Burgundy #710627 */
+  --color-highlight-foreground: oklch(1 0 0); /* white text */
 
   /* Sale */
-  --color-sale: oklch(0.84 0.13 345);
-  --color-sale-foreground: oklch(0 0 0);
+  --color-sale: oklch(0.55 0.14 355); /* rgb(188, 92, 124) - palevioletred */
+  --color-sale-foreground: oklch(1 0 0); /* white text */
 
   /* Discount */
-  --color-discount: oklch(0.84 0.13 345);
-  --color-discount-foreground: oklch(0 0 0);
+  --color-discount: oklch(0.55 0.14 355); /* rgb(188, 92, 124) - palevioletred, same as sale */
+  --color-discount-foreground: oklch(1 0 0); /* white text */
 
   /* New */
-  --color-new: oklch(0.88 0.095 255);
-  --color-new-foreground: oklch(0 0 0);
+  --color-new: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue for new items */
+  --color-new-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Price */
-  --color-price: oklch(0.56 0 0);
-  --color-price-foreground: oklch(0 0 0);
+  --color-price: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark charcoal for price */
+  --color-price-foreground: oklch(1 0 0);
 
   /* Charts */
-  --color-chart-1: oklch(0.646 0.222 41.116);
-  --color-chart-2: oklch(0.6 0.118 184.704);
-  --color-chart-3: oklch(0.398 0.07 227.392);
-  --color-chart-4: oklch(0.828 0.189 84.429);
-  --color-chart-5: oklch(0.769 0.188 70.08);
+  --color-chart-1: oklch(0.32 0.15 10); /* Burgundy #710627 */
+  --color-chart-2: oklch(0.73 0.05 175); /* Cadetblue rgb(131, 187, 171) */
+  --color-chart-3: oklch(0.44 0.02 175); /* Dimgray rgb(84, 108, 100) */
+  --color-chart-4: oklch(0.55 0.14 355); /* Palevioletred rgb(188, 92, 124) */
+  --color-chart-5: oklch(0.38 0.02 185); /* Dark slate gray rgb(76, 92, 92) */
 
   /* Sidebar */
-  --color-sidebar: oklch(0.985 0 0);
-  --color-sidebar-foreground: oklch(0.141 0.005 285.823);
-  --color-sidebar-primary: oklch(0.21 0.006 285.885);
-  --color-sidebar-primary-foreground: oklch(0.985 0 0);
-  --color-sidebar-accent: oklch(0.967 0.001 286.375);
-  --color-sidebar-accent-foreground: oklch(0.21 0.006 285.885);
-  --color-sidebar-border: oklch(0.92 0.004 286.32);
-  --color-sidebar-ring: oklch(0.705 0.015 286.067);
+  --color-sidebar: oklch(0.97 0.008 75); /* Light cream #f2efe4 */
+  --color-sidebar-foreground: oklch(0.2 0.01 180); /* rgb(34, 38, 38) */
+  --color-sidebar-primary: oklch(0.2 0.01 180); /* Dark charcoal */
+  --color-sidebar-primary-foreground: oklch(1 0 0);
+  --color-sidebar-accent: oklch(0.93 0.01 85); /* Muted cream */
+  --color-sidebar-accent-foreground: oklch(0.2 0.01 180);
+  --color-sidebar-border: oklch(0.9 0.01 85);
+  --color-sidebar-ring: oklch(0.73 0.05 175); /* Cadetblue */
 
   /* Border radius */
   --radius-sm: calc(0.625rem - 4px);
@@ -143,26 +154,26 @@
 }
 
 .dark {
-  --color-background: oklch(0.141 0.005 285.823);
-  --color-foreground: oklch(0.985 0 0);
+  --color-background: oklch(0.15 0.01 10); /* Dark burgundy-tinted background */
+  --color-foreground: oklch(0.955 0.009 75); /* Cream text */
 
-  --color-card: oklch(0.21 0.006 285.885);
-  --color-card-foreground: oklch(0.985 0 0);
+  --color-card: oklch(0.2 0.015 10); /* Slightly lighter dark burgundy */
+  --color-card-foreground: oklch(0.955 0.009 75);
 
-  --color-popover: oklch(0.21 0.006 285.885);
-  --color-popover-foreground: oklch(0.985 0 0);
+  --color-popover: oklch(0.2 0.015 10);
+  --color-popover-foreground: oklch(0.955 0.009 75);
 
-  --color-primary: oklch(0.92 0.004 286.32);
-  --color-primary-foreground: oklch(0.21 0.006 285.885);
+  --color-primary: oklch(0.45 0.18 10); /* Lighter burgundy for dark mode */
+  --color-primary-foreground: oklch(1 0 0);
 
-  --color-secondary: oklch(0.274 0.006 286.033);
-  --color-secondary-foreground: oklch(0.985 0 0);
+  --color-secondary: oklch(0.25 0.015 10);
+  --color-secondary-foreground: oklch(0.955 0.009 75);
 
-  --color-muted: oklch(0.274 0.006 286.033);
-  --color-muted-foreground: oklch(0.705 0.015 286.067);
+  --color-muted: oklch(0.25 0.015 10);
+  --color-muted-foreground: oklch(0.7 0.008 75);
 
-  --color-accent: oklch(0.274 0.006 286.033);
-  --color-accent-foreground: oklch(0.985 0 0);
+  --color-accent: oklch(0.45 0.18 10);
+  --color-accent-foreground: oklch(1 0 0);
 
   --color-destructive: oklch(0.704 0.191 22.216);
 
@@ -176,14 +187,14 @@
   --color-chart-4: oklch(0.627 0.265 303.9);
   --color-chart-5: oklch(0.645 0.246 16.439);
 
-  --color-sidebar: oklch(0.21 0.006 285.885);
-  --color-sidebar-foreground: oklch(0.985 0 0);
-  --color-sidebar-primary: oklch(0.488 0.243 264.376);
-  --color-sidebar-primary-foreground: oklch(0.985 0 0);
-  --color-sidebar-accent: oklch(0.274 0.006 286.033);
-  --color-sidebar-accent-foreground: oklch(0.985 0 0);
+  --color-sidebar: oklch(0.2 0.015 10);
+  --color-sidebar-foreground: oklch(0.955 0.009 75);
+  --color-sidebar-primary: oklch(0.45 0.18 10);
+  --color-sidebar-primary-foreground: oklch(1 0 0);
+  --color-sidebar-accent: oklch(0.25 0.015 10);
+  --color-sidebar-accent-foreground: oklch(0.955 0.009 75);
   --color-sidebar-border: oklch(1 0 0 / 10%);
-  --color-sidebar-ring: oklch(0.552 0.016 285.938);
+  --color-sidebar-ring: oklch(0.45 0.18 10);
 }
 
 @layer base {

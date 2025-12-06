@@ -26,7 +26,7 @@ const { fullTree } = useShopMenu()
         </NuxtLink>
 
         <div v-else>
-          <NavigationMenuTrigger class="px-6">{{ item.name }}</NavigationMenuTrigger>
+          <NavigationMenuTrigger class="px-3">{{ item.name }}</NavigationMenuTrigger>
           <NavigationMenuContent>
             <LayoutNavbarMenuContent v-if="item.key" :category-id="item.key" :category="item" />
           </NavigationMenuContent>

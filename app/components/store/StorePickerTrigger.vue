@@ -26,7 +26,7 @@ const sizeClass = computed(() => {
 <template>
   <Button
     v-if="context"
-    :color="!inverted ? 'inverted' : 'default'"
+    :color="!inverted ? 'secondary' : 'neutral'"
     class="flex items-center"
     :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
     :size="sizeClass.button"
@@ -34,7 +34,6 @@ const sizeClass = computed(() => {
     <StoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
     <template v-if="!collapsed">
       {{ getRegionLabel(context.region) }}
-      {{ $t('default.in-brackets', { text: getLocaleLabel(context.locale) }) }}
     </template>
     <IconChevronDown :class="sizeClass.icon" />
   </Button>

@@ -25,11 +25,15 @@ onMounted(() => {
     selectedVariant.value = null
   }
 })
+
+const hasSecondImage = computed(() => {
+  return selectedVariant.value?.images?.length && selectedVariant.value.images.length > 1
+})
 </script>
 
 <template>
   <div
-    class="bg-shade-200 absolute inset-0 top-40 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
+    class="bg-shade-100 absolute inset-0 top-28 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
   >
     <NuxtImg
       :src="selectedVariant?.images?.[0]?.src"
@@ -38,19 +42,24 @@ onMounted(() => {
     />
   </div>
 
-  <div class="relative z-10 mx-auto mt-40 mb-12 flex max-w-7xl flex-col gap-12">
+  <div class="relative z-10 mx-auto mt-20 mb-12 flex max-w-7xl flex-col gap-12">
     <div class="grid grid-cols-12 gap-8">
       <div v-if="selectedVariant" class="col-span-8">
-        <div class="grid grid-cols-2 gap-2">
+        <div :class="hasSecondImage ? 'grid grid-cols-2 gap-2' : 'grid grid-cols-1 gap-2'">
           <div
             v-for="image in selectedVariant.images?.slice(0, 2) ?? []"
             :key="image.key"
-            class="aspect-[0.75] overflow-hidden"
+            :class="hasSecondImage ? 'aspect-[0.75]' : ''"
+            class="overflow-hidden"
           >
             <NuxtImg
               :src="image.src"
               :alt="image.altText"
-              class="size-full bg-white object-contain p-2 transition-transform duration-300 hover:scale-105"
+              height="600"
+              class="bg-background object-contain p-2"
+              :class="{
+                'size-full transition-transform duration-300 hover:scale-105': hasSecondImage,
+              }"
             />
           </div>
         </div>
@@ -73,9 +82,9 @@ onMounted(() => {
         </div>
       </div>
       <div class="col-span-4 flex flex-col gap-4">
-        <h1 class="text-2xl font-medium">{{ product.name }}</h1>
+        <h1 class="font-display text-2xl font-medium">{{ product.name }}</h1>
 
-        <p v-if="product.description" class="text-muted-foreground font-light">
+        <p v-if="product.description" class="text-muted-foreground text-lg font-light">
           {{ product.description.split('. ')[0] + (product.description.includes('.') ? '.' : '') }}
         </p>
         <p v-else class="text-muted-foreground font-light">
@@ -109,7 +118,7 @@ onMounted(() => {
         <div class="flex w-full items-center gap-4">
           <div>
             <Select v-model="quantity" class="h-12">
-              <SelectTrigger class="h-full border-none shadow-none">
+              <SelectTrigger class="h-full border-none text-xl shadow-none">
                 <SelectValue :placeholder="String(quantity)" />
               </SelectTrigger>
               <SelectContent>
@@ -133,10 +142,13 @@ onMounted(() => {
     </div>
 
     <div class="grid grid-cols-12 gap-8">
-      <h2 class="col-span-12 text-xl font-bold">
+      <h2 class="font-display col-span-12 text-xl">
         {{ $t('product.details.sections.description') }}
       </h2>
-      <p v-if="product.description" class="text-muted-foreground col-span-12 font-light">
+      <p
+        v-if="product.description"
+        class="text-muted-foreground col-span-12 text-lg leading-relaxed font-extralight tracking-wide"
+      >
         {{ product.description }}
       </p>
       <p v-else class="text-muted-foreground col-span-12 font-light">
@@ -149,7 +161,7 @@ onMounted(() => {
     />
     <div v-else class="grid grid-cols-12 gap-8">
       <div class="col-span-12">
-        <h2 class="mb-2 text-2xl font-bold">
+        <h2 class="font-display mb-2 text-2xl">
           {{ $t('product.details.reviews.title') }}
         </h2>
         <p class="text-muted-foreground">

@@ -5,8 +5,8 @@ defineProps<{
 </script>
 
 <template>
-  <div class="mx-auto mt-40 mb-12 max-w-7xl">
-    <h1 class="text-3xl font-bold">{{ category.name }}</h1>
+  <div class="mx-auto my-12 max-w-6xl px-5">
+    <h1 class="font-display text-3xl font-light">{{ category.name }}</h1>
     <div v-if="category.products?.items" class="grid grid-cols-2 gap-4 md:grid-cols-4">
       <ProductCard
         v-for="product in category.products?.items"

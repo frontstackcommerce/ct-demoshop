@@ -10,9 +10,9 @@ const backdropCloseCursor = computed(
 </script>
 
 <template>
-  <div class="relative mt-5 hidden sm:block">
-    <div class="container mx-auto flex h-full items-center justify-between px-6 md:px-0">
-      <div class="flex items-center gap-4">
+  <div class="bg-background w-full">
+    <div class="border-border mx-auto flex h-full w-full justify-between border-b">
+      <div class="ml-5 w-48">
         <StoreLogo />
       </div>
       <NavigationMenu
@@ -21,7 +21,7 @@ const backdropCloseCursor = computed(
         :delay-duration="0"
         disable-click-trigger
         disable-pointer-leave-close
-        class="bg-inverted text-inverted-foreground z-50 flex w-full max-w-4xl items-center justify-between px-5 shadow-lg shadow-black/20"
+        class="bg-background z-50 flex w-full max-w-3xl items-center justify-between px-5 py-3"
       >
         <div>
           <LayoutNavbarMenuMain />

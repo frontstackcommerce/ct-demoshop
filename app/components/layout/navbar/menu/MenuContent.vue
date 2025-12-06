@@ -20,7 +20,7 @@ onMounted(() => {
         <li>
           <NavigationMenuLink as-child>
             <NuxtLink
-              class="flex items-center gap-3 text-3xl leading-none font-medium transition-all duration-300 hover:translate-x-2"
+              class="font-display flex items-center gap-3 text-2xl leading-none transition-all duration-300 hover:translate-x-2"
               :to="category?.link?.path"
             >
               <IconArrowRight class="size-6" />
@@ -35,7 +35,9 @@ onMounted(() => {
               :to="child.link?.path"
               class="group relative inline-block overflow-hidden pb-2"
             >
-              <div class="relative z-10 text-3xl leading-none font-medium">{{ child.name }}</div>
+              <div class="font-display relative z-10 text-2xl leading-none">
+                {{ child.name }}
+              </div>
               <div
                 class="bg-inverted absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
               ></div>
@@ -62,7 +64,7 @@ onMounted(() => {
 
           <div class="z-10 col-span-full row-span-full grid pb-5 pl-4 md:p-10">
             <h3
-              class="self-end text-3xl font-bold text-white lg:text-5xl"
+              class="text-background font-display self-end text-3xl lg:text-5xl"
               :style="{
                 'view-transition-name': `category-title-${category.key}`,
               }"

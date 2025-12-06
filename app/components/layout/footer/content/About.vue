@@ -3,7 +3,7 @@ const { aboutTree } = useShopMenu()
 </script>
 
 <template>
-  <div class="font-normal">{{ $t('footer.menu.about.title') }}</div>
+  <div class="font-display">{{ $t('footer.menu.about.title') }}</div>
   <div class="mt-4 flex flex-col gap-4 text-sm">
     <div class="flex flex-col gap-2">
       <NuxtLinkLocale

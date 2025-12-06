@@ -1,9 +1,9 @@
 <template>
-  <div class="container mx-auto grid max-w-6xl grid-cols-2 gap-4 px-6 md:grid-cols-5">
-    <div class="col-span-2 max-w-lg md:mb-0">
+  <div class="container mx-auto grid max-w-7xl grid-cols-4 gap-4 px-6 lg:grid-cols-5">
+    <div class="col-span-2 max-w-lg">
       <LayoutFooterContentNewsletterForm />
     </div>
-    <div class="max-w-lg md:mb-0">
+    <div class="">
       <LayoutFooterContentAbout />
     </div>
     <div class="hidden md:block">

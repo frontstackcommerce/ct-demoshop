@@ -61,7 +61,7 @@ watch(
     >
       <slot />
     </FilterTrigger>
-    <FilterContent class="my-2 rounded-md bg-shade-200 p-2">
+    <FilterContent class="bg-shade-200 my-2 p-2">
       <FilterList>
         <FilterItem
           v-for="(option, index) in filterOptions"

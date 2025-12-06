@@ -1,13 +1,23 @@
 <script setup lang="ts">
-const props = defineProps<{
-  isInverted?: boolean
-  hasBackdrop?: boolean
-  grow?: boolean
-}>()
+import type { HTMLAttributes } from 'vue'
+import { reactiveOmit } from '@vueuse/core'
 
-function goHome() {
-  navigateTo('/')
-}
+const props = withDefaults(
+  defineProps<{
+    target?: string
+    isInverted?: boolean
+    isClickable?: boolean
+    class?: HTMLAttributes['class']
+  }>(),
+  {
+    target: '/',
+    isInverted: false,
+    isClickable: true,
+    class: 'h-20',
+  }
+)
+
+const delegatedProps = reactiveOmit(props, 'class', 'target', 'isInverted', 'isClickable')
 
 const logoSrc = computed(() => {
   return props.isInverted ? '/brand/logo-inverted.svg' : '/brand/logo.svg'
@@ -16,21 +26,22 @@ const logoSrc = computed(() => {
 
 <template>
   <div>
-    <button @click="goHome">
+    <NuxtLinkLocale v-if="isClickable" :to="target">
       <NuxtImg
+        v-bind="delegatedProps"
         :src="logoSrc"
-        alt="Flagship Store"
-        class="relative z-10 transition-transform duration-300 md:h-16"
-        :class="{
-          'drop-shadow-lg': hasBackdrop,
-          'w-36': grow,
-        }"
+        height="48"
+        :class="props.class"
+        alt="Demo Shop"
       />
-      <span
-        v-if="hasBackdrop"
-        class="absolute top-0 left-0 z-0 h-full w-full blur-3xl"
-        :class="isInverted ? 'bg-inverted' : 'bg-background'"
-      ></span>
-    </button>
+    </NuxtLinkLocale>
+    <NuxtImg
+      v-else
+      v-bind="delegatedProps"
+      :src="logoSrc"
+      height="48"
+      :class="props.class"
+      alt="Demo Shop"
+    />
   </div>
 </template>

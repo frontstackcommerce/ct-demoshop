@@ -22,6 +22,7 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     'vue-sonner/nuxt',
     'shadcn-nuxt',
+    '@nuxt/fonts',
   ],
 
   image: {
@@ -45,6 +46,24 @@ export default defineNuxtConfig({
      * @default "@/components/ui"
      */
     componentDir: '@/components/ui',
+  },
+
+  fonts: {
+    families: [
+      // Serif font for headlines (matching Westwing Gaisyr)
+      { name: 'Playfair Display', provider: 'google' },
+      // Sans-serif font for body (matching Westwing ROM)
+      { name: 'Inter', provider: 'google' },
+    ],
+    defaults: {
+      weights: [400, 500, 600, 700, 800],
+      styles: ['normal', 'italic'],
+      subsets: ['latin', 'latin-ext'],
+    },
+    // Performance optimizations
+    experimental: {
+      processCSSVariables: true,
+    },
   },
 
   i18n: {

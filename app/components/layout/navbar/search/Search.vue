@@ -5,9 +5,9 @@
         <Button
           variant="icon"
           size="xs"
-          class="size-14 rounded-full border-4 border-transparent p-0 hover:bg-white/20 data-[state=open]:bg-white/20"
+          class="hover:bg-active/20 data-[state=open]:bg-active/20 size-10 rounded-full border-4 border-transparent p-0"
         >
-          <IconSearch class="size-6" />
+          <IconSearch class="size-5" />
         </Button>
       </NavigationMenuTrigger>
       <NavigationMenuContent>
