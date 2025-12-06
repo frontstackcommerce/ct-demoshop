@@ -35,37 +35,35 @@ function handleSearchFocus() {
       />
     </div>
   </div>
-  <ClientOnly>
+  <div class="mx-auto mb-12 max-w-7xl">
+    <div ref="searchInputRef" class="px-2.5 pt-2 sm:hidden">
+      <LayoutDrawerSearchInput @focus="handleSearchFocus" />
+    </div>
+    <h1 class="text-3xl font-bold">{{ $t('search.results') }}</h1>
+
+    <div class="my-5 flex items-center justify-between px-5 md:px-0">
+      <p>{{ $t('listing.counter', { count: listing?.total }) }}</p>
+
+      <SearchControlSheet
+        v-if="listing?.filter && false"
+        v-model:open="showResultControl"
+        :filters="listing.filter"
+        :current-filter="listingState.filter ?? {}"
+        :search-term="searchTerm"
+        :total-results="listing?.total"
+        @add-filter="addFilterOption"
+        @remove-filter="removeFilterOption"
+        @reset-filter="resetFilter"
+        @filter-result="filterListing"
+        @filter-with-and="filterListing"
+        @filter-with-or="filterListing"
+        @sort-result="sortListing"
+      />
+    </div>
     <div class="mx-auto mb-12 max-w-7xl">
-      <div ref="searchInputRef" class="px-2.5 pt-2 sm:hidden">
-        <LayoutDrawerSearchInput @focus="handleSearchFocus" />
-      </div>
-      <h1 class="text-3xl font-bold">{{ $t('search.results') }}</h1>
-
-      <div class="my-5 flex items-center justify-between px-5 md:px-0">
-        <p>{{ $t('listing.counter', { count: listing?.total }) }}</p>
-
-        <SearchControlSheet
-          v-if="listing?.filter && false"
-          v-model:open="showResultControl"
-          :filters="listing.filter"
-          :current-filter="listingState.filter ?? {}"
-          :search-term="searchTerm"
-          :total-results="listing?.total"
-          @add-filter="addFilterOption"
-          @remove-filter="removeFilterOption"
-          @reset-filter="resetFilter"
-          @filter-result="filterListing"
-          @filter-with-and="filterListing"
-          @filter-with-or="filterListing"
-          @sort-result="sortListing"
-        />
-      </div>
-      <div class="mx-auto mb-12 max-w-7xl">
-        <div v-if="listing?.items" class="grid grid-cols-4 gap-4">
-          <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
-        </div>
+      <div v-if="listing?.items" class="grid grid-cols-4 gap-4">
+        <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
       </div>
     </div>
-  </ClientOnly>
+  </div>
 </template>
