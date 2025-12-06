@@ -64,7 +64,7 @@ onMounted(() => {
 
           <div class="z-10 col-span-full row-span-full grid pb-5 pl-4 md:p-10">
             <h3
-              class="self-end text-3xl font-bold text-white lg:text-5xl"
+              class="text-background font-display self-end text-3xl lg:text-5xl"
               :style="{
                 'view-transition-name': `category-title-${category.key}`,
               }"

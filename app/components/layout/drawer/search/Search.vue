@@ -41,7 +41,7 @@ const { listing, searchTerm } = useProductSearch()
   <div class="flex flex-col gap-6">
     <ScrollArea class="h-[calc(100vh)] md:h-[calc(100vh-10rem)]">
       <div v-if="!searchTerm.length" class="px-3 md:px-0">
-        <div class="mb-3 text-lg font-semibold md:text-2xl">{{ $t('search.suggest') }}</div>
+        <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.suggest') }}</div>
         <div class="flex flex-wrap gap-2">
           <Button
             v-for="suggestion in suggestions"
@@ -54,8 +54,8 @@ const { listing, searchTerm } = useProductSearch()
           </Button>
         </div>
       </div>
-      <div class="pb-60 md:mt-10 md:pb-48">
-        <div class="mb-3 text-lg font-semibold md:text-2xl">{{ $t('search.results') }}</div>
+      <div v-else class="pb-60 md:mt-10 md:pb-48">
+        <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.results') }}</div>
         <div class="grid grid-cols-2 md:grid-cols-3">
           <template v-if="listing?.items && listing?.items.length > 0">
             <ProductCard
@@ -72,7 +72,7 @@ const { listing, searchTerm } = useProductSearch()
           to="/search"
           class="mt-8 flex w-full justify-center"
         >
-          <Button class="rounded-full" variant="outline" @click="close">
+          <Button color="secondary" @click="close">
             {{ $t('search.search-listing', { count: listing?.total }) }}
           </Button>
         </NuxtLinkLocale>

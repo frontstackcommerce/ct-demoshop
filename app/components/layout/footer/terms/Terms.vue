@@ -1,6 +1,6 @@
 <template>
-  <div class="container mx-auto flex max-w-7xl items-end justify-between px-6 md:px-0">
-    <div class="flex flex-col gap-2">
+  <div class="container mx-auto flex max-w-7xl items-end justify-between px-6">
+    <div class="flex flex-col gap-5">
       <!-- <NuxtImg src="~/assets/images/layout/logo-text-inverted.svg" alt="Logo" class="w-24" /> -->
       <StoreLogo :is-inverted="true" />
       <div class="text-sm">{{ $t('footer.copyright') }}</div>

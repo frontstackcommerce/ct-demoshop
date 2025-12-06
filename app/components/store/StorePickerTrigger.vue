@@ -34,7 +34,6 @@ const sizeClass = computed(() => {
     <StoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
     <template v-if="!collapsed">
       {{ getRegionLabel(context.region) }}
-      {{ $t('default.in-brackets', { text: getLocaleLabel(context.locale) }) }}
     </template>
     <IconChevronDown :class="sizeClass.icon" />
   </Button>

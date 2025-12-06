@@ -10,9 +10,9 @@ const backdropCloseCursor = computed(
 </script>
 
 <template>
-  <div class="bg-background hidden w-full sm:block">
+  <div class="bg-background w-full">
     <div class="border-border mx-auto flex h-full w-full justify-between border-b">
-      <div class="mt-1.5 ml-4">
+      <div class="ml-5 w-48">
         <StoreLogo />
       </div>
       <NavigationMenu

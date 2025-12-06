@@ -84,7 +84,7 @@ const handleRemove = async (cartItemId: string) => {
         </ScrollArea>
       </div>
       <div v-else-if="!lineItems?.length" class="px-5">
-        <p class="mt-10 p-6 text-center text-5xl font-semibold">
+        <p class="font-display mt-10 p-6 text-center text-4xl font-light">
           {{ $t('cart.empty.title') }}
         </p>
       </div>

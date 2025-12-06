@@ -16,7 +16,7 @@ const links = computed(() => {
 </script>
 
 <template>
-  <div class="font-normal">{{ $t('footer.newsletter.title') }}</div>
+  <div class="font-display">{{ $t('footer.newsletter.title') }}</div>
   <div class="mt-4 flex flex-col gap-4 text-sm">
     <div class="pr-10">{{ $t('footer.newsletter.description') }}</div>
 
@@ -28,7 +28,7 @@ const links = computed(() => {
         <Checkbox id="accept" />
         <label
           for="accept"
-          class="text-sm leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+          class="text-xs leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         >
           {{ $t('footer.newsletter.accept') }}
           <NuxtLinkLocale
