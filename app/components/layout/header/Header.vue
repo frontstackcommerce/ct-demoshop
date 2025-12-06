@@ -9,7 +9,7 @@ const isHomepage = computed(() => route.path === '/')
     <div>
       <LayoutHeaderUtility />
     </div>
-    <div class="absolute top-12 left-4 sm:hidden">
+    <div class="sm:hidden">
       <StoreLogo
         :grow="isHomepage"
         has-backdrop
@@ -17,7 +17,7 @@ const isHomepage = computed(() => route.path === '/')
         class="transition-colors duration-300"
       />
     </div>
-    <div class="absolute top-12 right-0 left-0 hidden sm:block">
+    <div class="hidden sm:block">
       <LayoutNavbar />
     </div>
   </header>

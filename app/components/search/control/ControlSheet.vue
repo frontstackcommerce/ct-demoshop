@@ -95,7 +95,7 @@ const filterCount = computed(() => {
     <SheetContent class="flex flex-col">
       <ScrollArea class="flex-1">
         <div class="sm:pt-12">
-          <div class="bg-muted mb-4 rounded-lg p-4">
+          <div class="bg-shade-200 mb-4 p-4">
             <p class="mb-5 text-lg leading-none font-semibold">{{ $t('control.sort.title') }}</p>
             <RadioGroup
               default-value="default"

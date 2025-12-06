@@ -68,11 +68,7 @@ watch(
       <!-- Main Navigation -->
       <div
         class="bg-inverted flex items-center shadow-md"
-        :class="
-          isCollapsed
-            ? 'size-16 justify-center rounded-full'
-            : 'h-16 w-full gap-8 rounded-lg px-6 py-1'
-        "
+        :class="isCollapsed ? 'size-16 justify-center rounded-full' : 'h-16 w-full gap-8 px-6 py-1'"
       >
         <!-- Close Button -->
         <template v-if="isSearchOpen || isAccountOpen || isCartOpen">

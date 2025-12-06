@@ -29,7 +29,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="bg-shade-200 absolute inset-0 top-40 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
+    class="bg-shade-100 absolute inset-0 top-40 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
   >
     <NuxtImg
       :src="selectedVariant?.images?.[0]?.src"
@@ -73,7 +73,7 @@ onMounted(() => {
         </div>
       </div>
       <div class="col-span-4 flex flex-col gap-4">
-        <h1 class="text-2xl font-medium">{{ product.name }}</h1>
+        <h1 class="font-display text-2xl font-medium">{{ product.name }}</h1>
 
         <p v-if="product.description" class="text-muted-foreground font-light">
           {{ product.description.split('. ')[0] + (product.description.includes('.') ? '.' : '') }}

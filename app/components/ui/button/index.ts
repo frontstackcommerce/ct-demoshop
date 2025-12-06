@@ -75,7 +75,7 @@ export const buttonVariants = cva(
         color: 'default',
         variant: 'form',
         class:
-          'text-neutral border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:outline-none active:ring-2 active:ring-ring active:ring-offset-2 rounded-md ',
+          'text-neutral border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:outline-none active:ring-2 active:ring-ring active:ring-offset-2  ',
       },
       {
         color: 'default',
@@ -85,29 +85,29 @@ export const buttonVariants = cva(
       {
         color: 'inverted',
         variant: 'default',
-        class: 'bg-neutral-foreground text-neutral hover:bg-neutral-foreground/80',
+        class: 'bg-inverted-foreground text-inverted hover:bg-inverted-foreground/80',
       },
       {
         color: 'inverted',
         variant: 'subtle',
         class:
-          'bg-neutral-foreground/40 border border-neutral-foreground/40 text-neutral-foreground hover:border-neutral-foreground',
+          'bg-inverted-foreground/40 border border-inverted-foreground/40 text-inverted-foreground hover:border-inverted-foreground',
       },
       {
         color: 'inverted',
         variant: 'outline',
         class:
-          'text-neutral-foreground border border-neutral-foreground hover:bg-neutral-foreground hover:text-neutral',
+          'text-inverted-foreground border border-inverted-foreground hover:bg-inverted-foreground hover:text-inverted',
       },
       {
         color: 'inverted',
         variant: 'ghost',
-        class: 'text-neutral-foreground hover:bg-neutral-foreground hover:text-neutral',
+        class: 'text-inverted-foreground hover:bg-inverted-foreground hover:text-inverted',
       },
       {
         color: 'inverted',
         variant: 'link',
-        class: 'text-neutral-foreground underline-offset-4 hover:underline',
+        class: 'text-inverted-foreground underline-offset-4 hover:underline',
       },
       {
         color: 'primary',

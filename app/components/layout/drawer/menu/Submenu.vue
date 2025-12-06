@@ -24,7 +24,7 @@ function getItemName(item: any): string | undefined {
 
 // Helper to get link from any item type
 function getItemLink(item: any): PageRoute | undefined {
-  return item?.link || (item?.href ? { path: item.href } as PageRoute : undefined)
+  return item?.link || (item?.href ? ({ path: item.href } as PageRoute) : undefined)
 }
 </script>
 
@@ -35,11 +35,7 @@ function getItemLink(item: any): PageRoute | undefined {
     <div class="flex flex-col gap-5 pt-5">
       <div class="flex items-center gap-4 px-5">
         <div class="bg-shade-100 h-20 w-32 rounded-full border">
-          <NuxtImg
-            src="https://placehold.co/600x400"
-            alt="Icon"
-            class="size-full rounded-lg object-cover"
-          />
+          <NuxtImg src="https://placehold.co/600x400" alt="Icon" class="size-full object-cover" />
         </div>
 
         <NuxtLink
@@ -54,11 +50,7 @@ function getItemLink(item: any): PageRoute | undefined {
       </div>
       <div v-for="child in children" :key="child.key" class="flex items-center gap-4 px-5">
         <div class="bg-shade-100 h-20 w-32 rounded-full border">
-          <NuxtImg
-            src="https://placehold.co/600x400"
-            alt="Icon"
-            class="size-full rounded-lg object-cover"
-          />
+          <NuxtImg src="https://placehold.co/600x400" alt="Icon" class="size-full object-cover" />
         </div>
         <NuxtLink
           v-if="hasChildren(child)"

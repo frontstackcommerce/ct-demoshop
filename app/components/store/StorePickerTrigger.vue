@@ -26,7 +26,7 @@ const sizeClass = computed(() => {
 <template>
   <Button
     v-if="context"
-    :color="!inverted ? 'inverted' : 'default'"
+    :color="!inverted ? 'secondary' : 'neutral'"
     class="flex items-center"
     :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
     :size="sizeClass.button"

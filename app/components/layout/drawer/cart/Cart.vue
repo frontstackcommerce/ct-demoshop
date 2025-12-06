@@ -43,7 +43,7 @@ const handleRemove = async (cartItemId: string) => {
             @click="close"
           />
           <div
-            class="bg-shade-200 text-muted-foreground flex flex-col gap-2 rounded-lg px-6 pt-4 text-sm md:hidden"
+            class="bg-shade-200 text-muted-foreground flex flex-col gap-2 px-6 pt-4 text-sm md:hidden"
           >
             <div class="flex items-center justify-between">
               <p>{{ $t('cart.summary.items') }}</p>
@@ -91,7 +91,7 @@ const handleRemove = async (cartItemId: string) => {
     </div>
 
     <div v-if="lineItems?.length" class="hidden w-full flex-col gap-1 md:flex md:max-w-xs">
-      <div class="bg-shade-300 my-5 flex flex-col gap-2 rounded-lg px-6 py-4 text-sm">
+      <div class="bg-shade-300 my-5 flex flex-col gap-2 px-6 py-4 text-sm">
         <div class="flex items-center justify-between">
           <p>{{ $t('cart.summary.items') }}</p>
           <p v-if="totalPrice">
