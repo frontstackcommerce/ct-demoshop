@@ -25,16 +25,6 @@ onMounted(() => {
     selectedVariant.value = null
   }
 })
-
-const formatPrice = (price: Price) => {
-  return price.amount
-    ? price.currency
-      ? new Intl.NumberFormat(undefined, { style: 'currency', currency: price.currency }).format(
-          price.amount / 100
-        )
-      : (price.amount / 100).toLocaleString()
-    : 0
-}
 </script>
 
 <template>
