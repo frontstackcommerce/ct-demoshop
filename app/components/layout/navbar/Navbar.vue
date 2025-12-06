@@ -13,7 +13,7 @@ const backdropCloseCursor = computed(
   <div class="relative mt-5 hidden sm:block">
     <div class="container mx-auto flex h-full items-center justify-between px-6 md:px-0">
       <div class="flex items-center gap-4">
-        <Logo />
+        <StoreLogo />
       </div>
       <NavigationMenu
         v-model="menuState"
@@ -21,7 +21,7 @@ const backdropCloseCursor = computed(
         :delay-duration="0"
         disable-click-trigger
         disable-pointer-leave-close
-        class="z-50 flex w-full max-w-4xl items-center justify-between bg-[#191741] px-5 text-white shadow-lg shadow-black/20"
+        class="bg-inverted text-inverted-foreground z-50 flex w-full max-w-4xl items-center justify-between px-5 shadow-lg shadow-black/20"
       >
         <div>
           <LayoutNavbarMenuMain />

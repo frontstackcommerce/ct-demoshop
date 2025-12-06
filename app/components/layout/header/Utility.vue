@@ -1,5 +1,5 @@
 <template>
-  <div class="text-inverted-foreground h-8 items-center bg-gray-200 sm:grid sm:grid-cols-3">
+  <div class="text-inverted-foreground bg-inverted h-8 items-center sm:grid sm:grid-cols-3">
     <div class="hidden sm:block"></div>
     <div class="flex h-full items-center justify-center text-center text-xs tracking-wide">
       {{ $t('header.teaser') }}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { section, setSection, resetDrawer, open: isOpen, showDrawerMenuInside } = useDrawer()
-const { cart } = useCart()
-const { isProductDetail } = useNavigation()
+const { section, setSection, resetNav, open: isOpen, showNavMenuInside } = useShopNav()
+const { lineItems } = useCart()
+const isProductDetail = ref(false)
 
 // Navigation states
 const isSearchOpen = computed(() => section.value === 'search' && isOpen.value)
@@ -9,7 +9,7 @@ const isAccountOpen = computed(() => section.value === 'account' && isOpen.value
 const isMenuOpen = computed(() => section.value === 'menu' && isOpen.value)
 const isCartOpen = computed(() => section.value === 'cart' && isOpen.value)
 
-const isCartEmpty = computed(() => cart.value?.items.length === 0)
+const isCartEmpty = computed(() => lineItems.value?.length === 0)
 
 // UI states
 const isCollapsed = ref(false)
@@ -38,10 +38,10 @@ watch(
 
 <template>
   <div
-    class="fixed bottom-4 left-1/2 z-[2147483645] -translate-x-1/2"
+    class="fixed bottom-4 left-1/2 z-2147483645 -translate-x-1/2"
     :class="{
       'right-4 left-auto translate-x-0': isInCorner,
-      'mr-[-1px] mb-[-1px]': showDrawerMenuInside,
+      '-mr-px -mb-px': showNavMenuInside,
     }"
   >
     <div class="flex items-center gap-4">
@@ -57,7 +57,7 @@ watch(
             variant="default"
             color="checkout"
             size="lg"
-            @click="resetDrawer"
+            @click="resetNav"
           >
             <IconShoppingCart class="text-checkout-foreground size-6" />
             {{ $t('navigation.checkout') }}
@@ -76,7 +76,7 @@ watch(
       >
         <!-- Close Button -->
         <template v-if="isSearchOpen || isAccountOpen || isCartOpen">
-          <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetDrawer">
+          <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
             <IconX class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
           </Button>
         </template>
@@ -92,7 +92,7 @@ watch(
               class="text-inverted-foreground relative size-6 scale-150"
               :stroke-width="1"
             />
-            <CartBadge size="lg" />
+            <StoreCartBadge size="lg" />
           </Button>
         </template>
 
@@ -112,7 +112,7 @@ watch(
             @click="handleSectionChange('cart')"
           >
             <IconShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
-            <CartBadge />
+            <StoreCartBadge />
           </Button>
           <Button
             :aria-label="$t('navigation.account')"
@@ -121,7 +121,7 @@ watch(
           >
             <IconUser class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetDrawer">
+          <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
             <IconX class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
           </Button>
         </template>
@@ -142,7 +142,7 @@ watch(
             @click="handleSectionChange('cart')"
           >
             <IconShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
-            <CartBadge />
+            <StoreCartBadge />
           </Button>
           <Button
             :aria-label="$t('navigation.account')"

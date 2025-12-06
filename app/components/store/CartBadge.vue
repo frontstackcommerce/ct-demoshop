@@ -24,7 +24,7 @@ const sizeClass = computed(() => {
     <div
       v-if="lineItems?.length"
       :class="sizeClass"
-      class="absolute top-1 right-1 flex items-center justify-center rounded-full bg-[#FFC806] text-[#191741]"
+      class="bg-checkout absolute top-1 right-1 flex items-center justify-center rounded-full"
     >
       <span class="text-checkout-foreground">{{ lineItems?.length }}</span>
     </div>

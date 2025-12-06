@@ -8,6 +8,7 @@ import { buttonVariants } from '.'
 interface Props extends PrimitiveProps {
   variant?: ButtonVariants['variant']
   size?: ButtonVariants['size']
+  color?: ButtonVariants['color']
   class?: HTMLAttributes['class']
 }
 
@@ -21,7 +22,7 @@ const props = withDefaults(defineProps<Props>(), {
     data-slot="button"
     :as="as"
     :as-child="asChild"
-    :class="cn(buttonVariants({ variant, size }), props.class)"
+    :class="cn(buttonVariants({ variant, size, color }), props.class)"
   >
     <slot />
   </Primitive>

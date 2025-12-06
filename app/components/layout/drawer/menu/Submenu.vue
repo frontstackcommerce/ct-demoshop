@@ -1,24 +1,42 @@
 <script setup lang="ts">
 defineProps<{
-  category: CategoryPage
-  children: CategoryChildList
+  category: {
+    title?: string
+    link?: PageRoute
+  }
+  children: any[]
 }>()
 
 const emit = defineEmits<{
   (e: 'close' | 'back'): void
-  (e: 'show', key: string): void
+  (e: 'show', item: any): void
 }>()
+
+// Helper to check if item has children
+function hasChildren(item: any): boolean {
+  return !!(item?.children?.items && item.children.items.length > 0)
+}
+
+// Helper to get name from any item type
+function getItemName(item: any): string | undefined {
+  return item?.name || item?.label
+}
+
+// Helper to get link from any item type
+function getItemLink(item: any): PageRoute | undefined {
+  return item?.link || (item?.href ? { path: item.href } as PageRoute : undefined)
+}
 </script>
 
 <template>
   <Separator />
-  <div class="z-20 h-full w-full bg-background">
+  <div class="bg-background z-20 h-full w-full">
     <p class="mt-3 px-4 text-xl font-semibold">{{ category?.title }}</p>
     <div class="flex flex-col gap-5 pt-5">
       <div class="flex items-center gap-4 px-5">
-        <div class="h-20 w-32 rounded-full border bg-shade-100">
+        <div class="bg-shade-100 h-20 w-32 rounded-full border">
           <NuxtImg
-            :src="`${swImageSrc(category?.cover)}`"
+            src="https://placehold.co/600x400"
             alt="Icon"
             class="size-full rounded-lg object-cover"
           />
@@ -34,29 +52,29 @@ const emit = defineEmits<{
           <IconChevronRight class="size-8" :stroke-width="1" />
         </NuxtLink>
       </div>
-      <div v-for="child in children.items" :key="child.key" class="flex items-center gap-4 px-5">
-        <div class="h-20 w-32 rounded-full border bg-shade-100">
+      <div v-for="child in children" :key="child.key" class="flex items-center gap-4 px-5">
+        <div class="bg-shade-100 h-20 w-32 rounded-full border">
           <NuxtImg
-            :src="`${swImageSrc(child.cover)}`"
+            src="https://placehold.co/600x400"
             alt="Icon"
             class="size-full rounded-lg object-cover"
           />
         </div>
         <NuxtLink
-          v-if="child.childCount && child.childCount > 0"
+          v-if="hasChildren(child)"
           class="flex w-full items-center justify-between text-xl font-medium"
-          @click.stop="emit('show', child.key)"
+          @click.stop="emit('show', child)"
         >
-          <span>{{ child.title }}</span>
+          <span>{{ getItemName(child) }}</span>
           <IconChevronDown class="size-8" :stroke-width="1" />
         </NuxtLink>
         <NuxtLink
           v-else
-          :to="child.link?.path"
+          :to="getItemLink(child)?.path"
           class="flex w-full items-center justify-between text-xl font-medium"
           @click.stop="emit('close')"
         >
-          <span>{{ child.title }}</span>
+          <span>{{ getItemName(child) }}</span>
           <IconChevronRight class="size-8" :stroke-width="1" />
         </NuxtLink>
       </div>

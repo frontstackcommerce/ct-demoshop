@@ -55,7 +55,7 @@ async function selectVariant(target: string, sku: string) {
       <div class="flex flex-col gap-1 text-xs">
         <p class="font-lighter text-gray-700">{{ product.name }}</p>
         <p class="font-light text-gray-500">{{ product.brand }}</p>
-        <p v-if="product.price?.amount" class="font-light text-gray-500">
+        <p v-if="product.price?.amount" class="text-muted-foreground font-light">
           {{ formatPrice(product.price) }}
         </p>
       </div>

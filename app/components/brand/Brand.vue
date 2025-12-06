@@ -5,23 +5,27 @@ defineProps<{
 </script>
 
 <template>
-  <div class="absolute inset-0 w-screen top-40 h-[40%] min-h-[340px] bg-gray-200 z-0 overflow-hidden">
-    <NuxtImg :src="brand.hero?.src" :alt="brand.name" class="size-full object-cover blur-sm opacity-80" />
+  <div
+    class="bg-shade-100 absolute inset-0 top-40 z-0 h-[40%] min-h-[340px] w-screen overflow-hidden"
+  >
+    <NuxtImg
+      :src="brand.hero?.src"
+      :alt="brand.name"
+      class="size-full object-cover opacity-80 blur-sm"
+    />
   </div>
 
-  <div class="mx-auto max-w-7xl flex flex-col gap-12 mt-20 relative z-10">
-
-    <div class="aspect-square bg-white size-40 shadow-sm">
+  <div class="relative z-10 mx-auto mt-20 flex max-w-7xl flex-col gap-12">
+    <div class="bg-background aspect-square size-40 shadow-sm">
       <NuxtImg :src="brand.logo?.src" :alt="brand.name" class="size-full object-contain p-4" />
     </div>
 
     <div class="bg-white p-4 shadow-sm">
-      <p class="text-gray-500 font-light">{{ brand.description }}</p>
+      <p class="text-muted-foreground font-light">{{ brand.description }}</p>
     </div>
-
   </div>
 
-  <div class="mx-auto max-w-7xl relative grid grid-cols-4 gap-4 my-12 gap-y-16">
+  <div class="relative mx-auto my-12 grid max-w-7xl grid-cols-4 gap-4 gap-y-16">
     <div v-for="product in brand.products?.items" :key="product.key">
       <ProductCard :product="product" />
     </div>
