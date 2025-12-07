@@ -3,7 +3,7 @@
     <div class="flex items-center justify-between">
       <StoreLogo :is-inverted="true" class="max-h-10" />
       <div class="mr-3">
-        <StorePicker />
+        <StorePicker inverted />
       </div>
     </div>
     <div class="flex items-center justify-between">

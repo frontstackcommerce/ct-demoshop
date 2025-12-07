@@ -74,7 +74,7 @@ function handleShowParentCategory() {
   <div class="bg-background z-2 h-full w-full">
     <div class="flex flex-col items-center md:hidden">
       <div class="flex w-full items-center justify-between py-6 pl-5">
-        <StoreLogo @click="close" />
+        <StoreLogo class="max-w-52" @click="close" />
         <StorePicker v-if="!isSubCategory">
           <StorePickerTrigger collapsed />
         </StorePicker>

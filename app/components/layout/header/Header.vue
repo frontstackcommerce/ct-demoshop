@@ -3,8 +3,8 @@
     <div>
       <LayoutHeaderUtility />
     </div>
-    <div class="sm:hidden">
-      <StoreLogo />
+    <div class="px-2 py-4 sm:hidden">
+      <StoreLogo class="mx-auto max-w-60" />
     </div>
     <div class="hidden sm:block">
       <LayoutNavbar />
