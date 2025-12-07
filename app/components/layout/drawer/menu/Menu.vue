@@ -73,22 +73,6 @@ function handleShowParentCategory() {
 <template>
   <div class="bg-background z-2 h-full w-full">
     <div class="flex flex-col items-center md:hidden">
-      <div class="flex w-full items-center justify-between py-6 pl-5">
-        <StoreLogo class="max-w-52" @click="close" />
-        <StorePicker v-if="!isSubCategory">
-          <StorePickerTrigger collapsed />
-        </StorePicker>
-        <Button
-          v-else
-          variant="link"
-          size="sm"
-          class="mr-2 flex items-center gap-3"
-          @click.stop="handleShowParentCategory"
-        >
-          <IconArrowLeft class="size-5" />
-          <span class="text-muted-foreground font-light">{{ $t('actions.back') }}</span>
-        </Button>
-      </div>
       <div v-if="currentMenu" class="flex w-full flex-col gap-1">
         <Transition name="submenu">
           <LayoutDrawerMenuSubmenu
@@ -132,8 +116,13 @@ function handleShowParentCategory() {
             </div>
           </div>
           <Separator />
-          <div class="my-5 mb-20 px-3">
+          <div class="my-5 mb-20 flex w-full justify-between px-3">
             <LayoutNavbarMenuAboutMenu />
+            <div>
+              <StorePicker v-if="!isSubCategory">
+                <StorePickerTrigger />
+              </StorePicker>
+            </div>
           </div>
         </template>
       </div>

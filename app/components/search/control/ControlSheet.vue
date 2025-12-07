@@ -65,8 +65,10 @@ function handleClearSearch() {
     <SheetContent class="flex flex-col">
       <ScrollArea class="flex-1">
         <div class="sm:pt-12">
-          <div class="bg-shade-200 mb-4 p-4">
-            <p class="mb-5 text-lg leading-none font-semibold">{{ $t('control.sort.title') }}</p>
+          <div class="mb-4 p-4">
+            <p class="font-display mb-5 text-2xl leading-none font-semibold">
+              {{ $t('control.sort.title') }}
+            </p>
             <RadioGroup
               default-value="default"
               class="gap-y-2.5"
@@ -78,7 +80,10 @@ function handleClearSearch() {
                 class="flex items-center space-x-4"
               >
                 <RadioGroupItem :id="sortOption.key" :value="sortOption.value" />
-                <Label :for="sortOption.key" class="text-base font-normal">
+                <Label
+                  :for="sortOption.key"
+                  class="text-lg font-medium sm:text-base sm:font-normal"
+                >
                   {{ sortOption.label }}
                 </Label>
               </div>
@@ -114,10 +119,12 @@ function handleClearSearch() {
           </template>
           <hr class="my-5" />
 
-          <p class="mb-3 text-lg leading-none font-semibold">{{ $t('control.filters.title') }}</p>
+          <p class="font-display mb-3 px-4 text-2xl leading-none font-semibold">
+            {{ $t('control.filters.title') }}
+          </p>
 
-          <div>
-            <div v-for="filter in availableFilters" :key="filter.key" class="mb-2">
+          <div class="">
+            <div v-for="filter in availableFilters" :key="filter.key">
               <SearchControlFilterText
                 :default-open="false"
                 :filter-field="filter.key"
@@ -127,8 +134,8 @@ function handleClearSearch() {
                 @reset-filter="handleResetFilter"
                 @filter-result="handleFilterResult"
               >
-                <div class="mr-6 flex w-full justify-between">
-                  <span>{{ filter.label }}</span>
+                <div class="mr-8 ml-4 flex w-full justify-between py-3">
+                  <span class="text-lg font-medium">{{ filter.label }}</span>
                   <span>
                     <SearchControlFilterPreview
                       :selected-options="currentFilter?.[filter.key] ?? []"
