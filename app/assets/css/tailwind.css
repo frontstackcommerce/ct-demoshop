@@ -91,7 +91,7 @@
   --color-checkout-foreground: oklch(0.2 0.01 180); /* dark text */
 
   /* Highlight */
-  --color-highlight: oklch(0.32 0.15 10); /* Burgundy #710627 */
+  --color-highlight: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */
   --color-highlight-foreground: oklch(1 0 0); /* white text */
 
   /* Sale */
