@@ -11,7 +11,7 @@ const props = withDefaults(
     inverted: false,
   }
 )
-const { context, getRegionLabel, getLocaleLabel } = useContext()
+const { context, getRegionLabel } = useContext()
 
 const sizeClass = computed(() => {
   return {
@@ -27,7 +27,6 @@ const sizeClass = computed(() => {
   <Button
     v-if="context"
     :color="!inverted ? 'secondary' : 'neutral'"
-    class="flex items-center"
     :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
     :size="sizeClass.button"
   >
