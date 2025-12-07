@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { useFocus } from '@vueuse/core'
-import type { ProcessedFilter, ProcessedSort } from '#build/imports'
+import type { UiFilter, UiSort } from '#build/imports'
 
 defineProps<{
   category?: string
-  availableFilters: ProcessedFilter[]
-  availableSorts: ProcessedSort[]
+  availableFilters: UiFilter[]
+  availableSorts: UiSort[]
   currentFilter: Record<string, any>
   searchTerm: string
   totalResults: number
@@ -118,11 +118,7 @@ function handleClearSearch() {
           <p class="mb-3 text-lg leading-none font-semibold">{{ $t('control.filters.title') }}</p>
 
           <div>
-            <div
-              v-for="filter in availableFilters"
-              :key="filter.key"
-              class="mb-2"
-            >
+            <div v-for="filter in availableFilters" :key="filter.key" class="mb-2">
               <SearchControlFilterText
                 :default-open="false"
                 :filter-field="filter.key"

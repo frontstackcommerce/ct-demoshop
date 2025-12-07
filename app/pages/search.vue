@@ -2,8 +2,7 @@
 const showResultControl = ref(false)
 const searchInputRef = ref<HTMLElement | null>(null)
 
-const { data, state, searchTerm, sortItems, filterItems, addFilter, removeFilter, resetFilter } =
-  useProductSearch()
+const { listing, state, searchTerm, sortItems, filterItems, resetFilter } = useProductSearch()
 
 function handleSearchFocus() {
   nextTick(() => {
@@ -14,23 +13,6 @@ function handleSearchFocus() {
       window.scrollTo({ top: y, behavior: 'smooth' })
     }
   })
-}
-
-// Event handlers for ControlSheet
-function handleFilterResult(filterField: string, filterOptions: any[]) {
-  filterItems(filterField, filterOptions)
-}
-
-function handleResetFilter(filterField?: string) {
-  resetFilter(filterField)
-}
-
-function handleSortResult(sortBy: string) {
-  sortItems(sortBy)
-}
-
-function handleUpdateSearch(term: string | number) {
-  searchTerm.value = String(term)
 }
 </script>
 
@@ -48,7 +30,7 @@ function handleUpdateSearch(term: string | number) {
     <div ref="searchInputRef" class="px-2.5 pt-2 sm:hidden">
       <LayoutDrawerSearchInput @focus="handleSearchFocus" />
     </div>
-    <h1 class="text-3xl font-bold">{{ $t('search.results') }}</h1>
+    <h1 class="font-display text-3xl">{{ $t('search.results') }}</h1>
 
     <div class="my-5 flex items-center justify-between px-5 md:px-0">
       <p>{{ $t('listing.counter', { count: state.total }) }}</p>
@@ -61,16 +43,16 @@ function handleUpdateSearch(term: string | number) {
         :search-term="searchTerm"
         :total-results="state.total ?? 0"
         :active-filter-count="state.activeFilterCount ?? 0"
-        @reset-filter="handleResetFilter"
-        @filter-result="handleFilterResult"
-        @sort-result="handleSortResult"
-        @update-search="handleUpdateSearch"
+        @reset-filter="resetFilter"
+        @filter-result="filterItems"
+        @sort-result="sortItems"
+        @update-search="searchTerm = String($event).trim()"
         @close-control="showResultControl = false"
       />
     </div>
     <div class="mx-auto mb-12 max-w-7xl">
-      <div v-if="data?.items" class="grid grid-cols-4 gap-4">
-        <ProductCard v-for="product in data?.items" :key="product.key" :product="product" />
+      <div v-if="listing?.items" class="grid grid-cols-4 gap-4">
+        <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
       </div>
     </div>
   </div>

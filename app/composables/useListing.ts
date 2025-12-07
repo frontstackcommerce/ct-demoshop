@@ -7,237 +7,22 @@ import type {
   ListingQuerySorts,
   Responses,
 } from '~~/.frontstack/generated-types'
-import type { Query, Sort, EqualsFilter } from '~~/.frontstack/query-types'
+import type { Query, Sort, EqualsFilter, LogicalFilter } from '~~/.frontstack/query-types'
+import type { components } from '~~/.frontstack/fetch-api'
 import { fetchListingQuery } from '~/queries/listings'
-
-/**
- * Mode for filter/sort inclusion
- */
-export type FilterMode = 'include' | 'exclude'
-
-/**
- * Configuration for individual filters
- */
-export interface FilterConfig {
-  /** Filter field keys to include or exclude. If not provided, all filters are shown. */
-  keys?: string[]
-  /** Mode: 'include' (whitelist) or 'exclude' (blacklist). Default: 'include' */
-  mode?: FilterMode
-  /** Labels for filter fields (e.g., { "properties.color": "Color" }) */
-  labels?: Record<string, string>
-}
-
-/**
- * Configuration for individual sorts
- */
-export interface SortConfig {
-  /** Sort field keys to include or exclude. If not provided, all sorts are allowed. */
-  keys?: string[]
-  /** Mode: 'include' (whitelist) or 'exclude' (blacklist). Default: 'include' */
-  mode?: FilterMode
-  /** Labels for sort options (e.g., { 'name:asc': 'Name A-Z', 'price.amount:asc': 'Price Low-High' }) */
-  labels?: Record<string, string>
-}
-
-/**
- * Processed filter option for UI
- */
-export interface ProcessedFilterOption {
-  option: string
-  value: string
-  count: number
-  selected?: boolean
-  disabled?: boolean
-}
-
-/**
- * Processed filter with label and options for UI
- */
-export interface ProcessedFilter {
-  key: string
-  label: string
-  options: ProcessedFilterOption[]
-}
-
-/**
- * Processed sort option for UI
- */
-export interface ProcessedSort {
-  key: string
-  label: string
-  value: string
-}
-
-/**
- * State tracking for a listing (filters, sort, search, page)
- */
-export interface ListingStateType {
-  /** Current page number for pagination */
-  page?: number
-  /** Current sort option applied to the listing */
-  sort?: Sort<any>
-  /** Current search term */
-  search?: string
-  /** Applied filters grouped by filter field */
-  filter?: Record<string, any>
-  /** Available filters with processed options for UI */
-  availableFilters?: ProcessedFilter[]
-  /** Available sort options for UI */
-  availableSorts?: ProcessedSort[]
-  /** Count of active filters */
-  activeFilterCount?: number
-  /** Total number of results */
-  total?: number
-}
-
-/**
- * Configuration for the generic listing composable
- */
-export interface UseListingConfig<TListing extends keyof Listings> {
-  /**
-   * The listing name to fetch (e.g., 'ProductSearch', 'CategoryProducts')
-   */
-  name: TListing
-
-  /**
-   * Parameters to pass to the listing endpoint
-   */
-  params?: MaybeRef<ListingParameters[TListing]>
-
-  /**
-   * Cache key for the query (defaults to name)
-   */
-  cacheKey?: string
-
-  /**
-   * Optional context key for the request
-   */
-  contextKey?: MaybeRef<string | undefined>
-
-  /**
-   * Minimum length of search term before triggering search (default: 2)
-   */
-  searchTermThreshold?: number
-
-  /**
-   * Filter fields that should use OR logic (all others use AND)
-   */
-  orFilterKeys?: string[]
-
-  /**
-   * Filter configuration using unified structure
-   * @example
-   * // With keys and labels
-   * filters: {
-   *   keys: ['properties.color', 'properties.size'],
-   *   mode: 'include',
-   *   labels: { 'properties.color': 'Color', 'properties.size': 'Size' }
-   * }
-   *
-   * // Just labels (shows all filters with custom labels)
-   * filters: {
-   *   labels: { 'properties.color': 'Color' }
-   * }
-   *
-   * // Just keys (shows only these filters)
-   * filters: {
-   *   keys: ['properties.color', 'properties.size']
-   * }
-   */
-  filters?: FilterConfig
-
-  /**
-   * Sort configuration using unified structure
-   * @example
-   * // Full configuration
-   * sorts: {
-   *   keys: ['name', 'price'],
-   *   mode: 'include',
-   *   labels: {
-   *     'name:asc': 'Name A-Z',
-   *     'price.amount:asc': 'Price Low-High'
-   *   }
-   * }
-   *
-   * // Just labels (all sorts allowed)
-   * sorts: {
-   *   labels: {
-   *     'name:asc': 'Name A-Z',
-   *     'name:desc': 'Name Z-A'
-   *   }
-   * }
-   */
-  sorts?: SortConfig
-
-  /**
-   * @deprecated Use `filters.keys` with `filters.mode` instead
-   * Only include these filter fields in the UI state (whitelist)
-   */
-  includeFilters?: string[]
-
-  /**
-   * @deprecated Use `filters.keys` with `filters.mode = 'exclude'` instead
-   * Exclude these filter fields from the UI state (blacklist)
-   */
-  excludeFilters?: string[]
-
-  /**
-   * @deprecated Use `filters.labels` instead
-   * Rename filter fields for the UI (e.g., { "properties.color": "Color" })
-   */
-  filterLabels?: Record<string, string>
-
-  /**
-   * @deprecated Use `sorts.keys` with `sorts.mode` instead
-   * Only include these sort fields in available sorts
-   */
-  includeSorts?: Array<keyof ListingQuerySorts[TListing]>
-
-  /**
-   * @deprecated Use `sorts.keys` with `sorts.mode = 'exclude'` instead
-   * Exclude these sort fields from available sorts
-   */
-  excludeSorts?: Array<keyof ListingQuerySorts[TListing]>
-
-  /**
-   * @deprecated Use `sorts.labels` instead
-   * Define available sort options with labels
-   */
-  sortOptions?: ProcessedSort[]
-
-  /**
-   * Enable search functionality (default: true)
-   */
-  enableSearch?: boolean
-
-  /**
-   * Enable filtering functionality (default: true)
-   */
-  enableFilters?: boolean
-
-  /**
-   * Enable sorting functionality (default: true)
-   */
-  enableSort?: boolean
-
-  /**
-   * Stale time in milliseconds (default: 5 minutes)
-   */
-  staleTime?: number
-}
 
 /**
  * Return type for the generic listing composable
  */
 export interface UseListingReturn<TListing extends keyof Listings> {
   /** The current result set containing items and metadata */
-  data: ShallowRef<Responses[TListing] | undefined>
+  listing: ShallowRef<Responses[TListing] | undefined>
 
   /** Current fetch status of the listing */
   status: UseQueryReturn['status']
 
   /** Current state of the result including page, sort, search, and filter settings */
-  state: Ref<ListingStateType>
+  state: Ref<ListingState>
 
   /** Current search term */
   searchTerm: Ref<string>
@@ -264,6 +49,11 @@ export interface UseListingReturn<TListing extends keyof Listings> {
    * @param sortBy - Sort field and direction (e.g., 'name:desc' or 'name:asc' or 'default')
    */
   sortItems: (sortBy: string) => Promise<void>
+
+  /**
+   * Resets sorting to default (Frontstack backend default)
+   */
+  resetSort: () => Promise<void>
 
   /**
    * Adds a filter option to the specified filter field
@@ -298,6 +88,10 @@ export interface UseListingReturn<TListing extends keyof Listings> {
   resetSearch: () => Promise<void>
 }
 
+// ============================================================================
+// Main Composable
+// ============================================================================
+
 /**
  * Generic composable for managing listings with filtering, sorting, and pagination
  *
@@ -325,57 +119,24 @@ export function useListing<TListing extends keyof Listings>(
   // Extract config with defaults
   const {
     name: listingName,
-    params: parameters = {} as ListingParameters[TListing],
+    params = {} as ListingParameters[TListing],
     cacheKey = listingName,
-    contextKey: contextToken,
+    contextKey,
     searchTermThreshold = 2,
     orFilterKeys = [],
     filters,
     sorts,
-    // Deprecated options - keep for backward compatibility
-    includeFilters,
-    excludeFilters,
-    includeSorts,
-    excludeSorts,
-    filterLabels = {},
-    sortOptions = [],
     enableSearch = true,
     enableFilters = true,
     enableSort = true,
     staleTime = 1000 * 60 * 5, // 5 minutes
   } = config
 
-  // Normalize filter config (support both new and old API)
-  const filterConfig: FilterConfig = filters || {
-    keys: includeFilters || [],
-    mode: excludeFilters ? 'exclude' : 'include',
-    labels: filterLabels,
-  }
-  // If using deprecated excludeFilters, override keys
-  if (!filters && excludeFilters) {
-    filterConfig.keys = excludeFilters
-    filterConfig.mode = 'exclude'
-  }
+  // Use filter config with defaults
+  const filterConfig: ListingFieldConfig = filters || {}
 
-  // Normalize sort config (support both new and old API)
-  // Convert old sortOptions array to new labels object
-  const legacySortLabels: Record<string, string> = {}
-  if (sortOptions.length > 0) {
-    sortOptions.forEach((option) => {
-      legacySortLabels[option.value] = option.label
-    })
-  }
-
-  const sortConfig: SortConfig = sorts || {
-    keys: (includeSorts as string[]) || [],
-    mode: excludeSorts ? 'exclude' : 'include',
-    labels: legacySortLabels,
-  }
-  // If using deprecated excludeSorts, override keys
-  if (!sorts && excludeSorts) {
-    sortConfig.keys = excludeSorts as string[]
-    sortConfig.mode = 'exclude'
-  }
+  // Use sort config with defaults
+  const sortConfig: ListingFieldConfig = sorts || {}
 
   // Internal state
   const searchTerm = ref('')
@@ -383,7 +144,7 @@ export function useListing<TListing extends keyof Listings>(
   const _andFilterList = ref<EqualsFilter<any>[]>([])
   const _sortQuery = ref<Sort<any> | undefined>(undefined)
 
-  const listingState = ref<ListingStateType>({
+  const listingState = ref<ListingState>({
     sort: undefined,
     search: undefined,
     filter: undefined,
@@ -408,9 +169,9 @@ export function useListing<TListing extends keyof Listings>(
   const { data, status, refresh } = useQuery(
     fetchListingQuery({
       listingName,
-      parameters,
+      parameters: params,
       query: apiQuery,
-      contextKey: contextToken,
+      contextKey,
       staleTime,
     })
   )
@@ -424,9 +185,9 @@ export function useListing<TListing extends keyof Listings>(
       // Fetch next page using the query factory
       const nextPageQuery = fetchListingQuery({
         listingName,
-        parameters,
+        parameters: params,
         query: apiQuery,
-        contextKey: contextToken,
+        contextKey,
         page: ref(nextPage),
         staleTime,
       })
@@ -468,20 +229,20 @@ export function useListing<TListing extends keyof Listings>(
 
   // Update listing state from response
   function updateState(response: Responses[TListing]) {
-    let processedFilters = makeFilterState((response as any).filter)
+    let UiFilters = makeFilterState((response as any).filter)
 
     // Apply include/exclude filters using unified config
     const filterMode = filterConfig.mode || 'include'
     const filterKeys = filterConfig.keys || []
 
     if (filterKeys.length > 0) {
-      processedFilters = Object.keys(processedFilters).reduce(
+      UiFilters = Object.keys(UiFilters).reduce(
         (acc, key) => {
           const isInKeys = filterKeys.includes(key)
           const shouldInclude = filterMode === 'include' ? isInKeys : !isInKeys
 
           if (shouldInclude) {
-            acc[key] = processedFilters[key]
+            acc[key] = UiFilters[key]
           }
           return acc
         },
@@ -493,16 +254,16 @@ export function useListing<TListing extends keyof Listings>(
     const labels = filterConfig.labels || {}
     if (Object.keys(labels).length > 0) {
       const renamedFilters: Record<string, any> = {}
-      Object.entries(processedFilters).forEach(([key, value]) => {
+      Object.entries(UiFilters).forEach(([key, value]) => {
         const newKey = labels[key] || key
         renamedFilters[newKey] = value
       })
-      processedFilters = renamedFilters
+      UiFilters = renamedFilters
     }
 
     // Process available filters from response
     const rawFilters = (response as any).filter || {}
-    const availableFilters: ProcessedFilter[] = []
+    const availableFilters: UiFilter[] = []
 
     // Get all filter keys from response
     const responseFilterKeys = Object.keys(rawFilters)
@@ -510,7 +271,8 @@ export function useListing<TListing extends keyof Listings>(
     for (const key of responseFilterKeys) {
       // Apply include/exclude logic using unified config
       const isInKeys = filterKeys.includes(key)
-      const shouldInclude = filterKeys.length === 0 || (filterMode === 'include' ? isInKeys : !isInKeys)
+      const shouldInclude =
+        filterKeys.length === 0 || (filterMode === 'include' ? isInKeys : !isInKeys)
 
       if (!shouldInclude) continue
 
@@ -528,20 +290,34 @@ export function useListing<TListing extends keyof Listings>(
     }
 
     // Calculate active filter count
-    const activeFilterCount = Object.keys(processedFilters).length
+    const activeFilterCount = Object.keys(UiFilters).length
 
     // Process available sorts from labels config
     const sortLabels = sortConfig.labels || {}
-    const availableSorts: ProcessedSort[] = Object.entries(sortLabels).map(([value, label]) => ({
-      key: value,
-      label,
-      value,
-    }))
+    const sortMode = sortConfig.mode || 'include'
+    const sortKeys = sortConfig.keys || []
+
+    const availableSorts: UiSort[] = Object.entries(sortLabels)
+      .filter(([value]) => {
+        // Apply include/exclude logic
+        if (sortKeys.length === 0) return true
+
+        const isInKeys = sortKeys.includes(value)
+        return sortMode === 'include' ? isInKeys : !isInKeys
+      })
+      .map(
+        ([value, label]): UiSort => ({
+          key: value,
+          label: label as string,
+          value,
+        })
+      )
 
     listingState.value = {
       page: (response as any).page?.current,
+      sort: _sortQuery.value,
       search: apiQuery.value.search ?? undefined,
-      filter: processedFilters,
+      filter: UiFilters,
       availableFilters,
       availableSorts,
       activeFilterCount,
@@ -570,9 +346,9 @@ export function useListing<TListing extends keyof Listings>(
     // Create a new query with the page number
     const pageQuery = fetchListingQuery({
       listingName,
-      parameters,
+      parameters: params,
       query: apiQuery,
-      contextKey: contextToken,
+      contextKey,
       page: ref(pageNumber),
       staleTime,
     })
@@ -609,6 +385,12 @@ export function useListing<TListing extends keyof Listings>(
       _sortQuery.value = { field, order }
     }
 
+    await refreshListing()
+  }
+
+  async function resetSort() {
+    if (!enableSort) return
+    _sortQuery.value = undefined
     await refreshListing()
   }
 
@@ -674,7 +456,7 @@ export function useListing<TListing extends keyof Listings>(
 
   return {
     // State
-    data,
+    listing: data,
     status,
     state: listingState,
     searchTerm,
@@ -683,10 +465,298 @@ export function useListing<TListing extends keyof Listings>(
     refresh: refreshListing,
     paginate,
     sortItems,
+    resetSort,
     filterItems,
     addFilter: addFilterOption,
     removeFilter: removeFilterOption,
     resetFilter,
     resetSearch,
   }
+}
+// ============================================================================
+// Public Types & Interfaces
+// ============================================================================
+
+/**
+ * Inclusion mode for configuring which fields to show
+ * - 'include': Whitelist mode - only show specified keys
+ * - 'exclude': Blacklist mode - show all except specified keys
+ */
+export type InclusionMode = 'include' | 'exclude'
+
+/**
+ * Generic configuration for listing fields (filters or sorts)
+ * Allows flexible control over which fields to show and how to label them
+ */
+export interface ListingFieldConfig {
+  /** Field keys to include or exclude. If not provided, all fields are shown. */
+  keys?: string[]
+  /** Mode: 'include' (whitelist) or 'exclude' (blacklist). Default: 'include' */
+  mode?: InclusionMode
+  /** Custom labels for fields (e.g., { "properties.color": "Color" }) */
+  labels?: Record<string, string>
+}
+
+/**
+ * Filter option from API response (matches Frontstack response structure)
+ * @internal - Used internally, components should use UiFilter
+ */
+export interface FilterOption {
+  option: string
+  value: string
+  count: number
+  selected?: boolean
+  disabled?: boolean
+}
+
+/**
+ * Processed filter ready for UI consumption
+ */
+export interface UiFilter {
+  key: string
+  label: string
+  options: FilterOption[]
+}
+
+/**
+ * Processed sort option ready for UI consumption
+ */
+export interface UiSort {
+  key: string
+  label: string
+  value: string
+}
+
+/**
+ * Listing state exposed to consumers
+ * Contains both the current query state and processed data ready for UI consumption
+ */
+export interface ListingState {
+  /** Current page number */
+  page?: number
+  /** Currently applied sort (uses Frontstack Sort type) */
+  sort?: Sort<any>
+  /** Current search term (if search is enabled) */
+  search?: string
+  /** Currently active filters by field */
+  filter?: Record<string, any>
+  /** Processed filters ready for UI (includes labels, counts, options) */
+  availableFilters?: UiFilter[]
+  /** Processed sort options ready for UI (includes labels) */
+  availableSorts?: UiSort[]
+  /** Number of currently active filters */
+  activeFilterCount?: number
+  /** Total number of items matching the current query */
+  total?: number
+}
+
+/**
+ * Configuration for the generic listing composable
+ */
+export interface UseListingConfig<TListing extends keyof Listings> {
+  /**
+   * The listing name to fetch (e.g., 'ProductSearch', 'CategoryProducts')
+   */
+  name: TListing
+
+  /**
+   * Parameters to pass to the listing endpoint
+   */
+  params?: MaybeRef<ListingParameters[TListing]>
+
+  /**
+   * Cache key for the query (defaults to name)
+   */
+  cacheKey?: string
+
+  /**
+   * Optional context key for the request
+   */
+  contextKey?: MaybeRef<string | undefined>
+
+  /**
+   * Minimum length of search term before triggering search (default: 2)
+   */
+  searchTermThreshold?: number
+
+  /**
+   * Filter fields that should use OR logic (all others use AND)
+   */
+  orFilterKeys?: string[]
+
+  /**
+   * Filter configuration using unified structure
+   * @example
+   * // With keys and labels
+   * filters: {
+   *   keys: ['properties.color', 'properties.size'],
+   *   mode: 'include',
+   *   labels: { 'properties.color': 'Color', 'properties.size': 'Size' }
+   * }
+   *
+   * // Just labels (shows all filters with custom labels)
+   * filters: {
+   *   labels: { 'properties.color': 'Color' }
+   * }
+   *
+   * // Just keys (shows only these filters)
+   * filters: {
+   *   keys: ['properties.color', 'properties.size']
+   * }
+   */
+  filters?: ListingFieldConfig
+
+  /**
+   * Sort configuration using unified structure
+   *
+   * Special handling for 'default' sort:
+   * - The 'default' sort represents Frontstack backend's default sorting (no sort applied to query)
+   * - It's automatically included if a label is provided in sorts.labels
+   * - Can be controlled via include/exclude mode like other sorts
+   * - Use resetSort() to return to default sorting
+   *
+   * @example
+   * // Full configuration with default sort
+   * sorts: {
+   *   labels: {
+   *     'default': 'Relevance',
+   *     'name:asc': 'Name A-Z',
+   *     'price.amount:asc': 'Price Low-High'
+   *   }
+   * }
+   *
+   * // Just labels (all sorts allowed)
+   * sorts: {
+   *   labels: {
+   *     'name:asc': 'Name A-Z',
+   *     'name:desc': 'Name Z-A'
+   *   }
+   * }
+   */
+  sorts?: ListingFieldConfig
+
+  /**
+   * Enable search functionality (default: true)
+   */
+  enableSearch?: boolean
+
+  /**
+   * Enable filtering functionality (default: true)
+   */
+  enableFilters?: boolean
+
+  /**
+   * Enable sorting functionality (default: true)
+   */
+  enableSort?: boolean
+
+  /**
+   * Stale time in milliseconds (default: 5 minutes)
+   */
+  staleTime?: number
+}
+
+// ============================================================================
+// Internal Helper Functions
+// ============================================================================
+
+/**
+ * Creates an equals filter for the API query
+ * @internal
+ */
+function makeEqualsFilter<T>(
+  field: keyof T & string,
+  value: T[keyof T] | T[keyof T][]
+): EqualsFilter<T> {
+  return {
+    type: 'equals',
+    field,
+    value,
+  } as EqualsFilter<T>
+}
+
+/**
+ * Creates a logical filter (AND/OR) for the API query
+ * @internal
+ */
+function makeLogicalFilter<T>(type: 'and' | 'or', filters: EqualsFilter<T>[]): LogicalFilter<T>[] {
+  return filters.length > 0
+    ? [
+        {
+          type,
+          filter: filters,
+        },
+      ]
+    : []
+}
+
+/**
+ * Extracts active filters from the API response
+ * @internal
+ */
+function makeFilterState<T extends { filter?: components['schemas']['_filter'] }>(
+  filters: T['filter']
+): Record<string, any> {
+  const result: Record<string, any> = {}
+
+  if (!filters) return result
+
+  for (const key in filters) {
+    if (Object.hasOwn(filters, key)) {
+      const selectedItems = filters[key]?.filter((item) => item.selected) || []
+      if (selectedItems.length > 0) {
+        result[key] = selectedItems
+      }
+    }
+  }
+  return result
+}
+
+/**
+ * Manages filter operations (add/remove/update) on a filter list
+ * @internal
+ */
+function manageFilter<T>(
+  filterList: EqualsFilter<T>[],
+  field: keyof T & string,
+  value: T[keyof T] | T[keyof T][]
+): EqualsFilter<T>[] {
+  const existingIndex = filterList.findIndex((filter) => filter.field === field)
+  const newFilter = makeEqualsFilter<T>(field, value)
+
+  if (existingIndex !== -1) {
+    const newList = [...filterList]
+    newList[existingIndex] = newFilter
+    return newList
+  }
+
+  return [...filterList, newFilter]
+}
+
+/**
+ * Removes a filter from a filter list
+ * @internal
+ */
+function removeFilter<T>(
+  filterList: EqualsFilter<T>[],
+  field: keyof T & string,
+  option?: T[keyof T]
+): EqualsFilter<T>[] {
+  if (!option) {
+    return filterList.filter((filter) => filter.field !== field)
+  }
+
+  const existingFilter = filterList.find((filter) => filter.field === field)
+  if (!existingFilter) return filterList
+
+  const currentValues = Array.isArray(existingFilter.value)
+    ? existingFilter.value
+    : [existingFilter.value]
+  const newValues = currentValues.filter((value) => value !== option)
+
+  if (newValues.length === 0) {
+    return filterList.filter((filter) => filter.field !== field)
+  }
+
+  return manageFilter(filterList, field, newValues)
 }

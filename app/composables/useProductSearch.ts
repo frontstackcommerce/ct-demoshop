@@ -1,13 +1,3 @@
-import {
-  useListing,
-  type UseListingReturn,
-  type ProcessedSort,
-  type ProcessedFilter,
-} from './useListing'
-
-// Re-export types for components
-export type { ProcessedSort, ProcessedFilter }
-
 /**
  * ProductSearch-specific return type extending the base listing return
  */

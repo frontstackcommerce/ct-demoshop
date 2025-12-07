@@ -13,7 +13,7 @@ const close = () => {
 
 const suggestions = t('search.suggestions').split(',')
 
-const { data, searchTerm } = useProductSearch()
+const { listing, searchTerm } = useProductSearch()
 </script>
 
 <template>
@@ -23,13 +23,13 @@ const { data, searchTerm } = useProductSearch()
 
   <div class="md:my-2">
     <span v-if="searchTerm.length > 0 && searchTerm.length < 3" class="px-3 pt-3">
-      {{ $t('search.total', { count: data?.total }) }}
+      {{ $t('search.total', { count: listing?.total }) }}
     </span>
     <span
-      v-else-if="searchTerm.length > 0 && data?.items && data.items.length > 0"
+      v-else-if="searchTerm.length > 0 && listing?.items && listing.items.length > 0"
       class="px-3 pt-3"
     >
-      {{ $t('search.counter', { count: data?.total, term: searchTerm }) }}
+      {{ $t('search.counter', { count: listing?.total, term: searchTerm }) }}
     </span>
     <span v-else>
       <span v-if="searchTerm.length > 2" class="px-3 pt-3">
@@ -59,9 +59,9 @@ const { data, searchTerm } = useProductSearch()
       <div v-else class="pb-60 md:mt-10 md:pb-48">
         <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.results') }}</div>
         <div class="grid grid-cols-2 md:grid-cols-3">
-          <template v-if="data?.items && data?.items.length > 0">
+          <template v-if="listing?.items && listing?.items.length > 0">
             <ProductCard
-              v-for="(product, index) in data?.items"
+              v-for="(product, index) in listing?.items"
               :key="index"
               :product="product"
               @click="close"
@@ -70,12 +70,12 @@ const { data, searchTerm } = useProductSearch()
           <ProductCardSkeleton v-for="index in 5" v-else :key="index" />
         </div>
         <NuxtLinkLocale
-          v-if="data?.items && data?.items.length > 0"
+          v-if="listing?.items && listing?.items.length > 0"
           to="/search"
           class="mt-8 flex w-full justify-center"
         >
           <Button color="secondary" @click="close">
-            {{ $t('search.search-listing', { count: data?.total }) }}
+            {{ $t('search.search-listing', { count: listing?.total }) }}
           </Button>
         </NuxtLinkLocale>
       </div>
