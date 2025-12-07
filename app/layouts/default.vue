@@ -9,8 +9,6 @@
     <div>
       <LayoutFooter />
     </div>
-    <div class="hidden">
-      <LayoutDrawerNav />
-    </div>
+    <LayoutDrawerNav />
   </div>
 </template>
