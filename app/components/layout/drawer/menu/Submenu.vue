@@ -31,12 +31,11 @@ function getItemLink(item: any): PageRoute | undefined {
 <template>
   <Separator />
   <div class="bg-background z-20 h-full w-full">
-    <p class="mt-3 px-4 text-2xl font-extralight">{{ category?.title }}</p>
     <div class="flex flex-col gap-5 pt-5">
       <div class="flex items-center gap-4 px-5">
         <NuxtLink
           :to="category?.link?.path"
-          class="font-display flex w-full items-center justify-between py-5 text-4xl font-light"
+          class="font-display flex w-full items-center justify-between py-5 text-3xl font-light"
           @click.stop="emit('close')"
         >
           <span>{{ $t('actions.show-all') }} {{ category?.title }} </span>

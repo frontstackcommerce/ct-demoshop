@@ -26,14 +26,12 @@ const sizeClass = computed(() => {
 <template>
   <Button
     v-if="context"
-    :color="!inverted ? 'secondary' : 'neutral'"
+    :color="inverted ? 'secondary' : 'neutral'"
     :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
     :size="sizeClass.button"
   >
     <StoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
-    <template v-if="!collapsed">
-      {{ getRegionLabel(context.region) }}
-    </template>
+    <template v-if="!collapsed"> {{ getRegionLabel(context.region) }} </template>
     <IconChevronDown :class="sizeClass.icon" />
   </Button>
 </template>

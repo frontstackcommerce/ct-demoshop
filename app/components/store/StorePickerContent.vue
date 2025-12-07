@@ -52,7 +52,7 @@ const handleSubmit = async () => {
     <!-- Region Selection -->
     <div class="flex flex-col gap-4">
       <Label class="text-base font-semibold">{{ $t('context.location.label') }}</Label>
-      <ItemGroup class="grid grid-cols-3 gap-5">
+      <ItemGroup class="grid gap-5 sm:grid-cols-3">
         <Item
           v-for="(contextOption, index) in contextList"
           :key="index"
@@ -68,7 +68,7 @@ const handleSubmit = async () => {
             <ItemMedia>
               <StoreRegionFlag :code="contextOption.region" size="lg" />
             </ItemMedia>
-            <ItemTitle>
+            <ItemTitle class="text-center">
               {{ getRegionLabel(contextOption.region) }}
             </ItemTitle>
           </ItemContent>

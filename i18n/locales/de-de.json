@@ -292,7 +292,9 @@
     "counter": "Keine Treffer | 1 Produkt | {count} Produkte",
     "filters": {
       "finish-label": "Finish",
-      "search-color": "Farbe"
+      "search-color": "Farbe",
+      "manufacturer": "Marken",
+      "size": "Größe"
     }
   },
   "locales": {

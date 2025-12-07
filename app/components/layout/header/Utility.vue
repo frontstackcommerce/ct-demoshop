@@ -6,7 +6,7 @@
     </div>
     <div class="divide-border hidden h-full items-center justify-end divide-x text-xs sm:flex">
       <StorePicker>
-        <StorePickerTrigger size="sm" collapsed inverted />
+        <StorePickerTrigger size="sm" collapsed />
       </StorePicker>
     </div>
   </div>

@@ -1,4 +1,7 @@
 <script setup lang="ts">
+defineProps<{
+  inverted?: boolean
+}>()
 const open = ref(false)
 </script>
 
@@ -6,7 +9,7 @@ const open = ref(false)
   <ClientOnly>
     <Dialog v-model:open="open">
       <DialogTrigger as-child
-        ><slot><StorePickerTrigger /></slot
+        ><slot><StorePickerTrigger :inverted="inverted" /></slot
       ></DialogTrigger>
       <DialogContent>
         <DialogHeader>
