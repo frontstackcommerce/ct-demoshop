@@ -292,7 +292,9 @@
     "counter": "No Result | 1 Result | {count} Results",
     "filters": {
       "finish-label": "Finish",
-      "search-color": "Color"
+      "search-color": "Color",
+      "manufacturer": "Brands",
+      "size": "Size"
     }
   },
   "locales": {
