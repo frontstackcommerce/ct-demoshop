@@ -113,6 +113,18 @@ export interface paths {
       };
     };
   };
+  "/listing/category/meta": {
+    /**
+     * Fetch CategoryMeta
+     * @description Fetch CategoryMeta
+     */
+    post: operations["getCategoryMetaBlock"];
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+  };
   "/block/category/nested/{key}": {
     /**
      * Fetch CategoryNested
@@ -461,6 +473,7 @@ export interface components {
     CategoryFull: {
       active?: components["schemas"]["Boolean"];
       ancestors?: components["schemas"]["String"][];
+      breadcrumbs?: components["schemas"]["String"][];
       key: components["schemas"]["String"];
       name?: components["schemas"]["String"];
       orderHint?: components["schemas"]["Float"];
@@ -484,6 +497,9 @@ export interface components {
       name?: components["schemas"]["String"];
       orderHint?: components["schemas"]["Float"];
       parent?: components["schemas"]["String"];
+    };
+    CategoryMeta: {
+      item?: components["schemas"]["MenuItem"];
     };
     CategoryNested: {
       key: components["schemas"]["String"];
@@ -590,6 +606,7 @@ export interface components {
       /** @description Sort options for BrandProducts blocks */
       sort: {
         name: components["schemas"]["String"];
+        "price.amount": components["schemas"]["Price"]["amount"];
       };
       /** @description Filter options for BrandProducts blocks */
       filter: Record<string, never>;
@@ -606,6 +623,13 @@ export interface components {
       /** @description Sort options for CategoryChilds blocks */
       sort: Record<string, never>;
       /** @description Filter options for CategoryChilds blocks */
+      filter: Record<string, never>;
+    };
+    /** @description Available query options (filters and sortings) for CategoryMeta blocks */
+    CategoryMetaQueryOptions: {
+      /** @description Sort options for CategoryMeta blocks */
+      sort: Record<string, never>;
+      /** @description Filter options for CategoryMeta blocks */
       filter: Record<string, never>;
     };
     /** @description Available query options (filters and sortings) for CategoryNestedChilds blocks */
@@ -646,16 +670,31 @@ export interface components {
     ProductSearchQueryOptions: {
       /** @description Sort options for ProductSearch blocks */
       sort: {
+        name: components["schemas"]["String"];
         "price.amount": components["schemas"]["Price"]["amount"];
       };
       /** @description Filter options for ProductSearch blocks */
       filter: {
         "options.": components["schemas"]["String"];
+        "options.color-code": components["schemas"]["String"];
+        "options.color-label": components["schemas"]["String"];
+        "options.finish-code": components["schemas"]["String"];
+        "options.finish-label": components["schemas"]["String"];
+        "options.search-color": components["schemas"]["String"];
+        "options.search-finish": components["schemas"]["String"];
+        "options.size": components["schemas"]["String"];
+        "properties.color-code": components["schemas"]["String"];
+        "properties.color-label": components["schemas"]["String"];
+        "properties.finish-code": components["schemas"]["String"];
+        "properties.finish-label": components["schemas"]["String"];
         "properties.manufacturer": components["schemas"]["String"];
         "properties.new-arrival": components["schemas"]["String"];
         "properties.new arrival": components["schemas"]["String"];
         "properties.productspec": components["schemas"]["String"];
         "properties.product specifications": components["schemas"]["String"];
+        "properties.search-color": components["schemas"]["String"];
+        "properties.search-finish": components["schemas"]["String"];
+        "properties.size": components["schemas"]["String"];
         "properties.test price": components["schemas"]["String"];
         "properties.testpricenew": components["schemas"]["String"];
         "properties.type": components["schemas"]["String"];
@@ -996,6 +1035,40 @@ export interface operations {
       200: {
         content: {
           "application/json": components["schemas"]["CategoryMenu"];
+        };
+      };
+      /** @description Not Found */
+      404: {
+        content: never;
+      };
+    };
+  };
+  /**
+   * Fetch CategoryMeta
+   * @description Fetch CategoryMeta
+   */
+  getCategoryMetaBlock: {
+    parameters: {
+      header?: {
+        "fs-request-url"?: components["parameters"]["FsRequestUrl"];
+      };
+    };
+    /** @description Description missing for param */
+    requestBody: {
+      content: {
+        "application/json": components["schemas"]["_searchQueryOptions"] & {
+          param?: {
+            /** @description Description missing for categoryKeys */
+            categoryKeys: string[];
+          };
+        };
+      };
+    };
+    responses: {
+      /** @description Found */
+      200: {
+        content: {
+          "application/json": components["schemas"]["CategoryMeta"];
         };
       };
       /** @description Not Found */

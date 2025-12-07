@@ -1,11 +1,13 @@
 <template>
-  <div class="container mx-auto flex max-w-7xl items-end justify-between px-6">
-    <div class="flex flex-col gap-5">
-      <!-- <NuxtImg src="~/assets/images/layout/logo-text-inverted.svg" alt="Logo" class="w-24" /> -->
-      <StoreLogo :is-inverted="true" />
-      <div class="text-sm">{{ $t('footer.copyright') }}</div>
+  <div class="container mx-auto flex max-w-7xl flex-col gap-5 px-5">
+    <div class="flex items-center justify-between">
+      <StoreLogo :is-inverted="true" class="max-h-10" />
+      <div class="mr-3">
+        <StorePicker />
+      </div>
     </div>
-    <div>
+    <div class="flex items-center justify-between">
+      <div class="text-sm">{{ $t('footer.copyright') }}</div>
       <div
         class="divide-border text-shade-300 flex flex-col gap-2 text-sm md:flex-row md:gap-0 md:divide-x"
       >

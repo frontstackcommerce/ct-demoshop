@@ -13,7 +13,9 @@ interface IUseBrands {
  */
 export const useBrands = (): IUseBrands => {
   const { token } = useContext()
-  const { data: brands, status } = useQuery(shopBrandsListAllQuery, { contextKey: token.value })
+  const { data: brands, status } = useQuery(shopBrandsListAllQuery, () => ({
+    contextKey: token.value,
+  }))
 
   return {
     brands,

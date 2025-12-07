@@ -47,7 +47,9 @@ const { listing, searchTerm } = useProductSearch()
             v-for="suggestion in suggestions"
             :key="suggestion"
             variant="outline"
-            class="flex items-center gap-2 rounded-full px-4 py-2"
+            size="xs"
+            color="secondary"
+            class="font-display flex items-center gap-2 font-light capitalize"
             @click="searchTerm = suggestion"
           >
             {{ suggestion }}

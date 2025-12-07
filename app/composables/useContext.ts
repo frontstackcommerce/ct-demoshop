@@ -27,7 +27,7 @@ export const useContext = (): IUseContext => {
   const { $i18n } = useNuxtApp()
   const { setLocale, t } = $i18n
 
-  if(!token.value) {
+  if (!token.value) {
     token.value = crypto.randomUUID()
   }
 
@@ -41,7 +41,7 @@ export const useContext = (): IUseContext => {
     }
   }
 
-  const { data: context } = useQuery(apiContextByKeyQuery, { key: token })
+  const { data: context } = useQuery(apiContextByKeyQuery, () => ({ key: token }))
   const { data: contextList } = useQuery(apiContextListQuery)
   const { mutateAsync: updateContext } = useMutation({
     mutation: async (context: { region: string; locale: string }): Promise<Context> => {
