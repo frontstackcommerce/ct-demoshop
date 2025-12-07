@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useFocus } from '@vueuse/core'
-import type { UiFilter, UiSort } from '#build/imports'
 
 defineProps<{
   category?: string
@@ -50,7 +49,7 @@ function handleClearSearch() {
 <template>
   <Sheet v-model:open="open">
     <SheetTrigger as-child>
-      <Button variant="outline" class="relative flex items-center gap-2 rounded-full">
+      <Button variant="link" class="relative flex items-center gap-2">
         <IconSettings2 :size="16" />
         {{ $t('control.button') }}
         <ClientOnly>

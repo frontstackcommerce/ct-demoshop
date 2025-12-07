@@ -4,6 +4,19 @@ const searchInputRef = ref<HTMLElement | null>(null)
 
 const { listing, state, searchTerm, sortItems, filterItems, resetFilter } = useProductSearch()
 
+// Wrapper functions to handle string-to-typed conversions from UI components
+function handleResetFilter(filterField?: string) {
+  resetFilter(filterField as any)
+}
+
+function handleFilterResult(filterField: string, filterOptions: string[]) {
+  filterItems(filterField as any, filterOptions as any)
+}
+
+function handleSortResult(sortBy: string) {
+  sortItems(sortBy as any)
+}
+
 function handleSearchFocus() {
   nextTick(() => {
     if (searchInputRef.value) {
@@ -43,9 +56,9 @@ function handleSearchFocus() {
         :search-term="searchTerm"
         :total-results="state.total ?? 0"
         :active-filter-count="state.activeFilterCount ?? 0"
-        @reset-filter="resetFilter"
-        @filter-result="filterItems"
-        @sort-result="sortItems"
+        @reset-filter="handleResetFilter"
+        @filter-result="handleFilterResult"
+        @sort-result="handleSortResult"
         @update-search="searchTerm = String($event).trim()"
         @close-control="showResultControl = false"
       />

@@ -46,9 +46,10 @@ export interface UseListingReturn<TListing extends keyof Listings> {
 
   /**
    * Sorts the results by the specified field
+   * Type-safe: only accepts valid sort strings for this listing
    * @param sortBy - Sort field and direction (e.g., 'name:desc' or 'name:asc' or 'default')
    */
-  sortItems: (sortBy: string) => Promise<void>
+  sortItems: (sortBy: SortString<TListing>) => Promise<void>
 
   /**
    * Resets sorting to default (Frontstack backend default)
@@ -57,30 +58,43 @@ export interface UseListingReturn<TListing extends keyof Listings> {
 
   /**
    * Adds a filter option to the specified filter field
-   * @param filterField - The field to filter on
+   * Type-safe: field and value types are validated
+   * @param filterField - The field to filter on (autocomplete available)
    * @param filterOption - The option value to add
    */
-  addFilter: (filterField: string, filterOption: any) => Promise<void>
+  addFilter: <K extends FilterField<TListing>>(
+    filterField: K,
+    filterOption: ListingQueryFilters[TListing][K]
+  ) => Promise<void>
 
   /**
    * Removes a filter option from the specified filter field
-   * @param filterField - The field to remove the filter from
-   * @param filterOption - The option value to remove
+   * Type-safe: field and value types are validated
+   * @param filterField - The field to remove the filter from (autocomplete available)
+   * @param filterOption - The option value to remove (optional - omit to remove entire filter)
    */
-  removeFilter: (filterField: string, filterOption: any) => Promise<void>
+  removeFilter: <K extends FilterField<TListing>>(
+    filterField: K,
+    filterOption?: ListingQueryFilters[TListing][K]
+  ) => Promise<void>
 
   /**
    * Applies filter options to the specified filter field
-   * @param filterField - The field to filter on
+   * Type-safe: field and value types are validated
+   * @param filterField - The field to filter on (autocomplete available)
    * @param filterOptions - Array of filter values to apply
    */
-  filterItems: (filterField: string, filterOptions: any[]) => Promise<void>
+  filterItems: <K extends FilterField<TListing>>(
+    filterField: K,
+    filterOptions: Array<ListingQueryFilters[TListing][K]>
+  ) => Promise<void>
 
   /**
    * Resets filters either for a specific field or all filters if no field specified
+   * Type-safe: field names are validated
    * @param filterField - Optional field to reset. If omitted, all filters are reset
    */
-  resetFilter: (filterField?: string) => Promise<void>
+  resetFilter: (filterField?: FilterField<TListing>) => Promise<void>
 
   /**
    * Clears the search term
@@ -133,22 +147,33 @@ export function useListing<TListing extends keyof Listings>(
   } = config
 
   // Use filter config with defaults
-  const filterConfig: ListingFieldConfig = filters || {}
+  const filterConfig: ListingFieldConfig<ListingQueryFilters[TListing]> = filters || {}
 
   // Use sort config with defaults
-  const sortConfig: ListingFieldConfig = sorts || {}
+  const sortConfig: ListingFieldConfig<Record<SortString<TListing>, any>> = sorts || {}
 
-  // Internal state
-  const searchTerm = ref('')
-  const _orFilterList = ref<EqualsFilter<any>[]>([])
-  const _andFilterList = ref<EqualsFilter<any>[]>([])
-  const _sortQuery = ref<Sort<any> | undefined>(undefined)
+  // Internal state (type-safe with listing-specific types)
+  // Using useState with cacheKey allows state sharing across component instances
+  // while still maintaining the ability to have separate instances with different cacheKeys
+  const searchTerm = useState<string>(`${cacheKey}-searchTerm`, () => '')
+  const _orFilterList = useState<EqualsFilter<ListingQueryFilters[TListing]>[]>(
+    `${cacheKey}-orFilterList`,
+    () => []
+  )
+  const _andFilterList = useState<EqualsFilter<ListingQueryFilters[TListing]>[]>(
+    `${cacheKey}-andFilterList`,
+    () => []
+  )
+  const _sortQuery = useState<Sort<ListingQuerySorts[TListing]> | undefined>(
+    `${cacheKey}-sortQuery`,
+    () => undefined
+  )
 
-  const listingState = ref<ListingState>({
+  const listingState = useState<ListingState>(`${cacheKey}-listingState`, () => ({
     sort: undefined,
     search: undefined,
     filter: undefined,
-  })
+  }))
 
   // Build API query from state
   const apiQuery = computed<Query<any, any>>(() => ({
@@ -159,8 +184,8 @@ export function useListing<TListing extends keyof Listings>(
         : undefined,
     filter: enableFilters
       ? [
-          ...makeLogicalFilter('or', _orFilterList.value),
-          ...makeLogicalFilter('and', _andFilterList.value),
+          ...makeLogicalFilter('or', _orFilterList.value as any),
+          ...makeLogicalFilter('and', _andFilterList.value as any),
         ]
       : undefined,
   }))
@@ -238,7 +263,7 @@ export function useListing<TListing extends keyof Listings>(
     if (filterKeys.length > 0) {
       UiFilters = Object.keys(UiFilters).reduce(
         (acc, key) => {
-          const isInKeys = filterKeys.includes(key)
+          const isInKeys = filterKeys.includes(key as any)
           const shouldInclude = filterMode === 'include' ? isInKeys : !isInKeys
 
           if (shouldInclude) {
@@ -255,7 +280,7 @@ export function useListing<TListing extends keyof Listings>(
     if (Object.keys(labels).length > 0) {
       const renamedFilters: Record<string, any> = {}
       Object.entries(UiFilters).forEach(([key, value]) => {
-        const newKey = labels[key] || key
+        const newKey = (labels as any)[key] || key
         renamedFilters[newKey] = value
       })
       UiFilters = renamedFilters
@@ -270,7 +295,7 @@ export function useListing<TListing extends keyof Listings>(
 
     for (const key of responseFilterKeys) {
       // Apply include/exclude logic using unified config
-      const isInKeys = filterKeys.includes(key)
+      const isInKeys = filterKeys.includes(key as any)
       const shouldInclude =
         filterKeys.length === 0 || (filterMode === 'include' ? isInKeys : !isInKeys)
 
@@ -280,7 +305,7 @@ export function useListing<TListing extends keyof Listings>(
       if (filterOptions.length === 0) continue
 
       // Apply label
-      const label = labels[key] || key
+      const label = (labels as any)[key] || key
 
       availableFilters.push({
         key,
@@ -302,7 +327,7 @@ export function useListing<TListing extends keyof Listings>(
         // Apply include/exclude logic
         if (sortKeys.length === 0) return true
 
-        const isInKeys = sortKeys.includes(value)
+        const isInKeys = sortKeys.includes(value as any)
         return sortMode === 'include' ? isInKeys : !isInKeys
       })
       .map(
@@ -360,14 +385,14 @@ export function useListing<TListing extends keyof Listings>(
     return !!response
   }
 
-  async function sortItems(sortBy: string) {
+  async function sortItems(sortBy: SortString<TListing>) {
     if (!enableSort) return
 
     if (sortBy === 'default') {
       _sortQuery.value = undefined
     } else {
       const [field, order] = sortBy.split(':') as [
-        keyof ListingQuerySorts[TListing],
+        keyof ListingQuerySorts[TListing] & string,
         'asc' | 'desc',
       ]
 
@@ -376,13 +401,14 @@ export function useListing<TListing extends keyof Listings>(
       const sortKeys = sortConfig.keys || []
 
       if (sortKeys.length > 0) {
-        const isInKeys = sortKeys.includes(field as string)
+        const sortKey = `${field}:${order}` as SortString<TListing>
+        const isInKeys = sortKeys.includes(sortKey)
         const isAllowed = sortMode === 'include' ? isInKeys : !isInKeys
 
         if (!isAllowed) return
       }
 
-      _sortQuery.value = { field, order }
+      _sortQuery.value = { field, order } as Sort<ListingQuerySorts[TListing]>
     }
 
     await refreshListing()
@@ -394,18 +420,28 @@ export function useListing<TListing extends keyof Listings>(
     await refreshListing()
   }
 
-  async function filterItems(filterField: string, filterOptions: any[]) {
+  async function filterItems<K extends FilterField<TListing>>(
+    filterField: K,
+    filterOptions: Array<ListingQueryFilters[TListing][K]>
+  ) {
     if (!enableFilters) return
 
     // Determine which filter list to use based on orFilterKeys config
     const shouldUseOr = orFilterKeys.includes(filterField)
     const targetList = shouldUseOr ? _orFilterList : _andFilterList
 
-    targetList.value = manageFilter(targetList.value, filterField as any, filterOptions)
+    targetList.value = manageFilter(
+      targetList.value as any,
+      filterField as keyof ListingQueryFilters[TListing] & string,
+      filterOptions as any
+    ) as any
     await refreshListing()
   }
 
-  async function addFilterOption(filterField: string, filterOption: any) {
+  async function addFilterOption<K extends FilterField<TListing>>(
+    filterField: K,
+    filterOption: ListingQueryFilters[TListing][K]
+  ) {
     if (!enableFilters) return
 
     const shouldUseOr = orFilterKeys.includes(filterField)
@@ -418,24 +454,32 @@ export function useListing<TListing extends keyof Listings>(
         : [existingFilter.value]
       : []
 
-    targetList.value = manageFilter(targetList.value, filterField as any, [
-      ...currentValues,
-      filterOption,
-    ])
+    targetList.value = manageFilter(
+      targetList.value as any,
+      filterField as keyof ListingQueryFilters[TListing] & string,
+      [...currentValues, filterOption] as any
+    ) as any
     await refreshListing()
   }
 
-  async function removeFilterOption(filterField: string, filterOption: any) {
+  async function removeFilterOption<K extends FilterField<TListing>>(
+    filterField: K,
+    filterOption?: ListingQueryFilters[TListing][K]
+  ) {
     if (!enableFilters) return
 
     const shouldUseOr = orFilterKeys.includes(filterField)
     const targetList = shouldUseOr ? _orFilterList : _andFilterList
 
-    targetList.value = removeFilter(targetList.value, filterField as any, filterOption)
+    targetList.value = removeFilter(
+      targetList.value as any,
+      filterField as keyof ListingQueryFilters[TListing] & string,
+      filterOption as any
+    ) as any
     await refreshListing()
   }
 
-  async function resetFilter(filterField?: string) {
+  async function resetFilter(filterField?: FilterField<TListing>) {
     if (!enableFilters) return
 
     if (!filterField) {
@@ -444,7 +488,10 @@ export function useListing<TListing extends keyof Listings>(
     } else {
       const shouldUseOr = orFilterKeys.includes(filterField)
       const targetList = shouldUseOr ? _orFilterList : _andFilterList
-      targetList.value = removeFilter(targetList.value, filterField as any)
+      targetList.value = removeFilter(
+        targetList.value as any,
+        filterField as keyof ListingQueryFilters[TListing] & string
+      ) as any
     }
     await refreshListing()
   }
@@ -485,16 +532,38 @@ export function useListing<TListing extends keyof Listings>(
 export type InclusionMode = 'include' | 'exclude'
 
 /**
+ * Extract filter field keys for a specific listing
+ * @example FilterField<'ProductSearch'> = 'properties.search-color' | 'properties.size' | ...
+ */
+export type FilterField<TListing extends keyof Listings> =
+  keyof ListingQueryFilters[TListing] & string
+
+/**
+ * Extract sort field keys for a specific listing
+ * @example SortField<'ProductSearch'> = 'name' | 'price.amount'
+ */
+export type SortField<TListing extends keyof Listings> = keyof ListingQuerySorts[TListing] & string
+
+/**
+ * Type-safe sort string with format "field:order" or "default"
+ * @example SortString<'ProductSearch'> = 'default' | 'name:asc' | 'name:desc' | 'price.amount:asc' | 'price.amount:desc'
+ */
+export type SortString<TListing extends keyof Listings> =
+  | 'default'
+  | `${SortField<TListing>}:${'asc' | 'desc'}`
+
+/**
  * Generic configuration for listing fields (filters or sorts)
  * Allows flexible control over which fields to show and how to label them
+ * @template TFields - The field type (e.g., ListingQueryFilters[TListing] or ListingQuerySorts[TListing])
  */
-export interface ListingFieldConfig {
+export interface ListingFieldConfig<TFields = Record<string, any>> {
   /** Field keys to include or exclude. If not provided, all fields are shown. */
-  keys?: string[]
+  keys?: Array<keyof TFields & string>
   /** Mode: 'include' (whitelist) or 'exclude' (blacklist). Default: 'include' */
   mode?: InclusionMode
   /** Custom labels for fields (e.g., { "properties.color": "Color" }) */
-  labels?: Record<string, string>
+  labels?: Partial<Record<keyof TFields & string, string>>
 }
 
 /**
@@ -581,11 +650,13 @@ export interface UseListingConfig<TListing extends keyof Listings> {
 
   /**
    * Filter fields that should use OR logic (all others use AND)
+   * Type-safe: only allows valid filter field names for this listing
    */
-  orFilterKeys?: string[]
+  orFilterKeys?: Array<FilterField<TListing>>
 
   /**
    * Filter configuration using unified structure
+   * Type-safe: keys and labels must match actual filter fields
    * @example
    * // With keys and labels
    * filters: {
@@ -604,10 +675,11 @@ export interface UseListingConfig<TListing extends keyof Listings> {
    *   keys: ['properties.color', 'properties.size']
    * }
    */
-  filters?: ListingFieldConfig
+  filters?: ListingFieldConfig<ListingQueryFilters[TListing]>
 
   /**
    * Sort configuration using unified structure
+   * Type-safe: labels must use valid sort field names with :asc/:desc suffix
    *
    * Special handling for 'default' sort:
    * - The 'default' sort represents Frontstack backend's default sorting (no sort applied to query)
@@ -633,7 +705,7 @@ export interface UseListingConfig<TListing extends keyof Listings> {
    *   }
    * }
    */
-  sorts?: ListingFieldConfig
+  sorts?: ListingFieldConfig<Record<SortString<TListing>, any>>
 
   /**
    * Enable search functionality (default: true)
