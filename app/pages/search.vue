@@ -3,6 +3,12 @@ const showResultControl = ref(false)
 const searchInputRef = ref<HTMLElement | null>(null)
 
 const { listing, state, searchTerm, sortItems, filterItems, resetFilter } = useProductSearch()
+const { hideNavMenu } = useShopNav()
+
+// Hide/show nav menu when sheet opens/closes
+watch(showResultControl, (isOpen) => {
+  hideNavMenu.value = isOpen
+})
 
 // Wrapper functions to handle string-to-typed conversions from UI components
 function handleResetFilter(filterField?: string) {
@@ -30,24 +36,24 @@ function handleSearchFocus() {
 </script>
 
 <template>
-  <div class="flex flex-col gap-6 pb-5 sm:pb-14">
-    <div class="h-[360px]">
+  <div class="flex flex-col gap-6 pb-5">
+    <div class="h-48 md:h-[360px]">
       <NuxtImg
         src="https://a.storyblok.com/f/282508/1024x1024/871dc9b656/orynt-hero.png"
         alt="Hero Image with a man in ski gear"
+        height="360"
         class="h-full w-full object-cover"
       />
     </div>
   </div>
-  <div class="mx-auto mb-12 max-w-7xl">
-    <div ref="searchInputRef" class="px-2.5 pt-2 sm:hidden">
+  <div class="mx-auto max-w-6xl px-5">
+    <div ref="searchInputRef" class="mx-auto my-5 sm:my-10 sm:max-w-2/3">
       <LayoutDrawerSearchInput @focus="handleSearchFocus" />
     </div>
-    <h1 class="font-display text-3xl">{{ $t('search.results') }}</h1>
-
-    <div class="my-5 flex items-center justify-between px-5 md:px-0">
-      <p>{{ $t('listing.counter', { count: state.total }) }}</p>
-
+    <div class="flex items-center justify-between">
+      <h1 class="font-display text-xl font-light sm:text-3xl">
+        {{ $t('search.results') }} ({{ state.total }})
+      </h1>
       <SearchControlSheet
         v-model:open="showResultControl"
         :available-filters="state.availableFilters ?? []"
@@ -63,10 +69,9 @@ function handleSearchFocus() {
         @close-control="showResultControl = false"
       />
     </div>
-    <div class="mx-auto mb-12 max-w-7xl">
-      <div v-if="listing?.items" class="grid grid-cols-4 gap-4">
-        <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
-      </div>
+
+    <div v-if="listing?.items" class="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
     </div>
   </div>
 </template>

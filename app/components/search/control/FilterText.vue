@@ -57,11 +57,11 @@ watch(
     <FilterTrigger
       class="mx-0 pl-[-8px] font-normal"
       :disabled="isDisabled"
-      :class="{ 'text-muted-foreground': isDisabled }"
+      :class="{ 'text-muted': isDisabled }"
     >
       <slot />
     </FilterTrigger>
-    <FilterContent class="bg-shade-200 my-2 p-2">
+    <FilterContent class="my-2 p-2">
       <FilterList>
         <FilterItem
           v-for="(option, index) in filterOptions"
