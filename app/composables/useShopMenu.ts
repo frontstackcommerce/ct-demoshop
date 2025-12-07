@@ -7,7 +7,7 @@ interface IUseShopMenu {
   aboutTree: ComputedRef<MenuItem[] | undefined>
   supportTree: ComputedRef<MenuItem[] | undefined>
   fullTree: ShallowRef<MenuTree | undefined>
-  openCart: () => void
+  showCart: () => void
   closeMenu: () => void
 }
 
@@ -23,7 +23,7 @@ export const useShopMenu = (): IUseShopMenu => {
   const menuState = useState<MenuState>('menuState', () => undefined)
   const isOpen = computed(() => !!menuState.value)
 
-  function openCart() {
+  function showCart() {
     menuState.value = 'cart'
     if (window.scrollY > 0) {
       window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -127,7 +127,7 @@ export const useShopMenu = (): IUseShopMenu => {
     supportTree,
     menuState,
     fullTree,
-    openCart,
+    showCart,
     isOpen,
   }
 }
