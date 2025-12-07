@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto flex max-w-7xl flex-col gap-5 px-5">
     <div class="flex items-center justify-between">
-      <StoreLogo :is-inverted="true" />
+      <StoreLogo :is-inverted="true" class="max-h-10" />
       <div class="mr-3">
         <StorePicker />
       </div>

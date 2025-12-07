@@ -5,6 +5,7 @@ defineProps<{
 </script>
 
 <template>
+  <CategoryContent :category="category" />
   <div class="mx-auto my-12 max-w-6xl px-5">
     <h1 class="font-display text-3xl font-light">{{ category.name }}</h1>
     <div v-if="category.products?.items" class="grid grid-cols-2 gap-4 md:grid-cols-4">
