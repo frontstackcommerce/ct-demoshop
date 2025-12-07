@@ -13,10 +13,12 @@ interface IUseShopMenu {
 
 export const useShopMenu = (): IUseShopMenu => {
   const { $i18n } = useNuxtApp()
-  const { locale, t } = $i18n
+  const { t } = $i18n
   const { token } = useContext()
 
-  const { data: fullTree } = useQuery(shopMenuQuery({ contextKey: token.value }))
+  const { data: fullTree } = useQuery(shopMenuQuery, () => ({
+    contextKey: token.value,
+  }))
 
   const menuState = useState<MenuState>('menuState', () => undefined)
   const isOpen = computed(() => !!menuState.value)

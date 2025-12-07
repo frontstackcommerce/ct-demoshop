@@ -150,6 +150,7 @@ const endpoints: Endpoints = {
   CategoryFull: '/block/category/full/{key}',
   CategoryItem: '/block/category/item/{key}',
   CategoryMenu: '/block/category/menu/{key}',
+  CategoryMeta: '/listing/category/meta',
   CategoryNested: '/block/category/nested/{key}',
   CategoryNestedChilds: '/listing/category/nested/childs',
   CategoryProducts: '/listing/category/products',

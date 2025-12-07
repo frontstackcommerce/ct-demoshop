@@ -59,6 +59,13 @@ export type CategoryChildsParameters = {
     key: string;
 }
 
+export type CategoryMetaParameters = {
+    /**
+     * @description Description missing for categoryKeys
+     */
+    categoryKeys: Array<string>;
+}
+
 export type CategoryNestedChildsParameters = {
     /**
      * @description Description missing for key
@@ -98,6 +105,7 @@ type ListingParameters = {
     BrandProducts: BrandProductsParameters
     CartProducts: CartProductsParameters
     CategoryChilds: CategoryChildsParameters
+    CategoryMeta: CategoryMetaParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
     MenuTree: MenuTreeParameters
@@ -129,6 +137,7 @@ export type Listings = {
     BrandProducts: BrandProductsParameters
     CartProducts: CartProductsParameters
     CategoryChilds: CategoryChildsParameters
+    CategoryMeta: CategoryMetaParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
     MenuTree: MenuTreeParameters
@@ -146,6 +155,7 @@ export type CategoryChilds = components['schemas']['CategoryChilds']
 export type CategoryFull = components['schemas']['CategoryFull']
 export type CategoryItem = components['schemas']['CategoryItem']
 export type CategoryMenu = components['schemas']['CategoryMenu']
+export type CategoryMeta = components['schemas']['CategoryMeta']
 export type CategoryNested = components['schemas']['CategoryNested']
 export type CategoryNestedChilds = components['schemas']['CategoryNestedChilds']
 export type CategoryProducts = components['schemas']['CategoryProducts']
@@ -169,6 +179,7 @@ export type Responses = {
     CategoryFull: CategoryFull
     CategoryItem: CategoryItem
     CategoryMenu: CategoryMenu
+    CategoryMeta: CategoryMeta
     CategoryNested: CategoryNested
     CategoryNestedChilds: CategoryNestedChilds
     CategoryProducts: CategoryProducts
@@ -187,6 +198,7 @@ export type ListingQueryFilters = {
     BrandProducts: components['schemas']['BrandProductsQueryOptions']['filter']
     CartProducts: components['schemas']['CartProductsQueryOptions']['filter']
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['filter']
+    CategoryMeta: components['schemas']['CategoryMetaQueryOptions']['filter']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['filter']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
@@ -199,6 +211,7 @@ export type ListingQuerySorts = {
     BrandProducts: components['schemas']['BrandProductsQueryOptions']['sort']
     CartProducts: components['schemas']['CartProductsQueryOptions']['sort']
     CategoryChilds: components['schemas']['CategoryChildsQueryOptions']['sort']
+    CategoryMeta: components['schemas']['CategoryMetaQueryOptions']['sort']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['sort']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
@@ -216,6 +229,7 @@ type FetchMode = {
     CategoryFull: 'key';
     CategoryItem: 'key';
     CategoryMenu: 'key';
+    CategoryMeta: 'query';
     CategoryNested: 'key';
     CategoryNestedChilds: 'query';
     CategoryProducts: 'query';
