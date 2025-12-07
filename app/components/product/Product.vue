@@ -6,7 +6,7 @@ const props = defineProps<{
 const { query } = useRoute()
 
 const { addLineItem } = useCart()
-
+const { addToCartMessage } = useNotify()
 const selectedVariant = ref<ProductVariant | null>(null)
 
 const quantity = ref(1)
@@ -29,6 +29,13 @@ onMounted(() => {
 const hasSecondImage = computed(() => {
   return selectedVariant.value?.images?.length && selectedVariant.value.images.length > 1
 })
+
+async function handleAddToCart(variant: ProductVariant, quantity: number) {
+  await addLineItem(variant.key, quantity)
+  addToCartMessage({
+    variant,
+  })
+}
 </script>
 
 <template>
@@ -82,7 +89,7 @@ const hasSecondImage = computed(() => {
         </div>
       </div>
       <div class="col-span-2 flex flex-col gap-4 px-5 sm:col-span-5 sm:px-0 lg:col-span-4">
-        <h1 class="font-display text-2xl font-medium">{{ product.name }}</h1>
+        <h1 class="font-display text-3xl font-medium">{{ product.name }}</h1>
 
         <p v-if="product.description" class="text-muted-foreground text-lg font-light">
           {{ product.description.split('. ')[0] + (product.description.includes('.') ? '.' : '') }}
@@ -133,7 +140,7 @@ const hasSecondImage = computed(() => {
             color="buy"
             size="xl"
             class="grow"
-            @click.stop="addLineItem(selectedVariant.key, quantity)"
+            @click="handleAddToCart(selectedVariant, quantity)"
           >
             {{ $t('product.buy.add-to-cart') }}
           </Button>
@@ -142,7 +149,7 @@ const hasSecondImage = computed(() => {
     </div>
 
     <div class="mt-10 grid grid-cols-12 gap-8 px-5 sm:px-0">
-      <h2 class="font-display col-span-12 text-xl">
+      <h2 class="font-display col-span-12 text-2xl">
         {{ $t('product.details.sections.description') }}
       </h2>
       <p

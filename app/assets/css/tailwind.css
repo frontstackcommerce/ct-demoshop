@@ -87,8 +87,8 @@
   --color-buy-foreground: oklch(1 0 0);
 
   /* Checkout */
-  --color-checkout: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */
-  --color-checkout-foreground: oklch(0.2 0.01 180); /* dark text */
+  --color-checkout: oklch(0.2 0.01 180); /* rgb(34, 38, 38) - dark primary color */
+  --color-checkout-foreground: oklch(1 0 0);
 
   /* Highlight */
   --color-highlight: oklch(0.73 0.05 175); /* rgb(131, 187, 171) - cadetblue */

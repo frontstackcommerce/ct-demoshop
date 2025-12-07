@@ -10,6 +10,7 @@ interface IUseShopNav {
   setSection: (section: NavSection) => void
   resetNav: () => void
   closeNav: () => void
+  openCart: () => void
 }
 
 export const useShopNav = (): IUseShopNav => {
@@ -20,6 +21,11 @@ export const useShopNav = (): IUseShopNav => {
 
   function setSection(section: NavSection) {
     _section.value = section
+    _open.value = true
+  }
+
+  function openCart() {
+    _section.value = 'cart'
     _open.value = true
   }
 
@@ -38,6 +44,7 @@ export const useShopNav = (): IUseShopNav => {
     setSection,
     resetNav,
     closeNav: _closeNav,
+    openCart,
     showNavMenuInside: _showNavMenuInside,
     hideNavMenu: _hideNavMenu,
   }
