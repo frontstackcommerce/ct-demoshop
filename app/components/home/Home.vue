@@ -54,11 +54,27 @@ const livingProducts = [
 
     </div>
 
-    <div class="flex flex-col gap-8 px-12">
+    <div class="flex flex-col gap-8 px-4 sm:px-12">
       <h2 class="text-left font-display text-2xl text-gray-800">
         {{ $t('home.categories.title') }}
       </h2>
-      <div class="grid grid-cols-8 gap-4">
+      <div class="grid grid-cols-2 gap-4 md:hidden">
+        <div v-for="item in categories.slice(0, 4)" :key="item.key">
+          <NuxtLink :to="item.link?.path ?? ''" class="flex flex-col gap-2 text-left">
+            <NuxtImg :src="item.image?.src" :alt="item.name" class="w-full aspect-[0.75] object-cover shadow-xs" />
+            <p class="font-light uppercase text-slate-500">{{ item.name }}</p>
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="md:grid lg:hidden grid-cols-4 gap-4">
+        <div v-for="item in categories" :key="item.key">
+          <NuxtLink :to="item.link?.path ?? ''" class="flex flex-col gap-2 text-left">
+            <NuxtImg :src="item.image?.src" :alt="item.name" class="w-full aspect-[0.75] object-cover shadow-xs" />
+            <p class="font-light uppercase text-slate-500">{{ item.name }}</p>
+          </NuxtLink>
+        </div>
+      </div>
+      <div class="hidden lg:grid grid-cols-8 gap-4">
         <div v-for="item in categories" :key="item.key">
           <NuxtLink :to="item.link?.path ?? ''" class="flex flex-col gap-2 text-left">
             <NuxtImg :src="item.image?.src" :alt="item.name" class="w-full aspect-[0.75] object-cover shadow-xs" />
@@ -69,7 +85,7 @@ const livingProducts = [
     </div>
 
     <div>
-      <div class="grid grid-cols-2 h-screen">
+      <div class="grid grid-cols-1 sm:grid-cols-2 h-screen">
 
         <div class="bg-gray-200 overflow-hidden relative">
           <NuxtImg :src="livingProducts[1]?.image" class="h-full w-full object-cover shadow-xs" />
@@ -79,7 +95,7 @@ const livingProducts = [
             </div>
           </NuxtLink>
         </div>
-        <div class="bg-gray-300 grid grid-rows-2 overflow-hidden">
+        <div class="bg-gray-300 grid grid-rows-1 sm:grid-rows-2  overflow-hidden">
           <div class="bg-gray-400 overflow-hidden relative">
             <NuxtImg :src="livingProducts[0]?.image" class="h-full w-full object-cover shadow-xs" />
             <NuxtLink :to="livingProducts[0]?.link">
@@ -88,7 +104,7 @@ const livingProducts = [
               </div>
             </NuxtLink>
           </div>
-          <div class="bg-gray-500 overflow-hidden relative">
+          <div class="bg-gray-500 overflow-hidden relative hidden sm:block">
             <NuxtImg :src="livingProducts[2]?.image" class="h-full w-full object-cover shadow-xs" />
             <NuxtLink :to="livingProducts[2]?.link">
               <div class="absolute inset-0 flex items-start justify-end p-8 flex-col text-gray-800 font-display text-5xl text-white text-shadow-lg">
@@ -96,6 +112,14 @@ const livingProducts = [
               </div>
             </NuxtLink>
           </div>
+        </div>
+        <div class="block sm:hidden bg-gray-500 overflow-hidden relative">
+          <NuxtImg :src="livingProducts[2]?.image" class="h-full w-full object-cover shadow-xs" />
+          <NuxtLink :to="livingProducts[2]?.link">
+            <div class="absolute inset-0 flex items-start justify-end p-8 flex-col text-gray-800 font-display text-5xl text-white text-shadow-lg">
+              {{ $t('home.featured.rugs') }}
+            </div>
+          </NuxtLink>
         </div>
 
       </div>
