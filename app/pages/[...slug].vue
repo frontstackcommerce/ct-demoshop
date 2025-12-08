@@ -9,8 +9,7 @@ const { page, status } = usePageRouter()
       <Brand v-else-if="page && page.type === 'Brand'" :brand="page.data" />
       <Category v-else-if="page && page.type === 'Category'" :category="page.data" />
       <div v-else class="text-center">
-        <h1 class="text-3xl font-bold text-gray-900">Commerce Starter</h1>
-        <p class="mt-4 text-gray-600">Start selling online today</p>
+        <Home />
       </div>
     </template>
     <template v-else-if="status === 'error'">
