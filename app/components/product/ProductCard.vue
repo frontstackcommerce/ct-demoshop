@@ -14,13 +14,6 @@ onMounted(() => {
     img.src = secondImage.value
   }
 })
-
-async function selectVariant(target: string, sku: string) {
-  await navigateTo({
-    path: target,
-    query: { sku },
-  })
-}
 </script>
 
 <template>
@@ -38,18 +31,11 @@ async function selectVariant(target: string, sku: string) {
       </div>
       <div v-if="Array.isArray(product.variants) && product.variants.length > 1">
         <div class="flex gap-2">
-          <div
-            v-for="variant in product.variants"
-            :key="variant.key"
-            class="aspect-square size-6 cursor-pointer overflow-hidden bg-white"
-            @click="product.link?.path && selectVariant(product.link.path, variant.key)"
-          >
-            <NuxtImg
-              :src="variant.images?.[0]?.src"
-              :alt="variant.images?.[0]?.altText"
-              class="size-full scale-400 object-contain blur-xs saturate-200"
-            />
-          </div>
+          <NuxtLink :to="product.link?.path + '?sku=' + variant.key" v-for="variant in product.variants" :key="variant.key">
+            <div class="aspect-square size-6 cursor-pointer overflow-hidden bg-white">
+              <NuxtImg :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full scale-400 object-contain blur-xs saturate-200" />
+            </div>
+          </NuxtLink>
         </div>
       </div>
       <div class="flex flex-col gap-1 text-xs">
