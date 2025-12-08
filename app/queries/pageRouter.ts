@@ -15,7 +15,7 @@ export const pageByUrlQuery = ({
   return {
     key: PAGE_QUERY_KEYS.byUrl(url),
     query: async () => {
-      return await client.page('localhost:3000' + unref(url), {
+      return await client.page(unref(url), {
         contextKey: unref(contextKey),
       })
     },

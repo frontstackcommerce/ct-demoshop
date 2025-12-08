@@ -16,9 +16,10 @@ export const useShopMenu = (): IUseShopMenu => {
   const { t } = $i18n
   const { token } = useContext()
 
-  const { data: fullTree } = useQuery(shopMenuQuery, () => ({
-    contextKey: token.value,
-  }))
+  // const { data: fullTree } = useQuery(shopMenuQuery, () => ({
+  //   contextKey: token.value,
+  // }))
+  const fullTree = ref<MenuTree | undefined>(undefined)
 
   const menuState = useState<MenuState>('menuState', () => undefined)
   const isOpen = computed(() => !!menuState.value)

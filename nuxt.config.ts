@@ -91,7 +91,9 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    public: {},
+    public: {
+      shopDomain: 'localhost:3000',
+    },
     commercetools: {
       apiHost: '',
       authHost: '',

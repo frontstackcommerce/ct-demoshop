@@ -14,15 +14,19 @@ interface IUsePageRouter {
 export const usePageRouter = (): IUsePageRouter => {
   const route = useRoute()
   const { token } = useContext()
+  const config = useRuntimeConfig()
+  const shopDomain = config.public.shopDomain as string
+
   const url = computed(() => {
     if (route.fullPath === '/') {
-      return ''
+      return shopDomain
     }
     if (route.fullPath) {
-      return route.fullPath
+      return shopDomain + route.fullPath
     }
-    return ''
+    return shopDomain
   })
+
   // Context token is now handled server-side in the proxy route
   const { data: page, status } = useQuery(pageByUrlQuery, () => ({ url, contextKey: token.value }))
 
