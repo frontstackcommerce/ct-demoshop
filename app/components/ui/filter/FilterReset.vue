@@ -18,7 +18,7 @@ function resetFilter() {
 
 <template>
   <div class="mt-2 flex items-center justify-center">
-    <Button :variant="'outline'" :size="'sm'" class="mt-1 !rounded-full" @click="resetFilter">
+    <Button variant="outline" size="sm" class="mt-1" @click="resetFilter">
       <RotateCcw class="mr-3 h-4 w-4" />
       <slot />
     </Button>
