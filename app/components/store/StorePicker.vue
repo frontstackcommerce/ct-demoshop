@@ -1,6 +1,7 @@
 <script setup lang="ts">
 defineProps<{
   inverted?: boolean
+  collapsed?: boolean
 }>()
 const open = ref(false)
 </script>
@@ -9,11 +10,13 @@ const open = ref(false)
   <ClientOnly>
     <Dialog v-model:open="open">
       <DialogTrigger as-child
-        ><slot><StorePickerTrigger :inverted="inverted" /></slot
+        ><slot><StorePickerTrigger :inverted="inverted" :collapsed="collapsed" /></slot
       ></DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{{ $t('context.title') }}</DialogTitle>
+          <DialogTitle class="font-display text-2xl font-medium">{{
+            $t('context.title')
+          }}</DialogTitle>
         </DialogHeader>
         <LazyStorePickerContent @success="open = false" />
       </DialogContent> </Dialog

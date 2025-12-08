@@ -24,7 +24,7 @@ const sizeClass = computed(() => {
     <div
       v-if="lineItems?.length"
       :class="sizeClass"
-      class="bg-checkout absolute top-1 right-1 flex items-center justify-center rounded-full"
+      class="bg-active text-active-foreground absolute top-1 right-1 flex items-center justify-center rounded-full"
     >
       <span class="font-sans font-bold">{{
         lineItems?.length > 9 ? '9+' : lineItems?.length

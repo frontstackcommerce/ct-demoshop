@@ -17,22 +17,19 @@ const { listing, searchTerm } = useProductSearch()
 </script>
 
 <template>
-  <div class="md:mt-4">
+  <div class="mt-4 px-4">
     <LayoutDrawerSearchInput />
   </div>
 
-  <div class="md:my-2">
-    <span v-if="searchTerm.length > 0 && searchTerm.length < 3" class="px-3 pt-3">
+  <div class="my-2 px-4 text-sm sm:text-base md:my-2">
+    <span v-if="searchTerm.length > 0 && searchTerm.length < 3">
       {{ $t('search.total', { count: listing?.total }) }}
     </span>
-    <span
-      v-else-if="searchTerm.length > 0 && listing?.items && listing.items.length > 0"
-      class="px-3 pt-3"
-    >
+    <span v-else-if="searchTerm.length > 0 && listing?.items && listing.items.length > 0">
       {{ $t('search.counter', { count: listing?.total, term: searchTerm }) }}
     </span>
     <span v-else>
-      <span v-if="searchTerm.length > 2" class="px-3 pt-3">
+      <span v-if="searchTerm.length > 2">
         {{ $t('search.no-results', { term: searchTerm }) }}
       </span>
     </span>
@@ -40,15 +37,14 @@ const { listing, searchTerm } = useProductSearch()
 
   <div class="flex flex-col gap-6">
     <ScrollArea class="h-[calc(100vh)] md:h-[calc(100vh-10rem)]">
-      <div v-if="!searchTerm.length" class="px-3 md:px-0">
+      <div v-if="!searchTerm.length" class="px-4">
         <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.suggest') }}</div>
         <div class="flex flex-wrap gap-2">
           <Button
             v-for="suggestion in suggestions"
             :key="suggestion"
             variant="outline"
-            size="xs"
-            color="secondary"
+            color="primary"
             class="font-display flex items-center gap-2 font-light capitalize"
             @click="searchTerm = suggestion"
           >
@@ -56,9 +52,9 @@ const { listing, searchTerm } = useProductSearch()
           </Button>
         </div>
       </div>
-      <div v-else class="pb-60 md:mt-10 md:pb-48">
+      <div v-else class="px-4 pb-60 md:pb-48">
         <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.results') }}</div>
-        <div class="grid grid-cols-2 md:grid-cols-3">
+        <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
           <template v-if="listing?.items && listing?.items.length > 0">
             <ProductCard
               v-for="(product, index) in listing?.items"

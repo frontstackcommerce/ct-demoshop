@@ -51,7 +51,7 @@ const handleSubmit = async () => {
   <div class="my-4 flex flex-col gap-6">
     <!-- Region Selection -->
     <div class="flex flex-col gap-4">
-      <Label class="text-base font-semibold">{{ $t('context.location.label') }}</Label>
+      <Label class="font-display text-base font-semibold">{{ $t('context.location.label') }}</Label>
       <ItemGroup class="grid gap-5 sm:grid-cols-3">
         <Item
           v-for="(contextOption, index) in contextList"
@@ -78,7 +78,7 @@ const handleSubmit = async () => {
 
     <!-- Language Selection (only show if multiple locales available) -->
     <div v-if="selectedRegion && showLocaleSelector" class="flex flex-col gap-4">
-      <Label class="text-base font-semibold">{{ $t('context.language.label') }}</Label>
+      <Label class="font-display text-base font-semibold">{{ $t('context.language.label') }}</Label>
       <ItemGroup class="grid grid-cols-2 gap-5">
         <Item
           v-for="(locale, index) in availableLocales"

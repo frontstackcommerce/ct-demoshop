@@ -24,7 +24,11 @@ function getItemName(item: any): string | undefined {
 
 // Helper to get link property from any menu item type
 function getItemLink(item: any): PageRoute | undefined {
-  return item?.link || (item?.href ? ({ path: item.href } as PageRoute) : undefined)
+  return (
+    item?.link ||
+    (item?.path ? ({ path: item.path } as PageRoute) : undefined) ||
+    (item?.href ? ({ path: item.href } as PageRoute) : undefined)
+  )
 }
 
 // Current menu level
