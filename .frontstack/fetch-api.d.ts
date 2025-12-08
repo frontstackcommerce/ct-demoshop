@@ -683,6 +683,7 @@ export interface components {
         "options.search-color": components["schemas"]["String"];
         "options.search-finish": components["schemas"]["String"];
         "options.size": components["schemas"]["String"];
+        "price.amount": components["schemas"]["Price"]["amount"];
         "properties.color-code": components["schemas"]["String"];
         "properties.color-label": components["schemas"]["String"];
         "properties.finish-code": components["schemas"]["String"];
