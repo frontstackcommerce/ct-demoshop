@@ -43,7 +43,7 @@ const handleRemove = async (cartItemId: string) => {
             @click="close"
           />
           <div
-            class="bg-shade-200 text-muted-foreground flex flex-col gap-2 px-6 pt-4 text-sm md:hidden"
+            class="bg-shade-200 text-muted-foreground flex flex-col gap-2 px-6 py-10 text-sm md:hidden"
           >
             <div class="flex items-center justify-between">
               <p>{{ $t('cart.summary.items') }}</p>

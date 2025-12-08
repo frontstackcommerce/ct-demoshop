@@ -24,6 +24,9 @@ function handleShowCart() {
 <template>
   <div class="flex w-full flex-col gap-2">
     <div class="bg-shade text-foreground p-5 shadow">
+      <p class="text-muted-foreground font-display mb-8 text-xl font-light">
+        {{ $t('cart.notify.title') }}
+      </p>
       <div class="flex gap-4">
         <NuxtImg
           :src="variant.images?.[0]?.src"
@@ -46,21 +49,29 @@ function handleShowCart() {
           </div>
         </div>
       </div>
-      <div class="mt-6 flex items-center gap-2">
-        <Button class="w-full sm:hidden" variant="outline" size="xl" @click="handleOpenCart">
-          {{ $t('cart.notify.action.cart') }}
-          {{ $t('default.in-brackets', { text: lineItems.length }) }}
-        </Button>
-        <Button class="hidden w-full sm:block" variant="outline" size="xl" @click="handleShowCart">
-          {{ $t('cart.notify.action.cart') }}
-          {{ $t('default.in-brackets', { text: lineItems.length }) }}
-        </Button>
-
-        <NuxtLink :to="'/checkout'">
-          <Button color="checkout" class="w-full" size="xl" @click="emit('closeToast')">
-            {{ $t('cart.notify.action.checkout') }}
+      <div class="my-6 flex flex-col items-center gap-4 sm:flex-row sm:gap-2">
+        <div class="w-full sm:w-auto">
+          <Button class="w-full sm:hidden" variant="outline" size="xl" @click="handleOpenCart">
+            {{ $t('cart.notify.action.cart') }}
+            {{ $t('default.in-brackets', { text: lineItems.length }) }}
           </Button>
-        </NuxtLink>
+          <Button
+            class="hidden w-full sm:block"
+            variant="outline"
+            size="xl"
+            @click="handleShowCart"
+          >
+            {{ $t('cart.notify.action.cart') }}
+            {{ $t('default.in-brackets', { text: lineItems.length }) }}
+          </Button>
+        </div>
+        <div class="w-full sm:w-auto">
+          <NuxtLink :to="'/checkout'">
+            <Button color="checkout" class="w-full" size="xl" @click="emit('closeToast')">
+              {{ $t('cart.notify.action.checkout') }}
+            </Button>
+          </NuxtLink>
+        </div>
       </div>
       <div v-if="recommended">
         <Separator class="my-5 bg-zinc-600" />
