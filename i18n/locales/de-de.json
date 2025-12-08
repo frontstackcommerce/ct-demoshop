@@ -270,6 +270,24 @@
     }
   },
   "home": {
+    "hero": {
+      "title": "Fühl Dich wohl in Deinem Zuhause",
+      "button": "Jetzt einkaufen",
+      "imageAlt": "Gemütlich eingerichtetes Wohnzimmer"
+    },
+    "categories": {
+      "title": "Entdecke unsere Kategorien"
+    },
+    "featured": {
+      "homeBraid": "Home Braid",
+      "loungeFurniture": "Wohnmöbel",
+      "rugs": "Teppiche"
+    },
+    "newArrivals": {
+      "label": "Neuheiten",
+      "title": "Jede Woche neue und exklusive Angebote",
+      "button": "Jetzt einkaufen"
+    },
     "teaser": {
       "category": {
         "men": "Für Männer",

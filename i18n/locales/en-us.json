@@ -270,6 +270,24 @@
     }
   },
   "home": {
+    "hero": {
+      "title": "Feel the comfort of your home",
+      "button": "Shop Now",
+      "imageAlt": "Comfortable living room"
+    },
+    "categories": {
+      "title": "Explore our categories"
+    },
+    "featured": {
+      "homeBraid": "Home Braid",
+      "loungeFurniture": "Lounge Furniture",
+      "rugs": "Rugs"
+    },
+    "newArrivals": {
+      "label": "New Arrivals",
+      "title": "Special and exclusive offers every week",
+      "button": "Shop Now"
+    },
     "teaser": {
       "category": {
         "men": "Shop Men's",
