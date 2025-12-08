@@ -20,13 +20,13 @@ onMounted(() => {
   <NuxtLink :to="product.link?.path">
     <div class="flex flex-col gap-2">
       <div class="group relative aspect-[0.75] overflow-hidden bg-white shadow-xs">
-        <NuxtImg :src="firstImage" :alt="product.name" class="size-full object-cover sm:p-4" />
+        <NuxtImg :src="firstImage" :alt="product.name" class="size-full object-contain sm:p-4" />
         <NuxtImg
           v-if="hasSecondImage"
           :src="secondImage"
           :alt="product.name"
           :width="320"
-          class="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-4"
+          class="absolute inset-0 size-full object-contain opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-4"
         />
       </div>
       <div v-if="Array.isArray(product.variants) && product.variants.length > 1">
