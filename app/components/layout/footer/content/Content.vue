@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto grid max-w-7xl grid-cols-3 gap-4 px-6 sm:grid-cols-4">
+  <div class="container mx-auto grid max-w-7xl grid-cols-3 gap-10 px-6 sm:grid-cols-4 sm:gap-4">
     <div class="col-span-2 max-w-lg">
       <LayoutFooterContentNewsletterForm />
     </div>
