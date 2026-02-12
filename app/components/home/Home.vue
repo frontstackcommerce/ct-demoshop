@@ -37,6 +37,13 @@ const featuredProducts = [
   },
 ]
 
+// Kitchen promo images - using verified working images
+const kitchenImages = {
+  main: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Travel_Coffee_Mug-1.1.jpeg',
+  secondary1: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Cocktail_Shaker-1.1.jpeg',
+  secondary2: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Harvest_Plate-1.1.jpeg'
+}
+
 const isLoaded = ref(false)
 
 onMounted(() => {
@@ -153,22 +160,22 @@ onMounted(() => {
             <div class="absolute inset-0 grid grid-cols-2 gap-2 p-2">
               <div class="relative overflow-hidden">
                 <NuxtImg
-                  src="https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Minimalist_Modern_Kitchen-1.1.jpeg"
-                  alt="Kitchen"
+                  :src="kitchenImages.main"
+                  alt="Kitchen Essentials"
                   class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
               <div class="grid grid-rows-2 gap-2">
                 <div class="relative overflow-hidden">
                   <NuxtImg
-                    src="https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Cocktail_Shaker-1.1.jpeg"
+                    :src="kitchenImages.secondary1"
                     alt="Kitchen Item"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div class="relative overflow-hidden">
                   <NuxtImg
-                    src="https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Serving_Platter-1.1.jpeg"
+                    :src="kitchenImages.secondary2"
                     alt="Kitchen Item"
                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
