@@ -50,25 +50,17 @@ export type EqualsFilter<T> = {
  *   to: 100
  * }
  */
-
-type RangeFilterShapes<K> = {
-  from: K
-} | {
-  to: K
-} | {
-  from: K
-  to: K
-}
-
 export type RangeFilter<T> = {
   [K in NumericKeys<T>]: {
     type: 'range';
     field: K;
-  } & RangeFilterShapes<T[K]>
+    from?: T[K];
+    to?: T[K];
+  }
 }[NumericKeys<T>];
 
 /**
- * Filter a field by a word match.
+ * Filter a field by a substring match.
  *
  * @example
  * {
@@ -76,10 +68,6 @@ export type RangeFilter<T> = {
  *   field: 'name',
  *   value: 'Dress'
  * }
- * 
- * will match:
- * 
- * - 'Yellow Dress'
  */
 export type ContainsFilter<T> = {
   [K in StringKeys<T>]: {
@@ -158,4 +146,4 @@ export type Query<FilterType, SortType> = {
    * Paginate results
    */
   page?: number;
-}
+} 

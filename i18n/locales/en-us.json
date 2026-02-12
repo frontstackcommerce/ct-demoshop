@@ -19,8 +19,13 @@
     "viewCollection": "View Collection",
     "exploreCollection": "Explore Collection",
     "quickView": "Quick View",
+    "closeQuickView": "Close Quick View",
+    "viewFullDetails": "View Full Details",
     "subscribe": "Subscribe",
-    "ourStory": "Our Story"
+    "ourStory": "Our Story",
+    "selectOption": "Select Option",
+    "available": "{count} available",
+    "loading": "Loading..."
   },
   "brand": "Flagship Store",
   "brands": {
@@ -441,6 +446,13 @@
       }
     }
   },
+  "quickView": {
+    "loading": "Loading product...",
+    "taxIncluded": "Tax included. Free shipping over €150.",
+    "freeShipping": "Free Shipping",
+    "easyReturns": "Easy Returns",
+    "warranty": "2yr Warranty"
+  },
   "listing": {
     "counter": "No Result | 1 Result | {count} Results",
     "filters": {
@@ -468,6 +480,7 @@
   },
   "product": {
     "featured": "Featured",
+    "sku": "SKU",
     "buy": {
       "add-to-cart": "Add to Cart"
     },

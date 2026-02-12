@@ -67,9 +67,9 @@ function handleSortResult(sortBy: string) {
         />
       </div>
       
-      <!-- Product Grid -->
-      <div v-if="listing?.items && listing.items.length > 0" class="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 md:grid-cols-3 lg:grid-cols-4 pt-12">
-        <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
+      <!-- Product Grid with Quick View -->
+      <div v-if="listing?.items && listing.items.length > 0" class="pt-12">
+        <ProductGrid :products="listing.items" :columns="4" />
       </div>
       
       <!-- Empty State -->
