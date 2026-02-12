@@ -49,9 +49,9 @@ function handleClearSearch() {
 <template>
   <Sheet v-model:open="open">
     <SheetTrigger as-child>
-      <Button variant="ghost" class="relative flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
-        <IconSlidersHorizontal :size="18" />
-        <span>{{ $t('control.button') }}</span>
+      <button class="group relative inline-flex items-center gap-2.5 px-5 py-2.5 text-sm text-muted-foreground hover:text-foreground transition-colors border border-border hover:border-foreground/30">
+        <IconSlidersHorizontal :size="16" class="text-muted-foreground group-hover:text-foreground transition-colors" />
+        <span class="font-medium tracking-wide">{{ $t('control.button') }}</span>
         <ClientOnly>
           <span
             v-if="activeFilterCount > 0"
@@ -60,33 +60,55 @@ function handleClearSearch() {
             {{ activeFilterCount }}
           </span>
         </ClientOnly>
-      </Button>
+      </button>
     </SheetTrigger>
     
-    <SheetContent class="flex flex-col w-full sm:max-w-md">
-      <SheetHeader class="border-b border-border pb-6">
-        <SheetTitle class="text-editorial text-2xl">Refine Results</SheetTitle>
+    <SheetContent class="flex flex-col w-full sm:max-w-lg lg:max-w-xl p-0">
+      <!-- Header -->
+      <SheetHeader class="px-8 pt-8 pb-6 border-b border-border">
+        <div class="flex items-center justify-between">
+          <div>
+            <SheetTitle class="font-serif text-3xl font-light">Refine</SheetTitle>
+            <p class="text-sm text-muted-foreground mt-1">
+              {{ totalResults }} products available
+            </p>
+          </div>
+          <button 
+            v-if="activeFilterCount > 0"
+            class="text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+            @click="emit('resetFilter')"
+          >
+            Clear all
+          </button>
+        </div>
       </SheetHeader>
       
-      <ScrollArea class="flex-1 -mx-6 px-6">
-        <div class="py-6 space-y-8">
-          <!-- Sort -->
+      <ScrollArea class="flex-1">
+        <div class="px-8 py-8 space-y-10">
+          <!-- Sort Section -->
           <div>
-            <h3 class="text-sm font-medium text-foreground mb-4">
+            <h3 class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-5">
               {{ $t('control.sort.title') }}
             </h3>
             <RadioGroup
               default-value="default"
-              class="space-y-3"
+              class="grid grid-cols-2 gap-3"
               @update:model-value="handleSortResult"
             >
               <div
                 v-for="sortOption in availableSorts"
                 :key="sortOption.key"
-                class="flex items-center space-x-3"
+                class="relative"
               >
-                <RadioGroupItem :id="sortOption.key" :value="sortOption.value" />
-                <Label :for="sortOption.key" class="text-sm font-light text-foreground/80 cursor-pointer">
+                <RadioGroupItem 
+                  :id="sortOption.key" 
+                  :value="sortOption.value" 
+                  class="peer sr-only"
+                />
+                <Label 
+                  :for="sortOption.key" 
+                  class="flex items-center justify-center px-4 py-3 text-sm font-light text-foreground/70 cursor-pointer border border-border hover:border-foreground/30 transition-all peer-data-[state=checked]:border-foreground peer-data-[state=checked]:bg-foreground peer-data-[state=checked]:text-background"
+                >
                   {{ sortOption.label }}
                 </Label>
               </div>
@@ -94,34 +116,32 @@ function handleClearSearch() {
           </div>
 
           <!-- Search within category -->
-          <template v-if="category">
-            <div>
-              <h3 class="text-sm font-medium text-foreground mb-4">
-                {{ $t('control.search.title', { category }) }}
-              </h3>
-              <div class="relative">
-                <Input
-                  ref="autoFocus"
-                  :model-value="searchTerm"
-                  :placeholder="$t('control.search.placeholder')"
-                  class="h-12 pl-10 pr-10 bg-shade border-0"
-                  @update:model-value="handleUpdateSearch"
-                />
-                <IconSearch class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
-                <button
-                  v-if="searchTerm.length > 0"
-                  class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground"
-                  @click="handleClearSearch"
-                >
-                  <IconX class="size-4" />
-                </button>
-              </div>
+          <div v-if="category">
+            <h3 class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-5">
+              {{ $t('control.search.title', { category }) }}
+            </h3>
+            <div class="relative">
+              <Input
+                ref="autoFocus"
+                :model-value="searchTerm"
+                :placeholder="$t('control.search.placeholder')"
+                class="h-14 pl-12 pr-12 bg-warm-100 border-0 text-base placeholder:text-muted-foreground/60 focus-visible:ring-1 focus-visible:ring-foreground"
+                @update:model-value="handleUpdateSearch"
+              />
+              <IconSearch class="absolute left-4 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+              <button
+                v-if="searchTerm.length > 0"
+                class="absolute right-4 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground transition-colors"
+                @click="handleClearSearch"
+              >
+                <IconX class="size-5" />
+              </button>
             </div>
-          </template>
+          </div>
 
-          <!-- Filters -->
+          <!-- Filters Section -->
           <div>
-            <h3 class="text-sm font-medium text-foreground mb-4">
+            <h3 class="text-xs font-medium uppercase tracking-[0.15em] text-muted-foreground mb-5">
               {{ $t('control.filters.title') }}
             </h3>
             <div class="space-y-1">
@@ -135,13 +155,15 @@ function handleClearSearch() {
                   @reset-filter="handleResetFilter"
                   @filter-result="handleFilterResult"
                 >
-                  <div class="flex w-full items-center justify-between py-3">
-                    <span class="text-sm font-light">{{ filter.label }}</span>
-                    <div class="flex items-center gap-2">
+                  <div class="flex w-full items-center justify-between py-4 group">
+                    <span class="text-sm font-medium text-foreground group-hover:text-primary transition-colors">
+                      {{ filter.label }}
+                    </span>
+                    <div class="flex items-center gap-3">
                       <SearchControlFilterPreview
                         :selected-options="currentFilter?.[filter.key] ?? []"
                       />
-                      <IconChevronDown class="size-4 text-muted-foreground" />
+                      <IconChevronDown class="size-4 text-muted-foreground transition-transform group-data-[state=open]:rotate-180" />
                     </div>
                   </div>
                 </SearchControlFilterText>
@@ -151,21 +173,24 @@ function handleClearSearch() {
         </div>
       </ScrollArea>
       
-      <SheetFooter class="border-t border-border pt-6 gap-3">
-        <Button
-          variant="outline"
-          :disabled="!activeFilterCount"
-          class="flex-1 h-12"
-          @click.prevent="emit('resetFilter')"
-        >
-          {{ $t('control.reset') }}
-        </Button>
-        <Button 
-          class="flex-1 h-12"
-          @click.prevent="emit('closeControl')"
-        >
-          {{ $t('control.submit', { count: totalResults }) }}
-        </Button>
+      <!-- Footer -->
+      <SheetFooter class="px-8 py-6 border-t border-border bg-warm-50">
+        <div class="flex gap-4 w-full">
+          <Button
+            variant="outline"
+            :disabled="!activeFilterCount"
+            class="flex-1 h-14 text-sm font-medium tracking-wide uppercase border-foreground/20 hover:border-foreground hover:bg-transparent disabled:opacity-40"
+            @click.prevent="emit('resetFilter')"
+          >
+            {{ $t('control.reset') }}
+          </Button>
+          <Button 
+            class="flex-1 h-14 text-sm font-medium tracking-wide uppercase bg-foreground hover:bg-foreground/90"
+            @click.prevent="emit('closeControl')"
+          >
+            Show {{ totalResults }} Results
+          </Button>
+        </div>
       </SheetFooter>
     </SheetContent>
   </Sheet>

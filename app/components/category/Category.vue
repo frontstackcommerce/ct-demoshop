@@ -31,12 +31,25 @@ function handleSortResult(sortBy: string) {
   <div>
     <CategoryContent :category="category" />
     
-    <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-12 lg:py-16">
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-12 lg:py-20">
       <!-- Toolbar -->
-      <div class="flex items-center justify-between pb-8 border-b border-border">
-        <p v-if="state.total" class="text-sm text-muted-foreground">
-          <span class="text-foreground font-medium">{{ state.total }}</span> products
-        </p>
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-8 border-b border-border">
+        <div class="flex items-center gap-6">
+          <p v-if="state.total" class="text-sm text-muted-foreground">
+            Showing <span class="text-foreground font-medium">{{ listing?.items?.length || 0 }}</span> 
+            of <span class="text-foreground font-medium">{{ state.total }}</span> products
+          </p>
+          
+          <!-- Active Filter Tags -->
+          <div v-if="state.activeFilterCount && state.activeFilterCount > 0" class="hidden lg:flex items-center gap-2">
+            <button 
+              class="text-xs text-primary hover:text-primary/80 font-medium transition-colors"
+              @click="handleResetFilter()"
+            >
+              Clear all filters
+            </button>
+          </div>
+        </div>
         
         <SearchControlSheet
           v-model:open="showResultControl"
@@ -55,22 +68,33 @@ function handleSortResult(sortBy: string) {
       </div>
       
       <!-- Product Grid -->
-      <div v-if="listing?.items" class="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-12 md:grid-cols-3 lg:grid-cols-4 pt-10">
+      <div v-if="listing?.items && listing.items.length > 0" class="grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 sm:gap-y-14 md:grid-cols-3 lg:grid-cols-4 pt-12">
         <ProductCard v-for="product in listing?.items" :key="product.key" :product="product" />
       </div>
       
       <!-- Empty State -->
-      <div v-else class="flex flex-col items-center justify-center py-24 text-center">
-        <div class="w-20 h-20 rounded-full bg-shade flex items-center justify-center mb-6">
-          <IconPackage class="size-10 text-muted-foreground" />
+      <div v-else class="flex flex-col items-center justify-center py-32 text-center">
+        <div class="w-24 h-24 rounded-full bg-warm-100 flex items-center justify-center mb-8">
+          <IconPackage class="size-12 text-muted-foreground/50" />
         </div>
-        <h3 class="text-xl font-medium text-foreground mb-2">No products found</h3>
-        <p class="text-muted-foreground font-light max-w-md">
-          Try adjusting your filters or search terms to find what you're looking for.
+        <h3 class="font-serif text-2xl text-foreground mb-3">No products found</h3>
+        <p class="text-muted-foreground font-light max-w-md mb-8">
+          We couldn't find any products matching your current filters. Try adjusting your selection or clearing all filters.
         </p>
-        <Button variant="outline" class="mt-6" @click="handleResetFilter()">
+        <Button 
+          variant="outline" 
+          class="h-12 px-8 text-sm font-medium tracking-wide uppercase border-foreground/20 hover:border-foreground hover:bg-transparent"
+          @click="handleResetFilter()"
+        >
           Clear all filters
         </Button>
+      </div>
+      
+      <!-- Pagination placeholder -->
+      <div v-if="listing?.items && listing.items.length > 0 && state.total && state.total > listing.items.length" class="flex justify-center pt-16">
+        <p class="text-sm text-muted-foreground">
+          Showing {{ listing.items.length }} of {{ state.total }} products
+        </p>
       </div>
     </div>
   </div>
