@@ -41,22 +41,21 @@ onMounted(() => {
           class="mb-6 inline-block text-xs font-medium uppercase tracking-[0.3em] text-primary/80 transition-all duration-1000"
           :class="isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
         >
-          Curated Excellence
+          {{ $t('brands.hero.label') }}
         </span>
         
         <h1
           class="font-serif text-5xl font-light leading-tight text-white md:text-7xl lg:text-8xl transition-all duration-1000 delay-100"
           :class="isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
         >
-          The Makers
+          {{ $t('brands.hero.title') }}
         </h1>
         
         <p
           class="mt-6 max-w-2xl text-lg font-light leading-relaxed text-white/70 md:text-xl transition-all duration-1000 delay-200"
           :class="isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'"
         >
-          Discover the artisans and visionaries behind our collection. 
-          Each brand tells a story of craftsmanship, innovation, and timeless design.
+          {{ $t('brands.hero.description') }}
         </p>
 
         <!-- Scroll indicator -->
@@ -65,7 +64,7 @@ onMounted(() => {
           :class="isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'"
         >
           <div class="flex flex-col items-center gap-3 text-white/50">
-            <span class="text-xs uppercase tracking-widest">Explore</span>
+            <span class="text-xs uppercase tracking-widest">{{ $t('brands.scroll') }}</span>
             <div class="h-12 w-px bg-gradient-to-b from-white/50 to-transparent" />
           </div>
         </div>
@@ -113,7 +112,7 @@ onMounted(() => {
           <!-- Brand Info -->
           <div class="flex flex-col justify-center">
             <span class="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-              Featured Brand
+              {{ $t('brands.featured.label') }}
             </span>
             
             <div class="my-6 h-16 w-40">
@@ -130,8 +129,7 @@ onMounted(() => {
 
             <div class="mt-8 space-y-4">
               <p class="text-lg font-light leading-relaxed text-muted-foreground">
-                Discover a world where form meets function, where every piece tells a story 
-                of meticulous craftsmanship and thoughtful design.
+                {{ $t('brands.featured.description') }}
               </p>
             </div>
 
@@ -139,7 +137,7 @@ onMounted(() => {
               :to="featuredBrand.link?.path"
               class="group mt-10 inline-flex items-center gap-3 text-sm font-medium uppercase tracking-widest text-foreground"
             >
-              <span>Explore Collection</span>
+              <span>{{ $t('actions.exploreCollection') }}</span>
               <svg class="h-4 w-4 transition-transform group-hover:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -154,10 +152,10 @@ onMounted(() => {
       <div class="mx-auto max-w-7xl px-6">
         <div class="mb-16 text-center">
           <span class="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-            Signature Collections
+            {{ $t('brands.highlighted.label') }}
           </span>
           <h2 class="mt-4 font-serif text-4xl font-light text-foreground">
-            Brands We Love
+            {{ $t('brands.highlighted.title') }}
           </h2>
         </div>
 
@@ -190,11 +188,11 @@ onMounted(() => {
                     {{ highlightedBrands[0].name }}
                   </h3>
                   <p class="mt-3 max-w-md text-sm font-light text-white/70">
-                    Explore the complete collection of thoughtfully designed pieces.
+                    {{ $t('brands.highlighted.cardDescription') }}
                   </p>
                   
                   <div class="mt-6 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/80 transition-all group-hover:gap-4">
-                    <span>View Collection</span>
+                    <span>{{ $t('actions.viewCollection') }}</span>
                     <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -230,7 +228,7 @@ onMounted(() => {
                     </h3>
                     
                     <div class="mt-4 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/70 transition-all group-hover:gap-3 group-hover:text-white">
-                      <span>Discover</span>
+                      <span>{{ $t('actions.discover') }}</span>
                       <svg class="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -252,18 +250,19 @@ onMounted(() => {
       
       <div class="relative mx-auto max-w-4xl px-6 text-center">
         <span class="text-xs font-medium uppercase tracking-[0.3em] text-primary">
-          Our Philosophy
+          {{ $t('brands.philosophy.label') }}
         </span>
         
         <h2 class="mt-8 font-serif text-3xl font-light leading-relaxed text-white md:text-4xl lg:text-5xl">
-          "We believe in the power of thoughtful design to transform 
-          <span class="text-primary">everyday moments</span> 
-          into meaningful experiences."
+          <i18n-t keypath="brands.philosophy.quote" tag="span">
+            <template #highlight>
+              <span class="text-primary">{{ $t('brands.philosophy.highlight') }}</span>
+            </template>
+          </i18n-t>
         </h2>
         
         <p class="mt-10 text-lg font-light text-white/60">
-          Each brand in our collection shares this vision—creating pieces that are 
-          beautiful, functional, and built to last.
+          {{ $t('brands.philosophy.description') }}
         </p>
       </div>
     </section>
@@ -273,14 +272,13 @@ onMounted(() => {
       <div class="mx-auto max-w-7xl px-6">
         <div class="mb-16 flex flex-col items-center text-center">
           <span class="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-            Complete Directory
+            {{ $t('brands.directory.label') }}
           </span>
           <h2 class="mt-4 font-serif text-4xl font-light text-foreground">
-            All Brands
+            {{ $t('brands.directory.title') }}
           </h2>
           <p class="mt-4 max-w-xl text-muted-foreground">
-            Browse our complete collection of carefully selected brands, each chosen for their 
-            commitment to quality and design excellence.
+            {{ $t('brands.directory.description') }}
           </p>
         </div>
 
@@ -328,7 +326,7 @@ onMounted(() => {
                   {{ brand.name }}
                 </h3>
                 <div class="mt-6 flex items-center gap-2 text-xs font-medium uppercase tracking-widest text-white/80">
-                  <span>Explore</span>
+                  <span>{{ $t('actions.explore') }}</span>
                   <svg class="h-3 w-3 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
@@ -346,17 +344,17 @@ onMounted(() => {
         <div class="flex flex-col items-center justify-between gap-8 md:flex-row">
           <div>
             <h2 class="font-serif text-3xl font-light text-foreground">
-              Want to learn more about our brands?
+              {{ $t('brands.cta.title') }}
             </h2>
             <p class="mt-2 text-muted-foreground">
-              Discover the stories, craftsmanship, and inspiration behind each collection.
+              {{ $t('brands.cta.description') }}
             </p>
           </div>
           <NuxtLink
             to="/about"
             class="group inline-flex items-center gap-3 bg-foreground px-8 py-4 text-sm font-medium uppercase tracking-widest text-background transition-all hover:bg-primary"
           >
-            <span>Our Story</span>
+            <span>{{ $t('actions.ourStory') }}</span>
             <svg class="h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

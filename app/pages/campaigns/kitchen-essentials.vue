@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import client from '../../../.frontstack/generated-client'
 
+defineI18nRoute({
+  paths: {
+    de: '/kampagnen/kuechen-essentials',
+  },
+})
+
 // Fetch products under €100 (10000 cents)
 const { data: products, status } = await useAsyncData('kitchen-products', async () => {
   const response = await client.listing('ProductSearch', {}, {
@@ -49,33 +55,32 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
             class="text-primary text-xs tracking-[0.3em] uppercase font-medium mb-6 transition-all duration-700"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
           >
-            Limited Time Offer
+            {{ $t('campaign.kitchen.hero.label') }}
           </p>
           <h1 
             class="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.05] mb-6 transition-all duration-700 delay-100"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
           >
-            Kitchen<br>
-            <span class="italic text-primary">Essentials</span><br>
-            Under €100
+            {{ $t('campaign.kitchen.hero.title') }}<br>
+            <span class="italic text-primary">{{ $t('campaign.kitchen.hero.titleHighlight') }}</span><br>
+            {{ $t('campaign.kitchen.hero.price') }}
           </h1>
           <p 
             class="text-muted-foreground text-lg lg:text-xl font-light leading-relaxed mb-10 transition-all duration-700 delay-200"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
           >
-            Transform your culinary space without transforming your budget. 
-            Discover thoughtfully designed pieces that prove luxury doesn't require excess.
+            {{ $t('campaign.kitchen.hero.description') }}
           </p>
           <div 
             class="flex flex-wrap gap-4 transition-all duration-700 delay-300"
             :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
           >
             <a href="#products" class="inline-flex items-center gap-3 bg-foreground text-background px-8 py-4 text-sm tracking-wide uppercase hover:bg-foreground/90 transition-all">
-              Shop the Edit
+              {{ $t('actions.shopTheEdit') }}
               <IconArrowDown class="size-4" />
             </a>
             <span class="self-center text-sm text-muted-foreground">
-              {{ products?.length || 0 }}+ pieces curated
+              {{ $t('campaign.kitchen.hero.piecesCurated', { count: products?.length || 0 }) }}
             </span>
           </div>
         </div>
@@ -98,11 +103,11 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
           class="absolute bottom-8 left-8 lg:bottom-12 lg:left-12 bg-background/95 backdrop-blur-sm p-6 max-w-xs transition-all duration-700 delay-500"
           :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
-          <p class="text-xs text-muted-foreground tracking-wider uppercase mb-2">Featured</p>
+          <p class="text-xs text-muted-foreground tracking-wider uppercase mb-2">{{ $t('product.featured') }}</p>
           <h3 class="font-serif text-xl mb-2">{{ heroProduct.name }}</h3>
           <p class="text-2xl font-medium text-primary">{{ formatPrice(heroProduct.price) }}</p>
           <NuxtLink :to="heroProduct.link?.path" class="inline-flex items-center gap-2 text-sm mt-4 hover:gap-3 transition-all">
-            View Product <IconArrowRight class="size-4" />
+            {{ $t('actions.viewProduct') }} <IconArrowRight class="size-4" />
           </NuxtLink>
         </div>
       </div>
@@ -114,15 +119,15 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
         <div class="flex flex-wrap justify-center gap-8 lg:gap-16 text-sm">
           <div class="flex items-center gap-3">
             <IconTruck class="size-5 opacity-60" />
-            <span>Free shipping over €30</span>
+            <span>{{ $t('campaign.kitchen.valueProps.freeShipping') }}</span>
           </div>
           <div class="flex items-center gap-3">
             <IconPackage class="size-5 opacity-60" />
-            <span>Easy 30-day returns</span>
+            <span>{{ $t('campaign.kitchen.valueProps.easyReturns') }}</span>
           </div>
           <div class="flex items-center gap-3">
             <IconShield class="size-5 opacity-60" />
-            <span>2-year warranty</span>
+            <span>{{ $t('campaign.kitchen.valueProps.warranty') }}</span>
           </div>
         </div>
       </div>
@@ -132,11 +137,13 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
     <section class="py-20 lg:py-28">
       <div class="mx-auto max-w-4xl px-6 lg:px-12 text-center">
         <p class="font-serif italic text-2xl sm:text-3xl lg:text-4xl text-foreground/80 leading-relaxed">
-          "The kitchen is the heart of the home—and every heart deserves 
-          <span class="text-primary not-italic">beautiful things</span> 
-          that don't break the bank."
+          <i18n-t keypath="campaign.kitchen.quote.text" tag="span">
+            <template #highlight>
+              <span class="text-primary not-italic">{{ $t('campaign.kitchen.quote.highlight') }}</span>
+            </template>
+          </i18n-t>
         </p>
-        <p class="mt-8 text-sm text-muted-foreground tracking-wider uppercase">— The CT Demo Shop Edit</p>
+        <p class="mt-8 text-sm text-muted-foreground tracking-wider uppercase">{{ $t('campaign.kitchen.quote.attribution') }}</p>
       </div>
     </section>
 
@@ -145,11 +152,11 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <div>
-            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">The Edit</p>
-            <h2 class="font-serif text-3xl lg:text-4xl">Handpicked Favorites</h2>
+            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">{{ $t('campaign.kitchen.featured.label') }}</p>
+            <h2 class="font-serif text-3xl lg:text-4xl">{{ $t('campaign.kitchen.featured.title') }}</h2>
           </div>
           <p class="text-muted-foreground text-sm max-w-md">
-            Each piece selected for its perfect balance of form, function, and value.
+            {{ $t('campaign.kitchen.featured.description') }}
           </p>
         </div>
         
@@ -166,13 +173,13 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
               <div class="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
                 <span class="inline-block bg-primary text-primary-foreground text-xs tracking-wider uppercase px-3 py-1 mb-4">
-                  Best Value
+                  {{ $t('campaign.kitchen.featured.bestValue') }}
                 </span>
                 <h3 class="font-serif text-white text-3xl lg:text-4xl mb-2">{{ featuredProducts[0].name }}</h3>
-                <p class="text-white/70 mb-4 max-w-md">The perfect addition to any kitchen, combining timeless design with everyday practicality.</p>
+                <p class="text-white/70 mb-4 max-w-md">{{ $t('campaign.kitchen.featured.productDescription') }}</p>
                 <div class="flex items-center gap-4">
                   <span class="text-white text-2xl font-medium">{{ formatPrice(featuredProducts[0].price) }}</span>
-                  <span class="text-white/60 text-sm">Shop now →</span>
+                  <span class="text-white/60 text-sm">{{ $t('campaign.kitchen.featured.shopNow') }}</span>
                 </div>
               </div>
             </NuxtLink>
@@ -206,27 +213,29 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
       </div>
       <div class="relative mx-auto max-w-7xl px-6 lg:px-12 py-20 lg:py-32">
         <div class="max-w-2xl text-background">
-          <p class="text-background/60 text-xs tracking-[0.3em] uppercase mb-6">Our Philosophy</p>
+          <p class="text-background/60 text-xs tracking-[0.3em] uppercase mb-6">{{ $t('campaign.kitchen.story.label') }}</p>
           <h2 class="font-serif text-4xl lg:text-5xl mb-6 leading-tight">
-            Great design should be <span class="italic">accessible</span> to everyone
+            <i18n-t keypath="campaign.kitchen.story.title" tag="span">
+              <template #highlight>
+                <span class="italic">{{ $t('campaign.kitchen.story.highlight') }}</span>
+              </template>
+            </i18n-t>
           </h2>
           <p class="text-background/70 text-lg font-light leading-relaxed mb-8">
-            We believe that surrounding yourself with beautiful, functional objects shouldn't require a second mortgage. 
-            That's why we've curated this collection of kitchen essentials—each under €100, each a testament to 
-            thoughtful design that elevates the everyday.
+            {{ $t('campaign.kitchen.story.description') }}
           </p>
           <div class="flex flex-wrap gap-8 text-sm">
             <div>
               <p class="text-3xl font-serif text-primary mb-1">100+</p>
-              <p class="text-background/60">Products under €100</p>
+              <p class="text-background/60">{{ $t('campaign.kitchen.story.stats.products') }}</p>
             </div>
             <div>
               <p class="text-3xl font-serif text-primary mb-1">4.8</p>
-              <p class="text-background/60">Average rating</p>
+              <p class="text-background/60">{{ $t('campaign.kitchen.story.stats.rating') }}</p>
             </div>
             <div>
               <p class="text-3xl font-serif text-primary mb-1">2yr</p>
-              <p class="text-background/60">Warranty included</p>
+              <p class="text-background/60">{{ $t('campaign.kitchen.story.stats.warranty') }}</p>
             </div>
           </div>
         </div>
@@ -238,11 +247,11 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
           <div>
-            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">More to Explore</p>
-            <h2 class="font-serif text-3xl lg:text-4xl">Complete the Look</h2>
+            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">{{ $t('campaign.kitchen.showcase.label') }}</p>
+            <h2 class="font-serif text-3xl lg:text-4xl">{{ $t('campaign.kitchen.showcase.title') }}</h2>
           </div>
           <NuxtLink to="/kitchen" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            View all kitchen →
+            {{ $t('campaign.kitchen.showcase.viewAll') }}
           </NuxtLink>
         </div>
         
@@ -263,7 +272,7 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
                 <!-- Quick Add Overlay -->
                 <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
                 <button class="absolute bottom-4 left-4 right-4 bg-background/95 backdrop-blur-sm py-3 text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  Quick View
+                  {{ $t('actions.quickView') }}
                 </button>
               </div>
               <div>
@@ -280,26 +289,25 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
     <!-- Newsletter / CTA Section -->
     <section class="py-20 lg:py-28 bg-shade">
       <div class="mx-auto max-w-3xl px-6 lg:px-12 text-center">
-        <p class="text-primary text-xs tracking-[0.3em] uppercase font-medium mb-4">Stay in the Loop</p>
+        <p class="text-primary text-xs tracking-[0.3em] uppercase font-medium mb-4">{{ $t('campaign.kitchen.newsletter.label') }}</p>
         <h2 class="font-serif text-4xl lg:text-5xl mb-6">
-          Never Miss a Deal
+          {{ $t('campaign.kitchen.newsletter.title') }}
         </h2>
         <p class="text-muted-foreground text-lg font-light mb-10 max-w-xl mx-auto">
-          Subscribe to our newsletter and be the first to know about new arrivals, 
-          exclusive offers, and curated collections like this one.
+          {{ $t('campaign.kitchen.newsletter.description') }}
         </p>
         <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
           <input 
             type="email" 
-            placeholder="Enter your email"
+            :placeholder="$t('campaign.kitchen.newsletter.placeholder')"
             class="flex-1 h-14 px-6 bg-background border border-border focus:border-foreground focus:outline-none transition-colors"
           />
           <button class="h-14 px-8 bg-foreground text-background text-sm tracking-wide uppercase hover:bg-foreground/90 transition-colors">
-            Subscribe
+            {{ $t('actions.subscribe') }}
           </button>
         </div>
         <p class="text-xs text-muted-foreground mt-4">
-          No spam, ever. Unsubscribe anytime.
+          {{ $t('campaign.kitchen.newsletter.disclaimer') }}
         </p>
       </div>
     </section>
@@ -309,10 +317,10 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p class="text-lg font-light">
-            Ready to transform your kitchen? <span class="font-medium">Shop all essentials under €100</span>
+            {{ $t('campaign.kitchen.cta.text') }} <span class="font-medium">{{ $t('campaign.kitchen.cta.highlight') }}</span>
           </p>
           <NuxtLink to="/kitchen" class="inline-flex items-center gap-2 border border-primary-foreground/30 px-6 py-3 text-sm tracking-wide uppercase hover:bg-primary-foreground hover:text-primary transition-all">
-            Shop Now
+            {{ $t('actions.shopNow') }}
             <IconArrowRight class="size-4" />
           </NuxtLink>
         </div>

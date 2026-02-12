@@ -9,12 +9,53 @@
     "update-item": "{item} aktualisieren",
     "show-all": "Alle",
     "shop-all": "Alle Produkte",
-    "back": "Zurück"
+    "back": "Zurück",
+    "explore": "Entdecken",
+    "discover": "Entdecken",
+    "viewAll": "Alle anzeigen →",
+    "shopNow": "Jetzt einkaufen",
+    "shopTheEdit": "Kollektion entdecken",
+    "viewProduct": "Produkt ansehen",
+    "viewCollection": "Kollektion ansehen",
+    "exploreCollection": "Kollektion entdecken",
+    "quickView": "Schnellansicht",
+    "subscribe": "Abonnieren",
+    "ourStory": "Unsere Geschichte"
   },
   "brand": "Flagship Store",
   "brands": {
     "label": "Marken",
-    "description": "Entdecken Sie unsere ausgewählte Auswahl an Premium-Marken"
+    "description": "Entdecken Sie unsere ausgewählte Auswahl an Premium-Marken",
+    "hero": {
+      "label": "Kuratierte Exzellenz",
+      "title": "Die Macher",
+      "description": "Entdecken Sie die Handwerker und Visionäre hinter unserer Kollektion. Jede Marke erzählt eine Geschichte von Handwerkskunst, Innovation und zeitlosem Design."
+    },
+    "featured": {
+      "label": "Ausgewählte Marke",
+      "description": "Entdecken Sie eine Welt, in der Form auf Funktion trifft, wo jedes Stück eine Geschichte von sorgfältiger Handwerkskunst und durchdachtem Design erzählt."
+    },
+    "highlighted": {
+      "label": "Signature Kollektionen",
+      "title": "Marken, die wir lieben",
+      "cardDescription": "Entdecken Sie die vollständige Kollektion durchdacht gestalteter Stücke."
+    },
+    "philosophy": {
+      "label": "Unsere Philosophie",
+      "quote": "\"Wir glauben an die Kraft durchdachten Designs, {highlight} in bedeutungsvolle Erlebnisse zu verwandeln.\"",
+      "highlight": "alltägliche Momente",
+      "description": "Jede Marke in unserer Kollektion teilt diese Vision – Stücke zu schaffen, die schön, funktional und langlebig sind."
+    },
+    "directory": {
+      "label": "Vollständiges Verzeichnis",
+      "title": "Alle Marken",
+      "description": "Durchstöbern Sie unsere vollständige Sammlung sorgfältig ausgewählter Marken, die alle für ihr Engagement für Qualität und Design-Exzellenz ausgewählt wurden."
+    },
+    "cta": {
+      "title": "Möchten Sie mehr über unsere Marken erfahren?",
+      "description": "Entdecken Sie die Geschichten, Handwerkskunst und Inspiration hinter jeder Kollektion."
+    },
+    "scroll": "Entdecken"
   },
   "carousel": {
     "goto": "Gehe zu Bild {slide}",
@@ -272,21 +313,57 @@
   },
   "home": {
     "hero": {
+      "label": "Neue Saison 2025",
       "title": "Fühl Dich wohl in Deinem Zuhause",
+      "description": "Kuratierte Stücke, die Räume in Oasen des modernen Lebens verwandeln.",
       "button": "Jetzt einkaufen",
-      "imageAlt": "Gemütlich eingerichtetes Wohnzimmer"
+      "imageAlt": "Gemütlich eingerichtetes Wohnzimmer",
+      "scroll": "Scrollen"
     },
+    "promo": {
+      "label": "Zeitlich begrenzt",
+      "title": "Küchen",
+      "titleHighlight": "Essentials",
+      "price": "Unter",
+      "description": "Verwandeln Sie Ihren Kochbereich, ohne Ihr Budget zu sprengen. {count}+ Stücke für Sie kuratiert.",
+      "startingAt": "Ab"
+    },
+    "quote": "\"Wir glauben an die Kraft durchdachten Designs – Stücke, die Handwerkskunst ehren, Nachhaltigkeit umarmen und Räume schaffen, in denen das Leben sich wunderschön entfaltet.\"",
     "categories": {
+      "label": "Kollektionen",
       "title": "Entdecke unsere Kategorien"
     },
     "featured": {
+      "label": "Kuratierte Auswahl",
       "homeBraid": "Home Braid",
       "loungeFurniture": "Wohnmöbel",
-      "rugs": "Teppiche"
+      "loungeDescription": "Versinken Sie in unvergleichlichem Komfort mit unserer Signature Lounge-Kollektion. Jedes Stück wird mit größter Sorgfalt gefertigt.",
+      "rugs": "Teppiche",
+      "artisanTextiles": "Handwerkliche Textilien",
+      "artisanSubtitle": "Handgefertigte Details",
+      "naturalMaterials": "Natürliche Materialien",
+      "naturalSubtitle": "Nachhaltige Eleganz"
+    },
+    "values": {
+      "label": "Unser Versprechen",
+      "title": "Mit Absicht gefertigt",
+      "sustainable": {
+        "title": "Nachhaltige Materialien",
+        "description": "Verantwortungsvoll beschaffte Materialien, die sowohl Handwerkskunst als auch unseren Planeten ehren."
+      },
+      "artisan": {
+        "title": "Handwerklich gefertigt",
+        "description": "Hergestellt von erfahrenen Handwerkern, die Generationen von Expertise in jedes Stück einbringen."
+      },
+      "quality": {
+        "title": "Lebenslange Qualität",
+        "description": "Gebaut für Generationen, mit einem Engagement für zeitloses Design."
+      }
     },
     "newArrivals": {
       "label": "Neuheiten",
       "title": "Jede Woche neue und exklusive Angebote",
+      "description": "Entdecken Sie unsere neuesten Ankünfte – durchdacht gestaltete Stücke, die jedem Raum Wärme verleihen.",
       "button": "Jetzt einkaufen"
     },
     "teaser": {
@@ -304,6 +381,63 @@
       "season": {
         "button": "Bekleidung für jeden Weg",
         "title": "Rüsten Sie sich für alle Jahreszeiten"
+      }
+    }
+  },
+  "campaign": {
+    "kitchen": {
+      "hero": {
+        "label": "Zeitlich begrenztes Angebot",
+        "title": "Küchen",
+        "titleHighlight": "Essentials",
+        "price": "Unter 100 €",
+        "description": "Verwandeln Sie Ihren Kochbereich, ohne Ihr Budget zu sprengen. Entdecken Sie durchdacht gestaltete Stücke, die beweisen, dass Luxus keinen Überfluss erfordert.",
+        "piecesCurated": "{count}+ kuratierte Stücke"
+      },
+      "valueProps": {
+        "freeShipping": "Kostenloser Versand ab 30 €",
+        "easyReturns": "Einfache 30-Tage-Rückgabe",
+        "warranty": "2 Jahre Garantie"
+      },
+      "quote": {
+        "text": "\"Die Küche ist das Herz des Hauses – und jedes Herz verdient {highlight}, die das Budget nicht sprengen.\"",
+        "highlight": "schöne Dinge",
+        "attribution": "— Das CT Demo Shop Edit"
+      },
+      "featured": {
+        "label": "Das Edit",
+        "title": "Handverlesene Favoriten",
+        "description": "Jedes Stück ausgewählt für seine perfekte Balance aus Form, Funktion und Wert.",
+        "bestValue": "Bester Wert",
+        "productDescription": "Die perfekte Ergänzung für jede Küche, die zeitloses Design mit alltäglicher Praktikabilität verbindet.",
+        "shopNow": "Jetzt kaufen →"
+      },
+      "story": {
+        "label": "Unsere Philosophie",
+        "title": "Großartiges Design sollte für jeden {highlight} sein",
+        "highlight": "zugänglich",
+        "description": "Wir glauben, dass es keine zweite Hypothek erfordern sollte, sich mit schönen, funktionalen Objekten zu umgeben. Deshalb haben wir diese Kollektion von Küchenutensilien kuratiert – jedes unter 100 €, jedes ein Zeugnis durchdachten Designs, das den Alltag aufwertet.",
+        "stats": {
+          "products": "Produkte unter 100 €",
+          "rating": "Durchschnittliche Bewertung",
+          "warranty": "Garantie inklusive"
+        }
+      },
+      "showcase": {
+        "label": "Mehr entdecken",
+        "title": "Den Look vervollständigen",
+        "viewAll": "Alle Küchen ansehen →"
+      },
+      "newsletter": {
+        "label": "Bleiben Sie informiert",
+        "title": "Kein Angebot verpassen",
+        "description": "Abonnieren Sie unseren Newsletter und erfahren Sie als Erster von Neuheiten, exklusiven Angeboten und kuratierten Kollektionen wie dieser.",
+        "placeholder": "E-Mail eingeben",
+        "disclaimer": "Kein Spam, niemals. Jederzeit abmelden."
+      },
+      "cta": {
+        "text": "Bereit, Ihre Küche zu verwandeln?",
+        "highlight": "Alle Essentials unter 100 € kaufen"
       }
     }
   },
@@ -333,6 +467,7 @@
     "continue-shopping": "Weiter Einkaufen"
   },
   "product": {
+    "featured": "Empfohlen",
     "buy": {
       "add-to-cart": "In den Warenkorb"
     },
@@ -410,7 +545,7 @@
     "search-listing": "Alle {count} Ergebnisse anzeigen"
   },
   "social": {
-    "description": "Tagge  {'@'}flagshipstore auf Instagram für die Chance, dein Bild hier zu sehen.",
+    "description": "Tagge {'@'}flagshipstore auf Instagram für die Chance, dein Bild hier zu sehen.",
     "title": "Werde Teil der Adventure Community"
   }
 }

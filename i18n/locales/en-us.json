@@ -9,12 +9,53 @@
     "update-item": "Update {item}",
     "show-all": "All",
     "shop-all": "Shop All",
-    "back": "Back"
+    "back": "Back",
+    "explore": "Explore",
+    "discover": "Discover",
+    "viewAll": "View all →",
+    "shopNow": "Shop Now",
+    "shopTheEdit": "Shop the Edit",
+    "viewProduct": "View Product",
+    "viewCollection": "View Collection",
+    "exploreCollection": "Explore Collection",
+    "quickView": "Quick View",
+    "subscribe": "Subscribe",
+    "ourStory": "Our Story"
   },
   "brand": "Flagship Store",
   "brands": {
     "label": "Brands",
-    "description": "Discover our curated selection of premium brands"
+    "description": "Discover our curated selection of premium brands",
+    "hero": {
+      "label": "Curated Excellence",
+      "title": "The Makers",
+      "description": "Discover the artisans and visionaries behind our collection. Each brand tells a story of craftsmanship, innovation, and timeless design."
+    },
+    "featured": {
+      "label": "Featured Brand",
+      "description": "Discover a world where form meets function, where every piece tells a story of meticulous craftsmanship and thoughtful design."
+    },
+    "highlighted": {
+      "label": "Signature Collections",
+      "title": "Brands We Love",
+      "cardDescription": "Explore the complete collection of thoughtfully designed pieces."
+    },
+    "philosophy": {
+      "label": "Our Philosophy",
+      "quote": "\"We believe in the power of thoughtful design to transform {highlight} into meaningful experiences.\"",
+      "highlight": "everyday moments",
+      "description": "Each brand in our collection shares this vision—creating pieces that are beautiful, functional, and built to last."
+    },
+    "directory": {
+      "label": "Complete Directory",
+      "title": "All Brands",
+      "description": "Browse our complete collection of carefully selected brands, each chosen for their commitment to quality and design excellence."
+    },
+    "cta": {
+      "title": "Want to learn more about our brands?",
+      "description": "Discover the stories, craftsmanship, and inspiration behind each collection."
+    },
+    "scroll": "Explore"
   },
   "carousel": {
     "goto": "Go to slide {slide}",
@@ -272,21 +313,57 @@
   },
   "home": {
     "hero": {
+      "label": "New Season 2025",
       "title": "Feel the comfort of your home",
+      "description": "Curated pieces that transform spaces into sanctuaries of modern living.",
       "button": "Shop Now",
-      "imageAlt": "Comfortable living room"
+      "imageAlt": "Comfortable living room",
+      "scroll": "Scroll"
     },
+    "promo": {
+      "label": "Limited Time",
+      "title": "Kitchen",
+      "titleHighlight": "Essentials",
+      "price": "Under",
+      "description": "Transform your culinary space without transforming your budget. {count}+ pieces curated for you.",
+      "startingAt": "Starting at"
+    },
+    "quote": "\"We believe in the power of thoughtful design—pieces that honor craftsmanship, embrace sustainability, and create spaces where life unfolds beautifully.\"",
     "categories": {
+      "label": "Collections",
       "title": "Explore our categories"
     },
     "featured": {
+      "label": "Curated Selection",
       "homeBraid": "Home Braid",
       "loungeFurniture": "Lounge Furniture",
-      "rugs": "Rugs"
+      "loungeDescription": "Sink into unparalleled comfort with our signature lounge collection. Each piece is crafted with meticulous attention to detail.",
+      "rugs": "Rugs",
+      "artisanTextiles": "Artisan Textiles",
+      "artisanSubtitle": "Handcrafted details",
+      "naturalMaterials": "Natural Materials",
+      "naturalSubtitle": "Sustainable luxury"
+    },
+    "values": {
+      "label": "Our Promise",
+      "title": "Crafted with intention",
+      "sustainable": {
+        "title": "Sustainable Materials",
+        "description": "Responsibly sourced materials that honor both craftsmanship and our planet."
+      },
+      "artisan": {
+        "title": "Artisan Crafted",
+        "description": "Made by skilled artisans who bring generations of expertise to every piece."
+      },
+      "quality": {
+        "title": "Lifetime Quality",
+        "description": "Built to last generations, with a commitment to timeless design."
+      }
     },
     "newArrivals": {
       "label": "New Arrivals",
       "title": "Special and exclusive offers every week",
+      "description": "Discover our latest arrivals—thoughtfully designed pieces that bring warmth to every space.",
       "button": "Shop Now"
     },
     "teaser": {
@@ -304,6 +381,63 @@
       "season": {
         "button": "Apparel That Goes the Distance",
         "title": "Gear up for All Seasons"
+      }
+    }
+  },
+  "campaign": {
+    "kitchen": {
+      "hero": {
+        "label": "Limited Time Offer",
+        "title": "Kitchen",
+        "titleHighlight": "Essentials",
+        "price": "Under €100",
+        "description": "Transform your culinary space without transforming your budget. Discover thoughtfully designed pieces that prove luxury doesn't require excess.",
+        "piecesCurated": "{count}+ pieces curated"
+      },
+      "valueProps": {
+        "freeShipping": "Free shipping over €30",
+        "easyReturns": "Easy 30-day returns",
+        "warranty": "2-year warranty"
+      },
+      "quote": {
+        "text": "\"The kitchen is the heart of the home—and every heart deserves {highlight} that don't break the bank.\"",
+        "highlight": "beautiful things",
+        "attribution": "— The CT Demo Shop Edit"
+      },
+      "featured": {
+        "label": "The Edit",
+        "title": "Handpicked Favorites",
+        "description": "Each piece selected for its perfect balance of form, function, and value.",
+        "bestValue": "Best Value",
+        "productDescription": "The perfect addition to any kitchen, combining timeless design with everyday practicality.",
+        "shopNow": "Shop now →"
+      },
+      "story": {
+        "label": "Our Philosophy",
+        "title": "Great design should be {highlight} to everyone",
+        "highlight": "accessible",
+        "description": "We believe that surrounding yourself with beautiful, functional objects shouldn't require a second mortgage. That's why we've curated this collection of kitchen essentials—each under €100, each a testament to thoughtful design that elevates the everyday.",
+        "stats": {
+          "products": "Products under €100",
+          "rating": "Average rating",
+          "warranty": "Warranty included"
+        }
+      },
+      "showcase": {
+        "label": "More to Explore",
+        "title": "Complete the Look",
+        "viewAll": "View all kitchen →"
+      },
+      "newsletter": {
+        "label": "Stay in the Loop",
+        "title": "Never Miss a Deal",
+        "description": "Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and curated collections like this one.",
+        "placeholder": "Enter your email",
+        "disclaimer": "No spam, ever. Unsubscribe anytime."
+      },
+      "cta": {
+        "text": "Ready to transform your kitchen?",
+        "highlight": "Shop all essentials under €100"
       }
     }
   },
@@ -333,6 +467,7 @@
     "continue-shopping": "Continue Shopping"
   },
   "product": {
+    "featured": "Featured",
     "buy": {
       "add-to-cart": "Add to Cart"
     },

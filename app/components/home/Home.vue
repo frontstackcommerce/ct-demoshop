@@ -1,4 +1,5 @@
 <script setup lang="ts">
+const { t } = useI18n()
 const { fullTree } = useShopMenu()
 
 const images = [
@@ -16,26 +17,26 @@ const categories = computed(() => {
   }))]
 })
 
-const featuredProducts = [
+const featuredProducts = computed(() => [
   {
     image: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Traditional_L_Seater_Sofa-1.3.jpeg',
-    title: 'The Lounge Collection',
-    subtitle: 'Timeless comfort',
+    title: t('home.featured.loungeFurniture'),
+    subtitle: t('home.featured.artisanSubtitle'),
     link: '/traditional-l-seater-sofa'
   },
   {
     image: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Braided_Rug-1.2.jpeg',
-    title: 'Artisan Textiles',
-    subtitle: 'Handcrafted details',
+    title: t('home.featured.artisanTextiles'),
+    subtitle: t('home.featured.artisanSubtitle'),
     link: '/braided-rug'
   },
   {
     image: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Jute_Rug-1.3.jpeg',
-    title: 'Natural Materials',
-    subtitle: 'Sustainable luxury',
+    title: t('home.featured.naturalMaterials'),
+    subtitle: t('home.featured.naturalSubtitle'),
     link: '/jute-rug'
   },
-]
+])
 
 // Kitchen promo images - using verified working images
 const kitchenImages = {
@@ -77,7 +78,7 @@ onMounted(() => {
               class="text-white/60 text-xs sm:text-sm tracking-[0.3em] uppercase mb-6 transition-all duration-700 ease-out"
               :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'"
             >
-              New Season 2025
+              {{ $t('home.hero.label') }}
             </p>
             
             <!-- Headline -->
@@ -93,7 +94,7 @@ onMounted(() => {
               class="text-white/70 text-base sm:text-lg lg:text-xl font-light max-w-xl mx-auto mb-10 leading-relaxed transition-all duration-700 ease-out delay-200"
               :class="isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'"
             >
-              Curated pieces that transform spaces into sanctuaries of modern living.
+              {{ $t('home.hero.description') }}
             </p>
             
             <!-- CTA Button -->
@@ -118,7 +119,7 @@ onMounted(() => {
         :class="isLoaded ? 'opacity-100' : 'opacity-0'"
       >
         <div class="flex flex-col items-center gap-2">
-          <span class="text-white/40 text-[10px] tracking-widest uppercase">Scroll</span>
+          <span class="text-white/40 text-[10px] tracking-widest uppercase">{{ $t('home.hero.scroll') }}</span>
           <div class="w-px h-8 bg-gradient-to-b from-white/40 to-transparent" />
         </div>
       </div>
@@ -136,20 +137,20 @@ onMounted(() => {
             
             <div class="relative z-10 max-w-lg text-center">
               <span class="inline-block bg-white/20 text-white text-xs tracking-widest uppercase px-4 py-2 mb-6">
-                Limited Time
+                {{ $t('home.promo.label') }}
               </span>
               <h2 class="font-serif text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.1] mb-4">
-                Kitchen<br>
-                <span class="italic">Essentials</span>
+                {{ $t('home.promo.title') }}<br>
+                <span class="italic">{{ $t('home.promo.titleHighlight') }}</span>
               </h2>
               <p class="text-white/80 text-xl lg:text-2xl font-light mb-6">
-                Under <span class="font-serif text-3xl lg:text-4xl">€100</span>
+                {{ $t('home.promo.price') }} <span class="font-serif text-3xl lg:text-4xl">€100</span>
               </p>
               <p class="text-white/60 font-light mb-8 max-w-sm mx-auto">
-                Transform your culinary space without transforming your budget. 100+ pieces curated for you.
+                {{ $t('home.promo.description', { count: '100' }) }}
               </p>
               <span class="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 text-sm tracking-wide uppercase group-hover:bg-white/90 transition-all duration-300">
-                Shop the Edit
+                {{ $t('actions.shopTheEdit') }}
                 <IconArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </span>
             </div>
@@ -186,7 +187,7 @@ onMounted(() => {
             </div>
             <!-- Floating Price Badge -->
             <div class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 bg-white px-5 py-3 shadow-lg z-10">
-              <p class="text-xs text-muted-foreground tracking-wider uppercase">Starting at</p>
+              <p class="text-xs text-muted-foreground tracking-wider uppercase">{{ $t('home.promo.startingAt') }}</p>
               <p class="font-serif text-2xl text-foreground">€9.99</p>
             </div>
           </div>
@@ -198,8 +199,7 @@ onMounted(() => {
     <section class="py-20 lg:py-28 bg-background">
       <div class="mx-auto max-w-4xl px-6 lg:px-12 text-center">
         <p class="font-serif italic text-xl sm:text-2xl lg:text-3xl text-foreground/70 leading-relaxed">
-          "We believe in the power of thoughtful design—pieces that honor craftsmanship, 
-          embrace sustainability, and create spaces where life unfolds beautifully."
+          {{ $t('home.quote') }}
         </p>
       </div>
     </section>
@@ -210,11 +210,11 @@ onMounted(() => {
         <!-- Section Header -->
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10 lg:mb-14">
           <div>
-            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">Collections</p>
+            <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">{{ $t('home.categories.label') }}</p>
             <h2 class="font-serif text-3xl lg:text-4xl">{{ $t('home.categories.title') }}</h2>
           </div>
           <NuxtLink to="/categories" class="text-sm text-muted-foreground hover:text-foreground transition-colors">
-            View all →
+            {{ $t('actions.viewAll') }}
           </NuxtLink>
         </div>
         
@@ -251,7 +251,7 @@ onMounted(() => {
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <!-- Section Header -->
         <div class="mb-12 lg:mb-20">
-          <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">Curated Selection</p>
+          <p class="text-primary text-xs tracking-[0.2em] uppercase font-medium mb-2">{{ $t('home.featured.label') }}</p>
           <h2 class="font-serif text-3xl lg:text-4xl">{{ $t('home.featured.loungeFurniture') }}</h2>
         </div>
         
@@ -270,12 +270,11 @@ onMounted(() => {
             <p class="text-muted-foreground text-sm tracking-wider uppercase mb-4">01</p>
             <h3 class="font-serif text-3xl lg:text-4xl xl:text-5xl mb-6">{{ featuredProducts[0]?.title }}</h3>
             <p class="text-muted-foreground text-lg font-light leading-relaxed mb-8 max-w-md">
-              Sink into unparalleled comfort with our signature lounge collection. 
-              Each piece is crafted with meticulous attention to detail.
+              {{ $t('home.featured.loungeDescription') }}
             </p>
             <NuxtLink :to="featuredProducts[0]?.link">
               <button class="group inline-flex items-center gap-2 border border-foreground text-foreground px-6 py-3 text-sm tracking-wide uppercase hover:bg-foreground hover:text-background transition-all duration-300">
-                Explore
+                {{ $t('actions.explore') }}
                 <IconArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
               </button>
             </NuxtLink>
@@ -310,8 +309,8 @@ onMounted(() => {
         <div class="grid lg:grid-cols-4 gap-10 lg:gap-8">
           <!-- Header -->
           <div>
-            <p class="text-background/40 text-xs tracking-[0.2em] uppercase mb-2">Our Promise</p>
-            <h2 class="font-serif text-2xl lg:text-3xl">Crafted with intention</h2>
+            <p class="text-background/40 text-xs tracking-[0.2em] uppercase mb-2">{{ $t('home.values.label') }}</p>
+            <h2 class="font-serif text-2xl lg:text-3xl">{{ $t('home.values.title') }}</h2>
           </div>
           
           <!-- Values -->
@@ -320,9 +319,9 @@ onMounted(() => {
               <div class="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center mb-5">
                 <IconLeaf class="size-4 text-background/60" />
               </div>
-              <h3 class="font-medium mb-2">Sustainable Materials</h3>
+              <h3 class="font-medium mb-2">{{ $t('home.values.sustainable.title') }}</h3>
               <p class="text-background/50 text-sm font-light leading-relaxed">
-                Responsibly sourced materials that honor both craftsmanship and our planet.
+                {{ $t('home.values.sustainable.description') }}
               </p>
             </div>
             
@@ -330,9 +329,9 @@ onMounted(() => {
               <div class="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center mb-5">
                 <IconHeart class="size-4 text-background/60" />
               </div>
-              <h3 class="font-medium mb-2">Artisan Crafted</h3>
+              <h3 class="font-medium mb-2">{{ $t('home.values.artisan.title') }}</h3>
               <p class="text-background/50 text-sm font-light leading-relaxed">
-                Made by skilled artisans who bring generations of expertise to every piece.
+                {{ $t('home.values.artisan.description') }}
               </p>
             </div>
             
@@ -340,9 +339,9 @@ onMounted(() => {
               <div class="w-10 h-10 rounded-full border border-background/20 flex items-center justify-center mb-5">
                 <IconShield class="size-4 text-background/60" />
               </div>
-              <h3 class="font-medium mb-2">Lifetime Quality</h3>
+              <h3 class="font-medium mb-2">{{ $t('home.values.quality.title') }}</h3>
               <p class="text-background/50 text-sm font-light leading-relaxed">
-                Built to last generations, with a commitment to timeless design.
+                {{ $t('home.values.quality.description') }}
               </p>
             </div>
           </div>
@@ -360,7 +359,7 @@ onMounted(() => {
           {{ $t('home.newArrivals.title') }}
         </h2>
         <p class="text-muted-foreground text-lg font-light max-w-lg mx-auto mb-10">
-          Discover our latest arrivals—thoughtfully designed pieces that bring warmth to every space.
+          {{ $t('home.newArrivals.description') }}
         </p>
         <NuxtLink to="/new-arrivals">
           <button class="inline-flex items-center gap-2 bg-foreground text-background px-8 py-4 text-sm tracking-wide uppercase hover:bg-foreground/90 transition-colors duration-300">
