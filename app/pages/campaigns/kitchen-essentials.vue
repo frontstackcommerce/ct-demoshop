@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import client from '../../../.frontstack/generated-client'
 
-// Fetch products under €50 (5000 cents)
+// Fetch products under €100 (10000 cents)
 const { data: products, status } = await useAsyncData('kitchen-products', async () => {
   const response = await client.listing('ProductSearch', {}, {
     query: {
@@ -10,7 +10,7 @@ const { data: products, status } = await useAsyncData('kitchen-products', async 
           type: 'range',
           field: 'price.amount',
           from: 100,
-          to: 5000
+          to: 10000
         }
       ],
       sort: {
@@ -57,7 +57,7 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
           >
             Kitchen<br>
             <span class="italic text-primary">Essentials</span><br>
-            Under €50
+            Under €100
           </h1>
           <p 
             class="text-muted-foreground text-lg lg:text-xl font-light leading-relaxed mb-10 transition-all duration-700 delay-200"
@@ -212,13 +212,13 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
           </h2>
           <p class="text-background/70 text-lg font-light leading-relaxed mb-8">
             We believe that surrounding yourself with beautiful, functional objects shouldn't require a second mortgage. 
-            That's why we've curated this collection of kitchen essentials—each under €50, each a testament to 
+            That's why we've curated this collection of kitchen essentials—each under €100, each a testament to 
             thoughtful design that elevates the everyday.
           </p>
           <div class="flex flex-wrap gap-8 text-sm">
             <div>
-              <p class="text-3xl font-serif text-primary mb-1">50+</p>
-              <p class="text-background/60">Products under €50</p>
+              <p class="text-3xl font-serif text-primary mb-1">100+</p>
+              <p class="text-background/60">Products under €100</p>
             </div>
             <div>
               <p class="text-3xl font-serif text-primary mb-1">4.8</p>
@@ -309,7 +309,7 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
       <div class="mx-auto max-w-7xl px-6 lg:px-12">
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p class="text-lg font-light">
-            Ready to transform your kitchen? <span class="font-medium">Shop all essentials under €50</span>
+            Ready to transform your kitchen? <span class="font-medium">Shop all essentials under €100</span>
           </p>
           <NuxtLink to="/kitchen" class="inline-flex items-center gap-2 border border-primary-foreground/30 px-6 py-3 text-sm tracking-wide uppercase hover:bg-primary-foreground hover:text-primary transition-all">
             Shop Now

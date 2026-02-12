@@ -143,10 +143,10 @@ onMounted(() => {
                 <span class="italic">Essentials</span>
               </h2>
               <p class="text-white/80 text-xl lg:text-2xl font-light mb-6">
-                Under <span class="font-serif text-3xl lg:text-4xl">€50</span>
+                Under <span class="font-serif text-3xl lg:text-4xl">€100</span>
               </p>
               <p class="text-white/60 font-light mb-8 max-w-sm mx-auto">
-                Transform your culinary space without transforming your budget. 50+ pieces curated for you.
+                Transform your culinary space without transforming your budget. 100+ pieces curated for you.
               </p>
               <span class="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 text-sm tracking-wide uppercase group-hover:bg-white/90 transition-all duration-300">
                 Shop the Edit
