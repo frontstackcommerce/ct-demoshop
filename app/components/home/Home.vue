@@ -128,13 +128,13 @@ onMounted(() => {
     <section class="relative overflow-hidden">
       <NuxtLink to="/campaigns/kitchen-essentials" class="group block">
         <div class="grid lg:grid-cols-2">
-          <!-- Left: Content -->
-          <div class="relative bg-primary flex items-center px-8 lg:px-16 py-16 lg:py-24 order-2 lg:order-1 min-h-[400px] lg:min-h-[500px]">
+          <!-- Left: Content - Centered horizontally and vertically -->
+          <div class="relative bg-primary flex items-center justify-center px-8 lg:px-16 py-16 lg:py-24 order-2 lg:order-1 min-h-[400px] lg:min-h-[500px]">
             <!-- Decorative Elements -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
             
-            <div class="relative z-10 max-w-lg">
+            <div class="relative z-10 max-w-lg text-center">
               <span class="inline-block bg-white/20 text-white text-xs tracking-widest uppercase px-4 py-2 mb-6">
                 Limited Time
               </span>
@@ -145,7 +145,7 @@ onMounted(() => {
               <p class="text-white/80 text-xl lg:text-2xl font-light mb-6">
                 Under <span class="font-serif text-3xl lg:text-4xl">€50</span>
               </p>
-              <p class="text-white/60 font-light mb-8 max-w-sm">
+              <p class="text-white/60 font-light mb-8 max-w-sm mx-auto">
                 Transform your culinary space without transforming your budget. 50+ pieces curated for you.
               </p>
               <span class="inline-flex items-center gap-3 bg-white text-primary px-8 py-4 text-sm tracking-wide uppercase group-hover:bg-white/90 transition-all duration-300">
