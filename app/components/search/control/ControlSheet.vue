@@ -49,124 +49,123 @@ function handleClearSearch() {
 <template>
   <Sheet v-model:open="open">
     <SheetTrigger as-child>
-      <Button variant="link" class="relative flex items-center gap-2">
-        <IconSettings2 :size="16" />
-        {{ $t('control.button') }}
+      <Button variant="ghost" class="relative flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+        <IconSlidersHorizontal :size="18" />
+        <span>{{ $t('control.button') }}</span>
         <ClientOnly>
-          <div
+          <span
             v-if="activeFilterCount > 0"
-            class="bg-active absolute top-[-0.4em] right-[-0.4em] flex size-5 items-center justify-center rounded-full text-xs"
+            class="flex items-center justify-center size-5 rounded-full bg-primary text-primary-foreground text-xs font-medium"
           >
-            <span class="text-active-foreground">{{ activeFilterCount }}</span>
-          </div>
+            {{ activeFilterCount }}
+          </span>
         </ClientOnly>
       </Button>
     </SheetTrigger>
-    <SheetContent class="flex flex-col">
-      <ScrollArea class="flex-1">
-        <div class="sm:pt-12">
-          <div class="mb-4 p-4">
-            <p class="font-display mb-5 text-2xl leading-none font-semibold">
+    
+    <SheetContent class="flex flex-col w-full sm:max-w-md">
+      <SheetHeader class="border-b border-border pb-6">
+        <SheetTitle class="text-editorial text-2xl">Refine Results</SheetTitle>
+      </SheetHeader>
+      
+      <ScrollArea class="flex-1 -mx-6 px-6">
+        <div class="py-6 space-y-8">
+          <!-- Sort -->
+          <div>
+            <h3 class="text-sm font-medium text-foreground mb-4">
               {{ $t('control.sort.title') }}
-            </p>
+            </h3>
             <RadioGroup
               default-value="default"
-              class="gap-y-2.5"
+              class="space-y-3"
               @update:model-value="handleSortResult"
             >
               <div
                 v-for="sortOption in availableSorts"
                 :key="sortOption.key"
-                class="flex items-center space-x-4"
+                class="flex items-center space-x-3"
               >
                 <RadioGroupItem :id="sortOption.key" :value="sortOption.value" />
-                <Label
-                  :for="sortOption.key"
-                  class="text-lg font-medium sm:text-base sm:font-normal"
-                >
+                <Label :for="sortOption.key" class="text-sm font-light text-foreground/80 cursor-pointer">
                   {{ sortOption.label }}
                 </Label>
               </div>
             </RadioGroup>
           </div>
+
+          <!-- Search within category -->
           <template v-if="category">
-            <hr class="my-5" />
-
-            <p class="mb-5 text-lg leading-none font-semibold">
-              {{ $t('control.search.title', { category }) }}
-            </p>
-
-            <div class="relative w-full items-center">
-              <Input
-                ref="autoFocus"
-                :model-value="searchTerm"
-                :placeholder="$t('control.search.placeholder')"
-                class="bg-muted rounded-full py-6 pr-5 pl-10 focus:ring-0 focus-visible:ring-0 focus-visible:ring-offset-0 active:ring-0"
-                @update:model-value="handleUpdateSearch"
-              />
-              <span class="absolute inset-y-0 start-3 flex items-center justify-center">
-                <IconSearch class="text-muted-foreground size-5" />
-              </span>
-              <span
-                v-if="searchTerm.length > 0"
-                class="absolute inset-y-0 end-3 flex items-center justify-center"
-              >
-                <Button size="sm" variant="icon" @click="handleClearSearch">
-                  <IconX class="text-muted-foreground size-6" />
-                </Button>
-              </span>
+            <div>
+              <h3 class="text-sm font-medium text-foreground mb-4">
+                {{ $t('control.search.title', { category }) }}
+              </h3>
+              <div class="relative">
+                <Input
+                  ref="autoFocus"
+                  :model-value="searchTerm"
+                  :placeholder="$t('control.search.placeholder')"
+                  class="h-12 pl-10 pr-10 bg-shade border-0"
+                  @update:model-value="handleUpdateSearch"
+                />
+                <IconSearch class="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-muted-foreground" />
+                <button
+                  v-if="searchTerm.length > 0"
+                  class="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-foreground"
+                  @click="handleClearSearch"
+                >
+                  <IconX class="size-4" />
+                </button>
+              </div>
             </div>
           </template>
-          <hr class="my-5" />
 
-          <p class="font-display mb-3 px-4 text-2xl leading-none font-semibold">
-            {{ $t('control.filters.title') }}
-          </p>
-
-          <div class="">
-            <div v-for="filter in availableFilters" :key="filter.key">
-              <SearchControlFilterText
-                :default-open="false"
-                :filter-field="filter.key"
-                :filter-name="filter.label"
-                :filter-options="filter.options"
-                :active-options="currentFilter?.[filter.key] ?? []"
-                @reset-filter="handleResetFilter"
-                @filter-result="handleFilterResult"
-              >
-                <div class="mr-8 ml-4 flex w-full justify-between py-3">
-                  <span class="text-lg font-medium">{{ filter.label }}</span>
-                  <span>
-                    <SearchControlFilterPreview
-                      :selected-options="currentFilter?.[filter.key] ?? []"
-                    />
-                  </span>
-                </div>
-              </SearchControlFilterText>
+          <!-- Filters -->
+          <div>
+            <h3 class="text-sm font-medium text-foreground mb-4">
+              {{ $t('control.filters.title') }}
+            </h3>
+            <div class="space-y-1">
+              <div v-for="filter in availableFilters" :key="filter.key">
+                <SearchControlFilterText
+                  :default-open="false"
+                  :filter-field="filter.key"
+                  :filter-name="filter.label"
+                  :filter-options="filter.options"
+                  :active-options="currentFilter?.[filter.key] ?? []"
+                  @reset-filter="handleResetFilter"
+                  @filter-result="handleFilterResult"
+                >
+                  <div class="flex w-full items-center justify-between py-3">
+                    <span class="text-sm font-light">{{ filter.label }}</span>
+                    <div class="flex items-center gap-2">
+                      <SearchControlFilterPreview
+                        :selected-options="currentFilter?.[filter.key] ?? []"
+                      />
+                      <IconChevronDown class="size-4 text-muted-foreground" />
+                    </div>
+                  </div>
+                </SearchControlFilterText>
+              </div>
             </div>
           </div>
         </div>
       </ScrollArea>
-      <SheetFooter class="mt-auto">
-        <div class="flex items-center gap-2 sm:flex-col sm:gap-3">
-          <Button size="xl" class="sm:w-full" @click.prevent="emit('closeControl')">
-            <span class="hidden sm:block">{{ $t('control.submit', { count: totalResults }) }}</span>
-            <span class="block sm:hidden"
-              >{{ $t('control.submit-sm') }}
-              {{ $t('default.in-brackets', { text: totalResults }) }}</span
-            >
-          </Button>
-          <Button
-            size="xl"
-            variant="outline"
-            :disabled="!activeFilterCount"
-            class="sm:w-full"
-            @click.prevent="emit('resetFilter')"
-          >
-            <span class="hidden sm:block">{{ $t('control.reset') }}</span>
-            <span class="block sm:hidden">{{ $t('control.reset-sm') }}</span>
-          </Button>
-        </div>
+      
+      <SheetFooter class="border-t border-border pt-6 gap-3">
+        <Button
+          variant="outline"
+          :disabled="!activeFilterCount"
+          class="flex-1 h-12"
+          @click.prevent="emit('resetFilter')"
+        >
+          {{ $t('control.reset') }}
+        </Button>
+        <Button 
+          class="flex-1 h-12"
+          @click.prevent="emit('closeControl')"
+        >
+          {{ $t('control.submit', { count: totalResults }) }}
+        </Button>
       </SheetFooter>
     </SheetContent>
   </Sheet>

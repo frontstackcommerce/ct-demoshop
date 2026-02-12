@@ -1,12 +1,19 @@
 <template>
-  <div class="container mx-auto grid max-w-7xl grid-cols-3 gap-10 px-6 sm:grid-cols-4 sm:gap-4">
-    <div class="col-span-2 max-w-lg">
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
+    <!-- Newsletter - Takes more space -->
+    <div class="lg:col-span-5">
       <LayoutFooterContentNewsletterForm />
     </div>
-    <div class="">
+    
+    <!-- Spacer -->
+    <div class="hidden lg:block lg:col-span-1" />
+    
+    <!-- Links -->
+    <div class="lg:col-span-3">
       <LayoutFooterContentAbout />
     </div>
-    <div class="hidden md:block">
+    
+    <div class="lg:col-span-3">
       <LayoutFooterContentSupport />
     </div>
   </div>

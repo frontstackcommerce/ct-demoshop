@@ -11,5 +11,5 @@ import { PiniaColadaDevtools } from '@pinia/colada-devtools'
       <Toaster :visible-toasts="1" />
     </ClientOnly>
   </NuxtLayout>
-  <PiniaColadaDevtools />
+  <PiniaColadaDevtools v-if="false" />
 </template>

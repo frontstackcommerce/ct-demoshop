@@ -4,7 +4,7 @@ import { cva } from 'class-variance-authority'
 export { default as Button } from './Button.vue'
 
 export const buttonVariants = cva(
-  'inline-flex items-center justify-center whitespace-nowrap edges text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-offset-1 disabled:pointer-events-none disabled:opacity-50',
+  'inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
   {
     variants: {
       variant: {
@@ -22,17 +22,17 @@ export const buttonVariants = cva(
         primary: '',
         secondary: '',
         neutral: '',
-        buy: 'shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300',
+        buy: '',
         checkout: '',
         destructive: '',
         positive: '',
       },
       size: {
-        default: 'h-10 px-4 py-2 md:text-sm text-base',
-        xs: 'h-7  px-2 text-xs',
-        sm: 'h-9  px-3 text-sm',
-        lg: 'h-11 px-8',
-        xl: 'h-16 text-lg sm:h-12 px-10',
+        default: 'h-10 px-5 py-2 text-sm',
+        xs: 'h-7 px-3 text-xs',
+        sm: 'h-9 px-4 text-sm',
+        lg: 'h-12 px-8 text-sm',
+        xl: 'h-14 px-10 text-base',
       },
     },
     defaultVariants: {
@@ -41,6 +41,7 @@ export const buttonVariants = cva(
       size: 'default',
     },
     compoundVariants: [
+      // Default color variants
       {
         color: 'default',
         variant: 'icon',
@@ -49,102 +50,79 @@ export const buttonVariants = cva(
       {
         color: 'default',
         variant: 'default',
-        class: 'bg-neutral text-neutral-foreground hover:bg-neutral/80',
+        class: 'bg-foreground text-background hover:bg-foreground/90',
       },
       {
         color: 'default',
         variant: 'subtle',
-        class: 'bg-neutral/40 border border-neutral/40 text-neutral hover:border-neutral',
+        class: 'bg-shade text-foreground hover:bg-shade-200',
       },
       {
         color: 'default',
         variant: 'outline',
-        class: 'text-neutral border border-neutral hover:bg-neutral hover:text-neutral-foreground',
+        class: 'border border-border text-foreground hover:bg-shade hover:border-foreground/20',
       },
       {
         color: 'default',
         variant: 'ghost',
-        class: 'text-neutral hover:bg-neutral hover:text-neutral-foreground',
+        class: 'text-foreground hover:bg-shade',
       },
       {
         color: 'default',
         variant: 'link',
-        class: 'text-neutral underline-offset-4 hover:underline',
+        class: 'text-foreground underline-offset-4 hover:underline px-0',
       },
       {
         color: 'default',
         variant: 'form',
-        class:
-          'text-neutral border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:outline-none active:ring-2 active:ring-ring active:ring-offset-2  ',
+        class: 'text-foreground border border-border focus-visible:ring-2 focus-visible:ring-ring',
       },
-      {
-        color: 'default',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Inverted color variants
       {
         color: 'inverted',
         variant: 'default',
-        class: 'bg-inverted-foreground text-inverted hover:bg-inverted-foreground/80',
-      },
-      {
-        color: 'inverted',
-        variant: 'subtle',
-        class:
-          'bg-inverted-foreground/40 border border-inverted-foreground/40 text-inverted-foreground hover:border-inverted-foreground',
+        class: 'bg-background text-foreground hover:bg-background/90',
       },
       {
         color: 'inverted',
         variant: 'outline',
-        class:
-          'text-inverted-foreground border border-inverted-foreground hover:bg-inverted-foreground hover:text-inverted',
+        class: 'border border-background/30 text-background hover:bg-background hover:text-foreground',
       },
       {
         color: 'inverted',
         variant: 'ghost',
-        class: 'text-inverted-foreground hover:bg-inverted-foreground hover:text-inverted',
+        class: 'text-background hover:bg-background/10',
       },
       {
         color: 'inverted',
         variant: 'link',
-        class: 'text-inverted-foreground underline-offset-4 hover:underline',
+        class: 'text-background underline-offset-4 hover:underline px-0',
       },
-      {
-        color: 'primary',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Primary color variants
       {
         color: 'primary',
         variant: 'default',
-        class: 'bg-primary text-primary-foreground hover:bg-primary/80',
-      },
-      {
-        color: 'primary',
-        variant: 'subtle',
-        class:
-          'bg-primary/40 border border-primary/40 text-primary-foreground/40 hover:border-primary',
+        class: 'bg-primary text-primary-foreground hover:bg-primary/90',
       },
       {
         color: 'primary',
         variant: 'outline',
-        class: 'text-primary border border-primary hover:bg-primary hover:text-primary-foreground',
+        class: 'border border-primary text-primary hover:bg-primary hover:text-primary-foreground',
       },
       {
         color: 'primary',
         variant: 'ghost',
-        class: 'text-primary hover:bg-primary hover:text-primary-foreground',
+        class: 'text-primary hover:bg-primary/10',
       },
       {
         color: 'primary',
         variant: 'link',
-        class: 'text-primary underline-offset-4 hover:underline',
+        class: 'text-primary underline-offset-4 hover:underline px-0',
       },
-      {
-        color: 'secondary',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Secondary color variants
       {
         color: 'secondary',
         variant: 'default',
@@ -152,151 +130,61 @@ export const buttonVariants = cva(
       },
       {
         color: 'secondary',
-        variant: 'subtle',
-        class:
-          'bg-secondary/40 border border-secondary/40 text-secondary-foreground/40 hover:border-secondary',
-      },
-      {
-        color: 'secondary',
         variant: 'outline',
-        class:
-          'text-secondary border border-secondary hover:bg-secondary hover:text-secondary-foreground',
+        class: 'border border-secondary text-secondary-foreground hover:bg-secondary',
       },
       {
         color: 'secondary',
         variant: 'ghost',
-        class: 'text-secondary hover:bg-secondary hover:text-secondary-foreground',
+        class: 'text-secondary-foreground hover:bg-secondary',
       },
-      {
-        color: 'secondary',
-        variant: 'link',
-        class: 'text-secondary underline-offset-4 hover:underline',
-      },
-      {
-        color: 'buy',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Buy color variants - Special treatment for add to cart
       {
         color: 'buy',
         variant: 'default',
-        class: 'bg-buy text-buy-foreground hover:bg-buy/80 py-8 ',
-      },
-      {
-        color: 'buy',
-        variant: 'subtle',
-        class: 'bg-buy/40 border border-buy/40 text-buy-foreground/40 hover:border-buy py-8 ',
+        class: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-sm hover:shadow-md',
       },
       {
         color: 'buy',
         variant: 'outline',
-        class: 'text-buy border border-buy hover:bg-buy hover:text-buy-foreground py-8 ',
+        class: 'border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground',
       },
-      {
-        color: 'buy',
-        variant: 'ghost',
-        class: 'text-buy hover:bg-buy hover:text-buy-foreground py-8 ',
-      },
-      {
-        color: 'buy',
-        variant: 'link',
-        class: 'text-buy underline-offset-4 hover:underline',
-      },
-      {
-        color: 'checkout',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Checkout color variants
       {
         color: 'checkout',
         variant: 'default',
-        class: 'bg-checkout text-checkout-foreground hover:bg-checkout/80',
+        class: 'bg-foreground text-background hover:bg-foreground/90',
       },
-      {
-        color: 'checkout',
-        variant: 'subtle',
-        class:
-          'bg-checkout/40 border border-checkout/40 text-checkout-foreground/40 hover:border-checkout',
-      },
-      {
-        color: 'checkout',
-        variant: 'outline',
-        class:
-          'text-checkout border border-checkout hover:bg-checkout hover:text-checkout-foreground',
-      },
-      {
-        color: 'checkout',
-        variant: 'ghost',
-        class: 'text-checkout hover:bg-checkout hover:text-checkout-foreground',
-      },
-      {
-        color: 'checkout',
-        variant: 'link',
-        class: 'text-checkout underline-offset-4 hover:underline',
-      },
-      {
-        color: 'destructive',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Destructive color variants
       {
         color: 'destructive',
         variant: 'default',
-        class: 'bg-destructive text-destructive-foreground hover:bg-destructive/80',
-      },
-      {
-        color: 'destructive',
-        variant: 'subtle',
-        class:
-          'bg-destructive/40 border border-destructive/40 text-destructive-foreground/40 hover:border-destructive',
+        class: 'bg-destructive text-destructive-foreground hover:bg-destructive/90',
       },
       {
         color: 'destructive',
         variant: 'outline',
-        class:
-          'text-destructive border border-destructive hover:bg-destructive hover:text-destructive-foreground',
+        class: 'border border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground',
       },
       {
         color: 'destructive',
         variant: 'ghost',
-        class: 'text-destructive hover:bg-destructive hover:text-destructive-foreground',
+        class: 'text-destructive hover:bg-destructive/10',
       },
-      {
-        color: 'destructive',
-        variant: 'link',
-        class: 'text-destructive underline-offset-4 hover:underline',
-      },
-      {
-        color: 'positive',
-        variant: 'icon',
-        class: 'p-2',
-      },
+      
+      // Positive color variants
       {
         color: 'positive',
         variant: 'default',
-        class: 'bg-positive text-positive-foreground hover:bg-positive/80',
-      },
-      {
-        color: 'positive',
-        variant: 'subtle',
-        class:
-          'bg-positive/40 border border-positive/40 text-positive-foreground/40 hover:border-positive',
+        class: 'bg-positive text-positive-foreground hover:bg-positive/90',
       },
       {
         color: 'positive',
         variant: 'outline',
-        class:
-          'text-positive border border-positive hover:bg-positive hover:text-positive-foreground',
-      },
-      {
-        color: 'positive',
-        variant: 'ghost',
-        class: 'text-positive hover:bg-positive hover:text-positive-foreground',
-      },
-      {
-        color: 'positive',
-        variant: 'link',
-        class: 'text-positive underline-offset-4 hover:underline',
+        class: 'border border-positive text-positive hover:bg-positive hover:text-positive-foreground',
       },
     ],
   }

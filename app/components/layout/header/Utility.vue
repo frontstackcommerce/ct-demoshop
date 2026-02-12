@@ -1,10 +1,10 @@
 <template>
-  <div class="text-highlight-foreground bg-highlight h-8 items-center sm:grid sm:grid-cols-3">
-    <div class="hidden sm:block"></div>
-    <div class="flex h-full items-center justify-center text-center text-xs tracking-wide">
+  <div class="bg-foreground text-background h-10 items-center sm:grid sm:grid-cols-3">
+    <div class="hidden sm:block" />
+    <div class="flex h-full items-center justify-center text-center text-xs tracking-wider font-light">
       {{ $t('header.teaser') }}
     </div>
-    <div class="divide-border hidden h-full items-center justify-end divide-x text-xs sm:flex">
+    <div class="hidden h-full items-center justify-end pr-6 text-xs sm:flex">
       <StorePicker>
         <StorePickerTrigger size="sm" collapsed />
       </StorePicker>

@@ -3,16 +3,19 @@ const { aboutTree } = useShopMenu()
 </script>
 
 <template>
-  <div class="font-display">{{ $t('footer.menu.about.title') }}</div>
-  <div class="mt-4 flex flex-col gap-4 text-sm">
-    <div class="flex flex-col gap-2">
-      <NuxtLinkLocale
-        v-for="item in aboutTree || []"
-        :key="item.key"
-        :to="item.link?.path"
-        class="text-shade-300 hover:text-inverted-foreground transition-colors duration-200"
-        >{{ item.name }}</NuxtLinkLocale
-      >
-    </div>
+  <div>
+    <h4 class="text-sm font-medium text-foreground tracking-wide uppercase mb-6">
+      {{ $t('footer.menu.about.title') }}
+    </h4>
+    <ul class="space-y-3">
+      <li v-for="item in aboutTree || []" :key="item.key">
+        <NuxtLinkLocale
+          :to="item.link?.path"
+          class="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 link-underline"
+        >
+          {{ item.name }}
+        </NuxtLinkLocale>
+      </li>
+    </ul>
   </div>
 </template>
