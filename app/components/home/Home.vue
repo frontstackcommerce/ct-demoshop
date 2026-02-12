@@ -127,9 +127,9 @@ onMounted(() => {
     <!-- 🔥 PROMO BANNER - Kitchen Essentials Campaign -->
     <section class="relative overflow-hidden">
       <NuxtLink to="/campaigns/kitchen-essentials" class="group block">
-        <div class="grid lg:grid-cols-2 min-h-[400px] lg:min-h-[500px]">
+        <div class="grid lg:grid-cols-2">
           <!-- Left: Content -->
-          <div class="relative bg-primary flex items-center px-8 lg:px-16 py-16 lg:py-0 order-2 lg:order-1">
+          <div class="relative bg-primary flex items-center px-8 lg:px-16 py-16 lg:py-24 order-2 lg:order-1 min-h-[400px] lg:min-h-[500px]">
             <!-- Decorative Elements -->
             <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
             <div class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
@@ -156,34 +156,36 @@ onMounted(() => {
           </div>
           
           <!-- Right: Image Collage -->
-          <div class="relative bg-shade min-h-[300px] lg:min-h-full order-1 lg:order-2 overflow-hidden">
-            <div class="absolute inset-0 grid grid-cols-2 gap-2 p-2">
-              <div class="relative overflow-hidden">
+          <div class="relative order-1 lg:order-2 h-[300px] lg:h-auto lg:min-h-[500px]">
+            <div class="absolute inset-0 grid grid-cols-2 gap-1.5 p-1.5 bg-warm-200">
+              <!-- Main large image (left column, full height) -->
+              <div class="relative overflow-hidden bg-warm-300">
                 <NuxtImg
                   :src="kitchenImages.main"
                   alt="Kitchen Essentials"
-                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
               </div>
-              <div class="grid grid-rows-2 gap-2">
-                <div class="relative overflow-hidden">
+              <!-- Right column with 2 stacked images -->
+              <div class="grid grid-rows-2 gap-1.5">
+                <div class="relative overflow-hidden bg-warm-300">
                   <NuxtImg
                     :src="kitchenImages.secondary1"
                     alt="Kitchen Item"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
-                <div class="relative overflow-hidden">
+                <div class="relative overflow-hidden bg-warm-300">
                   <NuxtImg
                     :src="kitchenImages.secondary2"
                     alt="Kitchen Item"
-                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
               </div>
             </div>
             <!-- Floating Price Badge -->
-            <div class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 bg-white px-5 py-3 shadow-lg">
+            <div class="absolute bottom-4 right-4 lg:bottom-8 lg:right-8 bg-white px-5 py-3 shadow-lg z-10">
               <p class="text-xs text-muted-foreground tracking-wider uppercase">Starting at</p>
               <p class="font-serif text-2xl text-foreground">€9.99</p>
             </div>
