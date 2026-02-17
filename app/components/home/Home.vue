@@ -45,6 +45,12 @@ const kitchenImages = {
   secondary2: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Harvest_Plate-1.1.jpeg'
 }
 
+// Bedroom promo images
+const bedroomImages = {
+  main: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Opal_King_Bed-1.1.jpeg',
+  secondary: 'https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Modern_Upholstered_Queen_Bed-1.1.jpeg'
+}
+
 const isLoaded = ref(false)
 
 onMounted(() => {
@@ -244,6 +250,104 @@ onMounted(() => {
           </template>
         </div>
       </div>
+    </section>
+
+    <!-- 🛏️ PROMO BANNER - Bedroom Sanctuary Campaign -->
+    <section class="relative overflow-hidden">
+      <NuxtLink to="/campaigns/bedroom-sanctuary" class="group block">
+        <div class="relative min-h-[600px] lg:min-h-[700px]">
+          <!-- Full-width Background Image -->
+          <div class="absolute inset-0">
+            <NuxtImg
+              :src="bedroomImages.main"
+              alt="Bedroom Sanctuary"
+              class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+            />
+            <div class="absolute inset-0 bg-gradient-to-r from-warm-950/90 via-warm-950/70 to-warm-950/40" />
+            <div class="absolute inset-0 bg-gradient-to-t from-warm-950/60 via-transparent to-warm-950/30" />
+          </div>
+          
+          <!-- Content -->
+          <div class="relative h-full min-h-[600px] lg:min-h-[700px] flex items-center">
+            <div class="mx-auto max-w-7xl px-6 lg:px-12 w-full">
+              <div class="max-w-xl">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 px-4 py-2 mb-8">
+                  <IconMoon class="size-4 text-primary" />
+                  <span class="text-white/80 text-xs tracking-[0.2em] uppercase">The Art of Rest</span>
+                </div>
+                
+                <!-- Headline -->
+                <h2 class="font-serif text-5xl lg:text-6xl xl:text-7xl text-white leading-[1.05] mb-6">
+                  Your<br>
+                  <span class="text-primary italic">Sanctuary</span><br>
+                  Awaits
+                </h2>
+                
+                <!-- Description -->
+                <p class="text-white/70 text-lg lg:text-xl font-light leading-relaxed mb-8 max-w-md">
+                  Discover beds that transform nights into journeys. Handcrafted luxury meets the science of perfect sleep.
+                </p>
+                
+                <!-- Trust Badges -->
+                <div class="flex flex-wrap gap-6 mb-10 text-white/50 text-sm">
+                  <div class="flex items-center gap-2">
+                    <IconShield class="size-4" />
+                    <span>10-Year Warranty</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <IconTruck class="size-4" />
+                    <span>White Glove Delivery</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <IconRefreshCw class="size-4" />
+                    <span>100-Night Trial</span>
+                  </div>
+                </div>
+                
+                <!-- CTA -->
+                <span class="inline-flex items-center gap-3 bg-white text-warm-950 px-8 py-4 text-sm tracking-[0.15em] uppercase group-hover:bg-primary group-hover:text-white transition-all duration-500">
+                  Explore the Collection
+                  <IconArrowRight class="size-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Floating Product Card - Desktop Only -->
+          <div class="hidden lg:block absolute right-12 xl:right-24 bottom-12 w-72 bg-white shadow-2xl overflow-hidden transition-transform duration-500 group-hover:translate-y-[-8px]">
+            <div class="aspect-[4/3] overflow-hidden">
+              <NuxtImg
+                :src="bedroomImages.secondary"
+                alt="Featured Bed"
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-5">
+              <p class="text-xs text-muted-foreground tracking-wider uppercase mb-1">Featured</p>
+              <h3 class="font-serif text-lg mb-2">Modern Upholstered Bed</h3>
+              <div class="flex items-center justify-between">
+                <span class="font-medium">From €2,599</span>
+                <span class="text-xs text-primary font-medium">View →</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Side Stats - Desktop Only -->
+          <div class="hidden lg:flex absolute left-12 bottom-12 flex-col gap-4 text-white/60 text-sm">
+            <div class="flex items-center gap-3">
+              <div class="flex">
+                <IconStar class="size-4 fill-primary text-primary" />
+                <IconStar class="size-4 fill-primary text-primary" />
+                <IconStar class="size-4 fill-primary text-primary" />
+                <IconStar class="size-4 fill-primary text-primary" />
+                <IconStar class="size-4 fill-primary text-primary" />
+              </div>
+              <span>4.9/5 from 2,847 reviews</span>
+            </div>
+          </div>
+        </div>
+      </NuxtLink>
     </section>
 
     <!-- Featured Section -->
