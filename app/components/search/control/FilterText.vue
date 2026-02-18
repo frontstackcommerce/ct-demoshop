@@ -55,14 +55,14 @@ watch(
     @update:model-value="updateFilter"
   >
     <FilterTrigger
-      class="mx-0 pl-[-8px] font-normal"
+      class="mx-0 pl-0 font-normal w-full"
       :disabled="isDisabled"
       :class="{ 'text-muted': isDisabled }"
     >
       <slot />
     </FilterTrigger>
-    <FilterContent class="my-2 p-2">
-      <FilterList>
+    <FilterContent class="my-3 p-3 bg-warm-50 border border-border shadow-lg min-w-[280px]">
+      <FilterList class="space-y-1">
         <FilterItem
           v-for="(option, index) in filterOptions"
           :key="index"
@@ -75,5 +75,5 @@ watch(
       </FilterList>
     </FilterContent>
   </Filter>
-  <FilterSeparator />
+  <div class="h-px bg-border" />
 </template>

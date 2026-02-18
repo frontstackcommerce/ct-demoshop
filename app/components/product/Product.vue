@@ -26,9 +26,12 @@ onMounted(() => {
   }
 })
 
-const hasSecondImage = computed(() => {
+const hasMultipleImages = computed(() => {
   return selectedVariant.value?.images?.length && selectedVariant.value.images.length > 1
 })
+
+const mainImages = computed(() => selectedVariant.value?.images?.slice(0, 2) ?? [])
+const thumbnailImages = computed(() => selectedVariant.value?.images?.slice(2) ?? [])
 
 async function handleAddToCart(variant: ProductVariant, quantity: number) {
   await addLineItem(variant.key, quantity)
@@ -39,140 +42,230 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
 </script>
 
 <template>
-  <div
-    class="bg-shade-100 absolute inset-0 top-28 z-0 hidden h-[40%] min-h-[340px] w-screen overflow-hidden sm:block"
-  >
-    <NuxtImg
-      :src="selectedVariant?.images?.[0]?.src"
-      :alt="selectedVariant?.images?.[0]?.altText"
-      class="size-full object-cover opacity-10 blur-lg"
-    />
-  </div>
+  <div class="min-h-screen">
+    <!-- Breadcrumb -->
+    <div class="border-b border-border/50">
+      <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-4">
+        <nav class="flex items-center gap-2 text-sm text-muted-foreground">
+          <NuxtLink to="/" class="hover:text-foreground transition-colors">Home</NuxtLink>
+          <span>/</span>
+          <span class="text-foreground">{{ product.name }}</span>
+        </nav>
+      </div>
+    </div>
 
-  <div class="relative z-10 mx-auto mb-12 flex max-w-7xl flex-col gap-12 sm:mt-20 sm:px-10 lg:px-5">
-    <div class="grid grid-cols-2 gap-8 sm:grid-cols-12">
-      <div v-if="selectedVariant" class="col-span-2 sm:col-span-7 lg:col-span-8">
-        <div :class="hasSecondImage ? 'grid grid-cols-2 gap-2' : 'grid grid-cols-1 gap-2'">
-          <div
-            v-for="image in selectedVariant.images?.slice(0, 2) ?? []"
-            :key="image.key"
-            :class="hasSecondImage ? 'aspect-[0.75]' : ''"
-            class="overflow-hidden"
-          >
-            <NuxtImg
-              :src="image.src"
-              :alt="image.altText"
-              height="600"
-              class="bg-background object-contain p-2"
-              :class="{
-                'size-full transition-transform duration-300 hover:scale-105': hasSecondImage,
-              }"
-            />
+    <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-12 lg:py-20">
+      <div class="grid lg:grid-cols-12 gap-12 lg:gap-16">
+        <!-- Product Images -->
+        <div class="lg:col-span-7 xl:col-span-8">
+          <div v-if="selectedVariant" class="space-y-3">
+            <!-- Main images -->
+            <div :class="hasMultipleImages ? 'grid grid-cols-2 gap-3' : ''">
+              <div
+                v-for="image in mainImages"
+                :key="image.key"
+                class="relative overflow-hidden bg-shade aspect-[3/4]"
+              >
+                <NuxtImg
+                  :src="image.src"
+                  :alt="image.altText"
+                  class="absolute inset-0 size-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </div>
+
+            <!-- Thumbnail images -->
+            <div
+              v-if="thumbnailImages.length"
+              class="grid grid-cols-3 gap-3"
+            >
+              <div
+                v-for="image in thumbnailImages"
+                :key="image.key"
+                class="relative overflow-hidden bg-shade aspect-square"
+              >
+                <NuxtImg
+                  :src="image.src"
+                  :alt="image.altText"
+                  class="absolute inset-0 size-full object-cover hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+            </div>
           </div>
         </div>
 
-        <div
-          v-if="selectedVariant.images && selectedVariant.images.length > 2"
-          class="col-span-12 mt-2 grid grid-cols-3 gap-2"
-        >
-          <div
-            v-for="image in selectedVariant.images?.slice(2) ?? []"
-            :key="image.key"
-            class="overflow-hidden"
-          >
-            <NuxtImg
-              :src="image.src"
-              :alt="image.altText"
-              class="size-full bg-white object-contain p-2 transition-transform duration-300 hover:scale-105"
-            />
+        <!-- Product Info - Sticky sidebar -->
+        <div class="lg:col-span-5 xl:col-span-4">
+          <div class="lg:sticky lg:top-32 space-y-8">
+            <!-- Header -->
+            <div class="space-y-4">
+              <div class="flex items-start justify-between gap-4">
+                <div>
+                  <h1 class="text-editorial text-3xl lg:text-4xl text-foreground">
+                    {{ product.name }}
+                  </h1>
+                  <p v-if="product.brand" class="text-sm text-muted-foreground tracking-wide uppercase mt-2">
+                    {{ product.brand }}
+                  </p>
+                </div>
+              </div>
+              
+              <p v-if="product.description" class="text-muted-foreground font-light leading-relaxed">
+                {{ product.description.split('. ')[0] + (product.description.includes('.') ? '.' : '') }}
+              </p>
+            </div>
+
+            <!-- Price -->
+            <div v-if="selectedVariant?.price" class="pb-6 border-b border-border">
+              <span class="text-3xl font-medium text-foreground">
+                {{ formatPrice(selectedVariant?.price) }}
+              </span>
+              <p class="text-xs text-muted-foreground mt-1">
+                Tax included. Shipping calculated at checkout.
+              </p>
+            </div>
+
+            <!-- Variant Selector -->
+            <div
+              v-if="Array.isArray(product.variants) && product.variants.length > 1"
+              class="space-y-4"
+            >
+              <div class="flex items-center justify-between">
+                <span class="text-sm font-medium text-foreground">
+                  Select Option
+                </span>
+                <span class="text-xs text-muted-foreground">
+                  {{ product.variants.length }} available
+                </span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button
+                  v-for="variant in product.variants"
+                  :key="variant.key"
+                  class="relative size-16 overflow-hidden bg-shade ring-1 transition-all duration-300"
+                  :class="[
+                    selectedVariant?.key === variant.key 
+                      ? 'ring-foreground ring-2' 
+                      : 'ring-border hover:ring-foreground/50'
+                  ]"
+                  @click="selectedVariant = variant"
+                >
+                  <NuxtImg
+                    :src="variant.images?.[0]?.src"
+                    :alt="variant.images?.[0]?.altText"
+                    class="size-full object-cover"
+                  />
+                </button>
+              </div>
+            </div>
+
+            <!-- Quantity & Add to Cart -->
+            <div class="space-y-4">
+              <div class="flex items-center gap-4">
+                <div class="flex items-center border border-border">
+                  <button 
+                    class="w-12 h-12 flex items-center justify-center hover:bg-shade transition-colors"
+                    @click="quantity = Math.max(1, quantity - 1)"
+                  >
+                    <IconMinus class="size-4" />
+                  </button>
+                  <span class="w-12 h-12 flex items-center justify-center text-sm font-medium border-x border-border">
+                    {{ quantity }}
+                  </span>
+                  <button 
+                    class="w-12 h-12 flex items-center justify-center hover:bg-shade transition-colors"
+                    @click="quantity = Math.min(10, quantity + 1)"
+                  >
+                    <IconPlus class="size-4" />
+                  </button>
+                </div>
+                
+                <span class="text-xs text-muted-foreground">
+                  REF: {{ selectedVariant?.key }}
+                </span>
+              </div>
+              
+              <Button
+                v-if="selectedVariant"
+                color="buy"
+                size="xl"
+                class="w-full h-14 text-sm tracking-wider uppercase"
+                @click="handleAddToCart(selectedVariant, quantity)"
+              >
+                {{ $t('product.buy.add-to-cart') }}
+              </Button>
+            </div>
+
+            <!-- Trust Signals -->
+            <div class="pt-6 border-t border-border space-y-4">
+              <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                <IconTruck class="size-5 shrink-0" />
+                <div>
+                  <span class="text-foreground font-medium">Free Shipping</span>
+                  <span class="block text-xs">On orders over $150</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                <IconRefreshCcw class="size-5 shrink-0" />
+                <div>
+                  <span class="text-foreground font-medium">Easy Returns</span>
+                  <span class="block text-xs">30-day return policy</span>
+                </div>
+              </div>
+              <div class="flex items-center gap-4 text-sm text-muted-foreground">
+                <IconShield class="size-5 shrink-0" />
+                <div>
+                  <span class="text-foreground font-medium">2-Year Warranty</span>
+                  <span class="block text-xs">Quality guaranteed</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-span-2 flex flex-col gap-4 px-5 sm:col-span-5 sm:px-0 lg:col-span-4">
-        <h1 class="font-display text-3xl font-medium">{{ product.name }}</h1>
+    </div>
 
-        <p v-if="product.description" class="text-muted-foreground text-lg font-light">
-          {{ product.description.split('. ')[0] + (product.description.includes('.') ? '.' : '') }}
-        </p>
-        <p v-else class="text-muted-foreground font-light">
-          {{ $t('product.details.description.missing') }}
-        </p>
-
-        <div v-if="selectedVariant?.price" class="text-2xl font-bold">
-          {{ formatPrice(selectedVariant?.price) }}
-          <span class="text-muted-foreground block text-sm font-light">
-            REF: {{ selectedVariant.key }}
-          </span>
-        </div>
-        <div
-          v-if="Array.isArray(product.variants) && product.variants.length > 1"
-          class="grid grid-cols-5 gap-4 pb-4"
-        >
-          <div
-            v-for="variant in product.variants"
-            :key="variant.key"
-            class="bg-background aspect-square size-16 cursor-pointer overflow-hidden rounded-full shadow-xs lg:size-20"
-            @click="selectedVariant = variant"
-          >
-            <NuxtImg
-              :src="variant.images?.[0]?.src"
-              :alt="variant.images?.[0]?.altText"
-              class="bg-background size-full object-contain p-2 opacity-50 transition-all duration-300 hover:scale-105 hover:opacity-100 lg:p-4"
-              :class="{ 'opacity-100': selectedVariant?.key === variant.key }"
-            />
+    <!-- Product Details Section -->
+    <div class="border-t border-border">
+      <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-16 lg:py-24">
+        <div class="grid lg:grid-cols-12 gap-12">
+          <div class="lg:col-span-4">
+            <h2 class="text-editorial text-2xl lg:text-3xl">
+              {{ $t('product.details.sections.description') }}
+            </h2>
+          </div>
+          <div class="lg:col-span-8">
+            <p
+              v-if="product.description"
+              class="text-muted-foreground text-lg font-light leading-relaxed"
+            >
+              {{ product.description }}
+            </p>
+            <p v-else class="text-muted-foreground font-light">
+              {{ $t('product.details.description.missing') }}
+            </p>
           </div>
         </div>
-        <div class="flex w-full items-center gap-4">
-          <div>
-            <Select v-model="quantity" class="h-12">
-              <SelectTrigger class="h-full border-none text-xl shadow-none">
-                <SelectValue :placeholder="String(quantity)" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem v-for="i in 10" :key="i" :value="i">
-                  {{ i }}
-                </SelectItem>
-              </SelectContent>
-            </Select>
-          </div>
-          <Button
-            v-if="selectedVariant"
-            color="buy"
-            size="xl"
-            class="grow"
-            @click="handleAddToCart(selectedVariant, quantity)"
-          >
-            {{ $t('product.buy.add-to-cart') }}
+      </div>
+    </div>
+
+    <!-- Reviews Section -->
+    <div class="border-t border-border bg-shade">
+      <div class="container mx-auto px-6 lg:px-12 max-w-7xl py-16 lg:py-24">
+        <div v-if="product.reviews?.total && product.reviews.total > 0">
+          <ProductReviewList :reviews="product.reviews" />
+        </div>
+        <div v-else class="text-center py-12">
+          <h2 class="text-editorial text-2xl lg:text-3xl mb-4">
+            {{ $t('product.details.reviews.title') }}
+          </h2>
+          <p class="text-muted-foreground">
+            {{ $t('product.details.reviews.count', { count: 0 }) }}
+          </p>
+          <Button variant="outline" class="mt-6">
+            Write a Review
           </Button>
         </div>
-      </div>
-    </div>
-
-    <div class="mt-10 grid grid-cols-12 gap-8 px-5 sm:px-0">
-      <h2 class="font-display col-span-12 text-2xl">
-        {{ $t('product.details.sections.description') }}
-      </h2>
-      <p
-        v-if="product.description"
-        class="text-muted-foreground col-span-12 text-lg leading-relaxed font-extralight tracking-wide"
-      >
-        {{ product.description }}
-      </p>
-      <p v-else class="text-muted-foreground col-span-12 font-light">
-        {{ $t('product.details.description.missing') }}
-      </p>
-    </div>
-    <div v-if="product.reviews?.total && product.reviews.total > 0" class="px-5 sm:px-0">
-      <ProductReviewList :reviews="product.reviews" />
-    </div>
-    <div v-else class="grid grid-cols-12 gap-8 px-5 sm:px-0">
-      <div class="col-span-12">
-        <h2 class="font-display mb-2 text-2xl">
-          {{ $t('product.details.reviews.title') }}
-        </h2>
-        <p class="text-muted-foreground">
-          {{ $t('product.details.reviews.count', { count: 0 }) }}
-        </p>
       </div>
     </div>
   </div>

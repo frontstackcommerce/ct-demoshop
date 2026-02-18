@@ -19,18 +19,6 @@ type RequestOptions = {
      * Providing a context key will override the default context key for the request
      */
     contextKey?: string
-
-    /**
-     * @description Proxy URL
-     *
-     * Optionally, provide a proxy URL path that will be concatenated with the original API path.
-     * For example, if proxyUrl is '/api' and the original request is to '/block',
-     * the request will be sent to '/api/block'.
-     * You can provide absolute as well as relative URLs.
-     * The original target URL is passed in the 'fs-target-url' header for the proxy to forward to.
-     * This is useful to prevent CORS issues when making requests from a browser.
-     */
-    proxyUrl?: string
 }
 
 /* List of all types used to fetch block parameters */
@@ -80,6 +68,13 @@ export type CategoryProductsParameters = {
     key: string;
 }
 
+export type FavoritesProductsParameters = {
+    /**
+     * @description Description missing for keys
+     */
+    keys: Array<string>;
+}
+
 export type MenuTreeParameters = {
 }
 
@@ -108,6 +103,7 @@ type ListingParameters = {
     CategoryMeta: CategoryMetaParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    FavoritesProducts: FavoritesProductsParameters
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
     ProductSearch: ProductSearchParameters
@@ -140,6 +136,7 @@ export type Listings = {
     CategoryMeta: CategoryMetaParameters
     CategoryNestedChilds: CategoryNestedChildsParameters
     CategoryProducts: CategoryProductsParameters
+    FavoritesProducts: FavoritesProductsParameters
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
     ProductSearch: ProductSearchParameters
@@ -159,6 +156,7 @@ export type CategoryMeta = components['schemas']['CategoryMeta']
 export type CategoryNested = components['schemas']['CategoryNested']
 export type CategoryNestedChilds = components['schemas']['CategoryNestedChilds']
 export type CategoryProducts = components['schemas']['CategoryProducts']
+export type FavoritesProducts = components['schemas']['FavoritesProducts']
 export type MenuItem = components['schemas']['MenuItem']
 export type MenuTree = components['schemas']['MenuTree']
 export type ProductCard = components['schemas']['ProductCard']
@@ -183,6 +181,7 @@ export type Responses = {
     CategoryNested: CategoryNested
     CategoryNestedChilds: CategoryNestedChilds
     CategoryProducts: CategoryProducts
+    FavoritesProducts: FavoritesProducts
     MenuItem: MenuItem
     MenuTree: MenuTree
     ProductCard: ProductCard
@@ -201,6 +200,7 @@ export type ListingQueryFilters = {
     CategoryMeta: components['schemas']['CategoryMetaQueryOptions']['filter']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['filter']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['filter']
+    FavoritesProducts: components['schemas']['FavoritesProductsQueryOptions']['filter']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
     ProductSearch: components['schemas']['ProductSearchQueryOptions']['filter']
@@ -214,6 +214,7 @@ export type ListingQuerySorts = {
     CategoryMeta: components['schemas']['CategoryMetaQueryOptions']['sort']
     CategoryNestedChilds: components['schemas']['CategoryNestedChildsQueryOptions']['sort']
     CategoryProducts: components['schemas']['CategoryProductsQueryOptions']['sort']
+    FavoritesProducts: components['schemas']['FavoritesProductsQueryOptions']['sort']
     MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
     ProductSearch: components['schemas']['ProductSearchQueryOptions']['sort']
@@ -233,6 +234,7 @@ type FetchMode = {
     CategoryNested: 'key';
     CategoryNestedChilds: 'query';
     CategoryProducts: 'query';
+    FavoritesProducts: 'query';
     MenuItem: 'key';
     MenuTree: 'query';
     ProductCard: 'key';
@@ -323,4 +325,4 @@ declare global {
         */
         url: string
     }
-}
+} 

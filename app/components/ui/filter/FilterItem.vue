@@ -20,13 +20,13 @@ const forwarded = useForwardPropsEmits(delegatedProps, emits)
     v-bind="forwarded"
     :class="
       cn(
-        'text-foreground data-highlighted:bg-shade-100 data-disabled:text-muted data-highlighted:text-active-foreground relative flex h-6 cursor-pointer items-center px-3 py-5 leading-none select-none data-disabled:pointer-events-none data-highlighted:outline-none',
+        'text-foreground data-highlighted:bg-warm-200 data-disabled:text-muted-foreground/40 relative flex cursor-pointer items-center px-3 py-3 leading-none select-none data-disabled:pointer-events-none data-highlighted:outline-none rounded-sm transition-colors',
         props.class
       )
     "
   >
     <slot />
-    <span class="ml-3 flex flex-grow capitalize"> {{ option.option }}</span>
-    <span> {{ option.count }} </span>
+    <span class="ml-3 flex flex-grow text-sm font-light capitalize">{{ option.option }}</span>
+    <span class="text-xs text-muted-foreground tabular-nums">{{ option.count }}</span>
   </ComboboxItem>
 </template>

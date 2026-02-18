@@ -1,29 +1,29 @@
 <template>
-  <div class="container mx-auto flex max-w-7xl flex-col gap-5 px-5">
+  <div class="flex flex-col gap-6">
     <div class="flex items-center justify-between">
-      <StoreLogo :is-inverted="true" class="max-h-10 max-w-60" />
-      <div class="mr-3 hidden sm:block">
+      <StoreLogo :is-inverted="true" class="h-6" />
+      <div class="hidden sm:block">
         <StorePicker inverted />
       </div>
-      <div class="mr-3 sm:hidden">
+      <div class="sm:hidden">
         <StorePicker inverted collapsed />
       </div>
     </div>
-    <div class="flex items-center justify-between">
-      <div class="text-sm">{{ $t('footer.copyright') }}</div>
-      <div
-        class="divide-border text-shade-300 flex flex-col gap-2 text-sm md:flex-row md:gap-0 md:divide-x"
-      >
+    <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-sm text-background/60">
+      <div>{{ $t('footer.copyright') }}</div>
+      <div class="flex items-center gap-6">
         <NuxtLinkLocale
           to="/content/privacy-policy"
-          class="hover:text-inverted-foreground px-3 transition-colors duration-200"
-          >{{ $t('footer.privacy') }}</NuxtLinkLocale
+          class="hover:text-background transition-colors duration-200"
         >
+          {{ $t('footer.privacy') }}
+        </NuxtLinkLocale>
         <NuxtLinkLocale
           to="/content/terms-of-service"
-          class="hover:text-inverted-foreground px-3 transition-colors duration-200"
-          >{{ $t('footer.terms') }}</NuxtLinkLocale
+          class="hover:text-background transition-colors duration-200"
         >
+          {{ $t('footer.terms') }}
+        </NuxtLinkLocale>
       </div>
     </div>
   </div>

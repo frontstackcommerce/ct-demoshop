@@ -17,31 +17,66 @@ onMounted(() => {
 </script>
 
 <template>
-  <NuxtLink :to="product.link?.path">
-    <div class="flex flex-col gap-2">
-      <div class="group relative aspect-[0.75] overflow-hidden bg-white shadow-xs">
-        <NuxtImg :src="firstImage" :alt="product.name" class="size-full object-cover sm:p-4" />
+  <NuxtLink :to="product.link?.path" class="group block">
+    <div class="flex flex-col">
+      <!-- Image container -->
+      <div class="relative aspect-[3/4] overflow-hidden bg-shade mb-4">
+        <NuxtImg 
+          :src="firstImage" 
+          :alt="product.name" 
+          class="absolute inset-0 size-full object-cover transition-all duration-700 ease-out group-hover:scale-105" 
+        />
         <NuxtImg
           v-if="hasSecondImage"
           :src="secondImage"
           :alt="product.name"
-          :width="320"
-          class="absolute inset-0 size-full object-cover opacity-0 transition-opacity duration-500 group-hover:opacity-100 sm:p-4"
+          class="absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105"
         />
-      </div>
-      <div v-if="Array.isArray(product.variants) && product.variants.length > 1">
-        <div class="flex gap-2">
-          <NuxtLink :to="product.link?.path + '?sku=' + variant.key" v-for="variant in product.variants" :key="variant.key">
-            <div class="aspect-square size-6 cursor-pointer overflow-hidden bg-white">
-              <NuxtImg :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full scale-400 object-contain blur-xs saturate-200" />
-            </div>
-          </NuxtLink>
+        
+        <!-- Quick view overlay -->
+        <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-500" />
+        
+        <!-- Quick add button - appears on hover -->
+        <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+          <Button 
+            variant="default" 
+            class="w-full bg-background/95 backdrop-blur-sm text-foreground hover:bg-background text-xs tracking-wider uppercase h-10"
+          >
+            Quick View
+          </Button>
         </div>
       </div>
-      <div class="flex flex-col gap-1 text-xs">
-        <p class="font-lighter font-display text-gray-700">{{ product.name }}</p>
-        <p class="font-light text-gray-500 uppercase">{{ product.brand }}</p>
-        <p v-if="product.price?.amount" class="text-muted-foreground font-light">
+      
+      <!-- Variant swatches -->
+      <div v-if="Array.isArray(product.variants) && product.variants.length > 1" class="flex gap-1.5 mb-3">
+        <NuxtLink 
+          v-for="variant in product.variants.slice(0, 4)" 
+          :key="variant.key"
+          :to="product.link?.path + '?sku=' + variant.key"
+          @click.stop
+        >
+          <div class="size-5 rounded-full overflow-hidden ring-1 ring-border hover:ring-foreground transition-all duration-300">
+            <NuxtImg 
+              :src="variant.images?.[0]?.src" 
+              :alt="variant.images?.[0]?.altText" 
+              class="size-full object-cover scale-[3] blur-[1px]" 
+            />
+          </div>
+        </NuxtLink>
+        <span v-if="product.variants.length > 4" class="text-xs text-muted-foreground self-center ml-1">
+          +{{ product.variants.length - 4 }}
+        </span>
+      </div>
+      
+      <!-- Product info -->
+      <div class="space-y-1">
+        <h3 class="text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-300 line-clamp-1">
+          {{ product.name }}
+        </h3>
+        <p v-if="product.brand" class="text-xs text-muted-foreground tracking-wide uppercase">
+          {{ product.brand }}
+        </p>
+        <p v-if="product.price?.amount" class="text-sm font-medium text-foreground pt-1">
           {{ formatPrice(product.price) }}
         </p>
       </div>

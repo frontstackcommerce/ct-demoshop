@@ -4,7 +4,7 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
 
-  devtools: { enabled: true },
+  devtools: { enabled: false },
 
   vite: {
     plugins: [tailwindcss()],
@@ -50,13 +50,13 @@ export default defineNuxtConfig({
 
   fonts: {
     families: [
-      // Serif font for headlines (matching Westwing Gaisyr)
-      { name: 'Playfair Display', provider: 'google' },
-      // Sans-serif font for body (matching Westwing ROM)
+      // Clean sans-serif for contemporary minimal look
       { name: 'Inter', provider: 'google' },
+      // Keep Playfair Display as optional accent
+      { name: 'Playfair Display', provider: 'google' },
     ],
     defaults: {
-      weights: [400, 500, 600, 700, 800],
+      weights: [300, 400, 500, 600, 700],
       styles: ['normal', 'italic'],
       subsets: ['latin', 'latin-ext'],
     },

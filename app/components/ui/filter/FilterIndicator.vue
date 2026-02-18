@@ -18,10 +18,10 @@ const forwardedProps = useForwardProps(delegatedProps)
 
 <template>
   <span
-    class="size-6 border"
+    class="size-5 border rounded-sm flex items-center justify-center shrink-0 transition-colors"
     :class="
-      cn('border-foreground bg-background', {
-        'border-shade-300': props.disabled,
+      cn('border-border bg-background hover:border-foreground/50', {
+        'border-shade-300 bg-shade': props.disabled,
       })
     "
   >
@@ -35,9 +35,9 @@ const forwardedProps = useForwardProps(delegatedProps)
       "
     >
       <div
-        class="bg-inverted text-inverted-foreground flex min-h-full min-w-full items-center justify-center"
+        class="bg-foreground text-background flex min-h-full min-w-full items-center justify-center rounded-sm"
       >
-        <IconCheck class="size-4" :stroke-width="4" />
+        <IconCheck class="size-3" :stroke-width="3" />
       </div>
     </ComboboxItemIndicator>
   </span>

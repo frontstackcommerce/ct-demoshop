@@ -31,37 +31,53 @@ watch(quantity, (newQuantity) => {
 </script>
 
 <template>
-  <div class="bg-background mb-4 flex w-full gap-5 px-6 md:px-0">
-    <div class="w-24 md:w-36">
-      <NuxtImg
-        v-if="item.variant?.images?.[0]"
-        :src="item.variant.images[0].url"
-        :alt="item.variant.images[0].label"
-        class="h-full w-full object-cover"
+  <div class="flex gap-4 py-4">
+    <!-- Image -->
+    <div class="w-24 shrink-0">
+      <div 
+        class="aspect-[3/4] bg-shade overflow-hidden cursor-pointer"
         @click="$emit('click')"
-      />
-    </div>
-    <div class="flex-1">
-      <div class="flex items-center justify-between">
-        <p class="max-sm:text-muted-foreground text-sm font-semibold">
-          {{ item.name[context?.locale ?? 'en-us'] }}
-        </p>
-        <Button variant="icon" :disabled="locked" @click="$emit('remove', item.id ?? '')">
-          <IconTrash class="size-4" />
-        </Button>
+      >
+        <NuxtImg
+          v-if="item.variant?.images?.[0]"
+          :src="item.variant.images[0].url"
+          :alt="item.variant.images[0].label"
+          class="h-full w-full object-cover hover:scale-105 transition-transform duration-500"
+        />
       </div>
-
-      <p class="max-sm:text-muted-foreground text-sm">
-        <Price :price="price" />
-      </p>
-      <div class="mt-4 w-24">
-        <Select v-model="quantity" size="sm" :disabled="locked">
-          <SelectTrigger>
+    </div>
+    
+    <!-- Details -->
+    <div class="flex-1 flex flex-col justify-between min-w-0">
+      <div>
+        <div class="flex items-start justify-between gap-2">
+          <h3 class="text-sm font-medium text-foreground line-clamp-2">
+            {{ item.name[context?.locale ?? 'en-us'] }}
+          </h3>
+          <button 
+            class="shrink-0 p-1 text-muted-foreground hover:text-destructive transition-colors"
+            :disabled="locked" 
+            @click="$emit('remove', item.id ?? '')"
+          >
+            <IconX class="size-4" />
+          </button>
+        </div>
+        <p class="text-sm font-medium text-foreground mt-1">
+          <Price :price="price" />
+        </p>
+      </div>
+      
+      <!-- Quantity -->
+      <div class="mt-3">
+        <Select v-model="quantity" :disabled="locked">
+          <SelectTrigger class="w-20 h-9 text-sm border-border">
             <SelectValue :placeholder="$t('cart.items.quantity-placeholder')" />
           </SelectTrigger>
           <SelectContent>
             <SelectGroup>
-              <SelectItem v-for="i in 10" :key="i" :value="String(i)"> {{ i }} </SelectItem>
+              <SelectItem v-for="i in 10" :key="i" :value="String(i)">
+                {{ i }}
+              </SelectItem>
             </SelectGroup>
           </SelectContent>
         </Select>
