@@ -1,6 +1,6 @@
 /**
  * This file was automatically generated using the
- * frontstack CLI, please do not edit it manually!
+ * Frontic CLI, please do not edit it manually!
  */
 
 export type Filter<T> = EqualsFilter<T> | RangeFilter<T> | ContainsFilter<T> | LogicalFilter<T>;
@@ -50,17 +50,25 @@ export type EqualsFilter<T> = {
  *   to: 100
  * }
  */
+
+type RangeFilterShapes<K> = {
+  from: K
+} | {
+  to: K
+} | {
+  from: K
+  to: K
+}
+
 export type RangeFilter<T> = {
   [K in NumericKeys<T>]: {
     type: 'range';
     field: K;
-    from?: T[K];
-    to?: T[K];
-  }
+  } & RangeFilterShapes<T[K]>
 }[NumericKeys<T>];
 
 /**
- * Filter a field by a substring match.
+ * Filter a field by a word match.
  *
  * @example
  * {
@@ -68,6 +76,10 @@ export type RangeFilter<T> = {
  *   field: 'name',
  *   value: 'Dress'
  * }
+ *
+ * will match:
+ *
+ * - 'Yellow Dress'
  */
 export type ContainsFilter<T> = {
   [K in StringKeys<T>]: {
@@ -146,4 +158,4 @@ export type Query<FilterType, SortType> = {
    * Paginate results
    */
   page?: number;
-} 
+}

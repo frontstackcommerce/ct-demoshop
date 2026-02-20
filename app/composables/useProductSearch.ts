@@ -20,12 +20,16 @@ export function useProductSearch(categoryKey?: MaybeRef<string>): IUseProductSea
     cacheKey: `product-search-${unref(categoryKey) ?? 'product-search'}`,
     filters: {
       keys: [
+        'sale',
+        'bopis',
         'properties.finish-label',
         'properties.search-color',
         'properties.size',
         'properties.manufacturer',
       ],
       labels: {
+        'sale': t('listing.filters.sale'),
+        'bopis': t('listing.filters.bopis'),
         'properties.finish-label': t('listing.filters.finish-label'),
         'properties.search-color': t('listing.filters.search-color'),
         'properties.size': t('listing.filters.size'),

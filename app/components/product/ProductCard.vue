@@ -21,10 +21,10 @@ onMounted(() => {
     <div class="flex flex-col">
       <!-- Image container -->
       <div class="relative aspect-[3/4] overflow-hidden bg-shade mb-4">
-        <NuxtImg 
-          :src="firstImage" 
-          :alt="product.name" 
-          class="absolute inset-0 size-full object-cover transition-all duration-700 ease-out group-hover:scale-105" 
+        <NuxtImg
+          :src="firstImage"
+          :alt="product.name"
+          class="absolute inset-0 size-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
         />
         <NuxtImg
           v-if="hasSecondImage"
@@ -32,7 +32,14 @@ onMounted(() => {
           :alt="product.name"
           class="absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105"
         />
-        
+
+        <!-- Sale badge -->
+        <div v-if="product.sale" class="absolute top-3 left-3 z-10">
+          <span class="inline-flex items-center px-2.5 py-1 text-[10px] font-semibold uppercase tracking-widest bg-red-600 text-white">
+            Sale
+          </span>
+        </div>
+
         <!-- Quick view overlay -->
         <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-500" />
         

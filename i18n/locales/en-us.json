@@ -456,6 +456,8 @@
   "listing": {
     "counter": "No Result | 1 Result | {count} Results",
     "filters": {
+      "sale": "Sale",
+      "bopis": "Click & Collect",
       "finish-label": "Finish",
       "search-color": "Color",
       "manufacturer": "Brands",
@@ -560,5 +562,21 @@
   "social": {
     "description": "Tag {'@'}flagshipstore on Instagram for a chance to see your image here.",
     "title": "Become part of the Adventure Community"
+  },
+  "bopis": {
+    "pdp": {
+      "title": "Buy Online, Pick Up In Store",
+      "description": "Order now and pick up at your nearest store — skip the wait and the shipping fee.",
+      "freePickup": "Free pickup",
+      "readyTime": "Ready in 2 hours"
+    },
+    "teaser": {
+      "label": "Now Available",
+      "title": "Buy Online, Pick Up In Store",
+      "description": "Shop from home and collect at your nearest location — for free.",
+      "freePickup": "Free in-store pickup",
+      "readyTime": "Ready in 2 hours",
+      "findStore": "Find your nearest store"
+    }
   }
 }

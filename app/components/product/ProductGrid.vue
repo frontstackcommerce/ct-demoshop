@@ -49,6 +49,14 @@ onUnmounted(() => {
   }
 })
 
+// Calculate the visual grid slot for a product index, accounting for BOPIS teaser
+const getVisualSlot = (productIndex: number) => {
+  if (hasBopisProducts.value && productIndex >= BOPIS_TEASER_POSITION) {
+    return productIndex + 1 // shift by 1 to account for the teaser slot
+  }
+  return productIndex
+}
+
 // Open quick view for a product
 const openQuickView = (productKey: string, productIndex: number) => {
   // If clicking the same product, close it
@@ -56,9 +64,9 @@ const openQuickView = (productKey: string, productIndex: number) => {
     closeQuickView()
     return
   }
-  
+
   quickViewProductKey.value = productKey
-  quickViewRowIndex.value = getProductRow(productIndex, currentColumns.value)
+  quickViewRowIndex.value = getProductRow(getVisualSlot(productIndex), currentColumns.value)
   
   // Scroll to quick view after a short delay to allow animation
   nextTick(() => {
@@ -78,29 +86,59 @@ const closeQuickView = () => {
   quickViewRowIndex.value = null
 }
 
-// Group products by row with quick view insertion points
+// BOPIS teaser insertion position (0-indexed, position 3 = after 2 products)
+const BOPIS_TEASER_POSITION = 2
+
+// Check if any product in the listing has bopis enabled
+const hasBopisProducts = computed(() => props.products.some((p) => p.bopis))
+
+// Group products by row with quick view insertion points and BOPIS teaser
 const productsWithQuickView = computed(() => {
-  const result: Array<{ type: 'product'; product: ProductCard; index: number } | { type: 'quickview'; productKey: string }> = []
-  
+  const result: Array<
+    | { type: 'product'; product: ProductCard; index: number }
+    | { type: 'quickview'; productKey: string }
+    | { type: 'bopis-teaser' }
+  > = []
+
   let currentRow = -1
-  
+  // Track the visual grid index (accounts for inserted teaser taking a slot)
+  let gridSlot = 0
+
   props.products.forEach((product, index) => {
-    const row = getProductRow(index, currentColumns.value)
-    
+    // Insert BOPIS teaser at position 3 (after 2 products)
+    if (index === BOPIS_TEASER_POSITION && hasBopisProducts.value) {
+      // Check if quick view needs to be inserted before the teaser
+      const teaserRow = getProductRow(gridSlot, currentColumns.value)
+      if (teaserRow !== currentRow && currentRow === quickViewRowIndex.value && quickViewProductKey.value) {
+        result.push({ type: 'quickview', productKey: quickViewProductKey.value })
+      }
+      currentRow = teaserRow
+      result.push({ type: 'bopis-teaser' })
+      gridSlot++
+    }
+
+    const row = getProductRow(gridSlot, currentColumns.value)
+
     // If we've moved to a new row and the previous row had the quick view, insert it
     if (row !== currentRow && currentRow === quickViewRowIndex.value && quickViewProductKey.value) {
       result.push({ type: 'quickview', productKey: quickViewProductKey.value })
     }
-    
+
     currentRow = row
     result.push({ type: 'product', product, index })
+    gridSlot++
   })
-  
+
+  // Handle BOPIS teaser if total products < BOPIS_TEASER_POSITION
+  if (props.products.length <= BOPIS_TEASER_POSITION && hasBopisProducts.value) {
+    result.push({ type: 'bopis-teaser' })
+  }
+
   // Handle quick view for the last row
   if (currentRow === quickViewRowIndex.value && quickViewProductKey.value) {
     result.push({ type: 'quickview', productKey: quickViewProductKey.value })
   }
-  
+
   return result
 })
 
@@ -125,19 +163,24 @@ provide('quickView', {
         'grid-cols-2': columns === 2
       }"
     >
-      <template v-for="item in productsWithQuickView" :key="item.type === 'product' ? item.product.key : 'quickview'">
+      <template v-for="item in productsWithQuickView" :key="item.type === 'product' ? item.product.key : item.type === 'bopis-teaser' ? 'bopis-teaser' : 'quickview'">
         <!-- Product Card -->
         <div v-if="item.type === 'product'">
-          <ProductCardWithQuickView 
-            :product="item.product" 
+          <ProductCardWithQuickView
+            :product="item.product"
             :index="item.index"
             :is-active="isQuickViewOpen(item.product.key)"
             @open-quick-view="openQuickView(item.product.key, item.index)"
           />
         </div>
-        
+
+        <!-- BOPIS Teaser Card -->
+        <div v-else-if="item.type === 'bopis-teaser'">
+          <ProductBopisTeaser />
+        </div>
+
         <!-- Quick View Panel (spans full width) -->
-        <div 
+        <div
           v-else-if="item.type === 'quickview'"
           id="quick-view-panel"
           class="col-span-full -mx-6 lg:-mx-12"
@@ -147,7 +190,7 @@ provide('quickView', {
             'col-span-2': columns === 2
           }"
         >
-          <ProductQuickView 
+          <ProductQuickView
             :product-key="item.productKey"
             :product-link="item.link?.path"
             :is-open="true"

@@ -444,6 +444,8 @@
   "listing": {
     "counter": "Keine Treffer | 1 Produkt | {count} Produkte",
     "filters": {
+      "sale": "Sale",
+      "bopis": "Click & Collect",
       "finish-label": "Finish",
       "search-color": "Farbe",
       "manufacturer": "Marken",
@@ -547,5 +549,21 @@
   "social": {
     "description": "Tagge {'@'}flagshipstore auf Instagram für die Chance, dein Bild hier zu sehen.",
     "title": "Werde Teil der Adventure Community"
+  },
+  "bopis": {
+    "pdp": {
+      "title": "Online kaufen, im Geschäft abholen",
+      "description": "Jetzt bestellen und in deiner nächsten Filiale abholen — ohne Wartezeit und versandkostenfrei.",
+      "freePickup": "Kostenlose Abholung",
+      "readyTime": "In 2 Stunden bereit"
+    },
+    "teaser": {
+      "label": "Jetzt verfügbar",
+      "title": "Online kaufen, im Geschäft abholen",
+      "description": "Von zu Hause einkaufen und kostenlos in deiner Filiale abholen.",
+      "freePickup": "Kostenlose Abholung",
+      "readyTime": "In 2 Stunden bereit",
+      "findStore": "Nächste Filiale finden"
+    }
   }
 }

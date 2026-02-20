@@ -196,6 +196,37 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
               </Button>
             </div>
 
+            <!-- BOPIS Teaser -->
+            <div v-if="product.bopis" class="pt-6 border-t border-border">
+              <div class="relative overflow-hidden bg-emerald-50 border border-emerald-200/60 p-5">
+                <div class="flex gap-4">
+                  <div class="flex-shrink-0 flex items-start pt-0.5">
+                    <div class="size-10 rounded-full bg-emerald-100 flex items-center justify-center">
+                      <IconStore class="size-5 text-emerald-700" />
+                    </div>
+                  </div>
+                  <div class="space-y-1.5">
+                    <p class="text-sm font-semibold text-emerald-900">
+                      {{ $t('bopis.pdp.title') }}
+                    </p>
+                    <p class="text-xs text-emerald-700/80 leading-relaxed">
+                      {{ $t('bopis.pdp.description') }}
+                    </p>
+                    <div class="flex items-center gap-3 pt-1">
+                      <div class="flex items-center gap-1.5 text-xs text-emerald-700">
+                        <IconCircleCheck class="size-3.5" />
+                        <span>{{ $t('bopis.pdp.freePickup') }}</span>
+                      </div>
+                      <div class="flex items-center gap-1.5 text-xs text-emerald-700">
+                        <IconClock class="size-3.5" />
+                        <span>{{ $t('bopis.pdp.readyTime') }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <!-- Trust Signals -->
             <div class="pt-6 border-t border-border space-y-4">
               <div class="flex items-center gap-4 text-sm text-muted-foreground">

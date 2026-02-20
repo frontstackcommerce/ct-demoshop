@@ -1,6 +1,6 @@
 /**
  * This file was automatically generated using the
- * frontstack CLI, please do not edit it manually!
+ * Frontic CLI, please do not edit it manually!
  */
 
 import type { components } from './fetch-api.d.ts'
@@ -9,7 +9,7 @@ type RequestOptions = {
     /**
      * @description URL to the current page
      *
-     * Optionally, frontstack accepts a URL to the current page. This is useful for tracking purposes.
+     * Optionally, Frontic accepts a URL to the current page. This is useful for tracking purposes.
      */
     requestUrl?: string
 
@@ -19,6 +19,26 @@ type RequestOptions = {
      * Providing a context key will override the default context key for the request
      */
     contextKey?: string
+
+    /**
+     * @description Context Domain
+     * @see contextKey A context key will take precedence over this domain
+     *
+     * Providing a context domain will indicate the requested region and locale based on the domain's configuration for the request.
+     */
+    contextDomain?: string
+
+    /**
+     * @description Proxy URL
+     *
+     * Optionally, provide a proxy URL path that will be concatenated with the original API path.
+     * For example, if proxyUrl is '/api' and the original request is to '/block',
+     * the request will be sent to '/api/block'.
+     * You can provide absolute as well as relative URLs.
+     * The original target URL is passed in the 'fs-target-url' header for the proxy to forward to.
+     * This is useful to prevent CORS issues when making requests from a browser.
+     */
+    proxyUrl?: string
 }
 
 /* List of all types used to fetch block parameters */
@@ -92,6 +112,9 @@ export type ProductSearchParameters = {
     categoryKey?: string;
 }
 
+export type SuperSearchParameters = {
+}
+
 
 /* List of all blocks, used for IDE autocompletion */
 
@@ -107,6 +130,7 @@ type ListingParameters = {
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
     ProductSearch: ProductSearchParameters
+    SuperSearch: SuperSearchParameters
 }
 
 type Endpoints = {
@@ -140,6 +164,7 @@ export type Listings = {
     MenuTree: MenuTreeParameters
     ProductReviews: ProductReviewsParameters
     ProductSearch: ProductSearchParameters
+    SuperSearch: SuperSearchParameters
 }
 
 declare global {
@@ -165,6 +190,7 @@ export type ProductReview = components['schemas']['ProductReview']
 export type ProductReviews = components['schemas']['ProductReviews']
 export type ProductSearch = components['schemas']['ProductSearch']
 export type ProductVariant = components['schemas']['ProductVariant']
+export type SuperSearch = components['schemas']['SuperSearch']
 }
 
 export type Responses = {
@@ -190,6 +216,7 @@ export type Responses = {
     ProductReviews: ProductReviews
     ProductSearch: ProductSearch
     ProductVariant: ProductVariant
+    SuperSearch: SuperSearch
 }
 
 export type ListingQueryFilters = {
@@ -204,6 +231,7 @@ export type ListingQueryFilters = {
     MenuTree: components['schemas']['MenuTreeQueryOptions']['filter']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['filter']
     ProductSearch: components['schemas']['ProductSearchQueryOptions']['filter']
+    SuperSearch: components['schemas']['SuperSearchQueryOptions']['filter']
 }
 
 export type ListingQuerySorts = {
@@ -218,6 +246,7 @@ export type ListingQuerySorts = {
     MenuTree: components['schemas']['MenuTreeQueryOptions']['sort']
     ProductReviews: components['schemas']['ProductReviewsQueryOptions']['sort']
     ProductSearch: components['schemas']['ProductSearchQueryOptions']['sort']
+    SuperSearch: components['schemas']['SuperSearchQueryOptions']['sort']
 }
 
 type FetchMode = {
@@ -243,6 +272,7 @@ type FetchMode = {
     ProductReviews: 'query';
     ProductSearch: 'query';
     ProductVariant: 'key';
+    SuperSearch: 'query';
 }
 
 declare global {
@@ -325,4 +355,4 @@ declare global {
         */
         url: string
     }
-} 
+}
