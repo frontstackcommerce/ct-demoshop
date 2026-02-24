@@ -1,0 +1,22 @@
+# Dependencies
+node_modules
+
+# Build outputs
+dist
+.output
+.nuxt
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
+
+# Generated files
+*.generated.*
+*.min.js
+*.min.css
+
+# IDE/Editor
+.idea
+.vscode
+.claude
