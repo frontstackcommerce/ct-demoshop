@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Trash } from 'lucide-vue-next'
 
-const { context } = useContext()
+const { current: context } = useFronticContext()
 
 const props = defineProps<{
   item: LineItem
@@ -33,12 +33,17 @@ watch(quantity, (newQuantity) => {
 <template>
   <div class="bg-background mb-4 flex w-full gap-5 px-6 md:px-0">
     <div class="w-24 md:w-36">
-      <NuxtImg v-if="item.variant?.images?.[0]" :src="item.variant.images[0].url" :alt="item.variant.images[0].label" class="h-full w-full object-cover" />
+      <NuxtImg
+        v-if="item.variant?.images?.[0]"
+        :src="item.variant.images[0].url"
+        :alt="item.variant.images[0].label"
+        class="h-full w-full object-cover"
+      />
     </div>
     <div class="flex-1">
       <div class="flex items-center justify-between">
         <p class="max-sm:text-muted-foreground text-sm font-semibold">
-          {{ item.name[context?.locale ?? 'en-us'] }}
+          {{ item.name[context?.locale ?? ''] }}
         </p>
         <Button variant="icon" :disabled="locked" @click="$emit('remove', item.id ?? '')">
           <Trash class="size-4" />

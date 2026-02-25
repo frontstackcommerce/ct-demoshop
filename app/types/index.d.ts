@@ -1,16 +1,3 @@
-// UI types for search controls
-interface UiFilter {
-  key: string
-  label: string
-  options: FilterGroup
-}
-
-interface UiSort {
-  key: string
-  value: string
-  label: string
-}
-
 // Cart-specific type (not provided by Frontic)
 
 interface LineItem {

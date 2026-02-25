@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * This file was automatically generated using the
  * Frontic CLI, please do not edit it manually!

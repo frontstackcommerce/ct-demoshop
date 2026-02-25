@@ -3,13 +3,15 @@ const emit = defineEmits<{
   (e: 'success'): void
 }>()
 
-const { context, contextList, updateContext, getRegionLabel, getLocaleLabel } = useContext()
+const { contexts: contextList, current: context, update: updateContext } = useFronticContext()
 
 const selectedRegion = ref(context.value?.region ?? '')
 const selectedLocale = ref(context.value?.locale ?? '')
 
 const availableLocales = computed(() => {
-  const region = contextList.value?.find((option: ContextOption) => option.region === selectedRegion.value)
+  const region = contextList.value?.find(
+    (option: ContextOption) => option.region === selectedRegion.value,
+  )
   return region?.locales ?? []
 })
 
@@ -36,8 +38,12 @@ const handleLocaleSelect = (localeKey: string) => {
 const handleSubmit = async () => {
   if (!selectedRegion.value || !selectedLocale.value) return
 
-  const regionOption = contextList.value?.find((option: ContextOption) => option.region === selectedRegion.value)
-  const localeOption = regionOption?.locales.find((locale: Locale) => locale.key === selectedLocale.value)
+  const regionOption = contextList.value?.find(
+    (option: ContextOption) => option.region === selectedRegion.value,
+  )
+  const localeOption = regionOption?.locales.find(
+    (locale: Locale) => locale.key === selectedLocale.value,
+  )
   if (regionOption && localeOption) {
     await updateContext({ region: regionOption.region, locale: localeOption.key })
     const url = localeOption.url.replace('ct.demo-shop.com', '')
@@ -69,7 +75,7 @@ const handleSubmit = async () => {
               <LayoutStoreRegionFlag :code="contextOption.region" size="lg" />
             </ItemMedia>
             <ItemTitle class="text-center">
-              {{ getRegionLabel(contextOption.region) }}
+              {{ formatLabel(contextOption.region) }}
             </ItemTitle>
           </ItemContent>
         </Item>
@@ -96,7 +102,7 @@ const handleSubmit = async () => {
               <LayoutStoreLocaleFlag :code="locale.key" size="lg" />
             </ItemMedia>
             <ItemTitle>
-              {{ getLocaleLabel(locale.key) }}
+              {{ formatLabel(locale.key) }}
             </ItemTitle>
           </ItemContent>
         </Item>

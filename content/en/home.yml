@@ -1,0 +1,28 @@
+hero:
+  image: https://a.storyblok.com/f/282508/1536x1024/b44eabb6eb/furniture.png
+  imageAlt: Modern furniture in a stylish living room
+  title: Discover timeless design for your home
+  button: Shop now
+search:
+  image: https://a.storyblok.com/f/282508/1024x1024/871dc9b656/orynt-hero.png
+categories:
+  title: Shop by category
+featured:
+  - image: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Traditional_L_Seater_Sofa-1.3.jpeg
+    link: /traditional-l-seater-sofa
+    label: Lounge Furniture
+  - image: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Braided_Rug-1.2.jpeg
+    link: /braided-rug
+    label: Home Braid
+  - image: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Jute_Rug-1.3.jpeg
+    link: /jute-rug
+    label: Rugs
+newArrivals:
+  label: New in store
+  title: New Arrivals
+  button: View all
+categoryImages:
+  - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Ivory_Lounge_Chair-1.3.jpeg
+  - https://a.storyblok.com/f/282508/x/baaa9b88cd/vitra-bild.avif
+  - https://a.storyblok.com/f/282508/1536x1024/9eb7427a46/trivaro-hero.png
+  - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Rattan_Lounge_Chair-1.2.jpeg

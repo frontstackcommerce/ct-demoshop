@@ -13,7 +13,7 @@ const props = withDefaults(
     inverted: false,
   },
 )
-const { context, getRegionLabel } = useContext()
+const { current: context } = useFronticContext()
 
 const sizeClass = computed(() => {
   return {
@@ -26,9 +26,14 @@ const sizeClass = computed(() => {
 </script>
 
 <template>
-  <Button v-if="context" :color="inverted ? 'secondary' : 'neutral'" :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]" :size="sizeClass.button">
+  <Button
+    v-if="context"
+    :color="inverted ? 'secondary' : 'neutral'"
+    :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
+    :size="sizeClass.button"
+  >
     <LayoutStoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
-    <template v-if="!collapsed"> {{ getRegionLabel(context.region) }} </template>
+    <template v-if="!collapsed"> {{ formatLabel(context.region) }} </template>
     <ChevronDown :class="sizeClass.icon" />
   </Button>
 </template>

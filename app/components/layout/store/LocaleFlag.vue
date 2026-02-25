@@ -19,7 +19,9 @@ const props = withDefaults(
 )
 
 const glob = import.meta.glob<{ default: string }>('@/assets/flags/*.svg', { eager: true })
-const flags = Object.fromEntries(Object.entries(glob).map(([key, value]) => [filename(key), value.default]))
+const flags = Object.fromEntries(
+  Object.entries(glob).map(([key, value]) => [filename(key), value.default]),
+)
 
 const localeCode = computed(() => {
   switch (props.code) {

@@ -41,13 +41,29 @@ watch(
 </script>
 
 <template>
-  <Filter v-model="selectedOptions" class="relative mx-0 rounded-none border-none pl-0 shadow-none" :multiple="true" :disabled="isDisabled" @update:model-value="updateFilter">
-    <FilterTrigger class="mx-0 pl-[-8px] font-normal" :disabled="isDisabled" :class="{ 'text-muted': isDisabled }">
+  <Filter
+    v-model="selectedOptions"
+    class="relative mx-0 rounded-none border-none pl-0 shadow-none"
+    :multiple="true"
+    :disabled="isDisabled"
+    @update:model-value="updateFilter"
+  >
+    <FilterTrigger
+      class="mx-0 pl-[-8px] font-normal"
+      :disabled="isDisabled"
+      :class="{ 'text-muted': isDisabled }"
+    >
       <slot />
     </FilterTrigger>
     <FilterContent class="my-2 p-2">
       <FilterList>
-        <FilterItem v-for="(option, index) in filterOptions" :key="index" :disabled="option.disabled" :option :value="option.value">
+        <FilterItem
+          v-for="(option, index) in filterOptions"
+          :key="index"
+          :disabled="option.disabled"
+          :option
+          :value="option.value"
+        >
           <FilterIndicator :disabled="option.disabled" />
         </FilterItem>
       </FilterList>

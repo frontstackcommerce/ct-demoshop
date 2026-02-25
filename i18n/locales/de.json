@@ -79,48 +79,7 @@
     "title": "Favoriten"
   },
   "footer": {
-    "copyright": "Alle Rechte vorbehalten.",
-    "privacy": "Datenschutz",
-    "terms": "AGB",
-    "newsletter": {
-      "title": "Newsletter abonnieren",
-      "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Angeboten.",
-      "accept": "Abonnieren",
-      "privacy": "Datenschutz",
-      "terms": "AGB",
-      "divider": "und"
-    },
-    "menu": {
-      "about": {
-        "title": "Über uns"
-      },
-      "support": {
-        "title": "Support"
-      }
-    }
-  },
-  "header": {
-    "teaser": "Kostenloser Versand ab 50 EUR"
-  },
-  "home": {
-    "hero": {
-      "image-alt": "Moderne Möbel in einem stilvollen Wohnzimmer",
-      "title": "Entdecken Sie zeitloses Design für Ihr Zuhause",
-      "button": "Jetzt entdecken"
-    },
-    "categories": {
-      "title": "Nach Kategorie stöbern"
-    },
-    "featured": {
-      "home-braid": "Geflochtenes Dekor",
-      "lounge-furniture": "Lounge Möbel",
-      "rugs": "Teppiche"
-    },
-    "new-arrivals": {
-      "label": "Neu im Sortiment",
-      "title": "Neuheiten",
-      "button": "Alle ansehen"
-    }
+    "copyright": "Alle Rechte vorbehalten."
   },
   "layout": {
     "toast": {
@@ -157,7 +116,9 @@
       "reviews": {
         "title": "Bewertungen",
         "count": "{count} Bewertungen",
-        "show-full-review": "Ganze Bewertung anzeigen"
+        "show-full-review": "Ganze Bewertung anzeigen",
+        "anonymous": "Anonym",
+        "rating": "{rating}/5"
       }
     }
   },

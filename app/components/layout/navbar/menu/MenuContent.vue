@@ -6,7 +6,7 @@ const props = defineProps<{
   category?: MenuItem
 }>()
 
-const { closeMenu } = useShopMenu()
+const { closeMenu } = useMenuState()
 
 const stateCategoryId = ref<string | undefined>(undefined)
 
@@ -21,7 +21,10 @@ onMounted(() => {
       <ul v-if="category" class="mt-8 flex flex-col gap-8">
         <li>
           <NavigationMenuLink as-child>
-            <NuxtLink class="font-display flex items-center gap-3 text-2xl leading-none transition-all duration-300 hover:translate-x-2" :to="category?.link?.path">
+            <NuxtLink
+              class="font-display flex items-center gap-3 text-2xl leading-none transition-all duration-300 hover:translate-x-2"
+              :to="category?.link?.path"
+            >
               <ArrowRight class="size-6" />
               {{ $t('actions.shop-all') }}
             </NuxtLink>
@@ -30,11 +33,16 @@ onMounted(() => {
 
         <li v-for="child in category.children?.items" :key="child.key">
           <NavigationMenuLink as-child>
-            <NuxtLink :to="child.link?.path" class="group relative inline-block overflow-hidden pb-2">
+            <NuxtLink
+              :to="child.link?.path"
+              class="group relative inline-block overflow-hidden pb-2"
+            >
               <div class="font-display relative z-10 text-2xl leading-none">
                 {{ child.name }}
               </div>
-              <div class="bg-inverted absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></div>
+              <div
+                class="bg-inverted absolute bottom-0 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
+              ></div>
             </NuxtLink>
           </NavigationMenuLink>
           <LayoutNavbarMenuSubItems :categories="child.children" />

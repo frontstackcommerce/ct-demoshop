@@ -12,8 +12,13 @@ const selectedVariant = ref<ProductVariant | null>(null)
 const quantity = ref(1)
 
 onMounted(() => {
-  if (query.sku && typeof query.sku === 'string' && props.product.variants?.some((variant) => variant.key === query.sku)) {
-    selectedVariant.value = props.product.variants.find((variant) => variant.key === query.sku) ?? null
+  if (
+    query.sku &&
+    typeof query.sku === 'string' &&
+    props.product.variants?.some((variant) => variant.key === query.sku)
+  ) {
+    selectedVariant.value =
+      props.product.variants.find((variant) => variant.key === query.sku) ?? null
   } else if (Array.isArray(props.product.variants) && props.product.variants.length > 0) {
     selectedVariant.value = props.product.variants[0] ?? null
   } else {
@@ -36,15 +41,26 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
 </script>
 
 <template>
-  <div class="bg-shade-100 absolute inset-0 top-28 z-0 hidden h-[40%] min-h-[340px] w-screen overflow-hidden sm:block">
-    <NuxtImg :src="selectedVariant?.images?.[0]?.src" :alt="selectedVariant?.images?.[0]?.altText" class="size-full object-cover opacity-10 blur-lg" />
+  <div
+    class="absolute inset-0 top-28 z-0 hidden h-[40%] min-h-[340px] w-screen overflow-hidden sm:block"
+  >
+    <NuxtImg
+      :src="selectedVariant?.images?.[0]?.src"
+      :alt="selectedVariant?.images?.[0]?.altText"
+      class="size-full object-cover opacity-10 blur-lg"
+    />
   </div>
 
   <div class="relative z-10 mx-auto mb-12 flex max-w-7xl flex-col gap-12 sm:mt-20 sm:px-10 lg:px-5">
     <div class="grid grid-cols-2 gap-8 sm:grid-cols-12">
       <div v-if="selectedVariant" class="col-span-2 sm:col-span-7 lg:col-span-8">
         <div :class="hasSecondImage ? 'grid grid-cols-2 gap-2' : 'grid grid-cols-1 gap-2'">
-          <div v-for="image in selectedVariant.images?.slice(0, 2) ?? []" :key="image.key" :class="hasSecondImage ? 'aspect-[0.75]' : ''" class="overflow-hidden">
+          <div
+            v-for="image in selectedVariant.images?.slice(0, 2) ?? []"
+            :key="image.key"
+            :class="hasSecondImage ? 'aspect-[0.75]' : ''"
+            class="overflow-hidden"
+          >
             <NuxtImg
               :src="image.src"
               :alt="image.altText"
@@ -57,9 +73,20 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
           </div>
         </div>
 
-        <div v-if="selectedVariant.images && selectedVariant.images.length > 2" class="col-span-12 mt-2 grid grid-cols-3 gap-2">
-          <div v-for="image in selectedVariant.images?.slice(2) ?? []" :key="image.key" class="overflow-hidden">
-            <NuxtImg :src="image.src" :alt="image.altText" class="size-full bg-white object-contain p-2 transition-transform duration-300 hover:scale-105" />
+        <div
+          v-if="selectedVariant.images && selectedVariant.images.length > 2"
+          class="col-span-12 mt-2 grid grid-cols-3 gap-2"
+        >
+          <div
+            v-for="image in selectedVariant.images?.slice(2) ?? []"
+            :key="image.key"
+            class="overflow-hidden"
+          >
+            <NuxtImg
+              :src="image.src"
+              :alt="image.altText"
+              class="size-full bg-white object-contain p-2 transition-transform duration-300 hover:scale-105"
+            />
           </div>
         </div>
       </div>
@@ -76,9 +103,14 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
         <div v-if="selectedVariant?.price" class="text-2xl font-bold">
           {{ formatPrice(selectedVariant?.price) }}
           <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
-          <span class="text-muted-foreground block text-sm font-light"> REF: {{ selectedVariant.key }} </span>
+          <span class="text-muted-foreground block text-sm font-light">
+            REF: {{ selectedVariant.key }}
+          </span>
         </div>
-        <div v-if="Array.isArray(product.variants) && product.variants.length > 1" class="grid grid-cols-5 gap-4 pb-4">
+        <div
+          v-if="Array.isArray(product.variants) && product.variants.length > 1"
+          class="grid grid-cols-5 gap-4 pb-4"
+        >
           <div
             v-for="variant in product.variants"
             :key="variant.key"
@@ -106,7 +138,13 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
               </SelectContent>
             </Select>
           </div>
-          <Button v-if="selectedVariant" color="buy" size="xl" class="grow" @click="handleAddToCart(selectedVariant, quantity)">
+          <Button
+            v-if="selectedVariant"
+            color="buy"
+            size="xl"
+            class="grow"
+            @click="handleAddToCart(selectedVariant, quantity)"
+          >
             {{ $t('product.buy.add-to-cart') }}
           </Button>
         </div>
@@ -117,7 +155,10 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
       <h2 class="font-display col-span-12 text-2xl">
         {{ $t('product.details.sections.description') }}
       </h2>
-      <p v-if="product.description" class="text-muted-foreground col-span-12 text-lg leading-relaxed font-extralight tracking-wide">
+      <p
+        v-if="product.description"
+        class="text-muted-foreground col-span-12 text-lg leading-relaxed font-extralight tracking-wide"
+      >
         {{ product.description }}
       </p>
       <p v-else class="text-muted-foreground col-span-12 font-light">

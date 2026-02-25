@@ -27,8 +27,21 @@ const logoSrc = computed(() => {
 <template>
   <div>
     <NuxtLinkLocale v-if="isClickable" :to="target">
-      <NuxtImg v-bind="delegatedProps" :src="logoSrc" height="48" :class="props.class" alt="Demo Shop" />
+      <NuxtImg
+        v-bind="delegatedProps"
+        :src="logoSrc"
+        height="48"
+        :class="props.class"
+        alt="Demo Shop"
+      />
     </NuxtLinkLocale>
-    <NuxtImg v-else v-bind="delegatedProps" :src="logoSrc" height="48" :class="props.class" alt="Demo Shop" />
+    <NuxtImg
+      v-else
+      v-bind="delegatedProps"
+      :src="logoSrc"
+      height="48"
+      :class="props.class"
+      alt="Demo Shop"
+    />
   </div>
 </template>

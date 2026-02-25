@@ -1,39 +1,36 @@
 header:
-  navLinks:
-    - label: Features
-      href: /features
-    - label: Pricing
-      href: /pricing
-    - label: Blog
-      href: /blog
-    - label: Docs
-      href: /docs
-  ctaLabel: Get in Touch
-  ctaHref: /contact
+  teaser: Free shipping on orders over 50 EUR
+
+about:
+  title: About
+  links:
+    - label: Our Story
+      href: /about
+    - label: Sustainability
+      href: /sustainability
+    - label: Careers
+      href: /careers
+    - label: Press
+      href: /press
 
 footer:
-  navLinks:
-    - label: Features
-      href: /features
-    - label: Pricing
-      href: /pricing
-    - label: About
-      href: /about
-    - label: Blog
-      href: /blog
-    - label: Documentation
-      href: /docs
-    - label: Changelog
-      href: /changelog
+  groups:
+    - title: Support
+      links:
+        - label: FAQ
+          href: /faq
+        - label: Shipping & Returns
+          href: /shipping
+        - label: Contact
+          href: /contact
   legalLinks:
-    - label: Privacy
+    - label: Privacy Policy
       href: /privacy
     - label: Imprint
       href: /imprint
-    - label: Contact
-      href: /contact
   newsletter:
-    headline: Stay in the Loop.
-    description: Get product updates, new features, and e-commerce tips delivered to your inbox.
-    buttonLabel: Subscribe
-    buttonHref: /signup
+    title: Subscribe to our newsletter
+    description: Stay up to date with the latest news and offers.
+    placeholder: Email Address
+    accept: Subscribe
+    divider: and

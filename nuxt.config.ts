@@ -64,7 +64,16 @@ export default defineNuxtConfig({
     throwOn404: false,
   },
 
-  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', 'nuxt-og-image', 'vue-sonner/nuxt', '@frontic/nuxt'],
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    '@nuxt/image',
+    'nuxt-og-image',
+    'vue-sonner/nuxt',
+    '@frontic/nuxt',
+  ],
 
   // OG Image generation for social cards
   ogImage: {

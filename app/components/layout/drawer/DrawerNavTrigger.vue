@@ -26,8 +26,13 @@ const handleSectionChange = (newSection: 'search' | 'cart' | 'account' | 'menu')
 watch(
   [isSearchOpen, isAccountOpen, isProductDetail, isMenuOpen, isCartOpen, isCartEmpty],
   ([isSearchOpen, isAccountOpen, isProductDetail, isMenuOpen, isCartOpen, isCartEmpty]) => {
-    isCollapsed.value = (isProductDetail && !isMenuOpen) || isSearchOpen || isAccountOpen || isCartOpen
-    isInCorner.value = (isCartEmpty && isCartOpen) || isSearchOpen || isAccountOpen || (isProductDetail && !isMenuOpen && !isCartOpen)
+    isCollapsed.value =
+      (isProductDetail && !isMenuOpen) || isSearchOpen || isAccountOpen || isCartOpen
+    isInCorner.value =
+      (isCartEmpty && isCartOpen) ||
+      isSearchOpen ||
+      isAccountOpen ||
+      (isProductDetail && !isMenuOpen && !isCartOpen)
   },
   { immediate: true },
 )
@@ -43,9 +48,19 @@ watch(
   >
     <div class="flex items-center gap-4">
       <!-- Checkout Button -->
-      <div v-if="isCartOpen && !isCartEmpty" class="bg-checkout flex h-16 items-center gap-8 px-6 py-1 shadow-md">
+      <div
+        v-if="isCartOpen && !isCartEmpty"
+        class="bg-checkout flex h-16 items-center gap-8 px-6 py-1 shadow-md"
+      >
         <NuxtLinkLocale to="/checkout">
-          <Button class="flex items-center gap-5" :aria-label="$t('navigation.checkout')" variant="default" color="checkout" size="lg" @click="resetNav">
+          <Button
+            class="flex items-center gap-5"
+            :aria-label="$t('navigation.checkout')"
+            variant="default"
+            color="checkout"
+            size="lg"
+            @click="resetNav"
+          >
             <ShoppingCart class="text-checkout-foreground size-6" />
             {{ $t('navigation.checkout') }}
           </Button>
@@ -53,7 +68,10 @@ watch(
       </div>
 
       <!-- Main Navigation -->
-      <div class="bg-inverted flex items-center shadow-md" :class="isCollapsed ? 'size-16 justify-center' : 'h-16 w-full gap-8 px-6 py-1'">
+      <div
+        class="bg-inverted flex items-center shadow-md"
+        :class="isCollapsed ? 'size-16 justify-center' : 'h-16 w-full gap-8 px-6 py-1'"
+      >
         <!-- Close Button -->
         <template v-if="isSearchOpen || isAccountOpen || isCartOpen">
           <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
@@ -63,7 +81,11 @@ watch(
 
         <!-- Detail Mode Menu -->
         <template v-else-if="isProductDetail && !isMenuOpen">
-          <Button :aria-label="$t('navigation.menu')" variant="icon" @click="handleSectionChange('menu')">
+          <Button
+            :aria-label="$t('navigation.menu')"
+            variant="icon"
+            @click="handleSectionChange('menu')"
+          >
             <Menu class="text-inverted-foreground relative size-6 scale-150" :stroke-width="1" />
             <LayoutStoreCartBadge size="lg" />
           </Button>
@@ -71,14 +93,27 @@ watch(
 
         <!-- Menu Mode -->
         <template v-else-if="isMenuOpen">
-          <Button :aria-label="$t('navigation.search')" variant="icon" @click="handleSectionChange('search')">
+          <Button
+            :aria-label="$t('navigation.search')"
+            variant="icon"
+            @click="handleSectionChange('search')"
+          >
             <Search class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button :aria-label="$t('navigation.cart')" class="relative" variant="icon" @click="handleSectionChange('cart')">
+          <Button
+            :aria-label="$t('navigation.cart')"
+            class="relative"
+            variant="icon"
+            @click="handleSectionChange('cart')"
+          >
             <ShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
             <LayoutStoreCartBadge />
           </Button>
-          <Button :aria-label="$t('navigation.account')" variant="icon" @click="handleSectionChange('account')">
+          <Button
+            :aria-label="$t('navigation.account')"
+            variant="icon"
+            @click="handleSectionChange('account')"
+          >
             <User class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
           <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
@@ -88,17 +123,34 @@ watch(
 
         <!-- Default Navigation -->
         <template v-else>
-          <Button :aria-label="$t('navigation.search')" variant="icon" @click="handleSectionChange('search')">
+          <Button
+            :aria-label="$t('navigation.search')"
+            variant="icon"
+            @click="handleSectionChange('search')"
+          >
             <Search class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button :aria-label="$t('navigation.cart')" class="relative" variant="icon" @click="handleSectionChange('cart')">
+          <Button
+            :aria-label="$t('navigation.cart')"
+            class="relative"
+            variant="icon"
+            @click="handleSectionChange('cart')"
+          >
             <ShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
             <LayoutStoreCartBadge />
           </Button>
-          <Button :aria-label="$t('navigation.account')" variant="icon" @click="handleSectionChange('account')">
+          <Button
+            :aria-label="$t('navigation.account')"
+            variant="icon"
+            @click="handleSectionChange('account')"
+          >
             <User class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button :aria-label="$t('navigation.menu')" variant="icon" @click="handleSectionChange('menu')">
+          <Button
+            :aria-label="$t('navigation.menu')"
+            variant="icon"
+            @click="handleSectionChange('menu')"
+          >
             <Menu class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
         </template>

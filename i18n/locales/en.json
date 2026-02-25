@@ -79,48 +79,7 @@
     "title": "Favorites"
   },
   "footer": {
-    "copyright": "All rights reserved.",
-    "privacy": "Privacy Policy",
-    "terms": "Terms & Conditions",
-    "newsletter": {
-      "title": "Subscribe to our newsletter",
-      "description": "Stay up to date with the latest news and offers.",
-      "accept": "Subscribe",
-      "privacy": "Privacy Policy",
-      "terms": "Terms & Conditions",
-      "divider": "and"
-    },
-    "menu": {
-      "about": {
-        "title": "About"
-      },
-      "support": {
-        "title": "Support"
-      }
-    }
-  },
-  "header": {
-    "teaser": "Free shipping on orders over 50 EUR"
-  },
-  "home": {
-    "hero": {
-      "image-alt": "Modern furniture in a stylish living room",
-      "title": "Discover timeless design for your home",
-      "button": "Shop now"
-    },
-    "categories": {
-      "title": "Shop by category"
-    },
-    "featured": {
-      "home-braid": "Home Braid",
-      "lounge-furniture": "Lounge Furniture",
-      "rugs": "Rugs"
-    },
-    "new-arrivals": {
-      "label": "New in store",
-      "title": "New Arrivals",
-      "button": "View all"
-    }
+    "copyright": "All rights reserved."
   },
   "layout": {
     "toast": {
@@ -157,7 +116,9 @@
       "reviews": {
         "title": "Reviews",
         "count": "{count} reviews",
-        "show-full-review": "Show full review"
+        "show-full-review": "Show full review",
+        "anonymous": "Anonymous",
+        "rating": "{rating}/5"
       }
     }
   },

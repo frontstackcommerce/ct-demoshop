@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const { aboutTree } = useShopMenu()
+const { data: nav } = useNavContent()
+const aboutLinks = computed(() => nav.value?.about?.links ?? [])
 </script>
 
 <template>
   <div class="flex flex-col gap-3 text-lg font-light md:gap-1">
-    <NuxtLink v-for="(link, index) in aboutTree" :key="index" :to="link.link?.path" class="">{{ link.name }}</NuxtLink>
+    <NuxtLinkLocale v-for="link in aboutLinks" :key="link.href" :to="link.href">{{
+      link.label
+    }}</NuxtLinkLocale>
   </div>
 </template>

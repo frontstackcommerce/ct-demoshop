@@ -32,9 +32,17 @@ onMounted(() => {
     </NuxtLink>
     <div v-if="Array.isArray(product.variants) && product.variants.length > 1">
       <div class="flex gap-2">
-        <NuxtLink v-for="variant in product.variants" :key="variant.key" :to="product.link?.path + '?sku=' + variant.key">
+        <NuxtLink
+          v-for="variant in product.variants"
+          :key="variant.key"
+          :to="product.link?.path + '?sku=' + variant.key"
+        >
           <div class="aspect-square size-6 cursor-pointer overflow-hidden bg-white">
-            <NuxtImg :src="variant.images?.[0]?.src" :alt="variant.images?.[0]?.altText" class="size-full scale-400 object-contain blur-xs saturate-200" />
+            <NuxtImg
+              :src="variant.images?.[0]?.src"
+              :alt="variant.images?.[0]?.altText"
+              class="size-full scale-400 object-contain blur-xs saturate-200"
+            />
           </div>
         </NuxtLink>
       </div>

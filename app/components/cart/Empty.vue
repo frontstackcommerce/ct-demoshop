@@ -22,7 +22,12 @@ defineEmits<{
         <template v-for="item in cartRecoList?.items" :key="item.key">
           <NuxtLink :to="item.link?.path">
             <div class="flex items-center gap-4" @click="$emit('close')">
-              <NuxtImg :src="item.cover?.src" :alt="item.cover?.altText" class="size-20 rounded-md object-cover" loading="lazy" />
+              <NuxtImg
+                :src="item.cover?.src"
+                :alt="item.cover?.altText"
+                class="size-20 rounded-md object-cover"
+                loading="lazy"
+              />
               <div class="flex w-full flex-col gap-3">
                 <p class="text-sm font-medium">{{ item.name }}</p>
                 <p class="text-end text-sm">

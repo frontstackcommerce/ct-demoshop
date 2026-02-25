@@ -1,20 +1,28 @@
 <script setup lang="ts">
-const { updateContext, getLocaleLabel } = useContext()
-const { page, suggestRedirect } = usePageRouter()
+const { update: updateContext } = useFronticContext()
+const { route } = useFronticPage()
+
+const suggestRedirectDismissed = ref(false)
+const suggestRedirect = computed({
+  get: () => !suggestRedirectDismissed.value && !!route.value?.context?.suggested?.path,
+  set: (val: boolean) => {
+    if (!val) suggestRedirectDismissed.value = true
+  },
+})
 
 async function denySuggestion() {
-  if (!page.value?.route.context?.region || !page.value?.route.context?.locale) return
+  if (!route.value?.context?.region || !route.value?.context?.locale) return
   // TODO: check implementation (update fails since route context is wrong) as soon as fetch api is fixed
   await updateContext({
-    region: page.value.route.context.region,
-    locale: page.value.route.context.locale,
+    region: route.value.context.region,
+    locale: route.value.context.locale,
   })
 }
 
 async function acceptSuggestion() {
-  if (!page.value?.route.context?.suggested?.path) return
+  if (!route.value?.context?.suggested?.path) return
   suggestRedirect.value = false
-  await navigateTo(page.value.route.context.suggested.path)
+  await navigateTo(route.value.context.suggested.path)
 }
 </script>
 
@@ -26,11 +34,16 @@ async function acceptSuggestion() {
         <DialogDescription>{{ $t('context.suggest.description') }}</DialogDescription>
       </DialogHeader>
 
-      <Button v-if="page?.route.context?.suggested" variant="outline" size="lg" class="flex items-center gap-4 rounded-full py-6" @click="acceptSuggestion"
-        ><LayoutStoreLocaleFlag code="en-us" size="lg" />
+      <Button
+        v-if="route?.context?.suggested"
+        variant="outline"
+        size="lg"
+        class="flex items-center gap-4 rounded-full py-6"
+        @click="acceptSuggestion"
+        ><LayoutStoreLocaleFlag :code="route?.context?.suggested?.locale ?? ''" size="lg" />
         {{
           $t('context.suggest.accept', {
-            locale: getLocaleLabel(page?.route.context.suggested.locale),
+            locale: formatLabel(route?.context.suggested.locale),
           })
         }}
       </Button>

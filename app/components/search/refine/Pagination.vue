@@ -23,12 +23,31 @@ const progress = computed(() => {
     <p class="text-muted-foreground mx-auto text-sm sm:text-xs">
       {{ $t('control.pagination.showed', { count: loadedItems, total: totalItems }) }}
     </p>
-    <Button v-if="loadedChunks >= 0" class="w-full max-sm:py-8 max-sm:text-base" size="xl" @click="emit('loadMore')">{{ $t('control.pagination.next') }}</Button>
+    <Button
+      v-if="loadedChunks >= 0"
+      class="w-full max-sm:py-8 max-sm:text-base"
+      size="xl"
+      @click="emit('loadMore')"
+      >{{ $t('control.pagination.next') }}</Button
+    >
     <div class="mt-4 flex items-center gap-4">
-      <Button class="flex w-full items-center gap-2 rounded-full" variant="outline" @click="emit('filterResult')"
-        ><Settings2 class="size-4" /> {{ filterCount > 0 ? $t('control.pagination.edit-filter') : $t('control.pagination.add-filter') }}</Button
+      <Button
+        class="flex w-full items-center gap-2 rounded-full"
+        variant="outline"
+        @click="emit('filterResult')"
+        ><Settings2 class="size-4" />
+        {{
+          filterCount > 0
+            ? $t('control.pagination.edit-filter')
+            : $t('control.pagination.add-filter')
+        }}</Button
       >
-      <Button class="flex w-full items-center gap-2 rounded-full" variant="outline" @click="emit('scrollTop')"><ArrowUp class="size-4" /> {{ $t('control.pagination.goto-top') }}</Button>
+      <Button
+        class="flex w-full items-center gap-2 rounded-full"
+        variant="outline"
+        @click="emit('scrollTop')"
+        ><ArrowUp class="size-4" /> {{ $t('control.pagination.goto-top') }}</Button
+      >
     </div>
   </div>
 </template>

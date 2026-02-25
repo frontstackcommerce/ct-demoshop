@@ -11,15 +11,25 @@ const props = withDefaults(
 )
 
 const sizeClass = computed(() => {
-  return props.size === 'sm' ? 'size-4 text-xs' : props.size === 'md' ? 'size-5 text-xs' : 'size-6 text-base'
+  return props.size === 'sm'
+    ? 'size-4 text-xs'
+    : props.size === 'md'
+      ? 'size-5 text-xs'
+      : 'size-6 text-base'
 })
 </script>
 
 <template>
   <ClientOnly>
-    <div v-if="lineItems?.length" :class="sizeClass" class="bg-active text-active-foreground absolute top-1 right-1 flex items-center justify-center rounded-full">
+    <div
+      v-if="lineItems?.length"
+      :class="sizeClass"
+      class="bg-active text-active-foreground absolute top-1 right-1 flex items-center justify-center rounded-full"
+    >
       <!-- eslint-disable @intlify/vue-i18n/no-raw-text -->
-      <span class="font-sans font-bold">{{ lineItems?.length > 9 ? '9+' : lineItems?.length }}</span>
+      <span class="font-sans font-bold">{{
+        lineItems?.length > 9 ? '9+' : lineItems?.length
+      }}</span>
       <!-- eslint-enable @intlify/vue-i18n/no-raw-text -->
     </div>
   </ClientOnly>

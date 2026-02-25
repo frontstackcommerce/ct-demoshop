@@ -5,7 +5,7 @@ export default {
   tabWidth: 2,
   useTabs: false,
   trailingComma: 'all',
-  printWidth: 200,
+  printWidth: 100,
   endOfLine: 'lf',
   singleAttributePerLine: false,
   vueIndentScriptAndStyle: false,

@@ -14,7 +14,9 @@ const open = ref(false)
       ></DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle class="font-display text-2xl font-medium">{{ $t('context.title') }}</DialogTitle>
+          <DialogTitle class="font-display text-2xl font-medium">{{
+            $t('context.title')
+          }}</DialogTitle>
         </DialogHeader>
         <LazyLayoutStorePickerContent @success="open = false" />
       </DialogContent> </Dialog

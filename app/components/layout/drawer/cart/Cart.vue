@@ -6,7 +6,7 @@ const emit = defineEmits<{
 }>()
 
 const { updateLineItemQuantity, removeLineItem, lineItems, totalPrice } = useCart()
-const { closeMenu } = useShopMenu()
+const { closeMenu } = useMenuState()
 
 const close = () => {
   emit('close')
@@ -36,8 +36,17 @@ const handleRemove = async (cartItemId: string) => {
           </p>
         </div>
         <ScrollArea class="h-[calc(100vh-10rem)] py-2">
-          <CartItem v-for="item in lineItems" :key="item.key" :item="item" @update="handleUpdate" @remove="handleRemove" @click="close" />
-          <div class="bg-shade-200 text-muted-foreground flex flex-col gap-2 px-6 py-10 text-sm md:hidden">
+          <CartItem
+            v-for="item in lineItems"
+            :key="item.key"
+            :item="item"
+            @update="handleUpdate"
+            @remove="handleRemove"
+            @click="close"
+          />
+          <div
+            class="bg-shade-200 text-muted-foreground flex flex-col gap-2 px-6 py-10 text-sm md:hidden"
+          >
             <div class="flex items-center justify-between">
               <p>{{ $t('cart.summary.items') }}</p>
               <p v-if="totalPrice">
@@ -117,12 +126,23 @@ const handleRemove = async (cartItemId: string) => {
         </div>
       </div>
       <NuxtLinkLocale to="/checkout">
-        <Button class="flex w-full items-center gap-5 text-lg" :aria-label="$t('navigation.checkout')" color="checkout" size="xl" @click="closeMenu">
+        <Button
+          class="flex w-full items-center gap-5 text-lg"
+          :aria-label="$t('navigation.checkout')"
+          color="checkout"
+          size="xl"
+          @click="closeMenu"
+        >
           <ShoppingCart class="text-checkout-foreground size-6" />
           {{ $t('navigation.goto-checkout') }}
         </Button>
       </NuxtLinkLocale>
-      <Button class="w-full" :aria-label="$t('navigation.continue-shopping')" variant="link" @click="closeMenu">
+      <Button
+        class="w-full"
+        :aria-label="$t('navigation.continue-shopping')"
+        variant="link"
+        @click="closeMenu"
+      >
         {{ $t('navigation.continue-shopping') }}
       </Button>
     </div>

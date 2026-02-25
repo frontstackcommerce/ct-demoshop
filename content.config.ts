@@ -4,7 +4,11 @@ import { defineCollection, defineContentConfig, z } from '@nuxt/content'
 const LOCALES = ['en', 'de'] as const
 
 // Helper to create localized collections for both en and de
-function localizedCollection(baseName: string, sourceFile: string, schema: ReturnType<typeof z.object>) {
+function localizedCollection(
+  baseName: string,
+  sourceFile: string,
+  schema: ReturnType<typeof z.object>,
+) {
   return Object.fromEntries(
     LOCALES.map((locale) => [
       `${baseName}_${locale}`,
@@ -17,69 +21,31 @@ function localizedCollection(baseName: string, sourceFile: string, schema: Retur
   )
 }
 
-// Reusable schemas
 const navLinkSchema = z.object({
   label: z.string(),
   href: z.string(),
-  external: z.boolean().optional(),
 })
 
-// Schema definitions
+const navGroupSchema = z.object({
+  title: z.string(),
+  links: z.array(navLinkSchema),
+})
+
 const navigationSchema = z.object({
   header: z.object({
-    navLinks: z.array(navLinkSchema),
-    ctaLabel: z.string(),
-    ctaHref: z.string(),
+    teaser: z.string(),
   }),
+  about: navGroupSchema,
   footer: z.object({
-    navLinks: z.array(navLinkSchema),
+    groups: z.array(navGroupSchema),
     legalLinks: z.array(navLinkSchema),
     newsletter: z.object({
-      headline: z.string(),
-      description: z.string(),
-      buttonLabel: z.string(),
-      buttonHref: z.string(),
-    }),
-  }),
-})
-
-const landingSchema = z.object({
-  hero: z.object({
-    badge: z.object({
-      text: z.string(),
-      href: z.string(),
-    }),
-    headline: z.string(),
-    subheadline: z.string(),
-    primaryCta: z.object({
-      label: z.string(),
-      href: z.string(),
-    }),
-    secondaryCta: z.object({
-      label: z.string(),
-    }),
-  }),
-  readyToStart: z.object({
-    headline: z.string(),
-    description: z.string(),
-    quickStart: z.object({
       title: z.string(),
       description: z.string(),
-      features: z.array(z.string()),
-      ctaLabel: z.string(),
-      ctaHref: z.string(),
+      placeholder: z.string(),
+      accept: z.string(),
+      divider: z.string(),
     }),
-    connectData: z.object({
-      title: z.string(),
-      description: z.string(),
-      features: z.array(z.string()),
-      ctaLabel: z.string(),
-      ctaHref: z.string(),
-    }),
-  }),
-  stories: z.object({
-    headline: z.string(),
-    subheadline: z.string(),
   }),
 })
 
@@ -96,11 +62,55 @@ const faqSchema = z.object({
   ),
 })
 
+const featuredItemSchema = z.object({
+  image: z.string(),
+  link: z.string(),
+  label: z.string(),
+})
+
+const homeSchema = z.object({
+  hero: z.object({
+    image: z.string(),
+    imageAlt: z.string(),
+    title: z.string(),
+    button: z.string(),
+  }),
+  search: z.object({
+    image: z.string(),
+  }),
+  categories: z.object({
+    title: z.string(),
+  }),
+  featured: z.array(featuredItemSchema),
+  newArrivals: z.object({
+    label: z.string(),
+    title: z.string(),
+    button: z.string(),
+  }),
+  categoryImages: z.array(z.string()),
+})
+
+// Helper to create localized page collections (markdown)
+function localizedPages(baseName: string, sourcePattern: string) {
+  return Object.fromEntries(
+    LOCALES.map((locale) => [
+      `${baseName}_${locale}`,
+      defineCollection({
+        type: 'page',
+        source: `${locale}/${sourcePattern}`,
+      }),
+    ]),
+  )
+}
+
 export default defineContentConfig({
   collections: {
-    // Localized collections (en + de)
+    // Localized data collections (en + de)
     ...localizedCollection('navigation', 'navigation.yml', navigationSchema),
-    ...localizedCollection('landing', 'landing.yml', landingSchema),
     ...localizedCollection('faq', 'faq.yml', faqSchema),
+    ...localizedCollection('home', 'home.yml', homeSchema),
+
+    // Localized page collections (markdown)
+    ...localizedPages('pages', '*.md'),
   },
 })

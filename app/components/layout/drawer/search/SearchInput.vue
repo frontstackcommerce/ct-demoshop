@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Search, X } from 'lucide-vue-next'
 import { useFocus } from '@vueuse/core'
-const { searchTerm } = useProductSearch()
+const { searchTerm } = useFronticSearch('ProductSearch', {})
 const autoFocus = ref<HTMLInputElement>()
 const isFocused = ref(false)
 
@@ -47,7 +47,10 @@ function handleBlur() {
     <span class="absolute inset-y-0 start-3 flex items-center justify-center">
       <Search class="text-muted-foreground size-5" />
     </span>
-    <span v-if="searchTerm.length > 0" class="absolute inset-y-0 end-3 flex items-center justify-center">
+    <span
+      v-if="searchTerm.length > 0"
+      class="absolute inset-y-0 end-3 flex items-center justify-center"
+    >
       <Button size="sm" variant="icon" @click="clearSearch">
         <X class="text-shade-300 size-5" />
       </Button>

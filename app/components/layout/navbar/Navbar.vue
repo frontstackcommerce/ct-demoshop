@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { menuState, isOpen } = useShopMenu()
+const { menuState, isOpen } = useMenuState()
 
 // SVG X icon encoded for cursor
 

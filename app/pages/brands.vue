@@ -4,7 +4,7 @@ defineI18nRoute({
     de: '/marken', // -> accessible at /de/marken
   },
 })
-const { brands } = useBrands()
+const { listing: brands } = useFronticListing('BrandListing', {})
 </script>
 
 <template>
