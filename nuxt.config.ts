@@ -32,6 +32,9 @@ export default defineNuxtConfig({
   },
 
   fonts: {
+    families: [
+      { name: 'Varela Round', provider: 'google' },
+    ],
     defaults: {
       weights: [400],
     },
@@ -59,6 +62,7 @@ export default defineNuxtConfig({
 
   // Image optimization (auto-uses Vercel provider in production)
   image: {
+    domains: ['storage.googleapis.com'],
     quality: 80,
     format: ['webp', 'avif'],
   },
@@ -71,6 +75,7 @@ export default defineNuxtConfig({
     '@nuxtjs/i18n',
     '@nuxt/image',
     'nuxt-og-image',
+    'vue-sonner/nuxt',
     '@frontic/nuxt',
   ],
 
@@ -80,6 +85,11 @@ export default defineNuxtConfig({
     defaults: {
       cacheMaxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
     },
+  },
+
+  routeRules: {
+    '/**': { isr: 60 },
+    '/api/cart/**': { prerender: false, isr: false },
   },
 
   runtimeConfig: {
