@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { LineItem } from '@commercetools/platform-sdk'
-
 const { context } = useContext()
 
 const props = defineProps<{
