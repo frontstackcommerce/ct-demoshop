@@ -1,0 +1,39 @@
+header:
+  navLinks:
+    - label: Features
+      href: /features
+    - label: Preise
+      href: /pricing
+    - label: Blog
+      href: /blog
+    - label: Docs
+      href: /docs
+  ctaLabel: Kontakt
+  ctaHref: /contact
+
+footer:
+  navLinks:
+    - label: Features
+      href: /features
+    - label: Preise
+      href: /pricing
+    - label: Über uns
+      href: /about
+    - label: Blog
+      href: /blog
+    - label: Dokumentation
+      href: /docs
+    - label: Changelog
+      href: /changelog
+  legalLinks:
+    - label: Datenschutz
+      href: /privacy
+    - label: Impressum
+      href: /imprint
+    - label: Kontakt
+      href: /contact
+  newsletter:
+    headline: Bleiben Sie auf dem Laufenden.
+    description: Erhalten Sie Produkt-Updates, neue Features und E-Commerce-Tipps direkt in Ihren Posteingang.
+    buttonLabel: Abonnieren
+    buttonHref: /signup

@@ -1,0 +1,16 @@
+title:
+  line1: Fragen,
+  line2: Beantwortet.
+items:
+  - question: Wie lange dauert der Versand?
+    answer: Der Standardversand dauert 3-5 Werktage. Expressversand ist an der Kasse verfügbar und liefert innerhalb von 1-2 Werktagen. Kostenloser Versand ab einem Bestellwert von 75 €.
+  - question: Wie ist Ihr Rückgaberecht?
+    answer: Wir bieten unkomplizierte Rückgaben innerhalb von 30 Tagen nach Lieferung. Artikel müssen unbenutzt und in der Originalverpackung sein. Starten Sie eine Rückgabe über Ihr Konto oder kontaktieren Sie unser Support-Team.
+  - question: Welche Zahlungsmethoden akzeptieren Sie?
+    answer: Wir akzeptieren alle gängigen Kreditkarten (Visa, Mastercard, Amex), PayPal, Apple Pay, Google Pay und Klarna für Ratenzahlung. Alle Zahlungen werden sicher verarbeitet.
+  - question: Liefern Sie international?
+    answer: Ja, wir liefern in über 30 Länder. Internationale Lieferzeiten variieren je nach Zielort, in der Regel 7-14 Werktage. Einfuhrzölle und Steuern können je nach Land anfallen.
+  - question: Wie kann ich meine Bestellung verfolgen?
+    answer: Sobald Ihre Bestellung versendet wird, erhalten Sie eine Bestätigungs-E-Mail mit einer Sendungsverfolgungsnummer. Sie können den Bestellstatus auch jederzeit in Ihrem Konto einsehen.
+  - question: Kann ich meine Bestellung ändern oder stornieren?
+    answer: Sie können Ihre Bestellung innerhalb von 1 Stunde nach Aufgabe ändern oder stornieren. Danach geht die Bestellung in Bearbeitung und kann nicht mehr geändert werden. Kontaktieren Sie uns sofort, wenn Sie Hilfe benötigen.
