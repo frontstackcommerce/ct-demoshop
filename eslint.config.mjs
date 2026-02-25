@@ -15,7 +15,7 @@ export default withNuxt(
       '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'off', // Enable when using multiple locales
       '@intlify/vue-i18n/key-format-style': [
         'error',
-        'camelCase',
+        'kebab-case',
         {
           allowArray: false,
           splitByDots: true,
