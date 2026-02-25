@@ -1,32 +1,15 @@
-// TODO: Replace with Frontic context composable
 export function useContext() {
-  const context = ref<Context>({
-    locale: 'en',
-    region: 'eu',
-  })
+  const { contexts, current, token, update } = useFronticContext()
 
-  const token = ref('')
+  const context = computed(() => current.value)
+  const contextList = computed(() => contexts.value ?? [])
 
-  const contextList = ref<ContextOption[]>([])
-
-  const updateContext = async (_options: { region: string; locale: string }) => {
-    // stub
+  const updateContext = async (options: { region: string; locale: string }) => {
+    await update(options)
   }
 
-  const getLocaleLabel = (locale: string): string => {
-    return locale.toUpperCase()
-  }
+  const getLocaleLabel = (locale: string): string => locale.toUpperCase()
+  const getRegionLabel = (region: string): string => region.toUpperCase()
 
-  const getRegionLabel = (region: string): string => {
-    return region.toUpperCase()
-  }
-
-  return {
-    context,
-    token,
-    contextList,
-    updateContext,
-    getLocaleLabel,
-    getRegionLabel,
-  }
+  return { context, token, contextList, updateContext, getLocaleLabel, getRegionLabel }
 }

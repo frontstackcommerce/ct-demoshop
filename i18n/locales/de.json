@@ -1,5 +1,127 @@
 {
   "about": {},
+  "actions": {
+    "shop-all": "Alle anzeigen",
+    "show-all": "Alle anzeigen"
+  },
+  "brands": {
+    "description": "Entdecken Sie unsere kuratierte Auswahl an Marken.",
+    "label": "Marken"
+  },
+  "cart": {
+    "title": "Warenkorb",
+    "title-long": "Einkaufswagen",
+    "empty": {
+      "title": "Ihr Warenkorb ist leer",
+      "recommended": "Das könnte Ihnen gefallen"
+    },
+    "items": {
+      "quantity-placeholder": "Anz."
+    },
+    "summary": {
+      "count": "{count} Artikel",
+      "free": "Kostenlos",
+      "items": "Artikel",
+      "shipping": "Versand",
+      "tax": "MwSt.",
+      "total": "Gesamt"
+    }
+  },
+  "error": {
+    "title": "Fehler",
+    "description": "Beim Laden der Seite ist ein Fehler aufgetreten"
+  },
+  "context": {
+    "title": "Shop auswählen",
+    "location": {
+      "label": "Standort"
+    },
+    "language": {
+      "label": "Sprache"
+    },
+    "suggest": {
+      "title": "Shop wechseln?",
+      "description": "Es sieht so aus, als ob Sie aus einer anderen Region kommen.",
+      "accept": "Zu {region} wechseln",
+      "deny": "Hier bleiben"
+    }
+  },
+  "control": {
+    "button": "Filter & Sortierung",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "add-filter": "Filter hinzufügen",
+      "edit-filter": "Filter bearbeiten",
+      "goto-top": "Nach oben",
+      "next": "Weiter",
+      "showed": "{count} von {total} angezeigt"
+    },
+    "reset": "Alle zurücksetzen",
+    "reset-sm": "Zurücksetzen",
+    "search": {
+      "placeholder": "Suchen...",
+      "title": "Suche"
+    },
+    "sort": {
+      "title": "Sortieren nach"
+    },
+    "submit": "Ergebnisse anzeigen",
+    "submit-sm": "Anwenden"
+  },
+  "default": {
+    "in-brackets": "({value})"
+  },
+  "favorites": {
+    "empty": "Noch keine Favoriten",
+    "recommended": "Das könnte Ihnen gefallen",
+    "title": "Favoriten"
+  },
+  "footer": {
+    "copyright": "Alle Rechte vorbehalten.",
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "newsletter": {
+      "title": "Newsletter abonnieren",
+      "description": "Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Angeboten.",
+      "accept": "Abonnieren",
+      "privacy": "Datenschutz",
+      "terms": "AGB",
+      "divider": "und"
+    },
+    "menu": {
+      "about": {
+        "title": "Über uns"
+      },
+      "support": {
+        "title": "Support"
+      }
+    }
+  },
+  "header": {
+    "teaser": "Kostenloser Versand ab 50 EUR"
+  },
+  "home": {
+    "hero": {
+      "image-alt": "Moderne Möbel in einem stilvollen Wohnzimmer",
+      "title": "Entdecken Sie zeitloses Design für Ihr Zuhause",
+      "button": "Jetzt entdecken"
+    },
+    "categories": {
+      "title": "Nach Kategorie stöbern"
+    },
+    "featured": {
+      "home-braid": "Geflochtenes Dekor",
+      "lounge-furniture": "Lounge Möbel",
+      "rugs": "Teppiche"
+    },
+    "new-arrivals": {
+      "label": "Neu im Sortiment",
+      "title": "Neuheiten",
+      "button": "Alle ansehen"
+    }
+  },
   "layout": {
     "toast": {
       "add-to-cart": {
@@ -8,5 +130,45 @@
         "checkout": "Zur Kasse"
       }
     }
+  },
+  "navigation": {
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "checkout": "Kasse",
+    "close": "Schließen",
+    "continue-shopping": "Weiter einkaufen",
+    "description": "Navigation",
+    "goto-checkout": "Zur Kasse gehen",
+    "menu": "Menü",
+    "search": "Suche",
+    "title": "Navigation"
+  },
+  "product": {
+    "buy": {
+      "add-to-cart": "In den Warenkorb"
+    },
+    "details": {
+      "sections": {
+        "description": "Beschreibung"
+      },
+      "description": {
+        "missing": "Keine Beschreibung verfügbar."
+      },
+      "reviews": {
+        "title": "Bewertungen",
+        "count": "{count} Bewertungen",
+        "show-full-review": "Ganze Bewertung anzeigen"
+      }
+    }
+  },
+  "search": {
+    "counter": "{count} Ergebnisse für \"{term}\"",
+    "no-results": "Keine Ergebnisse gefunden",
+    "placeholder": "Produkte suchen...",
+    "results": "Ergebnisse",
+    "search-listing": "Suche",
+    "suggest": "Vorschläge",
+    "suggestions": "Vorschläge",
+    "total": "{count} Produkte"
   }
 }

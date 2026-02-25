@@ -1,10 +1,10 @@
-// TODO: Replace with Frontic category composable
-export function useCategory(_categoryKey: string, _breadcrumbs?: ComputedRef<string[]>) {
-  const metadata = ref<{ item: MenuItem } | null>(null)
-  const status = ref<'success' | 'pending' | 'error'>('pending')
+export function useCategory(categoryKey: string, _breadcrumbs?: ComputedRef<string[]>) {
+  const { listing, status } = useFronticListing('CategoryMeta', { categoryKeys: [categoryKey] })
 
-  return {
-    metadata,
-    status,
-  }
+  const metadata = computed(() => {
+    if (!listing.value?.items?.[0]) return null
+    return { item: listing.value.items[0] }
+  })
+
+  return { metadata, status }
 }

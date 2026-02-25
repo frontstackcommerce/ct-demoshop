@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ChevronDown } from 'lucide-vue-next'
+
 const props = withDefaults(
   defineProps<{
     collapsed?: boolean
@@ -9,7 +11,7 @@ const props = withDefaults(
     collapsed: false,
     size: 'md',
     inverted: false,
-  }
+  },
 )
 const { context, getRegionLabel } = useContext()
 
@@ -24,14 +26,9 @@ const sizeClass = computed(() => {
 </script>
 
 <template>
-  <Button
-    v-if="context"
-    :color="inverted ? 'secondary' : 'neutral'"
-    :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]"
-    :size="sizeClass.button"
-  >
-    <StoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
+  <Button v-if="context" :color="inverted ? 'secondary' : 'neutral'" :class="[{ 'mx-auto': !collapsed }, sizeClass.gap]" :size="sizeClass.button">
+    <LayoutStoreRegionFlag v-if="context" :size="sizeClass.flag" :code="context.region" />
     <template v-if="!collapsed"> {{ getRegionLabel(context.region) }} </template>
-    <IconChevronDown :class="sizeClass.icon" />
+    <ChevronDown :class="sizeClass.icon" />
   </Button>
 </template>

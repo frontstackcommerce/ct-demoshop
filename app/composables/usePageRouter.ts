@@ -1,23 +1,22 @@
-// TODO: Replace with Frontic page router composable
 export function usePageRouter() {
-  const page = ref<{
-    type: string
-    data: ProductFull | CategoryFull | null
-    route?: {
-      context?: {
-        region: string
-        locale: string
-        suggested?: { path: string; locale: string }
-      }
+  const { page: fronticPage, data, type, route, alternates, status } = useFronticPage()
+
+  const page = computed(() => {
+    if (!fronticPage.value) return null
+    return {
+      type: type.value,
+      data: data.value,
+      route: route.value,
     }
-  } | null>(null)
+  })
 
-  const status = ref<'success' | 'pending' | 'error'>('pending')
-  const suggestRedirect = ref(false)
+  const suggestRedirectDismissed = ref(false)
+  const suggestRedirect = computed({
+    get: () => !suggestRedirectDismissed.value && !!route.value?.context?.suggested?.path,
+    set: (val: boolean) => {
+      if (!val) suggestRedirectDismissed.value = true
+    },
+  })
 
-  return {
-    page,
-    status,
-    suggestRedirect,
-  }
+  return { page, status, suggestRedirect, alternates }
 }

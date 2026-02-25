@@ -26,24 +26,11 @@ const links = computed(() => {
     <div class="flex items-center gap-2">
       <div class="flex items-center space-x-2">
         <Checkbox id="accept" />
-        <label
-          for="accept"
-          class="text-xs leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-        >
+        <label for="accept" class="text-xs leading-none font-medium peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
           {{ $t('footer.newsletter.accept') }}
-          <NuxtLinkLocale
-            v-if="links[0]"
-            :to="links[0].href"
-            class="text-inverted-foreground underline underline-offset-4"
-            >{{ links[0].label }}</NuxtLinkLocale
-          >
+          <NuxtLinkLocale v-if="links[0]" :to="links[0].href" class="text-inverted-foreground underline underline-offset-4">{{ links[0].label }}</NuxtLinkLocale>
           {{ $t('footer.newsletter.divider') }}
-          <NuxtLinkLocale
-            v-if="links[1]"
-            :to="links[1].href"
-            class="text-inverted-foreground underline underline-offset-4"
-            >{{ links[1].label }}</NuxtLinkLocale
-          >
+          <NuxtLinkLocale v-if="links[1]" :to="links[1].href" class="text-inverted-foreground underline underline-offset-4">{{ links[1].label }}</NuxtLinkLocale>
         </label>
       </div>
     </div>

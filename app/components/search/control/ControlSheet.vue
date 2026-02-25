@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Search, Settings2, X } from 'lucide-vue-next'
 import { useFocus } from '@vueuse/core'
 
 defineProps<{
@@ -30,8 +31,8 @@ const handleFilterResult = (filterField: string, filterOptions: string[]) => {
   emit('filterResult', filterField, filterOptions)
 }
 
-const handleSortResult = (sortBy: string) => {
-  emit('sortResult', sortBy)
+const handleSortResult = (sortBy: any) => {
+  emit('sortResult', String(sortBy))
 }
 
 const handleUpdateSearch = (newTerm: string | number) => {
@@ -50,13 +51,10 @@ function handleClearSearch() {
   <Sheet v-model:open="open">
     <SheetTrigger as-child>
       <Button variant="link" class="relative flex items-center gap-2">
-        <IconSettings2 :size="16" />
+        <Settings2 :size="16" />
         {{ $t('control.button') }}
         <ClientOnly>
-          <div
-            v-if="activeFilterCount > 0"
-            class="bg-active absolute top-[-0.4em] right-[-0.4em] flex size-5 items-center justify-center rounded-full text-xs"
-          >
+          <div v-if="activeFilterCount > 0" class="bg-active absolute top-[-0.4em] right-[-0.4em] flex size-5 items-center justify-center rounded-full text-xs">
             <span class="text-active-foreground">{{ activeFilterCount }}</span>
           </div>
         </ClientOnly>
@@ -69,21 +67,10 @@ function handleClearSearch() {
             <p class="font-display mb-5 text-2xl leading-none font-semibold">
               {{ $t('control.sort.title') }}
             </p>
-            <RadioGroup
-              default-value="default"
-              class="gap-y-2.5"
-              @update:model-value="handleSortResult"
-            >
-              <div
-                v-for="sortOption in availableSorts"
-                :key="sortOption.key"
-                class="flex items-center space-x-4"
-              >
+            <RadioGroup default-value="default" class="gap-y-2.5" @update:model-value="handleSortResult">
+              <div v-for="sortOption in availableSorts" :key="sortOption.key" class="flex items-center space-x-4">
                 <RadioGroupItem :id="sortOption.key" :value="sortOption.value" />
-                <Label
-                  :for="sortOption.key"
-                  class="text-lg font-medium sm:text-base sm:font-normal"
-                >
+                <Label :for="sortOption.key" class="text-lg font-medium sm:text-base sm:font-normal">
                   {{ sortOption.label }}
                 </Label>
               </div>
@@ -105,14 +92,11 @@ function handleClearSearch() {
                 @update:model-value="handleUpdateSearch"
               />
               <span class="absolute inset-y-0 start-3 flex items-center justify-center">
-                <IconSearch class="text-muted-foreground size-5" />
+                <Search class="text-muted-foreground size-5" />
               </span>
-              <span
-                v-if="searchTerm.length > 0"
-                class="absolute inset-y-0 end-3 flex items-center justify-center"
-              >
+              <span v-if="searchTerm.length > 0" class="absolute inset-y-0 end-3 flex items-center justify-center">
                 <Button size="sm" variant="icon" @click="handleClearSearch">
-                  <IconX class="text-muted-foreground size-6" />
+                  <X class="text-muted-foreground size-6" />
                 </Button>
               </span>
             </div>
@@ -137,9 +121,7 @@ function handleClearSearch() {
                 <div class="mr-8 ml-4 flex w-full justify-between py-3">
                   <span class="text-lg font-medium">{{ filter.label }}</span>
                   <span>
-                    <SearchControlFilterPreview
-                      :selected-options="currentFilter?.[filter.key] ?? []"
-                    />
+                    <SearchControlFilterPreview :selected-options="currentFilter?.[filter.key] ?? []" />
                   </span>
                 </div>
               </SearchControlFilterText>
@@ -151,18 +133,9 @@ function handleClearSearch() {
         <div class="flex items-center gap-2 sm:flex-col sm:gap-3">
           <Button size="xl" class="sm:w-full" @click.prevent="emit('closeControl')">
             <span class="hidden sm:block">{{ $t('control.submit', { count: totalResults }) }}</span>
-            <span class="block sm:hidden"
-              >{{ $t('control.submit-sm') }}
-              {{ $t('default.in-brackets', { text: totalResults }) }}</span
-            >
+            <span class="block sm:hidden">{{ $t('control.submit-sm') }} {{ $t('default.in-brackets', { text: totalResults }) }}</span>
           </Button>
-          <Button
-            size="xl"
-            variant="outline"
-            :disabled="!activeFilterCount"
-            class="sm:w-full"
-            @click.prevent="emit('resetFilter')"
-          >
+          <Button size="xl" variant="outline" :disabled="!activeFilterCount" class="sm:w-full" @click.prevent="emit('resetFilter')">
             <span class="hidden sm:block">{{ $t('control.reset') }}</span>
             <span class="block sm:hidden">{{ $t('control.reset-sm') }}</span>
           </Button>

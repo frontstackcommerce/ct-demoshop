@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const props = defineProps<{
+defineProps<{
   reviews: ProductReviews
 }>()
 </script>
@@ -16,6 +16,7 @@ const props = defineProps<{
             <span class="text-2xl font-bold text-gray-900">
               {{ (reviews?.aggregation?.rating?.total.avg || 0).toFixed(1) }}
             </span>
+            <!-- eslint-disable-next-line @intlify/vue-i18n/no-raw-text -->
             <span class="text-gray-500">/5</span>
           </div>
           <div class="flex items-center gap-0.5">
@@ -23,11 +24,7 @@ const props = defineProps<{
               v-for="i in 5"
               :key="i"
               class="h-5 w-5"
-              :class="
-                i <= Math.round(reviews?.aggregation?.rating?.total.avg || 0)
-                  ? 'fill-current text-yellow-400'
-                  : 'text-gray-300'
-              "
+              :class="i <= Math.round(reviews?.aggregation?.rating?.total.avg || 0) ? 'fill-current text-yellow-400' : 'text-gray-300'"
               viewBox="0 0 20 20"
               fill="currentColor"
             >

@@ -11,9 +11,7 @@ watch(showResultControl, (isOpen) => {
   hideNavMenu.value = isOpen
 })
 
-const { listing, state, searchTerm, sortItems, filterItems, resetFilter } = useProductSearch(
-  props.category.key
-)
+const { listing, state, searchTerm, sortItems, filterItems, resetFilter } = useProductSearch(props.category.key)
 
 // Wrapper functions to handle string-to-typed conversions from UI components
 function handleResetFilter(filterField?: string) {

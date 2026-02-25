@@ -15,6 +15,11 @@ yarn.lock
 *.generated.*
 *.min.js
 *.min.css
+.frontic
+.frontic-local
+
+# UI components (shadcn)
+app/components/ui
 
 # IDE/Editor
 .idea

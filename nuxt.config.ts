@@ -2,12 +2,6 @@ import tailwindcss from '@tailwindcss/vite'
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  colorMode: {
-    classSuffix: '',
-    preference: 'light',
-    fallback: 'light',
-  },
-
   compatibilityDate: '2025-07-15',
 
   content: {
@@ -65,17 +59,12 @@ export default defineNuxtConfig({
     format: ['webp', 'avif'],
   },
 
-  modules: [
-    '@nuxt/eslint',
-    '@nuxtjs/color-mode',
-    '@nuxt/fonts',
-    '@nuxt/content',
-    '@nuxtjs/i18n',
-    '@nuxt/image',
-    'nuxt-og-image',
-    'vue-sonner/nuxt',
-    '@frontic/nuxt',
-  ],
+  frontic: {
+    contextDomain: 'ct.demo-shop.com',
+    throwOn404: false,
+  },
+
+  modules: ['@nuxt/eslint', '@nuxt/fonts', '@nuxt/content', '@nuxtjs/i18n', '@nuxt/image', 'nuxt-og-image', 'vue-sonner/nuxt', '@frontic/nuxt'],
 
   // OG Image generation for social cards
   ogImage: {
@@ -99,7 +88,12 @@ export default defineNuxtConfig({
     name: 'Nuxt Storefront',
   },
 
+  vueSonner: {
+    css: false,
+  },
+
   vite: {
+    // @ts-expect-error - Vite/Rollup version mismatch in plugin types
     plugins: [tailwindcss()],
   },
 })

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ChevronDown } from 'lucide-vue-next'
+
 const emit = defineEmits<{
   (e: 'close'): void
 }>()
@@ -24,11 +26,7 @@ function getItemName(item: any): string | undefined {
 
 // Helper to get link property from any menu item type
 function getItemLink(item: any): PageRoute | undefined {
-  return (
-    item?.link ||
-    (item?.path ? ({ path: item.path } as PageRoute) : undefined) ||
-    (item?.href ? ({ path: item.href } as PageRoute) : undefined)
-  )
+  return item?.link || (item?.path ? ({ path: item.path } as PageRoute) : undefined) || (item?.href ? ({ path: item.href } as PageRoute) : undefined)
 }
 
 // Current menu level
@@ -79,42 +77,21 @@ function handleShowParentCategory() {
     <div class="flex flex-col items-center md:hidden">
       <div v-if="currentMenu" class="flex w-full flex-col gap-1">
         <Transition name="submenu">
-          <LayoutDrawerMenuSubmenu
-            v-if="isSubCategory"
-            :category="currentMenu"
-            :children="currentMenu.items"
-            @back="handleShowParentCategory"
-            @close="close"
-            @show="handleShowSubCategory"
-          />
+          <LayoutDrawerMenuSubmenu v-if="isSubCategory" :category="currentMenu" :children="currentMenu.items" @back="handleShowParentCategory" @close="close" @show="handleShowSubCategory" />
         </Transition>
 
-        <NuxtLink
-          v-if="!isSubCategory && currentMenu.link?.path"
-          :to="currentMenu.link.path"
-          class="font-display flex items-center justify-between p-3 text-3xl font-light"
-          @click="close"
-        >
+        <NuxtLink v-if="!isSubCategory && currentMenu.link?.path" :to="currentMenu.link.path" class="font-display flex items-center justify-between p-3 text-3xl font-light" @click="close">
           <span>{{ currentMenu.title }}</span>
         </NuxtLink>
         <template v-if="!isSubCategory">
           <div class="flex flex-col gap-1">
             <div v-for="item in currentMenu.items" :key="item.key">
-              <NuxtLink
-                v-if="hasChildren(item)"
-                class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light"
-                @click.stop="handleShowSubCategory(item)"
-              >
+              <NuxtLink v-if="hasChildren(item)" class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light" @click.stop="handleShowSubCategory(item)">
                 <span>{{ getItemName(item) }}</span>
-                <IconChevronDown class="size-8" :stroke-width="1" />
+                <ChevronDown class="size-8" :stroke-width="1" />
               </NuxtLink>
 
-              <NuxtLink
-                v-else
-                :to="getItemLink(item)?.path"
-                class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light"
-                @click="close"
-              >
+              <NuxtLink v-else :to="getItemLink(item)?.path" class="font-display flex w-full items-center justify-between px-3 py-5 text-4xl font-light" @click="close">
                 <span>{{ getItemName(item) }}</span>
               </NuxtLink>
             </div>
@@ -123,9 +100,9 @@ function handleShowParentCategory() {
           <div class="my-5 mb-20 flex w-full justify-between px-3">
             <LayoutNavbarMenuAboutMenu />
             <div>
-              <StorePicker v-if="!isSubCategory">
-                <StorePickerTrigger />
-              </StorePicker>
+              <LayoutStorePicker v-if="!isSubCategory">
+                <LayoutStorePickerTrigger />
+              </LayoutStorePicker>
             </div>
           </div>
         </template>

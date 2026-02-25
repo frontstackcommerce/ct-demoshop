@@ -3,17 +3,11 @@ const props = withDefaults(
   defineProps<{
     filterField: string
     filterOptions: FilterGroup
-    filterName?: string
-    forceSearch?: boolean
     activeOptions?: FilterGroup
-    defaultOpen?: boolean
   }>(),
   {
-    filterName: 'Filter',
-    forceSearch: false,
-    defaultOpen: true,
     activeOptions: () => [],
-  }
+  },
 )
 
 const emits = defineEmits(['resetFilter', 'filterResult'])
@@ -33,43 +27,27 @@ const updateFilter = () => {
 const selectedOptions = ref<string[]>([])
 
 const isDisabled = computed(() => {
-  return !props.filterOptions.some((option) => !option.disabled)
+  return !props.filterOptions.some((option: any) => !option.disabled)
 })
 watch(
   props.activeOptions,
   () => {
     if (props.activeOptions && props.activeOptions.length > 0) {
-      selectedOptions.value = props.activeOptions.map((option) => option.value)
+      selectedOptions.value = props.activeOptions.map((option: any) => option.value)
     }
   },
-  { deep: true, immediate: true }
+  { deep: true, immediate: true },
 )
 </script>
 
 <template>
-  <Filter
-    v-model="selectedOptions"
-    class="relative mx-0 rounded-none border-none pl-0 shadow-none"
-    :multiple="true"
-    :disabled="isDisabled"
-    @update:model-value="updateFilter"
-  >
-    <FilterTrigger
-      class="mx-0 pl-[-8px] font-normal"
-      :disabled="isDisabled"
-      :class="{ 'text-muted': isDisabled }"
-    >
+  <Filter v-model="selectedOptions" class="relative mx-0 rounded-none border-none pl-0 shadow-none" :multiple="true" :disabled="isDisabled" @update:model-value="updateFilter">
+    <FilterTrigger class="mx-0 pl-[-8px] font-normal" :disabled="isDisabled" :class="{ 'text-muted': isDisabled }">
       <slot />
     </FilterTrigger>
     <FilterContent class="my-2 p-2">
       <FilterList>
-        <FilterItem
-          v-for="(option, index) in filterOptions"
-          :key="index"
-          :disabled="option.disabled"
-          :option
-          :value="option.value"
-        >
+        <FilterItem v-for="(option, index) in filterOptions" :key="index" :disabled="option.disabled" :option :value="option.value">
           <FilterIndicator :disabled="option.disabled" />
         </FilterItem>
       </FilterList>

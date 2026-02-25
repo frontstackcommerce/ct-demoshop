@@ -15,11 +15,10 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@frontic/nuxt": "0.1.7",
+    "@frontic/nuxt": "0.1.12",
     "@nuxt/content": "^3.11.0",
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/image": "^2.0.0",
-    "@nuxtjs/color-mode": "^4.0.0",
     "@nuxtjs/i18n": "^10.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",

@@ -96,7 +96,6 @@ const faqSchema = z.object({
   ),
 })
 
-
 export default defineContentConfig({
   collections: {
     // Localized collections (en + de)

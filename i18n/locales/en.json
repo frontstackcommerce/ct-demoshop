@@ -1,5 +1,127 @@
 {
   "about": {},
+  "actions": {
+    "shop-all": "Shop all",
+    "show-all": "Show all"
+  },
+  "brands": {
+    "description": "Explore our curated selection of brands.",
+    "label": "Brands"
+  },
+  "cart": {
+    "title": "Cart",
+    "title-long": "Shopping Cart",
+    "empty": {
+      "title": "Your cart is empty",
+      "recommended": "You might like"
+    },
+    "items": {
+      "quantity-placeholder": "Qty"
+    },
+    "summary": {
+      "count": "{count} items",
+      "free": "Free",
+      "items": "Items",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total"
+    }
+  },
+  "error": {
+    "title": "Error",
+    "description": "An error occurred while loading the page"
+  },
+  "context": {
+    "title": "Select your store",
+    "location": {
+      "label": "Location"
+    },
+    "language": {
+      "label": "Language"
+    },
+    "suggest": {
+      "title": "Change your store?",
+      "description": "It looks like you might be browsing from a different region.",
+      "accept": "Switch to {region}",
+      "deny": "Stay here"
+    }
+  },
+  "control": {
+    "button": "Filter & Sort",
+    "filters": {
+      "title": "Filters"
+    },
+    "pagination": {
+      "add-filter": "Add filter",
+      "edit-filter": "Edit filter",
+      "goto-top": "Back to top",
+      "next": "Next",
+      "showed": "{count} of {total} shown"
+    },
+    "reset": "Reset all",
+    "reset-sm": "Reset",
+    "search": {
+      "placeholder": "Search...",
+      "title": "Search"
+    },
+    "sort": {
+      "title": "Sort by"
+    },
+    "submit": "Show results",
+    "submit-sm": "Apply"
+  },
+  "default": {
+    "in-brackets": "({value})"
+  },
+  "favorites": {
+    "empty": "No favorites yet",
+    "recommended": "You might like",
+    "title": "Favorites"
+  },
+  "footer": {
+    "copyright": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "newsletter": {
+      "title": "Subscribe to our newsletter",
+      "description": "Stay up to date with the latest news and offers.",
+      "accept": "Subscribe",
+      "privacy": "Privacy Policy",
+      "terms": "Terms & Conditions",
+      "divider": "and"
+    },
+    "menu": {
+      "about": {
+        "title": "About"
+      },
+      "support": {
+        "title": "Support"
+      }
+    }
+  },
+  "header": {
+    "teaser": "Free shipping on orders over 50 EUR"
+  },
+  "home": {
+    "hero": {
+      "image-alt": "Modern furniture in a stylish living room",
+      "title": "Discover timeless design for your home",
+      "button": "Shop now"
+    },
+    "categories": {
+      "title": "Shop by category"
+    },
+    "featured": {
+      "home-braid": "Home Braid",
+      "lounge-furniture": "Lounge Furniture",
+      "rugs": "Rugs"
+    },
+    "new-arrivals": {
+      "label": "New in store",
+      "title": "New Arrivals",
+      "button": "View all"
+    }
+  },
   "layout": {
     "toast": {
       "add-to-cart": {
@@ -8,5 +130,45 @@
         "checkout": "Checkout"
       }
     }
+  },
+  "navigation": {
+    "account": "Account",
+    "cart": "Cart",
+    "checkout": "Checkout",
+    "close": "Close",
+    "continue-shopping": "Continue shopping",
+    "description": "Navigation",
+    "goto-checkout": "Go to checkout",
+    "menu": "Menu",
+    "search": "Search",
+    "title": "Navigation"
+  },
+  "product": {
+    "buy": {
+      "add-to-cart": "Add to cart"
+    },
+    "details": {
+      "sections": {
+        "description": "Description"
+      },
+      "description": {
+        "missing": "No description available."
+      },
+      "reviews": {
+        "title": "Reviews",
+        "count": "{count} reviews",
+        "show-full-review": "Show full review"
+      }
+    }
+  },
+  "search": {
+    "counter": "{count} results for \"{term}\"",
+    "no-results": "No results found",
+    "placeholder": "Search products...",
+    "results": "Results",
+    "search-listing": "Search",
+    "suggest": "Suggestions",
+    "suggestions": "Suggestions",
+    "total": "{count} products"
   }
 }

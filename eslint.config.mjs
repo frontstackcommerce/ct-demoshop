@@ -106,7 +106,7 @@ export default withNuxt(
   },
   {
     // Global ignores - mockups, UI components (shadcn), debug tools, e2e tests, content files
-    ignores: ['app/components/ui/**/*.{vue,ts}', 'content/**/*'],
+    ignores: ['app/components/ui/**/*.{vue,ts}', 'content/**/*', '.frontic/**/*'],
   },
   {
     files: ['**/*.ts', '**/*.vue'],

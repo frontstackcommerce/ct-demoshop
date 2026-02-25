@@ -26,13 +26,8 @@ async function acceptSuggestion() {
         <DialogDescription>{{ $t('context.suggest.description') }}</DialogDescription>
       </DialogHeader>
 
-      <Button
-        v-if="page?.route.context?.suggested"
-        variant="outline"
-        size="lg"
-        class="flex items-center gap-4 rounded-full py-6"
-        @click="acceptSuggestion"
-        ><StoreLocaleFlag code="en-us" size="lg" />
+      <Button v-if="page?.route.context?.suggested" variant="outline" size="lg" class="flex items-center gap-4 rounded-full py-6" @click="acceptSuggestion"
+        ><LayoutStoreLocaleFlag code="en-us" size="lg" />
         {{
           $t('context.suggest.accept', {
             locale: getLocaleLabel(page?.route.context.suggested.locale),

@@ -56,20 +56,11 @@ const { listing, searchTerm } = useProductSearch()
         <div class="font-display mb-3 text-lg md:text-2xl">{{ $t('search.results') }}</div>
         <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
           <template v-if="listing?.items && listing?.items.length > 0">
-            <ProductCard
-              v-for="(product, index) in listing?.items"
-              :key="index"
-              :product="product"
-              @click="close"
-            />
+            <ProductCard v-for="(product, index) in listing?.items" :key="index" :product="product" @click="close" />
           </template>
           <ProductCardSkeleton v-for="index in 5" v-else :key="index" />
         </div>
-        <NuxtLinkLocale
-          v-if="listing?.items && listing?.items.length > 0"
-          to="/search"
-          class="mt-8 flex w-full justify-center"
-        >
+        <NuxtLinkLocale v-if="listing?.items && listing?.items.length > 0" to="/search" class="mt-8 flex w-full justify-center">
           <Button color="secondary" @click="close">
             {{ $t('search.search-listing', { count: listing?.total }) }}
           </Button>

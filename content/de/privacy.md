@@ -67,10 +67,10 @@ The external hosting serves the purpose of fulfilling the contract with our
 potential and existing customers (Art. 6(1)(b) GDPR) and in the interest of
 secure, fast, and efficient provision of our online services by a professional
 provider (Art. 6(1)(f) GDPR). If appropriate consent has been obtained, the
-processing is carried out exclusively on the basis of Art. 6 (1)(a) GDPR and
-§ 25 (1) TDDDG, insofar the consent includes the storage of cookies or the
-access to information in the user's end device (e.g., device fingerprinting)
-within the meaning of the TDDDG. This consent can be revoked at any time.
+processing is carried out exclusively on the basis of Art. 6 (1)(a) GDPR and §
+25 (1) TDDDG, insofar the consent includes the storage of cookies or the access
+to information in the user's end device (e.g., device fingerprinting) within the
+meaning of the TDDDG. This consent can be revoked at any time.
 
 Our host(s) will only process your data to the extent necessary to fulfil its
 performance obligations and to follow our instructions with respect to such
@@ -106,11 +106,9 @@ to completely protect data against third-party access.
 
 The data processing controller on this website is:
 
-**Acme Commerce GmbH**
-Musterstraße 1, 10115 Berlin, Germany
+**Acme Commerce GmbH** Musterstraße 1, 10115 Berlin, Germany
 
-Phone: +49 (0)30 00000000
-Email: hello@example.com
+Phone: +49 (0)30 00000000 Email: hello@example.com
 
 The controller is the natural person or legal entity that single-handedly or
 jointly with others makes decisions as to the purposes of and resources for the

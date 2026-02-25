@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { Menu, Search, ShoppingCart, User, X } from 'lucide-vue-next'
+
 const { section, setSection, resetNav, open: isOpen, showNavMenuInside } = useShopNav()
 const { lineItems } = useCart()
 const isProductDetail = ref(false)
@@ -24,15 +26,10 @@ const handleSectionChange = (newSection: 'search' | 'cart' | 'account' | 'menu')
 watch(
   [isSearchOpen, isAccountOpen, isProductDetail, isMenuOpen, isCartOpen, isCartEmpty],
   ([isSearchOpen, isAccountOpen, isProductDetail, isMenuOpen, isCartOpen, isCartEmpty]) => {
-    isCollapsed.value =
-      (isProductDetail && !isMenuOpen) || isSearchOpen || isAccountOpen || isCartOpen
-    isInCorner.value =
-      (isCartEmpty && isCartOpen) ||
-      isSearchOpen ||
-      isAccountOpen ||
-      (isProductDetail && !isMenuOpen && !isCartOpen)
+    isCollapsed.value = (isProductDetail && !isMenuOpen) || isSearchOpen || isAccountOpen || isCartOpen
+    isInCorner.value = (isCartEmpty && isCartOpen) || isSearchOpen || isAccountOpen || (isProductDetail && !isMenuOpen && !isCartOpen)
   },
-  { immediate: true }
+  { immediate: true },
 )
 </script>
 
@@ -46,113 +43,63 @@ watch(
   >
     <div class="flex items-center gap-4">
       <!-- Checkout Button -->
-      <div
-        v-if="isCartOpen && !isCartEmpty"
-        class="bg-checkout flex h-16 items-center gap-8 px-6 py-1 shadow-md"
-      >
+      <div v-if="isCartOpen && !isCartEmpty" class="bg-checkout flex h-16 items-center gap-8 px-6 py-1 shadow-md">
         <NuxtLinkLocale to="/checkout">
-          <Button
-            class="flex items-center gap-5"
-            :aria-label="$t('navigation.checkout')"
-            variant="default"
-            color="checkout"
-            size="lg"
-            @click="resetNav"
-          >
-            <IconShoppingCart class="text-checkout-foreground size-6" />
+          <Button class="flex items-center gap-5" :aria-label="$t('navigation.checkout')" variant="default" color="checkout" size="lg" @click="resetNav">
+            <ShoppingCart class="text-checkout-foreground size-6" />
             {{ $t('navigation.checkout') }}
           </Button>
         </NuxtLinkLocale>
       </div>
 
       <!-- Main Navigation -->
-      <div
-        class="bg-inverted flex items-center shadow-md"
-        :class="isCollapsed ? 'size-16 justify-center' : 'h-16 w-full gap-8 px-6 py-1'"
-      >
+      <div class="bg-inverted flex items-center shadow-md" :class="isCollapsed ? 'size-16 justify-center' : 'h-16 w-full gap-8 px-6 py-1'">
         <!-- Close Button -->
         <template v-if="isSearchOpen || isAccountOpen || isCartOpen">
           <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
-            <IconX class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
+            <X class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
           </Button>
         </template>
 
         <!-- Detail Mode Menu -->
         <template v-else-if="isProductDetail && !isMenuOpen">
-          <Button
-            :aria-label="$t('navigation.menu')"
-            variant="icon"
-            @click="handleSectionChange('menu')"
-          >
-            <IconMenu
-              class="text-inverted-foreground relative size-6 scale-150"
-              :stroke-width="1"
-            />
-            <StoreCartBadge size="lg" />
+          <Button :aria-label="$t('navigation.menu')" variant="icon" @click="handleSectionChange('menu')">
+            <Menu class="text-inverted-foreground relative size-6 scale-150" :stroke-width="1" />
+            <LayoutStoreCartBadge size="lg" />
           </Button>
         </template>
 
         <!-- Menu Mode -->
         <template v-else-if="isMenuOpen">
-          <Button
-            :aria-label="$t('navigation.search')"
-            variant="icon"
-            @click="handleSectionChange('search')"
-          >
-            <IconSearch class="text-inverted-foreground size-6" :stroke-width="1" />
+          <Button :aria-label="$t('navigation.search')" variant="icon" @click="handleSectionChange('search')">
+            <Search class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button
-            :aria-label="$t('navigation.cart')"
-            class="relative"
-            variant="icon"
-            @click="handleSectionChange('cart')"
-          >
-            <IconShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
-            <StoreCartBadge />
+          <Button :aria-label="$t('navigation.cart')" class="relative" variant="icon" @click="handleSectionChange('cart')">
+            <ShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
+            <LayoutStoreCartBadge />
           </Button>
-          <Button
-            :aria-label="$t('navigation.account')"
-            variant="icon"
-            @click="handleSectionChange('account')"
-          >
-            <IconUser class="text-inverted-foreground size-6" :stroke-width="1" />
+          <Button :aria-label="$t('navigation.account')" variant="icon" @click="handleSectionChange('account')">
+            <User class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
           <Button :aria-label="$t('navigation.close')" variant="icon" @click="resetNav">
-            <IconX class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
+            <X class="text-inverted-foreground size-6 scale-150" :stroke-width="1" />
           </Button>
         </template>
 
         <!-- Default Navigation -->
         <template v-else>
-          <Button
-            :aria-label="$t('navigation.search')"
-            variant="icon"
-            @click="handleSectionChange('search')"
-          >
-            <IconSearch class="text-inverted-foreground size-6" :stroke-width="1" />
+          <Button :aria-label="$t('navigation.search')" variant="icon" @click="handleSectionChange('search')">
+            <Search class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button
-            :aria-label="$t('navigation.cart')"
-            class="relative"
-            variant="icon"
-            @click="handleSectionChange('cart')"
-          >
-            <IconShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
-            <StoreCartBadge />
+          <Button :aria-label="$t('navigation.cart')" class="relative" variant="icon" @click="handleSectionChange('cart')">
+            <ShoppingCart class="text-inverted-foreground size-6" :stroke-width="1" />
+            <LayoutStoreCartBadge />
           </Button>
-          <Button
-            :aria-label="$t('navigation.account')"
-            variant="icon"
-            @click="handleSectionChange('account')"
-          >
-            <IconUser class="text-inverted-foreground size-6" :stroke-width="1" />
+          <Button :aria-label="$t('navigation.account')" variant="icon" @click="handleSectionChange('account')">
+            <User class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
-          <Button
-            :aria-label="$t('navigation.menu')"
-            variant="icon"
-            @click="handleSectionChange('menu')"
-          >
-            <IconMenu class="text-inverted-foreground size-6" :stroke-width="1" />
+          <Button :aria-label="$t('navigation.menu')" variant="icon" @click="handleSectionChange('menu')">
+            <Menu class="text-inverted-foreground size-6" :stroke-width="1" />
           </Button>
         </template>
       </div>

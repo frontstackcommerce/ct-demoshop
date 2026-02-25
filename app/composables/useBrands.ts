@@ -1,8 +1,7 @@
-// TODO: Replace with Frontic brands composable
 export function useBrands() {
-  const brands = ref<{ items: BrandCard[] }>({ items: [] })
+  const { listing } = useFronticListing('BrandListing', {})
 
-  return {
-    brands,
-  }
+  const brands = computed(() => listing.value ?? { items: [] })
+
+  return { brands }
 }

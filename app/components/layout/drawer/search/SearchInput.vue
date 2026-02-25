@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Search, X } from 'lucide-vue-next'
 import { useFocus } from '@vueuse/core'
 const { searchTerm } = useProductSearch()
 const autoFocus = ref<HTMLInputElement>()
@@ -44,14 +45,11 @@ function handleBlur() {
       @blur="handleBlur"
     />
     <span class="absolute inset-y-0 start-3 flex items-center justify-center">
-      <IconSearch class="text-muted-foreground size-5" />
+      <Search class="text-muted-foreground size-5" />
     </span>
-    <span
-      v-if="searchTerm.length > 0"
-      class="absolute inset-y-0 end-3 flex items-center justify-center"
-    >
+    <span v-if="searchTerm.length > 0" class="absolute inset-y-0 end-3 flex items-center justify-center">
       <Button size="sm" variant="icon" @click="clearSearch">
-        <IconX class="text-shade-300 size-5" />
+        <X class="text-shade-300 size-5" />
       </Button>
     </span>
   </div>

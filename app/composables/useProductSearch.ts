@@ -1,33 +1,31 @@
-// TODO: Replace with Frontic search composable
-export function useProductSearch(_categoryKey?: string) {
-  const listing = ref<{ items: ProductCard[]; total: number } | null>(null)
-  const searchTerm = ref('')
-  const state = ref({
-    availableFilters: [] as UiFilter[],
-    availableSorts: [] as UiSort[],
-    filter: {} as Record<string, unknown>,
-    activeFilterCount: 0,
-    total: 0,
+export function useProductSearch(categoryKey?: string) {
+  const params = computed(() => (categoryKey ? { categoryKey } : {}))
+
+  const { data, result, state: searchState, searchTerm, addFilter: _addFilter, filterResult, resetFilter: fronticResetFilter, sortResult } = useFronticSearch('ProductSearch', params)
+
+  const listing = computed(() => {
+    if (!data.value) return null
+    return {
+      items: result.value ?? [],
+      total: data.value?._page?.total ?? 0,
+    }
   })
 
-  const sortItems = (_sortBy: string) => {
-    // stub
+  const state = computed(() => ({
+    availableFilters: searchState.value?.filter ?? [],
+    availableSorts: searchState.value?.sort ?? [],
+    filter: searchState.value?.activeFilter ?? {},
+    activeFilterCount: searchState.value?.activeFilterCount ?? 0,
+    total: data.value?._page?.total ?? 0,
+  }))
+
+  const sortItems = (sortBy: string) => sortResult(sortBy)
+
+  const filterItems = (field: string, options: string[]) => {
+    filterResult(field, options)
   }
 
-  const filterItems = (_filterField: string, _filterOptions: string[]) => {
-    // stub
-  }
+  const resetFilter = (field?: string) => fronticResetFilter(field)
 
-  const resetFilter = (_filterField?: string) => {
-    // stub
-  }
-
-  return {
-    listing,
-    state,
-    searchTerm,
-    sortItems,
-    filterItems,
-    resetFilter,
-  }
+  return { listing, state, searchTerm, sortItems, filterItems, resetFilter }
 }

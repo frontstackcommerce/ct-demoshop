@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import { filename } from 'pathe/utils'
+const filename = (path: string) =>
+  path
+    .split('/')
+    .pop()
+    ?.replace(/\.[^.]+$/, '') ?? ''
 
 const props = withDefaults(
   defineProps<{
@@ -11,13 +15,11 @@ const props = withDefaults(
     code: 'en-GB',
     size: 'md',
     alt: '',
-  }
+  },
 )
 
 const glob = import.meta.glob<{ default: string }>('@/assets/flags/*.svg', { eager: true })
-const flags = Object.fromEntries(
-  Object.entries(glob).map(([key, value]) => [filename(key), value.default])
-)
+const flags = Object.fromEntries(Object.entries(glob).map(([key, value]) => [filename(key), value.default]))
 
 const localeCode = computed(() => {
   switch (props.code) {

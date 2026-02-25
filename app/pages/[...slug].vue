@@ -14,8 +14,8 @@ const { page, status } = usePageRouter()
     </template>
     <template v-else-if="status === 'error'">
       <div class="text-center">
-        <h1 class="text-3xl font-bold text-gray-900">Error</h1>
-        <p class="mt-4 text-gray-600">An error occurred while loading the page</p>
+        <h1 class="text-3xl font-bold text-gray-900">{{ $t('error.title') }}</h1>
+        <p class="mt-4 text-gray-600">{{ $t('error.description') }}</p>
       </div>
     </template>
   </div>
@@ -25,5 +25,5 @@ const { page, status } = usePageRouter()
     ><span class="hidden lg:block xl:hidden">LG</span
     ><span class="hidden xl:block 2xl:hidden">XL</span><span class="hidden 2xl:block">2XL</span>
   </p> -->
-  <StoreSuggest />
+  <LayoutStoreSuggest />
 </template>

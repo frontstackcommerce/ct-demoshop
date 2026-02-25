@@ -4,8 +4,6 @@ const { aboutTree } = useShopMenu()
 
 <template>
   <div class="flex flex-col gap-3 text-lg font-light md:gap-1">
-    <NuxtLink v-for="(link, index) in aboutTree" :key="index" :to="link.link?.path" class="">{{
-      link.name
-    }}</NuxtLink>
+    <NuxtLink v-for="(link, index) in aboutTree" :key="index" :to="link.link?.path" class="">{{ link.name }}</NuxtLink>
   </div>
 </template>

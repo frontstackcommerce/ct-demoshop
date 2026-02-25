@@ -1,12 +1,25 @@
-// TODO: Replace with Frontic favorites composable
-export function useFavorites() {
-  const favorites = ref<ProductCard[]>([])
-  const favoritesList = ref<{ items: ProductCard[] }>({ items: [] })
-  const status = ref<'success' | 'pending' | 'error'>('pending')
+import { useLocalStorage } from '@vueuse/core'
 
-  return {
-    favorites,
-    favoritesList,
-    status,
+export function useFavorites() {
+  const keys = useLocalStorage<string[]>('favorites', [])
+
+  const { listing, status } = useFronticListing(
+    'FavoritesProducts',
+    computed(() => ({ keys: keys.value })),
+  )
+
+  const favorites = computed(() => keys.value)
+  const favoritesList = computed(() => listing.value ?? { items: [] })
+
+  const addFavorite = (key: string) => {
+    if (!keys.value.includes(key)) keys.value.push(key)
   }
+
+  const removeFavorite = (key: string) => {
+    keys.value = keys.value.filter((k) => k !== key)
+  }
+
+  const isFavorite = (key: string) => keys.value.includes(key)
+
+  return { favorites, favoritesList, status, addFavorite, removeFavorite, isFavorite }
 }

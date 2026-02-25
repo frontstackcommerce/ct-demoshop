@@ -1,7 +1,6 @@
 ---
 title: Impressum
-description:
-  Rechtliche Informationen und Kontaktdaten der Acme Commerce GmbH.
+description: Rechtliche Informationen und Kontaktdaten der Acme Commerce GmbH.
 ---
 
 ## Acme Commerce GmbH
@@ -18,13 +17,12 @@ Jane Doe, John Smith
 
 ## Kontakt
 
-Telefon: +49 (0)30 00000000
-E-Mail: [hello@example.com](mailto:hello@example.com)
+Telefon: +49 (0)30 00000000 E-Mail:
+[hello@example.com](mailto:hello@example.com)
 
 ## Umsatzsteuer-ID
 
-Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-DE 000000000
+Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz: DE 000000000
 
 ## Streitschlichtung
 

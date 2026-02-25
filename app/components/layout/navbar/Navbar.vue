@@ -5,7 +5,7 @@ const { menuState, isOpen } = useShopMenu()
 
 const backdropCloseCursor = computed(
   () =>
-    `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>`)}`
+    `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-x"><circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/></svg>`)}`,
 )
 </script>
 
@@ -13,7 +13,7 @@ const backdropCloseCursor = computed(
   <div class="bg-background w-full">
     <div class="border-border mx-auto flex h-full w-full justify-between border-b">
       <div class="ml-5 w-48">
-        <StoreLogo />
+        <LayoutStoreLogo />
       </div>
       <NavigationMenu
         v-model="menuState"

@@ -1,7 +1,6 @@
 ---
 title: Imprint
-description:
-  Legal information and contact details for Acme Commerce GmbH.
+description: Legal information and contact details for Acme Commerce GmbH.
 ---
 
 ## Acme Commerce GmbH
@@ -18,13 +17,12 @@ Jane Doe, John Smith
 
 ## Contact
 
-Phone: +49 (0)30 00000000
-E-mail: [hello@example.com](mailto:hello@example.com)
+Phone: +49 (0)30 00000000 E-mail: [hello@example.com](mailto:hello@example.com)
 
 ## VAT ID
 
-Sales tax identification number according to Sect. 27 a of the Sales Tax Law:
-DE 000000000
+Sales tax identification number according to Sect. 27 a of the Sales Tax Law: DE
+000000000
 
 ## Dispute Resolution
 

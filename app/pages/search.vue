@@ -38,12 +38,7 @@ function handleSearchFocus() {
 <template>
   <div class="flex flex-col gap-6 pb-5">
     <div class="h-48 md:h-[360px]">
-      <NuxtImg
-        src="https://a.storyblok.com/f/282508/1024x1024/871dc9b656/orynt-hero.png"
-        alt="Hero Image with a man in ski gear"
-        height="360"
-        class="h-full w-full object-cover"
-      />
+      <NuxtImg src="https://a.storyblok.com/f/282508/1024x1024/871dc9b656/orynt-hero.png" alt="Hero Image with a man in ski gear" height="360" class="h-full w-full object-cover" />
     </div>
   </div>
   <div class="mx-auto max-w-6xl px-5">
@@ -51,9 +46,7 @@ function handleSearchFocus() {
       <LayoutDrawerSearchInput @focus="handleSearchFocus" />
     </div>
     <div class="flex items-center justify-between">
-      <h1 class="font-display text-xl font-light sm:text-3xl">
-        {{ $t('search.results') }} ({{ state.total }})
-      </h1>
+      <h1 class="font-display text-xl font-light sm:text-3xl">{{ $t('search.results') }} ({{ state.total }})</h1>
       <SearchControlSheet
         v-model:open="showResultControl"
         :available-filters="state.availableFilters ?? []"

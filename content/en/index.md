@@ -1,6 +1,8 @@
 ---
 title: Welcome to Nuxt Storefront
-description: A modern e-commerce storefront built with Nuxt 4, Tailwind CSS, and best practices.
+description:
+  A modern e-commerce storefront built with Nuxt 4, Tailwind CSS, and best
+  practices.
 ---
 
 # Welcome

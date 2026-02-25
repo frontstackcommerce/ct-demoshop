@@ -17,15 +17,7 @@ const emit = defineEmits<{
         {{ $t('layout.toast.add-to-cart.title') }}
       </p>
       <div class="flex gap-4">
-        <NuxtImg
-          v-if="productImage"
-          :src="productImage"
-          :alt="productName"
-          class="size-16 rounded object-cover"
-          height="64"
-          width="64"
-          loading="lazy"
-        />
+        <NuxtImg v-if="productImage" :src="productImage" :alt="productName" class="size-16 rounded object-cover" height="64" width="64" loading="lazy" />
         <div class="flex w-full flex-col gap-1">
           <p class="font-medium">
             {{ productName }}
