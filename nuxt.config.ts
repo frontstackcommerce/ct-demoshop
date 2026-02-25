@@ -32,9 +32,7 @@ export default defineNuxtConfig({
   },
 
   fonts: {
-    families: [
-      { name: 'Varela Round', provider: 'google' },
-    ],
+    families: [{ name: 'Varela Round', provider: 'google' }],
     defaults: {
       weights: [400],
     },

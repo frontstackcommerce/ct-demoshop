@@ -15,7 +15,7 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
-    "@frontic/nuxt": "0.1.6",
+    "@frontic/nuxt": "0.1.7",
     "@nuxt/content": "^3.11.0",
     "@nuxt/fonts": "^0.12.1",
     "@nuxt/image": "^2.0.0",
@@ -23,6 +23,7 @@
     "@nuxtjs/i18n": "^10.2.1",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
+    "@vueuse/core": "^14.2.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-vue-next": "^0.562.0",
@@ -31,6 +32,7 @@
     "reka-ui": "^2.8.2",
     "tailwind-merge": "^3.5.0",
     "tailwindcss": "^4.1.18",
+    "vaul-vue": "^0.4.1",
     "vue": "^3.5.28",
     "vue-router": "^4.6.4",
     "vue-sonner": "^2.0.9",

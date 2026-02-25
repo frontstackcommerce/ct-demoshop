@@ -1,7 +1,8 @@
 <template>
-  <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-    <Toaster position="bottom-right" />
-  </div>
+  <NuxtLayout>
+    <NuxtPage />
+    <ClientOnly>
+      <Toaster :visible-toasts="1" position="bottom-right" />
+    </ClientOnly>
+  </NuxtLayout>
 </template>

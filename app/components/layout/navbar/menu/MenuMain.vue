@@ -1,0 +1,37 @@
+<script setup lang="ts">
+// eslint-disable-next-line
+import { navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
+
+const { fullTree } = useShopMenu()
+</script>
+
+<template>
+  <div v-if="fullTree?.items && fullTree.items.length > 0" class="items-center gap-8">
+    <NavigationMenuList>
+      <NavigationMenuItem v-for="item in fullTree.items" :key="item.key">
+        <NuxtLink
+          v-if="!item.categoryId && item.path"
+          v-slot="{ isActive, href, navigate }"
+          :to="item.path"
+          custom
+        >
+          <NavigationMenuLink
+            :active="isActive"
+            :href
+            :class="navigationMenuTriggerStyle()"
+            @click="navigate"
+          >
+            {{ item.name }}
+          </NavigationMenuLink>
+        </NuxtLink>
+
+        <div v-else>
+          <NavigationMenuTrigger class="px-3">{{ item.name }}</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <LayoutNavbarMenuContent v-if="item.key" :category-id="item.key" :category="item" />
+          </NavigationMenuContent>
+        </div>
+      </NavigationMenuItem>
+    </NavigationMenuList>
+  </div>
+</template>
