@@ -5,15 +5,11 @@ export default {
   tabWidth: 2,
   useTabs: false,
   trailingComma: 'all',
-
   printWidth: 200,
   endOfLine: 'lf',
-
   singleAttributePerLine: false,
   vueIndentScriptAndStyle: false,
-
   plugins: ['prettier-plugin-tailwindcss'],
-
   overrides: [
     {
       files: '*.vue',
