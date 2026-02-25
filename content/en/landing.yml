@@ -1,0 +1,37 @@
+hero:
+  badge:
+    text: 'New: AI-Powered Product Recommendations'
+    href: /news/ai-recommendations
+  headline: Build Your Dream<br />Online Store Today
+  subheadline: A modern e-commerce platform that gives teams full control over their storefront experience and lets them ship faster.
+  primaryCta:
+    label: Get Started Free
+    href: '#cta'
+  secondaryCta:
+    label: See How It Works
+
+readyToStart:
+  headline: Ready to Build Faster?
+  description: Start with sample data or connect your own product catalog. Either way, you'll be building production features in minutes.
+  quickStart:
+    title: Quick Start Demo
+    description: Jump right in with sample data. Explore all platform features without any setup.
+    features:
+      - Ready-to-use sample catalog
+      - Build features immediately
+      - Perfect for exploring
+    ctaLabel: Try for Free
+    ctaHref: /signup
+  connectData:
+    title: Your Data, Your Demo
+    description: See what the platform can do with your actual product catalog. We'll connect your data sources in a guided session.
+    features:
+      - Use your own products
+      - Guided setup with our team
+      - Go live faster
+    ctaLabel: Book Free Onboarding
+    ctaHref: /contact
+
+stories:
+  headline: Trusted by Growing Brands.
+  subheadline: See What They Built.
