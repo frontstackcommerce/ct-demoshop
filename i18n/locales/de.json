@@ -27,6 +27,85 @@
       "total": "Gesamt"
     }
   },
+  "checkout": {
+    "title": "Kasse",
+    "back": "Zurück",
+    "continue": "Weiter",
+    "progress": {
+      "information": "Informationen",
+      "shipping": "Versand",
+      "payment": "Zahlung"
+    },
+    "email": {
+      "title": "Kontaktinformationen",
+      "label": "E-Mail-Adresse",
+      "placeholder": "E-Mail eingeben",
+      "continue-guest": "Als Gast fortfahren",
+      "have-account": "Bereits ein Konto?",
+      "login": "Anmelden",
+      "no-account": "Noch kein Konto?",
+      "create-account": "Konto erstellen"
+    },
+    "login": {
+      "title": "Anmelden",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden",
+      "error": "Ungültige E-Mail oder Passwort"
+    },
+    "register": {
+      "title": "Konto erstellen",
+      "first-name": "Vorname",
+      "last-name": "Nachname",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Konto erstellen",
+      "error": "Konto konnte nicht erstellt werden"
+    },
+    "address": {
+      "title": "Lieferadresse",
+      "first-name": "Vorname",
+      "last-name": "Nachname",
+      "street-name": "Straße",
+      "street-number": "Hausnummer",
+      "postal-code": "PLZ",
+      "city": "Stadt",
+      "country": "Land",
+      "phone": "Telefon",
+      "same-as-billing": "Rechnungsadresse gleich Lieferadresse",
+      "billing-title": "Rechnungsadresse"
+    },
+    "shipping": {
+      "title": "Versandart",
+      "no-methods": "Keine Versandarten verfügbar"
+    },
+    "payment": {
+      "title": "Zahlung",
+      "card-number": "Kartennummer",
+      "expiry": "Ablaufdatum",
+      "cvc": "CVC",
+      "cardholder": "Karteninhaber",
+      "pay-now": "Jetzt bezahlen",
+      "mock-notice": "Dies ist eine Demo — es wird keine echte Zahlung berechnet."
+    },
+    "confirmation": {
+      "title": "Vielen Dank für Ihre Bestellung!",
+      "order-number": "Bestellnummer",
+      "email-notice": "Eine Bestätigungs-E-Mail wurde an {email} gesendet.",
+      "continue-shopping": "Weiter einkaufen"
+    },
+    "summary": {
+      "title": "Bestellübersicht",
+      "subtotal": "Zwischensumme",
+      "shipping": "Versand",
+      "tax": "MwSt.",
+      "total": "Gesamt"
+    },
+    "error": {
+      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+      "cart-empty": "Ihr Warenkorb ist leer"
+    }
+  },
   "error": {
     "title": "Fehler",
     "description": "Beim Laden der Seite ist ein Fehler aufgetreten"
@@ -57,6 +136,12 @@
       "goto-top": "Nach oben",
       "next": "Weiter",
       "showed": "{count} von {total} angezeigt"
+    },
+    "quick-filter": {
+      "color": "Farbe",
+      "price": "Preis",
+      "price-range": "{min} - {max}",
+      "reset": "Filter zurücksetzen"
     },
     "reset": "Alle zurücksetzen",
     "reset-sm": "Zurücksetzen",
@@ -105,6 +190,12 @@
   "product": {
     "buy": {
       "add-to-cart": "In den Warenkorb"
+    },
+    "compare": {
+      "title": "Produkte vergleichen",
+      "vs": "vs",
+      "no-rating": "Keine Bewertung",
+      "no-price": "Preis nicht verfügbar"
     },
     "details": {
       "sections": {

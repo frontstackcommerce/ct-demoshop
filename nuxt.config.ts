@@ -86,9 +86,18 @@ export default defineNuxtConfig({
   routeRules: {
     '/**': { isr: 60 },
     '/api/cart/**': { prerender: false, isr: false },
+    '/api/checkout/**': { prerender: false, isr: false },
+    '/api/customer/**': { prerender: false, isr: false },
   },
 
   runtimeConfig: {
+    commercetools: {
+      projectKey: '',
+      clientId: '',
+      clientSecret: '',
+      authHost: '',
+      apiHost: '',
+    },
     public: {},
   },
 

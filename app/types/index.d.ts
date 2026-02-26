@@ -1,21 +1,2 @@
-// Cart-specific type (not provided by Frontic)
-
-interface LineItem {
-  id: string
-  key: string
-  quantity: number
-  name: Record<string, string>
-  price?: {
-    value?: {
-      centAmount: number
-      currencyCode: string
-      fractionDigits: number
-    }
-  }
-  variant?: {
-    images?: Array<{
-      url: string
-      label?: string
-    }>
-  }
-}
+// App types re-exported from shared
+// All shared types (LineItem, CartData, AddressData, etc.) are auto-imported from shared/types/

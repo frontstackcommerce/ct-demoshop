@@ -1,98 +1,73 @@
-const STORAGE_KEY = 'cart'
-
-interface CartLineItem extends LineItem {
-  _addedAt: number
-}
-
-function loadCart(): CartLineItem[] {
-  if (import.meta.server) return []
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : []
-  } catch {
-    return []
-  }
-}
-
-function saveCart(items: CartLineItem[]) {
-  if (import.meta.server) return
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(items))
-}
-
-let _id = 0
-function nextId() {
-  return `cart-item-${++_id}-${Date.now()}`
-}
-
 export function useCart() {
-  const lineItems = useState<CartLineItem[]>('cart-items', () => [])
+  const cart = useState<CartData | null>('cart-data', () => null)
+  const loading = useState('cart-loading', () => false)
+
+  const lineItems = computed(() => cart.value?.lineItems ?? [])
 
   const totalPrice = computed(() => {
-    const total = lineItems.value.reduce((sum, item) => {
-      return sum + (item.price?.value?.centAmount ?? 0) * item.quantity
-    }, 0)
-    const first = lineItems.value[0]
-    return {
-      centAmount: total,
-      currencyCode: first?.price?.value?.currencyCode ?? 'EUR',
-      fractionDigits: first?.price?.value?.fractionDigits ?? 2,
-    }
+    if (cart.value?.totalPrice) return cart.value.totalPrice
+    return { centAmount: 0, currencyCode: 'EUR', fractionDigits: 2 }
   })
 
   const context = ref({ locale: 'en' })
 
-  const addLineItem = async (variantKey: string, quantity: number = 1) => {
-    const existing = lineItems.value.find((item) => item.key === variantKey)
-    if (existing) {
-      existing.quantity += quantity
-    } else {
-      lineItems.value.push({
-        id: nextId(),
-        key: variantKey,
-        quantity,
-        name: { en: variantKey },
-        price: {
-          value: {
-            centAmount: 2999,
-            currencyCode: 'EUR',
-            fractionDigits: 2,
-          },
-        },
-        variant: { images: [] },
-        _addedAt: Date.now(),
-      })
-    }
-    saveCart(lineItems.value)
-  }
-
-  const updateLineItemQuantity = async (cartItemId: string, quantity: number) => {
-    const item = lineItems.value.find((i) => i.id === cartItemId)
-    if (item) {
-      item.quantity = quantity
-      saveCart(lineItems.value)
-    }
-  }
-
-  const removeLineItem = async (cartItemId: string) => {
-    lineItems.value = lineItems.value.filter((i) => i.id !== cartItemId)
-    saveCart(lineItems.value)
-  }
-
   const refreshCart = async () => {
-    lineItems.value = loadCart()
+    try {
+      const data = await $fetch<CartData>('/api/cart')
+      cart.value = data.id ? data : null
+    } catch {
+      cart.value = null
+    }
   }
 
-  // Hydrate from localStorage on client
+  const addLineItem = async (sku: string, quantity: number = 1) => {
+    loading.value = true
+    try {
+      cart.value = await $fetch<CartData>('/api/cart/items', {
+        method: 'POST',
+        body: { sku, quantity },
+      })
+    } finally {
+      loading.value = false
+    }
+  }
+
+  const updateLineItemQuantity = async (lineItemId: string, quantity: number) => {
+    loading.value = true
+    try {
+      cart.value = await $fetch<CartData>(`/api/cart/items/${lineItemId}`, {
+        method: 'PUT',
+        body: { quantity },
+      })
+    } finally {
+      loading.value = false
+    }
+  }
+
+  const removeLineItem = async (lineItemId: string) => {
+    loading.value = true
+    try {
+      cart.value = await $fetch<CartData>(`/api/cart/items/${lineItemId}`, {
+        method: 'DELETE',
+      })
+    } finally {
+      loading.value = false
+    }
+  }
+
+  // Hydrate cart on client
   if (import.meta.client) {
     onMounted(() => {
-      lineItems.value = loadCart()
+      if (!cart.value) refreshCart()
     })
   }
 
   return {
+    cart,
     context,
     lineItems,
     totalPrice,
+    loading,
     addLineItem,
     updateLineItemQuantity,
     removeLineItem,

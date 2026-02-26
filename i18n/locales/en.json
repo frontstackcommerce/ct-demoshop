@@ -27,6 +27,85 @@
       "total": "Total"
     }
   },
+  "checkout": {
+    "title": "Checkout",
+    "back": "Back",
+    "continue": "Continue",
+    "progress": {
+      "information": "Information",
+      "shipping": "Shipping",
+      "payment": "Payment"
+    },
+    "email": {
+      "title": "Contact information",
+      "label": "Email address",
+      "placeholder": "Enter your email",
+      "continue-guest": "Continue as guest",
+      "have-account": "Already have an account?",
+      "login": "Log in",
+      "no-account": "Don't have an account?",
+      "create-account": "Create account"
+    },
+    "login": {
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "error": "Invalid email or password"
+    },
+    "register": {
+      "title": "Create account",
+      "first-name": "First name",
+      "last-name": "Last name",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Create account",
+      "error": "Could not create account"
+    },
+    "address": {
+      "title": "Shipping address",
+      "first-name": "First name",
+      "last-name": "Last name",
+      "street-name": "Street",
+      "street-number": "Number",
+      "postal-code": "Postal code",
+      "city": "City",
+      "country": "Country",
+      "phone": "Phone",
+      "same-as-billing": "Billing address same as shipping",
+      "billing-title": "Billing address"
+    },
+    "shipping": {
+      "title": "Shipping method",
+      "no-methods": "No shipping methods available"
+    },
+    "payment": {
+      "title": "Payment",
+      "card-number": "Card number",
+      "expiry": "Expiry date",
+      "cvc": "CVC",
+      "cardholder": "Cardholder name",
+      "pay-now": "Pay now",
+      "mock-notice": "This is a demo — no real payment will be charged."
+    },
+    "confirmation": {
+      "title": "Thank you for your order!",
+      "order-number": "Order number",
+      "email-notice": "A confirmation email has been sent to {email}.",
+      "continue-shopping": "Continue shopping"
+    },
+    "summary": {
+      "title": "Order summary",
+      "subtotal": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Tax",
+      "total": "Total"
+    },
+    "error": {
+      "generic": "Something went wrong. Please try again.",
+      "cart-empty": "Your cart is empty"
+    }
+  },
   "error": {
     "title": "Error",
     "description": "An error occurred while loading the page"
@@ -57,6 +136,12 @@
       "goto-top": "Back to top",
       "next": "Next",
       "showed": "{count} of {total} shown"
+    },
+    "quick-filter": {
+      "color": "Color",
+      "price": "Price",
+      "price-range": "{min} - {max}",
+      "reset": "Reset filters"
     },
     "reset": "Reset all",
     "reset-sm": "Reset",
@@ -105,6 +190,12 @@
   "product": {
     "buy": {
       "add-to-cart": "Add to cart"
+    },
+    "compare": {
+      "title": "Compare Products",
+      "vs": "vs",
+      "no-rating": "No rating",
+      "no-price": "Price unavailable"
     },
     "details": {
       "sections": {
