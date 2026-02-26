@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "skills": {
+    "frontic-implementation": {
+      "source": "frontic/skills",
+      "sourceType": "github",
+      "computedHash": "62a84d5bb962d19c441d3899d31a9c3bc39f7140fc6d894caf57546d9651ede3"
+    }
+  }
+}

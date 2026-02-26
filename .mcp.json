@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "frontic-ui": {
+      "command": "npx",
+      "args": [
+        "@frontic/ui@latest",
+        "mcp"
+      ],
+      "env": {
+        "REGISTRY_URL": "https://registry.frontic.io/r"
+      }
+    }
+  }
+}

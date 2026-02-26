@@ -1,5 +1,5 @@
 {
-  "$schema": "https://shadcn-vue.com/schema.json",
+  "$schema": "https://schema.frontic.io/schema.json",
   "style": "new-york",
   "typescript": true,
   "tailwind": {
@@ -18,10 +18,5 @@
     "ui": "@/components/ui",
     "lib": "@/lib",
     "composables": "@/composables"
-  },
-  "registries": {
-    "@frontic": {
-      "url": "https://registry.frontic.io/r/styles/{style}/{name}.json"
-    }
   }
 }

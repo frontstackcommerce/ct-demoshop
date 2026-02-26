@@ -56,6 +56,12 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand: var(--brand);
+  --color-sale: var(--sale);
+  --color-sale-foreground: var(--sale-foreground);
+  --color-new: var(--new);
+  --color-new-foreground: var(--new-foreground);
+  --color-discount: var(--discount);
+  --color-discount-foreground: var(--discount-foreground);
 }
 
 :root {
@@ -93,6 +99,12 @@
   --brand-foreground: oklch(100% 0 0);
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
+  --sale: oklch(65% 0.25 25);
+  --sale-foreground: oklch(100% 0 0);
+  --new: oklch(60% 0.2 145);
+  --new-foreground: oklch(100% 0 0);
+  --discount: oklch(65% 0.25 25);
+  --discount-foreground: oklch(100% 0 0);
 }
 
 .dark {
@@ -127,6 +139,12 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --sale: oklch(65% 0.22 25);
+  --sale-foreground: oklch(100% 0 0);
+  --new: oklch(65% 0.18 145);
+  --new-foreground: oklch(100% 0 0);
+  --discount: oklch(65% 0.22 25);
+  --discount-foreground: oklch(100% 0 0);
 }
 
 @layer base {

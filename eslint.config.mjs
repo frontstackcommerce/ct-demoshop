@@ -192,7 +192,13 @@ export default withNuxt(
             },
             {
               name: 'vue-router',
-              importNames: ['useRouter', 'useRoute', 'onBeforeRouteLeave', 'onBeforeRouteUpdate', 'useLink'],
+              importNames: [
+                'useRouter',
+                'useRoute',
+                'onBeforeRouteLeave',
+                'onBeforeRouteUpdate',
+                'useLink',
+              ],
               message: 'This import is auto-imported by Nuxt. You can remove it.',
             },
           ],
@@ -232,7 +238,19 @@ export default withNuxt(
       'vue/attributes-order': [
         'error',
         {
-          order: ['DEFINITION', 'LIST_RENDERING', 'CONDITIONALS', 'RENDER_MODIFIERS', 'GLOBAL', 'UNIQUE', 'TWO_WAY_BINDING', 'OTHER_DIRECTIVES', 'OTHER_ATTR', 'EVENTS', 'CONTENT'],
+          order: [
+            'DEFINITION',
+            'LIST_RENDERING',
+            'CONDITIONALS',
+            'RENDER_MODIFIERS',
+            'GLOBAL',
+            'UNIQUE',
+            'TWO_WAY_BINDING',
+            'OTHER_DIRECTIVES',
+            'OTHER_ATTR',
+            'EVENTS',
+            'CONTENT',
+          ],
         },
       ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
