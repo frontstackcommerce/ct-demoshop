@@ -1,9 +1,6 @@
 export default defineEventHandler(async (event) => {
-  const { shippingMethodId } = await readBody<{ shippingMethodId: string }>(event)
-
-  if (!shippingMethodId) {
-    throw createError({ statusCode: 400, statusMessage: 'Missing shippingMethodId' })
-  }
+  const body = await readBody<{ shippingMethodId: string }>(event)
+  const shippingMethodId = validateString(body?.shippingMethodId, 'shippingMethodId', 100)
 
   const anonymousId = getAnonymousId(event)
   const api = getApiRoot()
@@ -29,16 +26,12 @@ export default defineEventHandler(async (event) => {
     const updated = await updateCartWithRetry(cart.id, cart.version, [
       {
         action: 'setShippingMethod',
-        shippingMethod: {
-          typeId: 'shipping-method',
-          id: shippingMethodId,
-        },
+        shippingMethod: { typeId: 'shipping-method', id: shippingMethodId },
       },
     ])
 
     return mapCart(updated)
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to set shipping method')
   }
 })

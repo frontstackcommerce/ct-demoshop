@@ -1,12 +1,7 @@
 export default defineEventHandler(async (event) => {
-  const { shippingAddress, billingAddress } = await readBody<{
-    shippingAddress: AddressData
-    billingAddress: AddressData
-  }>(event)
-
-  if (!shippingAddress) {
-    throw createError({ statusCode: 400, statusMessage: 'Missing shippingAddress' })
-  }
+  const body = await readBody<{ shippingAddress: unknown; billingAddress: unknown }>(event)
+  const shippingAddress = validateAddress(body?.shippingAddress)
+  const billingAddress = body?.billingAddress ? validateAddress(body.billingAddress) : shippingAddress
 
   const anonymousId = getAnonymousId(event)
   const api = getApiRoot()
@@ -29,39 +24,13 @@ export default defineEventHandler(async (event) => {
     }
 
     const cart = results[0]!
-    const actions: Array<Record<string, unknown>> = [
-      {
-        action: 'setShippingAddress',
-        address: {
-          firstName: shippingAddress.firstName,
-          lastName: shippingAddress.lastName,
-          streetName: shippingAddress.streetName,
-          streetNumber: shippingAddress.streetNumber,
-          postalCode: shippingAddress.postalCode,
-          city: shippingAddress.city,
-          country: shippingAddress.country,
-          phone: shippingAddress.phone,
-        },
-      },
-      {
-        action: 'setBillingAddress',
-        address: {
-          firstName: (billingAddress ?? shippingAddress).firstName,
-          lastName: (billingAddress ?? shippingAddress).lastName,
-          streetName: (billingAddress ?? shippingAddress).streetName,
-          streetNumber: (billingAddress ?? shippingAddress).streetNumber,
-          postalCode: (billingAddress ?? shippingAddress).postalCode,
-          city: (billingAddress ?? shippingAddress).city,
-          country: (billingAddress ?? shippingAddress).country,
-          phone: (billingAddress ?? shippingAddress).phone,
-        },
-      },
-    ]
+    const updated = await updateCartWithRetry(cart.id, cart.version, [
+      { action: 'setShippingAddress', address: shippingAddress },
+      { action: 'setBillingAddress', address: billingAddress },
+    ])
 
-    const updated = await updateCartWithRetry(cart.id, cart.version, actions)
     return mapCart(updated)
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to set addresses')
   }
 })

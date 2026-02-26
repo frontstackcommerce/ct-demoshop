@@ -16,8 +16,8 @@ export default defineEventHandler(async (event) => {
   } catch (error: any) {
     if (error.statusCode === 404) {
       setCustomerSession(event, null)
-      throw createError({ statusCode: 401, statusMessage: 'Customer not found' })
+      throw createError({ statusCode: 401, statusMessage: 'Not authenticated' })
     }
-    throw error
+    safeError(error, 'Failed to fetch profile')
   }
 })

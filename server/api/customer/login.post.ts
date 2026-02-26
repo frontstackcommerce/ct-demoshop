@@ -1,9 +1,11 @@
 export default defineEventHandler(async (event) => {
-  const { email, password } = await readBody<{ email: string; password: string }>(event)
+  const body = await readBody<{ email: string; password: string }>(event)
+  const email = validateEmail(body?.email)
+  const password = validateString(body?.password, 'password')
 
-  if (!email || !password) {
-    throw createError({ statusCode: 400, statusMessage: 'Email and password are required' })
-  }
+  // Rate limit by IP
+  const ip = getRequestIP(event, { xForwardedFor: true }) ?? 'unknown'
+  checkRateLimit(`login:${ip}`)
 
   try {
     const response = await getApiRoot()
@@ -30,6 +32,6 @@ export default defineEventHandler(async (event) => {
     if (error.statusCode === 400 || error.statusCode === 401) {
       throw createError({ statusCode: 401, statusMessage: 'Invalid email or password' })
     }
-    throw error
+    safeError(error, 'Login failed')
   }
 })

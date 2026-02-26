@@ -1,6 +1,5 @@
 export default defineEventHandler(async (event) => {
   const lineItemId = getRouterParam(event, 'lineItemId')
-
   if (!lineItemId) {
     throw createError({ statusCode: 400, statusMessage: 'Missing lineItemId' })
   }
@@ -31,8 +30,7 @@ export default defineEventHandler(async (event) => {
     ])
 
     return mapCart(updated)
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to remove item from cart')
   }
 })

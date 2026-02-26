@@ -1,14 +1,11 @@
 export default defineEventHandler(async (event) => {
   const lineItemId = getRouterParam(event, 'lineItemId')
-  const { quantity } = await readBody<{ quantity: number }>(event)
-
   if (!lineItemId) {
     throw createError({ statusCode: 400, statusMessage: 'Missing lineItemId' })
   }
 
-  if (typeof quantity !== 'number' || quantity < 0) {
-    throw createError({ statusCode: 400, statusMessage: 'Invalid quantity' })
-  }
+  const body = await readBody<{ quantity: number }>(event)
+  const quantity = validateQuantity(body?.quantity)
 
   const anonymousId = getAnonymousId(event)
   const api = getApiRoot()
@@ -36,8 +33,7 @@ export default defineEventHandler(async (event) => {
     ])
 
     return mapCart(updated)
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to update item quantity')
   }
 })

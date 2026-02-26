@@ -41,8 +41,7 @@ export default defineEventHandler(async (event) => {
           : { centAmount: 0, currencyCode: 'EUR', fractionDigits: 2 },
       }),
     )
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to fetch shipping methods')
   }
 })

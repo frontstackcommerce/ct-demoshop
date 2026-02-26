@@ -52,16 +52,12 @@ export default defineEventHandler(async (event) => {
     await updateCartWithRetry(cart.id, cart.version, [
       {
         action: 'addPayment',
-        payment: {
-          typeId: 'payment',
-          id: payment.id,
-        },
+        payment: { typeId: 'payment', id: payment.id },
       },
     ])
 
     return { ok: true }
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to process payment')
   }
 })

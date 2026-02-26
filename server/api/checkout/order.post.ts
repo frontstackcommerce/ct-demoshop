@@ -21,15 +21,11 @@ export default defineEventHandler(async (event) => {
 
     const cart = results[0]!
 
-    // Create order from cart
     const { body: order } = await api
       .orders()
       .post({
         body: {
-          cart: {
-            typeId: 'cart',
-            id: cart.id,
-          },
+          cart: { typeId: 'cart', id: cart.id },
           version: cart.version,
         },
       })
@@ -46,8 +42,7 @@ export default defineEventHandler(async (event) => {
       customerEmail: order.customerEmail,
       createdAt: order.createdAt,
     } as OrderConfirmation
-  } catch (error: any) {
-    if (error.statusCode) throw error
-    throw createError({ statusCode: 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to create order')
   }
 })

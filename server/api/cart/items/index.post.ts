@@ -1,15 +1,12 @@
 export default defineEventHandler(async (event) => {
-  const { sku, quantity = 1 } = await readBody<{ sku: string; quantity?: number }>(event)
-
-  if (!sku) {
-    throw createError({ statusCode: 400, statusMessage: 'Missing sku' })
-  }
+  const body = await readBody<{ sku: string; quantity?: number }>(event)
+  const sku = validateString(body?.sku, 'sku', 100)
+  const quantity = validateQuantity(body?.quantity ?? 1)
 
   const anonymousId = getAnonymousId(event)
   const api = getApiRoot()
 
   try {
-    // Try to find existing active cart
     const {
       body: { results },
     } = await api
@@ -25,13 +22,11 @@ export default defineEventHandler(async (event) => {
     let cart
 
     if (results.length) {
-      // Add to existing cart
       cart = await updateCartWithRetry(results[0]!.id, results[0]!.version, [
         { action: 'addLineItem', sku, quantity },
       ])
     } else {
-      // Create new cart with the line item
-      const { body } = await api
+      const { body: newCart } = await api
         .carts()
         .post({
           body: {
@@ -42,11 +37,11 @@ export default defineEventHandler(async (event) => {
           },
         })
         .execute()
-      cart = body
+      cart = newCart
     }
 
     return mapCart(cart)
-  } catch (error: any) {
-    throw createError({ statusCode: error.statusCode ?? 500, statusMessage: error.message })
+  } catch (error) {
+    safeError(error, 'Failed to add item to cart')
   }
 })
