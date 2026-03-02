@@ -1,9 +1,8 @@
-// TODO: Replace with actual navigation state management
 export function useShopNav() {
-  const section = ref<'menu' | 'search' | 'cart' | 'account'>('menu')
-  const open = ref(false)
-  const hideNavMenu = ref(false)
-  const showNavMenuInside = ref(false)
+  const section = useState<'menu' | 'search' | 'cart' | 'account'>('shop-nav-section', () => 'menu')
+  const open = useState('shop-nav-open', () => false)
+  const hideNavMenu = useState('shop-nav-hide-menu', () => false)
+  const showNavMenuInside = useState('shop-nav-show-inside', () => false)
 
   const resetNav = () => {
     open.value = false

@@ -1,7 +1,9 @@
 export default defineEventHandler(async (event) => {
   const body = await readBody<{ shippingAddress: unknown; billingAddress: unknown }>(event)
   const shippingAddress = validateAddress(body?.shippingAddress)
-  const billingAddress = body?.billingAddress ? validateAddress(body.billingAddress) : shippingAddress
+  const billingAddress = body?.billingAddress
+    ? validateAddress(body.billingAddress)
+    : shippingAddress
 
   const anonymousId = getAnonymousId(event)
   const api = getApiRoot()

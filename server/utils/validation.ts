@@ -1,4 +1,5 @@
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i
 const MAX_STRING_LENGTH = 255
 const MAX_QUANTITY = 99
 
@@ -9,11 +10,22 @@ export function validateEmail(email: unknown): string {
   return email.trim()
 }
 
-export function validateString(value: unknown, fieldName: string, maxLength = MAX_STRING_LENGTH): string {
+export function validateString(
+  value: unknown,
+  fieldName: string,
+  maxLength = MAX_STRING_LENGTH,
+): string {
   if (typeof value !== 'string' || value.length === 0 || value.length > maxLength) {
     throw createError({ statusCode: 400, statusMessage: `Invalid ${fieldName}` })
   }
   return value.trim()
+}
+
+export function validateId(value: unknown, fieldName: string): string {
+  if (typeof value !== 'string' || !UUID_REGEX.test(value)) {
+    throw createError({ statusCode: 400, statusMessage: `Invalid ${fieldName}` })
+  }
+  return value
 }
 
 export function validateQuantity(value: unknown): number {
@@ -61,7 +73,10 @@ export function checkRateLimit(key: string) {
 
   if (entry && entry.resetAt > now) {
     if (entry.count >= MAX_ATTEMPTS) {
-      throw createError({ statusCode: 429, statusMessage: 'Too many attempts. Please try again later.' })
+      throw createError({
+        statusCode: 429,
+        statusMessage: 'Too many attempts. Please try again later.',
+      })
     }
     entry.count++
   } else {

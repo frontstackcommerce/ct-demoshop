@@ -85,49 +85,65 @@ const featured = computed(() => homeContent.value?.featured ?? [])
       </div>
     </div>
 
-    <div>
+    <div v-if="featured.length >= 3">
       <div class="grid h-screen grid-cols-1 sm:grid-cols-2">
         <div class="relative overflow-hidden bg-gray-200">
-          <NuxtImg :src="featured[1]?.image" class="h-full w-full object-cover shadow-xs" />
-          <NuxtLink :to="featured[1]?.link">
+          <NuxtImg
+            :src="featured[1]?.image"
+            :alt="featured[1]?.label"
+            class="h-full w-full object-cover shadow-xs"
+          />
+          <NuxtLinkLocale :to="featured[1]?.link">
             <div
               class="font-display absolute inset-0 flex flex-col items-start justify-end p-8 text-5xl text-gray-800 text-white text-shadow-lg"
             >
               {{ featured[1]?.label }}
             </div>
-          </NuxtLink>
+          </NuxtLinkLocale>
         </div>
         <div class="grid grid-rows-1 overflow-hidden bg-gray-300 sm:grid-rows-2">
           <div class="relative overflow-hidden bg-gray-400">
-            <NuxtImg :src="featured[0]?.image" class="h-full w-full object-cover shadow-xs" />
-            <NuxtLink :to="featured[0]?.link">
+            <NuxtImg
+              :src="featured[0]?.image"
+              :alt="featured[0]?.label"
+              class="h-full w-full object-cover shadow-xs"
+            />
+            <NuxtLinkLocale :to="featured[0]?.link">
               <div
                 class="font-display absolute inset-0 flex flex-col items-start justify-end p-8 text-5xl text-gray-800 text-white text-shadow-lg"
               >
                 {{ featured[0]?.label }}
               </div>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </div>
           <div class="relative hidden overflow-hidden bg-gray-500 sm:block">
-            <NuxtImg :src="featured[2]?.image" class="h-full w-full object-cover shadow-xs" />
-            <NuxtLink :to="featured[2]?.link">
+            <NuxtImg
+              :src="featured[2]?.image"
+              :alt="featured[2]?.label"
+              class="h-full w-full object-cover shadow-xs"
+            />
+            <NuxtLinkLocale :to="featured[2]?.link">
               <div
                 class="font-display absolute inset-0 flex flex-col items-start justify-end p-8 text-5xl text-gray-800 text-white text-shadow-lg"
               >
                 {{ featured[2]?.label }}
               </div>
-            </NuxtLink>
+            </NuxtLinkLocale>
           </div>
         </div>
         <div class="relative block overflow-hidden bg-gray-500 sm:hidden">
-          <NuxtImg :src="featured[2]?.image" class="h-full w-full object-cover shadow-xs" />
-          <NuxtLink :to="featured[2]?.link">
+          <NuxtImg
+            :src="featured[2]?.image"
+            :alt="featured[2]?.label"
+            class="h-full w-full object-cover shadow-xs"
+          />
+          <NuxtLinkLocale :to="featured[2]?.link">
             <div
               class="font-display absolute inset-0 flex flex-col items-start justify-end p-8 text-5xl text-gray-800 text-white text-shadow-lg"
             >
               {{ featured[2]?.label }}
             </div>
-          </NuxtLink>
+          </NuxtLinkLocale>
         </div>
       </div>
     </div>
@@ -140,11 +156,11 @@ const featured = computed(() => homeContent.value?.featured ?? [])
         {{ homeContent?.newArrivals?.title }}
       </h2>
       <div class="pt-4">
-        <NuxtLink to="/new-arrivals">
+        <NuxtLinkLocale to="/new-arrivals">
           <Button variant="default" class="font-light">
             {{ homeContent?.newArrivals?.button }}
           </Button>
-        </NuxtLink>
+        </NuxtLinkLocale>
       </div>
     </div>
   </div>

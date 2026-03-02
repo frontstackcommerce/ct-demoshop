@@ -25,9 +25,7 @@ const handleContinueShopping = () => {
         }}</span>
       </p>
       <p v-if="orderConfirmation.customerEmail" class="text-muted-foreground text-sm">
-        {{
-          $t('checkout.confirmation.email-notice', { email: orderConfirmation.customerEmail })
-        }}
+        {{ $t('checkout.confirmation.email-notice', { email: orderConfirmation.customerEmail }) }}
       </p>
     </div>
 

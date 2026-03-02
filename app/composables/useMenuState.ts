@@ -1,7 +1,6 @@
 export function useMenuState() {
-  // UI state (not data-related)
-  const menuState = ref('')
-  const isOpen = ref(false)
+  const menuState = useState('menu-state', () => '')
+  const isOpen = useState('menu-open', () => false)
   const closeMenu = () => {
     isOpen.value = false
     menuState.value = ''

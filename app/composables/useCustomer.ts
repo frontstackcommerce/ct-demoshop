@@ -25,7 +25,12 @@ export function useCustomer() {
     }
   }
 
-  const register = async (data: { email: string; password: string; firstName: string; lastName: string }) => {
+  const register = async (data: {
+    email: string
+    password: string
+    firstName: string
+    lastName: string
+  }) => {
     loading.value = true
     try {
       const result = await $fetch<CustomerData>('/api/customer/register', {

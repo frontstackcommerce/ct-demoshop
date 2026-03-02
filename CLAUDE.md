@@ -26,15 +26,20 @@ Nuxt 4.3 storefront using **@frontic/nuxt** as the headless commerce backend,
 
 ### Routing
 
-Explicit page files (`search.vue`, `brands.vue`, `cart.vue`) are matched first by
-Nuxt's file-based router. Everything else goes through `[...slug].vue` in order:
+Explicit page files (`search.vue`, `brands.vue`, `cart.vue`) are matched first
+by Nuxt's file-based router. Everything else goes through `[...slug].vue` in
+order:
 
 1. **Content page** — `@nuxt/content` collections matched by slug
 2. **Frontic page** — `useFronticPage()` returns `type` (`Product`, `Brand`,
-   `Category`) and a `route.code` (200, 301, 404). Handle 301 as redirect, 404
-   as error. 200 without type = homepage.
+   `Category`) and a `route.code` (200, 301, 404). The `@frontic/nuxt` module
+   auto-handles 301 (redirect) and 404 (error) via `redirectOn301` and
+   `throwOn404` config — don't handle these manually. 200 without type =
+   homepage.
 3. **Home** — Fallback when Frontic returns `EmptyPage` (200, no type)
-4. **Error** — When nothing matches or Frontic returns 404
+4. **Error** — When nothing matches
+
+See `nuxt.config.ts` for module config (`redirectOn301`, `throwOn404`, etc.).
 
 ### Frontic composables
 
@@ -72,13 +77,14 @@ with locale suffix: `queryCollection('navigation_en')`.
 
 ### UI components
 
-`app/components/ui/` contains components from the **Frontic UI registry** built on
-**reka-ui** (headless). These are auto-imported and excluded from ESLint/Prettier.
-Customize them when the change benefits the whole library (e.g., adding a new
-color variant to Button that every page will use). For context-specific needs,
-compose `ui/` components in `app/components/` instead — e.g., a `CheckoutSummary`
-goes in `app/components/checkout/`, not as a new Card variant in `ui/`. Use the
-`cn()` utility from `app/lib/utils.ts` for conditional Tailwind classes.
+`app/components/ui/` contains components from the **Frontic UI registry** built
+on **reka-ui** (headless). These are auto-imported and excluded from
+ESLint/Prettier. Customize them when the change benefits the whole library
+(e.g., adding a new color variant to Button that every page will use). For
+context-specific needs, compose `ui/` components in `app/components/` instead —
+e.g., a `CheckoutSummary` goes in `app/components/checkout/`, not as a new Card
+variant in `ui/`. Use the `cn()` utility from `app/lib/utils.ts` for conditional
+Tailwind classes.
 
 ### Custom composables
 
@@ -98,17 +104,17 @@ Nuxt auto-imports Vue APIs, composables, utils, and types everywhere. Components
 are auto-imported in `<template>` only — if you need a component ref in
 `<script setup>`, import it explicitly. Component names follow folder path with
 duplicate segments skipped (e.g., `components/checkout/CheckoutCartItem.vue` →
-`<CheckoutCartItem />`). Do not add manual import statements for anything that's auto-imported
-(components in templates, utils, types, composables, Vue APIs) — this clutters
-the code and ESLint will flag it.
+`<CheckoutCartItem />`). Do not add manual import statements for anything that's
+auto-imported (components in templates, utils, types, composables, Vue APIs) —
+this clutters the code and ESLint will flag it.
 
 ### Types and utils location
 
-| Scope | Utils | Types |
-|-------|-------|-------|
-| Client/app | `app/utils/` | `app/types/` |
-| Server | `server/utils/` | `server/types/` |
-| Shared | `shared/utils/` | `shared/types/` |
+| Scope      | Utils           | Types           |
+| ---------- | --------------- | --------------- |
+| Client/app | `app/utils/`    | `app/types/`    |
+| Server     | `server/utils/` | `server/types/` |
+| Shared     | `shared/utils/` | `shared/types/` |
 
 Type files (`.d.ts`) must use bare interfaces — no `export` or `declare`. A
 single `export` turns the file into a module and breaks auto-import for every

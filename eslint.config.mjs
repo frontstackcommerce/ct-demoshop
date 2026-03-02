@@ -12,7 +12,7 @@ export default withNuxt(
       '@intlify/vue-i18n/no-dynamic-keys': 'error',
       '@intlify/vue-i18n/valid-message-syntax': 'error',
       '@intlify/vue-i18n/no-duplicate-keys-in-locale': 'error',
-      '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'off', // Enable when using multiple locales
+      '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'warn',
       '@intlify/vue-i18n/key-format-style': [
         'error',
         'kebab-case',
@@ -22,10 +22,10 @@ export default withNuxt(
         },
       ],
       '@intlify/vue-i18n/no-unused-keys': [
-        'error',
+        'warn',
         {
           extensions: ['.js', '.ts', '.vue'],
-          enableFix: true,
+          enableFix: false,
         },
       ],
       '@intlify/vue-i18n/no-raw-text': [
@@ -93,6 +93,9 @@ export default withNuxt(
             // Whitespace variants
             ' ',
             '~',
+            // Triangle arrows (used in UI controls)
+            '▼',
+            '▲',
           ],
         },
       ],

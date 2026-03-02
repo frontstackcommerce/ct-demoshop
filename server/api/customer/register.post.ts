@@ -39,7 +39,10 @@ export default defineEventHandler(async (event) => {
     return mapCustomer(customer)
   } catch (error: any) {
     if (error.statusCode === 400 && error.message?.includes('duplicate')) {
-      throw createError({ statusCode: 409, statusMessage: 'An account with this email already exists' })
+      throw createError({
+        statusCode: 409,
+        statusMessage: 'An account with this email already exists',
+      })
     }
     safeError(error, 'Registration failed')
   }

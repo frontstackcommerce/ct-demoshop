@@ -34,11 +34,7 @@ const { shippingMethods, selectedShippingMethod, submitShipping, loading, error 
       </div>
     </RadioGroup>
 
-    <Button
-      class="w-full"
-      :disabled="!selectedShippingMethod || loading"
-      @click="submitShipping"
-    >
+    <Button class="w-full" :disabled="!selectedShippingMethod || loading" @click="submitShipping">
       {{ $t('checkout.continue') }}
     </Button>
   </div>

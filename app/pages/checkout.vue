@@ -2,6 +2,11 @@
 definePageMeta({
   layout: 'checkout',
 })
+defineI18nRoute({
+  paths: {
+    de: '/kasse',
+  },
+})
 
 const { lineItems } = useCart()
 const { currentStep } = useCheckout()

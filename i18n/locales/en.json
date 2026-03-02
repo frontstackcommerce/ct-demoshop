@@ -28,7 +28,6 @@
     }
   },
   "checkout": {
-    "title": "Checkout",
     "back": "Back",
     "continue": "Continue",
     "progress": {
@@ -100,10 +99,6 @@
       "shipping": "Shipping",
       "tax": "Tax",
       "total": "Total"
-    },
-    "error": {
-      "generic": "Something went wrong. Please try again.",
-      "cart-empty": "Your cart is empty"
     }
   },
   "error": {
@@ -190,12 +185,6 @@
   "product": {
     "buy": {
       "add-to-cart": "Add to cart"
-    },
-    "compare": {
-      "title": "Compare Products",
-      "vs": "vs",
-      "no-rating": "No rating",
-      "no-price": "Price unavailable"
     },
     "details": {
       "sections": {

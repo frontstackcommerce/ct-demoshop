@@ -34,12 +34,7 @@ const handleLogin = async () => {
 
     <div class="space-y-2">
       <Label for="login-password">{{ $t('checkout.login.password') }}</Label>
-      <Input
-        id="login-password"
-        v-model="password"
-        type="password"
-        @keyup.enter="handleLogin"
-      />
+      <Input id="login-password" v-model="password" type="password" @keyup.enter="handleLogin" />
     </div>
 
     <div class="flex gap-3">

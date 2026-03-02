@@ -1,4 +1,9 @@
 <script setup lang="ts">
+defineI18nRoute({
+  paths: {
+    de: '/haeufige-fragen',
+  },
+})
 const { locale } = useI18n()
 
 const collectionName = computed(() => `faq_${locale.value}`)

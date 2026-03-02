@@ -28,7 +28,6 @@
     }
   },
   "checkout": {
-    "title": "Kasse",
     "back": "Zurück",
     "continue": "Weiter",
     "progress": {
@@ -100,10 +99,6 @@
       "shipping": "Versand",
       "tax": "MwSt.",
       "total": "Gesamt"
-    },
-    "error": {
-      "generic": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
-      "cart-empty": "Ihr Warenkorb ist leer"
     }
   },
   "error": {
@@ -190,12 +185,6 @@
   "product": {
     "buy": {
       "add-to-cart": "In den Warenkorb"
-    },
-    "compare": {
-      "title": "Produkte vergleichen",
-      "vs": "vs",
-      "no-rating": "Keine Bewertung",
-      "no-price": "Preis nicht verfügbar"
     },
     "details": {
       "sections": {

@@ -1,8 +1,5 @@
 export default defineEventHandler(async (event) => {
-  const lineItemId = getRouterParam(event, 'lineItemId')
-  if (!lineItemId) {
-    throw createError({ statusCode: 400, statusMessage: 'Missing lineItemId' })
-  }
+  const lineItemId = validateId(getRouterParam(event, 'lineItemId'), 'lineItemId')
 
   const body = await readBody<{ quantity: number }>(event)
   const quantity = validateQuantity(body?.quantity)

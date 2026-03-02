@@ -54,18 +54,21 @@ function handleSearchFocus() {
         v-model:open="showRefine"
         :state="state"
         :search-term="searchTerm"
-        @reset-filter="resetFilter($event as any)"
-        @filter-result="
-          (field: string, options: string[]) => filterResult(field as any, options as any)
-        "
-        @sort-result="sortResult($event)"
-        @update-search="searchTerm = String($event).trim()"
-        @close-refine="showRefine = false"
+        @reset="resetFilter($event as any)"
+        @filter="(field: string, options: string[]) => filterResult(field as any, options as any)"
+        @sort="sortResult($event)"
+        @search="searchTerm = String($event).trim()"
+        @close="showRefine = false"
       />
     </div>
 
-    <div v-if="result?.items" class="grid grid-cols-2 gap-4 md:grid-cols-4">
-      <ProductCard v-for="product in result.items" :key="product.key" :product="product" />
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-4">
+      <template v-if="!result?.items">
+        <ProductCardSkeleton v-for="i in 8" :key="i" />
+      </template>
+      <template v-else>
+        <ProductCard v-for="product in result.items" :key="product.key" :product="product" />
+      </template>
     </div>
   </div>
 </template>

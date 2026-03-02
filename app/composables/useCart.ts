@@ -9,8 +9,6 @@ export function useCart() {
     return { centAmount: 0, currencyCode: 'EUR', fractionDigits: 2 }
   })
 
-  const context = ref({ locale: 'en' })
-
   const refreshCart = async () => {
     try {
       const data = await $fetch<CartData>('/api/cart')
@@ -64,7 +62,6 @@ export function useCart() {
 
   return {
     cart,
-    context,
     lineItems,
     totalPrice,
     loading,

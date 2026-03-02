@@ -11,7 +11,13 @@ const steps = [
 
 type ProgressStep = (typeof steps)[number]['key']
 
-const stepOrder: Record<string, number> = { email: 0, address: 0, shipping: 1, payment: 2, confirmation: 3 }
+const stepOrder: Record<string, number> = {
+  email: 0,
+  address: 0,
+  shipping: 1,
+  payment: 2,
+  confirmation: 3,
+}
 
 const isActive = (step: ProgressStep) => {
   const currentOrder = stepOrder[currentStep.value] ?? 0

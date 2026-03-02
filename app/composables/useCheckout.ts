@@ -42,9 +42,13 @@ export function useCheckout() {
     if (customer.value.lastName) addressForm.value.lastName = customer.value.lastName
   }
 
-  watch(customer, () => {
-    if (customer.value) prefillFromCustomer()
-  }, { immediate: true })
+  watch(
+    customer,
+    () => {
+      if (customer.value) prefillFromCustomer()
+    },
+    { immediate: true },
+  )
 
   const submitEmail = async () => {
     loading.value = true
@@ -131,6 +135,29 @@ export function useCheckout() {
   const reset = () => {
     currentStep.value = 'email'
     emailForm.value = ''
+    addressForm.value = {
+      firstName: '',
+      lastName: '',
+      streetName: '',
+      streetNumber: '',
+      postalCode: '',
+      city: '',
+      country: 'DE',
+      phone: '',
+    }
+    billingAddressForm.value = {
+      firstName: '',
+      lastName: '',
+      streetName: '',
+      streetNumber: '',
+      postalCode: '',
+      city: '',
+      country: 'DE',
+      phone: '',
+    }
+    sameAsBilling.value = true
+    selectedShippingMethod.value = ''
+    shippingMethods.value = []
     orderConfirmation.value = null
     error.value = null
   }
