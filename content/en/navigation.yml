@@ -1,0 +1,36 @@
+header:
+  teaser: Free shipping on orders over 50 EUR
+
+about:
+  title: About
+  links:
+    - label: Our Story
+      href: /about
+    - label: Sustainability
+      href: /sustainability
+    - label: Careers
+      href: /careers
+    - label: Press
+      href: /press
+
+footer:
+  groups:
+    - title: Support
+      links:
+        - label: FAQ
+          href: /faq
+        - label: Shipping & Returns
+          href: /shipping
+        - label: Contact
+          href: /contact
+  legalLinks:
+    - label: Privacy Policy
+      href: /privacy
+    - label: Imprint
+      href: /imprint
+  newsletter:
+    title: Subscribe to our newsletter
+    description: Stay up to date with the latest news and offers.
+    placeholder: Email Address
+    accept: Subscribe
+    divider: and

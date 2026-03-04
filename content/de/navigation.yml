@@ -1,0 +1,36 @@
+header:
+  teaser: Kostenloser Versand ab 50 EUR
+
+about:
+  title: Über uns
+  links:
+    - label: Unsere Geschichte
+      href: /ueber-uns
+    - label: Nachhaltigkeit
+      href: /nachhaltigkeit
+    - label: Karriere
+      href: /karriere
+    - label: Presse
+      href: /presse
+
+footer:
+  groups:
+    - title: Service
+      links:
+        - label: FAQ
+          href: /faq
+        - label: Versand & Retouren
+          href: /versand
+        - label: Kontakt
+          href: /kontakt
+  legalLinks:
+    - label: Datenschutz
+      href: /datenschutz
+    - label: Impressum
+      href: /impressum
+  newsletter:
+    title: Newsletter abonnieren
+    description: Bleiben Sie auf dem Laufenden mit den neuesten Nachrichten und Angeboten.
+    placeholder: E-Mail-Adresse
+    accept: Abonnieren
+    divider: und
