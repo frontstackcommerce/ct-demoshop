@@ -1,1 +1,653 @@
-{}
+{
+  "actions": {
+    "add": "Add",
+    "add-item": "Add {item}",
+    "close": "close",
+    "remove": "Remove",
+    "remove-item": "Remove {item}",
+    "update": "Update",
+    "update-item": "Update {item}",
+    "show-all": "All",
+    "shop-all": "Shop All",
+    "back": "Back",
+    "explore": "Explore",
+    "discover": "Discover",
+    "view-all": "View all →",
+    "shop-now": "Shop Now",
+    "shop-the-edit": "Shop the Edit",
+    "view-product": "View Product",
+    "view-collection": "View Collection",
+    "explore-collection": "Explore Collection",
+    "quick-view": "Quick View",
+    "close-quick-view": "Close Quick View",
+    "view-full-details": "View Full Details",
+    "subscribe": "Subscribe",
+    "our-story": "Our Story",
+    "select-option": "Select Option",
+    "available": "{count} available",
+    "loading": "Loading..."
+  },
+  "brand": "Flagship Store",
+  "brands": {
+    "label": "Brands",
+    "description": "Discover our curated selection of premium brands",
+    "hero": {
+      "label": "Curated Excellence",
+      "title": "The Makers",
+      "description": "Discover the artisans and visionaries behind our collection. Each brand tells a story of craftsmanship, innovation, and timeless design."
+    },
+    "featured": {
+      "label": "Featured Brand",
+      "description": "Discover a world where form meets function, where every piece tells a story of meticulous craftsmanship and thoughtful design."
+    },
+    "highlighted": {
+      "label": "Signature Collections",
+      "title": "Brands We Love",
+      "card-description": "Explore the complete collection of thoughtfully designed pieces."
+    },
+    "philosophy": {
+      "label": "Our Philosophy",
+      "quote": "\"We believe in the power of thoughtful design to transform {highlight} into meaningful experiences.\"",
+      "highlight": "everyday moments",
+      "description": "Each brand in our collection shares this vision—creating pieces that are beautiful, functional, and built to last."
+    },
+    "directory": {
+      "label": "Complete Directory",
+      "title": "All Brands",
+      "description": "Browse our complete collection of carefully selected brands, each chosen for their commitment to quality and design excellence."
+    },
+    "cta": {
+      "title": "Want to learn more about our brands?",
+      "description": "Discover the stories, craftsmanship, and inspiration behind each collection."
+    },
+    "scroll": "Explore"
+  },
+  "carousel": {
+    "goto": "Go to slide {slide}",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "cart": {
+    "discount": {
+      "placeholder": "Enter discount code",
+      "submit": "Redeem Discount",
+      "title": "Discount Code"
+    },
+    "empty": {
+      "title": "You have no items in your cart",
+      "recommended": "Our picks we think you'll love"
+    },
+    "items": {
+      "quantity-placeholder": "Select quantity"
+    },
+    "notify": {
+      "action": {
+        "checkout": "Checkout",
+        "cart": "Your Cart"
+      },
+      "title": "Great choice! Added to cart",
+      "recommended": "Fits perfectly with..."
+    },
+    "summary": {
+      "free": "Free",
+      "items": "Subtotal",
+      "shipping": "Shipping",
+      "tax": "Taxes",
+      "title": "Order Summary",
+      "total": "Total",
+      "count": "1 Item | {count} Items"
+    },
+    "title": "Cart",
+    "title-long": "Your Shopping Cart"
+  },
+  "categories": {
+    "furniture": "Furniture",
+    "kitchen": "Kitchen",
+    "new-arrivals": "New Arrivals",
+    "home-decor": "Home Decor",
+    "accessories": "Accessories",
+    "backpacks": "Backpacks",
+    "beanies": "Beanies",
+    "clothing": "Clothing",
+    "equipment": "Equipment",
+    "gloves": "Gloves",
+    "goggles": "Goggles",
+    "helmets": "Helmets",
+    "jackets": "Jackets",
+    "kids": "Kids",
+    "men": "Men",
+    "running-shoes": "Running Shoes",
+    "sale": "Sale",
+    "shoes": "Shoes",
+    "shop": "Shop",
+    "snapbacks": "Snapbacks",
+    "sunglasses": "Sunglasses",
+    "trousers": "Trousers",
+    "winter": "Winter",
+    "women": "Women"
+  },
+  "checkout": {
+    "account": {
+      "fields": {
+        "email": "Email or mobile number",
+        "newsletter": "Email me with news and offers"
+      },
+      "login": "Log in",
+      "title": "Contact Information"
+    },
+    "customer": {
+      "firstname": "First name (optional)",
+      "lastname": "Last name"
+    },
+    "delivery": {
+      "fields": {
+        "address": {
+          "no-address": "Address not found",
+          "placeholder": "Address",
+          "search": "Search address..."
+        },
+        "apartment": {
+          "placeholder": "Apartment, suite, etc. (optional)"
+        },
+        "city": {
+          "placeholder": "City"
+        },
+        "country": {
+          "no-country": "Country not found",
+          "placeholder": "Country / Region",
+          "search": "Search country..."
+        },
+        "zip-code": {
+          "placeholder": "ZIP code"
+        }
+      },
+      "title": "Delivery"
+    },
+    "express": {
+      "or": "OR",
+      "title": "Express Checkout"
+    },
+    "payment": {
+      "credit-card": {
+        "fields": {
+          "card-holder": "Card Holder",
+          "card-holder-placeholder": "Enter card holder name",
+          "card-number": "Card Number",
+          "card-number-placeholder": "Enter card number",
+          "cvv": "CVV",
+          "cvv-help": "A three-digit security code usually found on the back of your card. American Express cards have a four-digit code on the front.",
+          "cvv-placeholder": "Enter CVV",
+          "expiration-date": "Expiration Date (MM/YY)",
+          "expiration-date-placeholder": "MM/YY"
+        },
+        "title": "Credit Card"
+      },
+      "description": "All transactions are secure and encrypted.",
+      "invoice": {
+        "title": "Invoice"
+      },
+      "invoice-address": "Use delivery address as billing address",
+      "paypal": {
+        "title": "Paypal"
+      },
+      "title": "Payment"
+    },
+    "shipping": {
+      "alert": "Enter your delivery address to view available shipping methods.",
+      "free-shipping": "free",
+      "shipping-info": {
+        "dhl": "Delivery within 1-2 business days to pickup point",
+        "dpd": "Delivery within 3-4 business days (Monday - Friday)",
+        "fedex": "Delivery within 24 hours (Monday - Saturday)",
+        "ups": "Delivery by tomorrow morning 9 AM (Monday - Saturday)"
+      },
+      "title": "Shipping method"
+    },
+    "submit": "Place Order",
+    "terms": {
+      "label": "I accept the terms and conditions",
+      "title": "Terms and Conditions"
+    }
+  },
+  "context": {
+    "location": {
+      "label": "Shipping Location",
+      "placeholder": "Select Region"
+    },
+    "language": {
+      "label": "Language",
+      "placeholder": "Select Language"
+    },
+    "submit": "Submit",
+    "title": "Select your Store",
+    "suggest": {
+      "title": "We found a better match",
+      "description": "The page you're looking for doesn't match your current settings. But we found a better match for you.",
+      "deny": "Thanks, but no thanks",
+      "accept": "Yes, take me to {locale} version"
+    }
+  },
+  "control": {
+    "button": "Filter & Sort",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "showed": "{count} of {total} products viewed",
+      "next": "Load more",
+      "add-filter": "Filter & Sort",
+      "edit-filter": "Adjust filter",
+      "goto-top": "Back to top"
+    },
+    "reset": "Reset all filters",
+    "reset-sm": "Reset",
+    "submit": "Show {count} results",
+    "submit-sm": "Show",
+    "search": {
+      "placeholder": "Enter keywords...",
+      "title": "Search in {category}"
+    },
+    "sort": {
+      "options": {
+        "default": "Recommendation",
+        "name-asc": "Name ascending",
+        "name-desc": "Name descending",
+        "price-asc": "Price ascending",
+        "price-desc": "Price descending"
+      },
+      "title": "Sort by"
+    }
+  },
+  "default": {
+    "times": "x ",
+    "colon": ": ",
+    "in-brackets": "({text})"
+  },
+  "error": {
+    "404": {
+      "subtitle": "404",
+      "title": "Page not found",
+      "description": "Sorry, we couldn't find the page you're looking for.",
+      "back": "Back to home"
+    }
+  },
+  "favorites": {
+    "empty": "You have no favorites yet.",
+    "title": "Your Favorites",
+    "recommended": "Our picks we think you'll love"
+  },
+  "footer": {
+    "copyright": "© 2025 All rights reserved.",
+    "menu": {
+      "about": {
+        "about": "About Us",
+        "order-status": "Order Status",
+        "store-locator": "Store Locator",
+        "contact": "Contact",
+        "help": "Help Center",
+        "title": "About Us"
+      },
+      "support": {
+        "contact": "Contact",
+        "order": "Order Status",
+        "return-policy": "Returns",
+        "shipping": "Shipping",
+        "size-guide": "Size Guide",
+        "support": "Support / Help",
+        "title": "Support",
+        "warranty": "Warranty"
+      }
+    },
+    "newsletter": {
+      "accept": "I agree to the",
+      "description": "Subscribe to our newsletter to get 10% off your first order.",
+      "divider": "and",
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "title": "Newsletter"
+    },
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "header": {
+    "teaser": "++ Free Shipping & Returns on all orders ++",
+    "utils": {
+      "login": "Login",
+      "stores": "Stores"
+    }
+  },
+  "home": {
+    "hero": {
+      "label": "New Season 2025",
+      "title": "Feel the comfort of your home",
+      "description": "Curated pieces that transform spaces into sanctuaries of modern living.",
+      "button": "Shop Now",
+      "image-alt": "Comfortable living room",
+      "scroll": "Scroll"
+    },
+    "promo": {
+      "label": "Limited Time",
+      "title": "Kitchen",
+      "title-highlight": "Essentials",
+      "price": "Under",
+      "description": "Transform your culinary space without transforming your budget. {count}+ pieces curated for you.",
+      "starting-at": "Starting at"
+    },
+    "quote": "\"We believe in the power of thoughtful design—pieces that honor craftsmanship, embrace sustainability, and create spaces where life unfolds beautifully.\"",
+    "categories": {
+      "label": "Collections",
+      "title": "Explore our categories"
+    },
+    "featured": {
+      "label": "Curated Selection",
+      "home-braid": "Home Braid",
+      "lounge-furniture": "Lounge Furniture",
+      "lounge-description": "Sink into unparalleled comfort with our signature lounge collection. Each piece is crafted with meticulous attention to detail.",
+      "rugs": "Rugs",
+      "artisan-textiles": "Artisan Textiles",
+      "artisan-subtitle": "Handcrafted details",
+      "natural-materials": "Natural Materials",
+      "natural-subtitle": "Sustainable luxury"
+    },
+    "values": {
+      "label": "Our Promise",
+      "title": "Crafted with intention",
+      "sustainable": {
+        "title": "Sustainable Materials",
+        "description": "Responsibly sourced materials that honor both craftsmanship and our planet."
+      },
+      "artisan": {
+        "title": "Artisan Crafted",
+        "description": "Made by skilled artisans who bring generations of expertise to every piece."
+      },
+      "quality": {
+        "title": "Lifetime Quality",
+        "description": "Built to last generations, with a commitment to timeless design."
+      }
+    },
+    "new-arrivals": {
+      "label": "New Arrivals",
+      "title": "Special and exclusive offers every week",
+      "description": "Discover our latest arrivals—thoughtfully designed pieces that bring warmth to every space.",
+      "button": "Shop Now"
+    },
+    "teaser": {
+      "category": {
+        "men": "Shop Men's",
+        "women": "Shop Women's"
+      },
+      "adventure": {
+        "button": "Explore Adventure Collection"
+      },
+      "mtb": {
+        "button": "Gear up for the ride ahead",
+        "title": "Unleash Your Adventure"
+      },
+      "season": {
+        "button": "Apparel That Goes the Distance",
+        "title": "Gear up for All Seasons"
+      }
+    }
+  },
+  "campaign": {
+    "kitchen": {
+      "hero": {
+        "label": "Limited Time Offer",
+        "title": "Kitchen",
+        "title-highlight": "Essentials",
+        "price": "Under €100",
+        "description": "Transform your culinary space without transforming your budget. Discover thoughtfully designed pieces that prove luxury doesn't require excess.",
+        "pieces-curated": "{count}+ pieces curated"
+      },
+      "value-props": {
+        "free-shipping": "Free shipping over €30",
+        "easy-returns": "Easy 30-day returns",
+        "warranty": "2-year warranty"
+      },
+      "quote": {
+        "text": "\"The kitchen is the heart of the home—and every heart deserves {highlight} that don't break the bank.\"",
+        "highlight": "beautiful things",
+        "attribution": "— The CT Demo Shop Edit"
+      },
+      "featured": {
+        "label": "The Edit",
+        "title": "Handpicked Favorites",
+        "description": "Each piece selected for its perfect balance of form, function, and value.",
+        "best-value": "Best Value",
+        "product-description": "The perfect addition to any kitchen, combining timeless design with everyday practicality.",
+        "shop-now": "Shop now →"
+      },
+      "story": {
+        "label": "Our Philosophy",
+        "title": "Great design should be {highlight} to everyone",
+        "highlight": "accessible",
+        "description": "We believe that surrounding yourself with beautiful, functional objects shouldn't require a second mortgage. That's why we've curated this collection of kitchen essentials—each under €100, each a testament to thoughtful design that elevates the everyday.",
+        "stats": {
+          "products": "Products under €100",
+          "rating": "Average rating",
+          "warranty": "Warranty included"
+        }
+      },
+      "showcase": {
+        "label": "More to Explore",
+        "title": "Complete the Look",
+        "view-all": "View all kitchen →"
+      },
+      "newsletter": {
+        "label": "Stay in the Loop",
+        "title": "Never Miss a Deal",
+        "description": "Subscribe to our newsletter and be the first to know about new arrivals, exclusive offers, and curated collections like this one.",
+        "placeholder": "Enter your email",
+        "disclaimer": "No spam, ever. Unsubscribe anytime."
+      },
+      "cta": {
+        "text": "Ready to transform your kitchen?",
+        "highlight": "Shop all essentials under €100"
+      }
+    },
+    "bedroom": {
+      "hero": {
+        "badge": "The Art of Rest",
+        "title-1": "Your",
+        "title-2": "Sanctuary",
+        "title-3": "Awaits",
+        "description": "Where extraordinary craftsmanship meets the science of perfect sleep. Discover beds that transform nights into journeys."
+      },
+      "cta": {
+        "explore": "Explore Collection",
+        "philosophy": "Our Philosophy"
+      },
+      "stats": {
+        "sleep-better": "Sleep Better",
+        "sleep-better-value": "98%",
+        "warranty": "Warranty",
+        "warranty-value": "10yr",
+        "night-trial": "Night Trial",
+        "night-trial-value": "100"
+      },
+      "trust-bar": {
+        "reviews": "4.9/5 from 2,847 reviews",
+        "delivery": "Free White Glove Delivery",
+        "trial": "100-Night Sleep Trial",
+        "handcrafted": "Handcrafted in Europe"
+      },
+      "philosophy": {
+        "label": "Our Philosophy",
+        "title-1": "Sleep is not a luxury.",
+        "title-2": "It's a necessity.",
+        "text-1": "In a world that never stops, your bedroom should be a refuge—a place where time slows and restoration begins. We've spent decades perfecting the art of rest.",
+        "text-2": "Every bed we create is a collaboration between master craftsmen and sleep scientists, using only the finest natural materials sourced from sustainable suppliers across Europe.",
+        "quote": "\"The best sleep of your life shouldn't be a dream.\"",
+        "attribution": "— Our Founding Promise"
+      },
+      "benefits": {
+        "deep-sleep": "Deep Sleep",
+        "deep-sleep-desc": "Engineered for optimal REM cycles and restorative rest",
+        "spinal": "Spinal Alignment",
+        "spinal-desc": "Ergonomic support that adapts to your body's natural curves",
+        "refreshed": "Wake Refreshed",
+        "refreshed-desc": "Temperature-regulating materials for uninterrupted sleep",
+        "warranty-title": "10-Year Warranty",
+        "warranty-desc": "Our promise of lasting quality and craftsmanship"
+      },
+      "collection": {
+        "label": "The Collection",
+        "title": "Masterpieces of Rest",
+        "description": "Each piece in our collection represents the pinnacle of sleep engineering—where timeless design meets uncompromising comfort.",
+        "signature": "Signature Collection",
+        "bestseller": "Bestseller",
+        "hero-desc": "The crown jewel of our collection. Handcrafted with premium European oak and upholstered in the finest organic cotton. A bed that becomes an heirloom.",
+        "free-delivery": "Free delivery & setup",
+        "view-details": "View Details",
+        "view-all": "View Complete Collection",
+        "quick-view": "Quick View"
+      },
+      "testimonials": {
+        "label": "Testimonials",
+        "title": "Stories of Transformation"
+      },
+      "craftsmanship": {
+        "label": "Craftsmanship",
+        "title-1": "Made by Hands",
+        "title-2": "That Care",
+        "description": "Every bed begins its journey in our atelier, where master craftsmen with decades of experience shape raw materials into works of art. No shortcuts. No compromises.",
+        "stat-hours": "Hours of handcraft per bed",
+        "stat-generation": "Generation craftsmen",
+        "stat-sustainable": "Sustainable materials",
+        "stat-compromises": "Compromises on quality"
+      },
+      "consultation": {
+        "label": "Personalized Service",
+        "title": "Not Sure Where to Start?",
+        "description": "Book a complimentary sleep consultation with our experts. We'll help you find the perfect bed for your sleep style, preferences, and space.",
+        "book": "Book Free Consultation",
+        "call": "Or Call Us"
+      },
+      "trust": {
+        "delivery-title": "White Glove Delivery",
+        "delivery-desc": "Free setup in your bedroom",
+        "trial-title": "100-Night Trial",
+        "trial-desc": "Risk-free sleep guarantee",
+        "warranty-title": "10-Year Warranty",
+        "warranty-desc": "Comprehensive coverage",
+        "sustainable-title": "Sustainable Materials",
+        "sustainable-desc": "Eco-conscious crafting"
+      }
+    }
+  },
+  "quick-view": {
+    "loading": "Loading product...",
+    "tax-included": "Tax included. Free shipping over €150.",
+    "free-shipping": "Free Shipping",
+    "easy-returns": "Easy Returns",
+    "warranty": "2yr Warranty"
+  },
+  "listing": {
+    "counter": "No Result | 1 Result | {count} Results",
+    "filters": {
+      "finish-label": "Finish",
+      "search-color": "Color",
+      "manufacturer": "Brands",
+      "size": "Size"
+    }
+  },
+  "locales": {
+    "de": "German",
+    "en": "English"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "description": "Navigate to your favorite section",
+    "account": "Account",
+    "cart": "Cart",
+    "close": "Close",
+    "menu": "Menu",
+    "search": "Search",
+    "checkout": "Checkout",
+    "goto-checkout": "Checkout Now",
+    "continue-shopping": "Continue Shopping"
+  },
+  "product": {
+    "featured": "Featured",
+    "sku": "SKU",
+    "buy": {
+      "add-to-cart": "Add to Cart"
+    },
+    "details": {
+      "description": {
+        "missing": "No description available"
+      },
+      "bullet-points": {
+        "first": "Free Shipping & Returns",
+        "second": "30-Day Return Policy",
+        "third": "Fast Delivery"
+      },
+      "features": {
+        "key-features": "Key Features",
+        "materials-care": "Materials & Care",
+        "specifications": "Specifications"
+      },
+      "reviews": {
+        "average-rating": "Average rating",
+        "count": "No Reviews | {count} Review | {count} Reviews",
+        "count-plain": "({count})",
+        "likes": "Helpful",
+        "review-count": "Based on",
+        "show-all": "Show all reviews",
+        "show-less": "Show less reviews",
+        "show-more": "Show more reviews",
+        "show-full-review": "Show full review",
+        "title": "Reviews",
+        "verified": "Verified purchase"
+      },
+      "sections": {
+        "description": "Description",
+        "reviews": "Reviews",
+        "showroom": "Showroom",
+        "similar": "Similar Products"
+      },
+      "size-table": {
+        "title": "Size & Fit"
+      },
+      "tag": {
+        "new": "New",
+        "outdoor": "Outdoor"
+      }
+    },
+    "variant": {
+      "color": {
+        "title": "Color"
+      },
+      "select": {
+        "empty": "No variants found",
+        "missing": "No template implemented for this option"
+      },
+      "size": {
+        "size-guide": "Size Guide",
+        "size-model": "The model is 5'4\" (162cm) and wears size S.",
+        "title": "Size"
+      }
+    }
+  },
+  "regions": {
+    "eu": "Europe",
+    "uk": "United Kingdom",
+    "us": "United States"
+  },
+  "search": {
+    "back": "Back to Home",
+    "counter": "{count} products found for \"{term}\"",
+    "total": "Search in {count} products",
+    "empty": "Search for products",
+    "suggest": "Suggested searches",
+    "results": "Search Results",
+    "no-results": "No results found for \"{term}\"",
+    "placeholder": "Search our shop",
+    "suggestions": "chair, bed, sofa",
+    "search-listing": "View all {count} results"
+  },
+  "social": {
+    "description": "Tag {'@'}flagshipstore on Instagram for a chance to see your image here.",
+    "title": "Become part of the Adventure Community"
+  }
+}

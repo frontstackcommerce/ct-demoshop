@@ -1,1 +1,653 @@
-{}
+{
+  "actions": {
+    "add": "Hinzuf\u00fcgen",
+    "add-item": "{item} hinzuf\u00fcgen",
+    "close": "schlie\u00dfen",
+    "remove": "Entfernen",
+    "remove-item": "{item} entfernen",
+    "update": "Aktualisieren",
+    "update-item": "{item} aktualisieren",
+    "show-all": "Alle",
+    "shop-all": "Alles einkaufen",
+    "back": "Zur\u00fcck",
+    "explore": "Entdecken",
+    "discover": "Entdecken",
+    "view-all": "Alle anzeigen \u2192",
+    "shop-now": "Jetzt einkaufen",
+    "shop-the-edit": "Kollektion entdecken",
+    "view-product": "Produkt ansehen",
+    "view-collection": "Kollektion ansehen",
+    "explore-collection": "Kollektion entdecken",
+    "quick-view": "Schnellansicht",
+    "close-quick-view": "Schnellansicht schlie\u00dfen",
+    "view-full-details": "Alle Details ansehen",
+    "subscribe": "Abonnieren",
+    "our-story": "Unsere Geschichte",
+    "select-option": "Option w\u00e4hlen",
+    "available": "{count} verf\u00fcgbar",
+    "loading": "Laden..."
+  },
+  "brand": "Flagship Store",
+  "brands": {
+    "label": "Marken",
+    "description": "Entdecken Sie unsere kuratierte Auswahl an Premium-Marken",
+    "hero": {
+      "label": "Kuratierte Exzellenz",
+      "title": "Die Macher",
+      "description": "Entdecken Sie die Handwerker und Vision\u00e4re hinter unserer Kollektion. Jede Marke erz\u00e4hlt eine Geschichte von Handwerkskunst, Innovation und zeitlosem Design."
+    },
+    "featured": {
+      "label": "Ausgew\u00e4hlte Marke",
+      "description": "Entdecken Sie eine Welt, in der Form auf Funktion trifft, wo jedes St\u00fcck eine Geschichte sorgf\u00e4ltiger Handwerkskunst und durchdachtem Design erz\u00e4hlt."
+    },
+    "highlighted": {
+      "label": "Signature Kollektionen",
+      "title": "Marken, die wir lieben",
+      "card-description": "Entdecken Sie die vollst\u00e4ndige Kollektion durchdacht gestalteter St\u00fccke."
+    },
+    "philosophy": {
+      "label": "Unsere Philosophie",
+      "quote": "\"Wir glauben an die Kraft durchdachten Designs, {highlight} in bedeutungsvolle Erfahrungen zu verwandeln.\"",
+      "highlight": "allt\u00e4gliche Momente",
+      "description": "Jede Marke in unserer Kollektion teilt diese Vision \u2013 St\u00fccke zu schaffen, die sch\u00f6n, funktional und langlebig sind."
+    },
+    "directory": {
+      "label": "Vollst\u00e4ndiges Verzeichnis",
+      "title": "Alle Marken",
+      "description": "St\u00f6bern Sie in unserer vollst\u00e4ndigen Kollektion sorgf\u00e4ltig ausgew\u00e4hlter Marken, die sich alle der Qualit\u00e4t und Design-Exzellenz verschrieben haben."
+    },
+    "cta": {
+      "title": "M\u00f6chten Sie mehr \u00fcber unsere Marken erfahren?",
+      "description": "Entdecken Sie die Geschichten, Handwerkskunst und Inspiration hinter jeder Kollektion."
+    },
+    "scroll": "Entdecken"
+  },
+  "carousel": {
+    "goto": "Gehe zu Folie {slide}",
+    "next": "Weiter",
+    "previous": "Zur\u00fcck"
+  },
+  "cart": {
+    "discount": {
+      "placeholder": "Rabattcode eingeben",
+      "submit": "Rabatt einl\u00f6sen",
+      "title": "Rabattcode"
+    },
+    "empty": {
+      "title": "Sie haben keine Artikel in Ihrem Warenkorb",
+      "recommended": "Unsere Empfehlungen f\u00fcr Sie"
+    },
+    "items": {
+      "quantity-placeholder": "Menge w\u00e4hlen"
+    },
+    "notify": {
+      "action": {
+        "checkout": "Zur Kasse",
+        "cart": "Ihr Warenkorb"
+      },
+      "title": "Tolle Wahl! In den Warenkorb gelegt",
+      "recommended": "Passt perfekt dazu..."
+    },
+    "summary": {
+      "free": "Kostenlos",
+      "items": "Zwischensumme",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "title": "Bestellzusammenfassung",
+      "total": "Gesamt",
+      "count": "1 Artikel | {count} Artikel"
+    },
+    "title": "Warenkorb",
+    "title-long": "Ihr Warenkorb"
+  },
+  "categories": {
+    "furniture": "M\u00f6bel",
+    "kitchen": "K\u00fcche",
+    "new-arrivals": "Neuheiten",
+    "home-decor": "Wohndeko",
+    "accessories": "Accessoires",
+    "backpacks": "Rucks\u00e4cke",
+    "beanies": "M\u00fctzen",
+    "clothing": "Kleidung",
+    "equipment": "Ausr\u00fcstung",
+    "gloves": "Handschuhe",
+    "goggles": "Brillen",
+    "helmets": "Helme",
+    "jackets": "Jacken",
+    "kids": "Kinder",
+    "men": "Herren",
+    "running-shoes": "Laufschuhe",
+    "sale": "Sale",
+    "shoes": "Schuhe",
+    "shop": "Shop",
+    "snapbacks": "Snapbacks",
+    "sunglasses": "Sonnenbrillen",
+    "trousers": "Hosen",
+    "winter": "Winter",
+    "women": "Damen"
+  },
+  "checkout": {
+    "account": {
+      "fields": {
+        "email": "E-Mail oder Mobilnummer",
+        "newsletter": "Senden Sie mir Neuigkeiten und Angebote per E-Mail"
+      },
+      "login": "Anmelden",
+      "title": "Kontaktinformationen"
+    },
+    "customer": {
+      "firstname": "Vorname (optional)",
+      "lastname": "Nachname"
+    },
+    "delivery": {
+      "fields": {
+        "address": {
+          "no-address": "Adresse nicht gefunden",
+          "placeholder": "Adresse",
+          "search": "Adresse suchen..."
+        },
+        "apartment": {
+          "placeholder": "Wohnung, Suite usw. (optional)"
+        },
+        "city": {
+          "placeholder": "Stadt"
+        },
+        "country": {
+          "no-country": "Land nicht gefunden",
+          "placeholder": "Land / Region",
+          "search": "Land suchen..."
+        },
+        "zip-code": {
+          "placeholder": "Postleitzahl"
+        }
+      },
+      "title": "Lieferung"
+    },
+    "express": {
+      "or": "ODER",
+      "title": "Express-Kasse"
+    },
+    "payment": {
+      "credit-card": {
+        "fields": {
+          "card-holder": "Karteninhaber",
+          "card-holder-placeholder": "Karteninhaber eingeben",
+          "card-number": "Kartennummer",
+          "card-number-placeholder": "Kartennummer eingeben",
+          "cvv": "CVV",
+          "cvv-help": "Ein dreistelliger Sicherheitscode, der normalerweise auf der R\u00fcckseite Ihrer Karte zu finden ist. American Express-Karten haben einen vierstelligen Code auf der Vorderseite.",
+          "cvv-placeholder": "CVV eingeben",
+          "expiration-date": "Ablaufdatum (MM/JJ)",
+          "expiration-date-placeholder": "MM/JJ"
+        },
+        "title": "Kreditkarte"
+      },
+      "description": "Alle Transaktionen sind sicher und verschl\u00fcsselt.",
+      "invoice": {
+        "title": "Rechnung"
+      },
+      "invoice-address": "Lieferadresse als Rechnungsadresse verwenden",
+      "paypal": {
+        "title": "Paypal"
+      },
+      "title": "Zahlung"
+    },
+    "shipping": {
+      "alert": "Geben Sie Ihre Lieferadresse ein, um die verf\u00fcgbaren Versandmethoden anzuzeigen.",
+      "free-shipping": "kostenlos",
+      "shipping-info": {
+        "dhl": "Lieferung innerhalb von 1-2 Werktagen an die Abholstelle",
+        "dpd": "Lieferung innerhalb von 3-4 Werktagen (Montag - Freitag)",
+        "fedex": "Lieferung innerhalb von 24 Stunden (Montag - Samstag)",
+        "ups": "Lieferung bis morgen fr\u00fch 9 Uhr (Montag - Samstag)"
+      },
+      "title": "Versandmethode"
+    },
+    "submit": "Bestellung aufgeben",
+    "terms": {
+      "label": "Ich akzeptiere die Allgemeinen Gesch\u00e4ftsbedingungen",
+      "title": "Allgemeine Gesch\u00e4ftsbedingungen"
+    }
+  },
+  "context": {
+    "location": {
+      "label": "Versandort",
+      "placeholder": "Region w\u00e4hlen"
+    },
+    "language": {
+      "label": "Sprache",
+      "placeholder": "Sprache w\u00e4hlen"
+    },
+    "submit": "Absenden",
+    "title": "W\u00e4hlen Sie Ihren Shop",
+    "suggest": {
+      "title": "Wir haben eine bessere \u00dcbereinstimmung gefunden",
+      "description": "Die Seite, die Sie suchen, stimmt nicht mit Ihren aktuellen Einstellungen \u00fcberein. Aber wir haben eine bessere \u00dcbereinstimmung f\u00fcr Sie gefunden.",
+      "deny": "Nein, danke",
+      "accept": "Ja, zur {locale} Version wechseln"
+    }
+  },
+  "control": {
+    "button": "Filtern & Sortieren",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "showed": "{count} von {total} Produkten angesehen",
+      "next": "Mehr laden",
+      "add-filter": "Filtern & Sortieren",
+      "edit-filter": "Filter anpassen",
+      "goto-top": "Nach oben"
+    },
+    "reset": "Alle Filter zur\u00fccksetzen",
+    "reset-sm": "Zur\u00fccksetzen",
+    "submit": "{count} Ergebnisse anzeigen",
+    "submit-sm": "Anzeigen",
+    "search": {
+      "placeholder": "Suchbegriffe eingeben...",
+      "title": "Suche in {category}"
+    },
+    "sort": {
+      "options": {
+        "default": "Empfehlung",
+        "name-asc": "Name aufsteigend",
+        "name-desc": "Name absteigend",
+        "price-asc": "Preis aufsteigend",
+        "price-desc": "Preis absteigend"
+      },
+      "title": "Sortieren nach"
+    }
+  },
+  "default": {
+    "times": "x ",
+    "colon": ": ",
+    "in-brackets": "({text})"
+  },
+  "error": {
+    "404": {
+      "subtitle": "404",
+      "title": "Seite nicht gefunden",
+      "description": "Entschuldigung, wir konnten die gesuchte Seite nicht finden.",
+      "back": "Zur\u00fcck zur Startseite"
+    }
+  },
+  "favorites": {
+    "empty": "Sie haben noch keine Favoriten.",
+    "title": "Ihre Favoriten",
+    "recommended": "Unsere Empfehlungen f\u00fcr Sie"
+  },
+  "footer": {
+    "copyright": "\u00a9 2025 Alle Rechte vorbehalten.",
+    "menu": {
+      "about": {
+        "about": "\u00dcber uns",
+        "order-status": "Bestellstatus",
+        "store-locator": "Filialfinder",
+        "contact": "Kontakt",
+        "help": "Hilfe-Center",
+        "title": "\u00dcber uns"
+      },
+      "support": {
+        "contact": "Kontakt",
+        "order": "Bestellstatus",
+        "return-policy": "R\u00fccksendungen",
+        "shipping": "Versand",
+        "size-guide": "Gr\u00f6\u00dfenratgeber",
+        "support": "Support / Hilfe",
+        "title": "Support",
+        "warranty": "Garantie"
+      }
+    },
+    "newsletter": {
+      "accept": "Ich stimme den",
+      "description": "Abonnieren Sie unseren Newsletter und erhalten Sie 10% Rabatt auf Ihre erste Bestellung.",
+      "divider": "und",
+      "privacy": "Datenschutzrichtlinie",
+      "terms": "Nutzungsbedingungen",
+      "title": "Newsletter"
+    },
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen"
+  },
+  "header": {
+    "teaser": "++ Kostenloser Versand & R\u00fccksendung bei allen Bestellungen ++",
+    "utils": {
+      "login": "Anmelden",
+      "stores": "Filialen"
+    }
+  },
+  "home": {
+    "hero": {
+      "label": "Neue Saison 2025",
+      "title": "Sp\u00fcren Sie den Komfort Ihres Zuhauses",
+      "description": "Kuratierte St\u00fccke, die R\u00e4ume in Oasen des modernen Lebens verwandeln.",
+      "button": "Jetzt einkaufen",
+      "image-alt": "Gem\u00fctliches Wohnzimmer",
+      "scroll": "Scrollen"
+    },
+    "promo": {
+      "label": "Zeitlich begrenzt",
+      "title": "K\u00fcche",
+      "title-highlight": "Essentials",
+      "price": "Unter",
+      "description": "Verwandeln Sie Ihren kulinarischen Raum, ohne Ihr Budget zu strapazieren. {count}+ St\u00fccke f\u00fcr Sie kuratiert.",
+      "starting-at": "Ab"
+    },
+    "quote": "\"Wir glauben an die Kraft durchdachten Designs \u2013 St\u00fccke, die Handwerkskunst ehren, Nachhaltigkeit umarmen und R\u00e4ume schaffen, in denen das Leben sich wundersch\u00f6n entfaltet.\"",
+    "categories": {
+      "label": "Kollektionen",
+      "title": "Entdecken Sie unsere Kategorien"
+    },
+    "featured": {
+      "label": "Kuratierte Auswahl",
+      "home-braid": "Home Braid",
+      "lounge-furniture": "Lounge-M\u00f6bel",
+      "lounge-description": "Versinken Sie in unerreichtem Komfort mit unserer Signature Lounge-Kollektion. Jedes St\u00fcck ist mit gr\u00f6\u00dfter Sorgfalt gefertigt.",
+      "rugs": "Teppiche",
+      "artisan-textiles": "Handwerkliche Textilien",
+      "artisan-subtitle": "Handgefertigte Details",
+      "natural-materials": "Nat\u00fcrliche Materialien",
+      "natural-subtitle": "Nachhaltiger Luxus"
+    },
+    "values": {
+      "label": "Unser Versprechen",
+      "title": "Mit Absicht gefertigt",
+      "sustainable": {
+        "title": "Nachhaltige Materialien",
+        "description": "Verantwortungsvoll beschaffte Materialien, die sowohl Handwerkskunst als auch unseren Planeten ehren."
+      },
+      "artisan": {
+        "title": "Handwerklich gefertigt",
+        "description": "Hergestellt von erfahrenen Handwerkern, die Generationen von Expertise in jedes St\u00fcck einbringen."
+      },
+      "quality": {
+        "title": "Lebenslange Qualit\u00e4t",
+        "description": "Gebaut f\u00fcr Generationen, mit einem Engagement f\u00fcr zeitloses Design."
+      }
+    },
+    "new-arrivals": {
+      "label": "Neuheiten",
+      "title": "Spezielle und exklusive Angebote jede Woche",
+      "description": "Entdecken Sie unsere neuesten Ank\u00fcnfte \u2013 durchdacht gestaltete St\u00fccke, die jedem Raum W\u00e4rme verleihen.",
+      "button": "Jetzt einkaufen"
+    },
+    "teaser": {
+      "category": {
+        "men": "Herren einkaufen",
+        "women": "Damen einkaufen"
+      },
+      "adventure": {
+        "button": "Adventure Kollektion entdecken"
+      },
+      "mtb": {
+        "button": "Bereit f\u00fcr die n\u00e4chste Fahrt",
+        "title": "Entfessle Dein Abenteuer"
+      },
+      "season": {
+        "button": "Bekleidung, die mitgeht",
+        "title": "Ausr\u00fcstung f\u00fcr alle Jahreszeiten"
+      }
+    }
+  },
+  "campaign": {
+    "kitchen": {
+      "hero": {
+        "label": "Zeitlich begrenztes Angebot",
+        "title": "K\u00fcchen",
+        "title-highlight": "Essentials",
+        "price": "Unter 100\u00a0\u20ac",
+        "description": "Verwandeln Sie Ihren kulinarischen Raum, ohne Ihr Budget zu strapazieren. Entdecken Sie durchdacht gestaltete St\u00fccke, die beweisen, dass Luxus keinen \u00dcberfluss erfordert.",
+        "pieces-curated": "{count}+ kuratierte St\u00fccke"
+      },
+      "value-props": {
+        "free-shipping": "Kostenloser Versand ab 30\u00a0\u20ac",
+        "easy-returns": "Einfache R\u00fccksendung innerhalb von 30 Tagen",
+        "warranty": "2 Jahre Garantie"
+      },
+      "quote": {
+        "text": "\"Die K\u00fcche ist das Herz des Hauses \u2013 und jedes Herz verdient {highlight}, die das Budget nicht sprengen.\"",
+        "highlight": "sch\u00f6ne Dinge",
+        "attribution": "\u2014 The CT Demo Shop Edit"
+      },
+      "featured": {
+        "label": "Die Auswahl",
+        "title": "Handverlesene Favoriten",
+        "description": "Jedes St\u00fcck ausgew\u00e4hlt f\u00fcr die perfekte Balance aus Form, Funktion und Wert.",
+        "best-value": "Bester Wert",
+        "product-description": "Die perfekte Erg\u00e4nzung f\u00fcr jede K\u00fcche, die zeitloses Design mit allt\u00e4glicher Praktikabilit\u00e4t verbindet.",
+        "shop-now": "Jetzt einkaufen \u2192"
+      },
+      "story": {
+        "label": "Unsere Philosophie",
+        "title": "Gro\u00dfartiges Design sollte f\u00fcr jeden {highlight} sein",
+        "highlight": "zug\u00e4nglich",
+        "description": "Wir glauben, dass es keine zweite Hypothek erfordern sollte, sich mit sch\u00f6nen, funktionalen Gegenst\u00e4nden zu umgeben. Deshalb haben wir diese Kollektion von K\u00fcchenutensilien zusammengestellt \u2013 jedes unter 100\u00a0\u20ac, jedes ein Beweis f\u00fcr durchdachtes Design, das den Alltag aufwertet.",
+        "stats": {
+          "products": "Produkte unter 100\u00a0\u20ac",
+          "rating": "Durchschnittliche Bewertung",
+          "warranty": "Garantie inklusive"
+        }
+      },
+      "showcase": {
+        "label": "Mehr entdecken",
+        "title": "Den Look vervollst\u00e4ndigen",
+        "view-all": "Alle K\u00fcchenartikel anzeigen \u2192"
+      },
+      "newsletter": {
+        "label": "Bleiben Sie informiert",
+        "title": "Kein Angebot verpassen",
+        "description": "Abonnieren Sie unseren Newsletter und erfahren Sie als Erste von Neuheiten, exklusiven Angeboten und kuratierten Kollektionen wie dieser.",
+        "placeholder": "E-Mail-Adresse eingeben",
+        "disclaimer": "Kein Spam, versprochen. Jederzeit abbestellbar."
+      },
+      "cta": {
+        "text": "Bereit, Ihre K\u00fcche zu verwandeln?",
+        "highlight": "Alle Essentials unter 100\u00a0\u20ac einkaufen"
+      }
+    },
+    "bedroom": {
+      "hero": {
+        "badge": "Die Kunst der Ruhe",
+        "title-1": "Dein",
+        "title-2": "Rückzugsort",
+        "title-3": "Erwartet dich",
+        "description": "Wo außergewöhnliche Handwerkskunst auf die Wissenschaft des perfekten Schlafs trifft. Entdecken Sie Betten, die Nächte in Reisen verwandeln."
+      },
+      "cta": {
+        "explore": "Kollektion entdecken",
+        "philosophy": "Unsere Philosophie"
+      },
+      "stats": {
+        "sleep-better": "Besser schlafen",
+        "sleep-better-value": "98%",
+        "warranty": "Garantie",
+        "warranty-value": "10 J.",
+        "night-trial": "Probenächte",
+        "night-trial-value": "100"
+      },
+      "trust-bar": {
+        "reviews": "4,9/5 von 2.847 Bewertungen",
+        "delivery": "Kostenlose Premium-Lieferung",
+        "trial": "100-Nächte-Probe",
+        "handcrafted": "Handgefertigt in Europa"
+      },
+      "philosophy": {
+        "label": "Unsere Philosophie",
+        "title-1": "Schlaf ist kein Luxus.",
+        "title-2": "Er ist eine Notwendigkeit.",
+        "text-1": "In einer Welt, die nie stillsteht, sollte Ihr Schlafzimmer ein Zufluchtsort sein – ein Ort, an dem die Zeit langsamer wird und Erholung beginnt. Wir haben Jahrzehnte damit verbracht, die Kunst der Ruhe zu perfektionieren.",
+        "text-2": "Jedes Bett, das wir schaffen, ist eine Zusammenarbeit zwischen Meisterhandwerkern und Schlafwissenschaftlern, bei der nur die feinsten natürlichen Materialien von nachhaltigen Lieferanten aus ganz Europa verwendet werden.",
+        "quote": "\"Der beste Schlaf Ihres Lebens sollte kein Traum bleiben.\"",
+        "attribution": "— Unser Gründungsversprechen"
+      },
+      "benefits": {
+        "deep-sleep": "Tiefer Schlaf",
+        "deep-sleep-desc": "Entwickelt für optimale REM-Zyklen und erholsame Ruhe",
+        "spinal": "Wirbelsäulenausrichtung",
+        "spinal-desc": "Ergonomische Unterstützung, die sich an die natürlichen Kurven Ihres Körpers anpasst",
+        "refreshed": "Erfrischt aufwachen",
+        "refreshed-desc": "Temperaturregulierendes Material für ununterbrochenen Schlaf",
+        "warranty-title": "10 Jahre Garantie",
+        "warranty-desc": "Unser Versprechen für langlebige Qualität und Handwerkskunst"
+      },
+      "collection": {
+        "label": "Die Kollektion",
+        "title": "Meisterwerke der Ruhe",
+        "description": "Jedes Stück unserer Kollektion repräsentiert den Höhepunkt der Schlaftechnik – wo zeitloses Design auf kompromisslosen Komfort trifft.",
+        "signature": "Signature Kollektion",
+        "bestseller": "Bestseller",
+        "hero-desc": "Das Kronjuwel unserer Kollektion. Handgefertigt aus europäischer Eiche und bezogen mit feinstem Bio-Baumwolle. Ein Bett, das zum Erbstück wird.",
+        "free-delivery": "Kostenlose Lieferung & Aufbau",
+        "view-details": "Details ansehen",
+        "view-all": "Gesamte Kollektion ansehen",
+        "quick-view": "Schnellansicht"
+      },
+      "testimonials": {
+        "label": "Erfahrungsberichte",
+        "title": "Geschichten der Verwandlung"
+      },
+      "craftsmanship": {
+        "label": "Handwerkskunst",
+        "title-1": "Gefertigt von Händen,",
+        "title-2": "die sich kümmern",
+        "description": "Jedes Bett beginnt seine Reise in unserem Atelier, wo Meisterhandwerker mit jahrzehntelanger Erfahrung Rohmaterialien zu Kunstwerken formen. Keine Abkürzungen. Keine Kompromisse.",
+        "stat-hours": "Stunden Handarbeit pro Bett",
+        "stat-generation": "Generation Handwerker",
+        "stat-sustainable": "Nachhaltige Materialien",
+        "stat-compromises": "Kompromisse bei der Qualität"
+      },
+      "consultation": {
+        "label": "Persönlicher Service",
+        "title": "Nicht sicher, wo Sie anfangen sollen?",
+        "description": "Buchen Sie eine kostenlose Schlafberatung mit unseren Experten. Wir helfen Ihnen, das perfekte Bett für Ihren Schlafstil, Ihre Vorlieben und Ihren Raum zu finden.",
+        "book": "Kostenlose Beratung buchen",
+        "call": "Oder rufen Sie uns an"
+      },
+      "trust": {
+        "delivery-title": "Premium-Lieferung",
+        "delivery-desc": "Kostenloser Aufbau in Ihrem Schlafzimmer",
+        "trial-title": "100-Nächte-Probe",
+        "trial-desc": "Risikofreie Schlafgarantie",
+        "warranty-title": "10 Jahre Garantie",
+        "warranty-desc": "Umfassender Schutz",
+        "sustainable-title": "Nachhaltige Materialien",
+        "sustainable-desc": "Umweltbewusste Fertigung"
+      }
+    }
+  },
+  "quick-view": {
+    "loading": "Produkt wird geladen...",
+    "tax-included": "Inkl. MwSt. Kostenloser Versand ab 150\u00a0\u20ac.",
+    "free-shipping": "Kostenloser Versand",
+    "easy-returns": "Einfache R\u00fccksendung",
+    "warranty": "2 Jahre Garantie"
+  },
+  "listing": {
+    "counter": "Kein Ergebnis | 1 Ergebnis | {count} Ergebnisse",
+    "filters": {
+      "finish-label": "Ausf\u00fchrung",
+      "search-color": "Farbe",
+      "manufacturer": "Marken",
+      "size": "Gr\u00f6\u00dfe"
+    }
+  },
+  "locales": {
+    "de": "Deutsch",
+    "en": "Englisch"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "description": "Navigieren Sie zu Ihrem Lieblingsbereich",
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "close": "Schlie\u00dfen",
+    "menu": "Men\u00fc",
+    "search": "Suche",
+    "checkout": "Kasse",
+    "goto-checkout": "Jetzt zur Kasse",
+    "continue-shopping": "Weiter einkaufen"
+  },
+  "product": {
+    "featured": "Empfohlen",
+    "sku": "SKU",
+    "buy": {
+      "add-to-cart": "In den Warenkorb"
+    },
+    "details": {
+      "description": {
+        "missing": "Keine Beschreibung verf\u00fcgbar"
+      },
+      "bullet-points": {
+        "first": "Kostenloser Versand & R\u00fccksendung",
+        "second": "30-Tage R\u00fcckgaberecht",
+        "third": "Schnelle Lieferung"
+      },
+      "features": {
+        "key-features": "Hauptmerkmale",
+        "materials-care": "Materialien & Pflege",
+        "specifications": "Spezifikationen"
+      },
+      "reviews": {
+        "average-rating": "Durchschnittliche Bewertung",
+        "count": "Keine Bewertungen | {count} Bewertung | {count} Bewertungen",
+        "count-plain": "({count})",
+        "likes": "Hilfreich",
+        "review-count": "Basierend auf",
+        "show-all": "Alle Bewertungen anzeigen",
+        "show-less": "Weniger Bewertungen anzeigen",
+        "show-more": "Mehr Bewertungen anzeigen",
+        "show-full-review": "Vollst\u00e4ndige Bewertung anzeigen",
+        "title": "Bewertungen",
+        "verified": "Verifizierter Kauf"
+      },
+      "sections": {
+        "description": "Beschreibung",
+        "reviews": "Bewertungen",
+        "showroom": "Showroom",
+        "similar": "\u00c4hnliche Produkte"
+      },
+      "size-table": {
+        "title": "Gr\u00f6\u00dfe & Passform"
+      },
+      "tag": {
+        "new": "Neu",
+        "outdoor": "Outdoor"
+      }
+    },
+    "variant": {
+      "color": {
+        "title": "Farbe"
+      },
+      "select": {
+        "empty": "Keine Varianten gefunden",
+        "missing": "Kein Template f\u00fcr diese Option implementiert"
+      },
+      "size": {
+        "size-guide": "Gr\u00f6\u00dfenratgeber",
+        "size-model": "Das Model ist 1,62 m gro\u00df und tr\u00e4gt Gr\u00f6\u00dfe S.",
+        "title": "Gr\u00f6\u00dfe"
+      }
+    }
+  },
+  "regions": {
+    "eu": "Europa",
+    "uk": "Vereinigtes K\u00f6nigreich",
+    "us": "Vereinigte Staaten"
+  },
+  "search": {
+    "back": "Zur\u00fcck zur Startseite",
+    "counter": "{count} Produkte gefunden f\u00fcr \"{term}\"",
+    "total": "Suche in {count} Produkten",
+    "empty": "Nach Produkten suchen",
+    "suggest": "Vorgeschlagene Suchen",
+    "results": "Suchergebnisse",
+    "no-results": "Keine Ergebnisse gefunden f\u00fcr \"{term}\"",
+    "placeholder": "Shop durchsuchen",
+    "suggestions": "Stuhl, Bett, Sofa",
+    "search-listing": "Alle {count} Ergebnisse anzeigen"
+  },
+  "social": {
+    "description": "Markiere {'@'}flagshipstore auf Instagram f\u00fcr die Chance, dein Bild hier zu sehen.",
+    "title": "Werde Teil der Adventure Community"
+  }
+}

@@ -1,0 +1,55 @@
+slug: bedroom-sanctuary
+template: bedroom
+title: Your Sanctuary Awaits
+productQuery:
+  resource: ProductSearch
+  search: bed
+  sort:
+    field: price.amount
+    order: desc
+  limit: 24
+premiumQuery:
+  resource: ProductSearch
+  filter:
+    - type: range
+      field: price.amount
+      from: 50000
+  sort:
+    field: price.amount
+    order: desc
+  limit: 12
+data:
+  heroImage: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Opal_King_Bed-1.1.jpeg
+  philosophyImages:
+    main: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Walnut_Counter_Stool-1.2.jpeg
+    accent: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Minimalist_Modern_Bedroom-1.1.jpeg
+  craftsmanshipImages:
+    - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Modern_Upholstered_Bed-1.1.jpeg
+    - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Twin_Upholstered_Bed-1.1.jpeg
+    - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Queen_Upholstered_Bed-1.1.jpeg
+    - https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Opal_Queen_Bed-1.1.jpeg
+  consultationImage: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Minimalist_Modern_Bedroom-1.1.jpeg
+  categoryLink: /bedroom
+  testimonials:
+    - quote: "The moment I lay down, I knew this was different. It's not just a bed—it's where I rediscover myself each morning."
+      author: Sophie M.
+      location: Munich
+      rating: 5
+    - quote: "After years of restless nights, I finally understand what restorative sleep feels like. Worth every cent."
+      author: Thomas K.
+      location: Vienna
+      rating: 5
+    - quote: "My bedroom has become my sanctuary. The craftsmanship is extraordinary—you can feel the quality."
+      author: Elena R.
+      location: Zurich
+      rating: 5
+  sleepBenefits:
+    - icon: moon
+    - icon: heart
+    - icon: sun
+    - icon: shield
+  craftsmanshipStats:
+    - value: "47"
+    - value: 3rd
+    - value: "100%"
+    - value: "0"

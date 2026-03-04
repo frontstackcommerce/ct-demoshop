@@ -9,6 +9,10 @@ export default defineNuxtConfig({
       path: '~/components/shared',
       pathPrefix: false,
     },
+    {
+      path: '~/components',
+      pathPrefix: true,
+    },
   ],
 
   content: {
@@ -52,13 +56,16 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
 
+  lucide: {
+    namePrefix: 'Icon',
+  },
+
   // Image optimization (auto-uses Vercel provider in production)
   image: {
+    domains: ['storage.googleapis.com', 'placehold.co', 'a.storyblok.com'],
     quality: 80,
     format: ['webp', 'avif'],
   },
-
-
 
   modules: [
     '@nuxt/eslint',
@@ -68,6 +75,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-og-image',
     'vue-sonner/nuxt',
+    'nuxt-lucide-icons',
     '@frontic/nuxt',
   ],
 
@@ -84,7 +92,17 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
-    public: {},
+    commercetools: {
+      apiHost: '',
+      authHost: '',
+      projectKey: '',
+      clientId: '',
+      clientSecret: '',
+      scopes: '',
+    },
+    public: {
+      shopDomain: '',
+    },
   },
 
   site: {

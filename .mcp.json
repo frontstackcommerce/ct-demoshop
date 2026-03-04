@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "frontic": {
+      "type": "http",
+      "url": "https://mcp.frontic.com/mcp"
+    },
+    "frontic-ui": {
+      "type": "http",
+      "url": "https://mcp.ui.frontic.com/mcp"
+    },
+    "frontic-docs": {
+      "type": "http",
+      "url": "https://docs.frontic.com/mcp"
+    }
+  }
+}

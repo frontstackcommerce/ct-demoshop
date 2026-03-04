@@ -1,0 +1,26 @@
+slug: kitchen-essentials
+template: kitchen
+title: Kitchen Essentials Under €100
+productQuery:
+  resource: ProductSearch
+  filter:
+    - type: range
+      field: price.amount
+      from: 100
+      to: 10000
+  sort:
+    field: price.amount
+    order: asc
+  limit: 12
+data:
+  heroImage: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Minimalist_Modern_Kitchen-1.1.jpeg
+  storyBackgroundImage: https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Minimalist_Modern_Kitchen-1.1.jpeg
+  categoryLink: /kitchen
+  valueProps:
+    - icon: truck
+    - icon: package
+    - icon: shield
+  storyStats:
+    - value: "100+"
+    - value: "4.8"
+    - value: 2yr
