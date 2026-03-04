@@ -1,0 +1,28 @@
+hero:
+  label: "Curated Excellence"
+  title: "The Makers"
+  description: "Discover the artisans and visionaries behind our collection. Each brand tells a story of craftsmanship, innovation, and timeless design."
+
+featured:
+  label: "Featured Brand"
+  description: "Discover a world where form meets function, where every piece tells a story of meticulous craftsmanship and thoughtful design."
+
+highlighted:
+  label: "Signature Collections"
+  title: "Brands We Love"
+  cardDescription: "Explore the complete collection of thoughtfully designed pieces."
+
+philosophy:
+  label: "Our Philosophy"
+  quote: "\"We believe in the power of thoughtful design to transform {highlight} into meaningful experiences.\""
+  highlight: "everyday moments"
+  description: "Each brand in our collection shares this vision—creating pieces that are beautiful, functional, and built to last."
+
+directory:
+  label: "Complete Directory"
+  title: "All Brands"
+  description: "Browse our complete collection of carefully selected brands, each chosen for their commitment to quality and design excellence."
+
+cta:
+  title: "Want to learn more about our brands?"
+  description: "Discover the stories, craftsmanship, and inspiration behind each collection."

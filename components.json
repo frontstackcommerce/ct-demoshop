@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.frontic.com/schema.json",
+  "style": "vega",
+  "base": "reka",
+  "font": "inter",
+  "typescript": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/assets/css/tailwind.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "darkMode": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "composables": "@/composables"
+  },
+  "registries": {}
+}

@@ -1,0 +1,83 @@
+hero:
+  label: "New Season 2025"
+  title: "Feel the comfort of your home"
+  description: "Curated pieces that transform spaces into sanctuaries of modern living."
+  buttonText: "Shop Now"
+  buttonLink: "/new-arrivals"
+  imageAlt: "Comfortable living room"
+  image: "https://a.storyblok.com/f/282508/1536x1024/b44eabb6eb/furniture.png"
+  scrollLabel: "Scroll"
+
+promo:
+  label: "Limited Time"
+  title: "Kitchen"
+  titleHighlight: "Essentials"
+  priceLabel: "Under"
+  priceAmount: "€100"
+  description: "Transform your culinary space without transforming your budget. 100+ pieces curated for you."
+  startingAtLabel: "Starting at"
+  startingAtPrice: "€9.99"
+  link: "/campaigns/kitchen-essentials"
+  images:
+    main: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Travel_Coffee_Mug-1.1.jpeg"
+    secondary1: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Cocktail_Shaker-1.1.jpeg"
+    secondary2: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Harvest_Plate-1.1.jpeg"
+
+quote: "\"We believe in the power of thoughtful design—pieces that honor craftsmanship, embrace sustainability, and create spaces where life unfolds beautifully.\""
+
+categories:
+  label: "Collections"
+  title: "Explore our categories"
+  fallbackImages:
+    - "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Ivory_Lounge_Chair-1.3.jpeg"
+    - "https://a.storyblok.com/f/282508/x/baaa9b88cd/vitra-bild.avif"
+    - "https://a.storyblok.com/f/282508/1536x1024/9eb7427a46/trivaro-hero.png"
+    - "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Rattan_Lounge_Chair-1.2.jpeg"
+
+bedroom:
+  titleLine1: "Your"
+  titleHighlight: "Sanctuary"
+  titleLine3: "Awaits"
+  description: "Discover beds that transform nights into journeys. Handcrafted luxury meets the science of perfect sleep."
+  link: "/campaigns/bedroom-sanctuary"
+  image: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Opal_King_Bed-1.1.jpeg"
+  imageAlt: "Bedroom Sanctuary"
+
+featured:
+  label: "Curated Selection"
+  title: "Lounge Furniture"
+  description: "Sink into unparalleled comfort with our signature lounge collection. Each piece is crafted with meticulous attention to detail."
+  items:
+    - image: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Traditional_L_Seater_Sofa-1.3.jpeg"
+      title: "Lounge Furniture"
+      subtitle: "Handcrafted details"
+      link: "/traditional-l-seater-sofa"
+    - image: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Braided_Rug-1.2.jpeg"
+      title: "Artisan Textiles"
+      subtitle: "Handcrafted details"
+      link: "/braided-rug"
+    - image: "https://storage.googleapis.com/merchant-center-europe/sample-data/b2c-lifestyle/Jute_Rug-1.3.jpeg"
+      title: "Natural Materials"
+      subtitle: "Sustainable luxury"
+      link: "/jute-rug"
+
+values:
+  label: "Our Promise"
+  title: "Crafted with intention"
+  items:
+    - icon: "leaf"
+      title: "Sustainable Materials"
+      description: "Responsibly sourced materials that honor both craftsmanship and our planet."
+    - icon: "heart"
+      title: "Artisan Crafted"
+      description: "Made by skilled artisans who bring generations of expertise to every piece."
+    - icon: "shield"
+      title: "Lifetime Quality"
+      description: "Built to last generations, with a commitment to timeless design."
+
+newArrivals:
+  label: "New Arrivals"
+  title: "Special and exclusive offers every week"
+  description: "Discover our latest arrivals—thoughtfully designed pieces that bring warmth to every space."
+  buttonText: "Shop Now"
+  buttonLink: "/new-arrivals"

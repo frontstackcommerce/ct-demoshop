@@ -9,6 +9,10 @@ export default defineNuxtConfig({
       path: '~/components/shared',
       pathPrefix: false,
     },
+    {
+      path: '~/components',
+      pathPrefix: true,
+    },
   ],
 
   content: {
@@ -56,6 +60,7 @@ export default defineNuxtConfig({
   image: {
     quality: 80,
     format: ['webp', 'avif'],
+    domains: ['storage.googleapis.com', 'a.storyblok.com'],
   },
 
 
@@ -84,6 +89,14 @@ export default defineNuxtConfig({
   },
 
   runtimeConfig: {
+    commercetools: {
+      projectKey: '',
+      clientId: '',
+      clientSecret: '',
+      apiHost: 'https://api.europe-west1.gcp.commercetools.com',
+      authHost: 'https://auth.europe-west1.gcp.commercetools.com',
+      scopes: '',
+    },
     public: {},
   },
 

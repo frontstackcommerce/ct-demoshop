@@ -1,1 +1,370 @@
-{}
+{
+  "actions": {
+    "add": "Hinzufügen",
+    "add-item": "{item} hinzufügen",
+    "close": "schließen",
+    "remove": "Entfernen",
+    "remove-item": "{item} entfernen",
+    "update": "Aktualisieren",
+    "update-item": "{item} aktualisieren",
+    "show-all": "Alle",
+    "shop-all": "Alle Produkte",
+    "back": "Zurück",
+    "explore": "Entdecken",
+    "discover": "Entdecken",
+    "view-all": "Alle anzeigen →",
+    "shop-now": "Jetzt einkaufen",
+    "shop-the-edit": "Kollektion entdecken",
+    "view-product": "Produkt ansehen",
+    "view-collection": "Kollektion ansehen",
+    "explore-collection": "Kollektion entdecken",
+    "quick-view": "Schnellansicht",
+    "subscribe": "Abonnieren",
+    "our-story": "Unsere Geschichte",
+    "loading": "Laden..."
+  },
+  "brand": "Flagship Store",
+  "brands": {
+    "label": "Marken",
+    "scroll": "Entdecken"
+  },
+  "carousel": {
+    "goto": "Gehe zu Bild {slide}",
+    "next": "Nächste",
+    "previous": "Vorherige"
+  },
+  "cart": {
+    "discount": {
+      "placeholder": "Rabattcode eingeben",
+      "submit": "Rabatt einlösen",
+      "title": "Rabattcode"
+    },
+    "empty": {
+      "title": "Du hast noch nichts im Warenkorb",
+      "recommended": "Unsere Empfehlungen für dich"
+    },
+    "items": {
+      "quantity-placeholder": "Anzahl auswählen"
+    },
+    "notify": {
+      "action": {
+        "checkout": "Zur Kasse",
+        "cart": "Warenkorb"
+      },
+      "title": "Tolle Wahl! Produkt zum Warenkorb hinzugefügt",
+      "recommended": "Passt perfekt dazu..."
+    },
+    "summary": {
+      "free": "Gratis",
+      "items": "Produkte",
+      "shipping": "Versand",
+      "tax": "Steuern",
+      "title": "Bestellübersicht",
+      "total": "Gesamt",
+      "count": "1 Produkt | {count} Produkte"
+    },
+    "title": "Warenkorb",
+    "title-long": "Dein Warenkorb"
+  },
+  "categories": {
+    "furniture": "Möbel",
+    "kitchen": "Küche",
+    "new-arrivals": "Neuheiten",
+    "home-decor": "Dekoration",
+    "accessories": "Zubehör"
+  },
+  "checkout": {
+    "account": {
+      "fields": {
+        "email": "E-Mail oder Mobiltelefonnummer",
+        "newsletter": "Neuigkeiten und Angebote via E-Mail erhalten"
+      },
+      "login": "Anmelden",
+      "title": "Kontaktdaten"
+    },
+    "customer": {
+      "firstname": "Vorname (optional)",
+      "lastname": "Nachname"
+    },
+    "delivery": {
+      "fields": {
+        "address": {
+          "no-address": "Adresse nicht gefunden",
+          "placeholder": "Adresse",
+          "search": "Adresse suchen..."
+        },
+        "apartment": {
+          "placeholder": "Wohnung, Zimmer, usw. (optional)"
+        },
+        "city": {
+          "placeholder": "Stadt"
+        },
+        "country": {
+          "no-country": "Land nicht gefunden",
+          "placeholder": "Land / Region",
+          "search": "Land suchen..."
+        },
+        "zip-code": {
+          "placeholder": "Postleitzahl"
+        }
+      },
+      "title": "Lieferung"
+    },
+    "express": {
+      "or": "ODER",
+      "title": "Express Checkout"
+    },
+    "payment": {
+      "credit-card": {
+        "fields": {
+          "card-holder": "Karteninhaber",
+          "card-holder-placeholder": "Karteninhaber eingeben",
+          "card-number": "Kartennummer",
+          "card-number-placeholder": "Kartennummer eingeben",
+          "cvv": "Sicherheitscode (CVV)",
+          "cvv-help": "Ein dreistelliger Sicherheitscode auf der Rückseite Ihrer Karte.",
+          "cvv-placeholder": "CVV eingeben",
+          "expiration-date": "Ablaufdatum (MM/YY)",
+          "expiration-date-placeholder": "MM/YY"
+        },
+        "title": "Kreditkarte"
+      },
+      "description": "Alle Transaktionen sind sicher und verschlüsselt.",
+      "invoice": {
+        "title": "Kauf auf Rechnung"
+      },
+      "invoice-address": "Lieferadresse als Rechnungsadresse verwenden",
+      "paypal": {
+        "title": "Paypal"
+      },
+      "title": "Zahlung"
+    },
+    "shipping": {
+      "alert": "Gib deine Lieferadresse ein, um verfügbare Versandarten anzuzeigen.",
+      "free-shipping": "gratis",
+      "title": "Versand"
+    },
+    "submit": "Bestellung aufgeben",
+    "terms": {
+      "label": "Ich akzeptiere die Allgemeinen Geschäftsbedingungen",
+      "title": "Allgemeine Geschäftsbedingungen"
+    }
+  },
+  "context": {
+    "location": {
+      "label": "Versenden nach",
+      "placeholder": "Region auswählen"
+    },
+    "language": {
+      "label": "Sprache",
+      "placeholder": "Sprache auswählen"
+    },
+    "suggest": {
+      "title": "Wir haben eine bessere Übereinstimmung gefunden",
+      "description": "Die Seite passt nicht zu deiner gewählten Sprache. Wir haben eine bessere Übereinstimmung gefunden.",
+      "deny": "Nein, ich möchte bleiben",
+      "accept": "Ja, bring mich zur {locale} Version"
+    },
+    "submit": "Speichern",
+    "title": "Wähle deinen Online Store"
+  },
+  "control": {
+    "button": "Filter & Sortieren",
+    "filters": {
+      "title": "Filter"
+    },
+    "pagination": {
+      "showed": "{count} von {total} Produkten angesehen",
+      "next": "Mehr anzeigen",
+      "add-filter": "Filter & Sortieren",
+      "edit-filter": "Filter bearbeiten",
+      "goto-top": "Nach oben"
+    },
+    "reset": "Filter zurücksetzen",
+    "reset-sm": "Reset",
+    "submit": "Zeige {count} Produkte",
+    "submit-sm": "Anzeigen",
+    "search": {
+      "placeholder": "Suchbegriffe eingeben...",
+      "title": "In {category} suchen"
+    },
+    "sort": {
+      "options": {
+        "default": "Unsere Empfehlung",
+        "name-asc": "Name aufsteigend",
+        "name-desc": "Name absteigend",
+        "price-asc": "Preis aufsteigend",
+        "price-desc": "Preis absteigend"
+      },
+      "title": "Sortieren nach"
+    }
+  },
+  "default": {
+    "times": "x ",
+    "colon": ": ",
+    "in-brackets": "({text})"
+  },
+  "error": {
+    "not-found": {
+      "subtitle": "404",
+      "title": "Seite nicht gefunden",
+      "description": "Entschuldigung, wir konnten die Seite nicht finden.",
+      "back": "Zur Startseite"
+    }
+  },
+  "favorites": {
+    "empty": "Du hast noch keine Favoriten.",
+    "title": "Deine Favoriten",
+    "recommended": "Unsere Empfehlungen für dich"
+  },
+  "footer": {
+    "copyright": "© 2025 Alle Rechte vorbehalten.",
+    "menu": {
+      "about": {
+        "about": "Über uns",
+        "order-status": "Bestellstatus",
+        "store-locator": "Store Locator",
+        "contact": "Kontakt",
+        "help": "Hilfe & Support",
+        "title": "Über uns"
+      },
+      "support": {
+        "contact": "Kontakt",
+        "order": "Bestellstatus",
+        "return-policy": "Rückgaben",
+        "shipping": "Versand",
+        "support": "Support / Hilfe",
+        "title": "Support",
+        "warranty": "Garantie"
+      }
+    },
+    "newsletter": {
+      "accept": "Ich akzeptiere die",
+      "description": "Abonniere unseren Newsletter, um 10% Rabatt auf deine erste Bestellung zu erhalten.",
+      "divider": "und",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen",
+      "title": "Newsletter"
+    },
+    "privacy": "Datenschutz",
+    "terms": "Nutzungsbedingungen"
+  },
+  "header": {
+    "teaser": "++ Gratis Versand und Retoure für alle Bestellungen ++"
+  },
+  "home": {
+    "featured": {
+      "number": "0{index}"
+    }
+  },
+  "listing": {
+    "counter": "Keine Treffer | 1 Produkt | {count} Produkte",
+    "filters": {
+      "finish-label": "Finish",
+      "search-color": "Farbe",
+      "manufacturer": "Marken",
+      "size": "Größe"
+    }
+  },
+  "locales": {
+    "de": "Deutsch",
+    "en": "Englisch"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "description": "Navigiere zu deinem Lieblingsbereich",
+    "home": "Startseite",
+    "account": "Konto",
+    "cart": "Warenkorb",
+    "close": "Schließen",
+    "menu": "Menü",
+    "search": "Suchen",
+    "checkout": "Zur Kasse",
+    "goto-checkout": "Zur Kasse",
+    "continue-shopping": "Weiter Einkaufen",
+    "shop-all": "Alle {name} anzeigen",
+    "view-all": "Alle anzeigen",
+    "explore": "{name} entdecken",
+    "shop-now-short": "Jetzt einkaufen"
+  },
+  "product": {
+    "featured": "Empfohlen",
+    "sku": "Artikelnr.",
+    "buy": {
+      "add-to-cart": "In den Warenkorb"
+    },
+    "details": {
+      "description": {
+        "missing": "Keine Beschreibung verfügbar"
+      },
+      "bullet-points": {
+        "first": "Kostenloser Versand & Rückversand",
+        "second": "30 Tage Rückgaberecht",
+        "third": "Schnelle Lieferung"
+      },
+      "features": {
+        "key-features": "Key Features",
+        "materials-care": "Materialien & Pflege",
+        "specifications": "Spezifikationen"
+      },
+      "reviews": {
+        "average-rating": "Durchschnittliche Bewertung",
+        "count": "Keine Bewertungen | 1 Bewertung | {count} Bewertungen",
+        "count-plain": "({count})",
+        "likes": "Hilfreich",
+        "review-count": "Basierend auf",
+        "show-all": "Alle Bewertungen anzeigen",
+        "show-less": "Weniger Bewertungen anzeigen",
+        "show-more": "Mehr Bewertungen anzeigen",
+        "rating-of": "{rating}/5",
+        "show-full-review": "Vollständige Bewertung anzeigen",
+        "title": "Produktbewertungen",
+        "verified": "Verifizierter Kauf"
+      },
+      "sections": {
+        "description": "Beschreibung",
+        "reviews": "Produktbewertungen",
+        "showroom": "Showroom",
+        "similar": "Ähnliche Produkte"
+      },
+      "size-table": {
+        "title": "Grösse & Passform"
+      },
+      "tag": {
+        "new": "Neu",
+        "outdoor": "Outdoor"
+      }
+    },
+    "variant": {
+      "color": {
+        "title": "Farbe"
+      },
+      "select": {
+        "empty": "Keine Varianten gefunden",
+        "missing": "Keine Template implementiert für diese Option"
+      },
+      "size": {
+        "size-guide": "Größentabelle",
+        "size-model": "Das Model ist 162cm groß und trägt Größe S.",
+        "title": "Größe"
+      }
+    }
+  },
+  "regions": {
+    "uk": "Großbritannien",
+    "us": "USA",
+    "eu": "Europa"
+  },
+  "search": {
+    "back": "Zurück zur Startseite",
+    "counter": "{count} Suchergebnisse für \"{term}\"",
+    "total": "Suche in {count} Produkten",
+    "empty": "Suche nach Produkten",
+    "suggest": "Vorgeschlagene Suchen",
+    "results": "Suchergebnisse",
+    "no-results": "Keine Ergebnisse gefunden für \"{term}\"",
+    "placeholder": "Durchsuche unseren Shop",
+    "suggestions": "stuhl, bett, sofa",
+    "search-listing": "Alle {count} Ergebnisse anzeigen"
+  }
+}

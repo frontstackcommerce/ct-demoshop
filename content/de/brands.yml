@@ -1,0 +1,28 @@
+hero:
+  label: "Kuratierte Exzellenz"
+  title: "Die Macher"
+  description: "Entdecken Sie die Handwerker und Visionäre hinter unserer Kollektion."
+
+featured:
+  label: "Ausgewählte Marke"
+  description: "Entdecken Sie eine Welt, in der Form auf Funktion trifft."
+
+highlighted:
+  label: "Signature Kollektionen"
+  title: "Marken, die wir lieben"
+  cardDescription: "Entdecken Sie die vollständige Kollektion durchdacht gestalteter Stücke."
+
+philosophy:
+  label: "Unsere Philosophie"
+  quote: "\"Wir glauben an die Kraft durchdachten Designs, {highlight} in bedeutungsvolle Erlebnisse zu verwandeln.\""
+  highlight: "alltägliche Momente"
+  description: "Jede Marke in unserer Kollektion teilt diese Vision."
+
+directory:
+  label: "Vollständiges Verzeichnis"
+  title: "Alle Marken"
+  description: "Durchstöbern Sie unsere vollständige Sammlung sorgfältig ausgewählter Marken."
+
+cta:
+  title: "Möchten Sie mehr über unsere Marken erfahren?"
+  description: "Entdecken Sie die Geschichten, Handwerkskunst und Inspiration hinter jeder Kollektion."
