@@ -1,15 +1,8 @@
-<script setup lang="ts">
-import { Toaster } from 'vue-sonner'
-
-import { PiniaColadaDevtools } from '@pinia/colada-devtools'
-</script>
-
 <template>
   <NuxtLayout>
     <NuxtPage />
     <ClientOnly>
-      <Toaster :visible-toasts="1" />
+      <Toaster :visible-toasts="1" position="bottom-right" />
     </ClientOnly>
   </NuxtLayout>
-  <PiniaColadaDevtools v-if="false" />
 </template>

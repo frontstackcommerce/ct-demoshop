@@ -1,11 +1,27 @@
-/node_modules/**
-/dist/**
-/.nuxt/
-/static/
-/public/
+# Dependencies
+node_modules
 
-.pnpm-store
+# Build outputs
+dist
+.output
+.nuxt
+
+# Lock files
 pnpm-lock.yaml
+package-lock.json
+yarn.lock
 
-# ignore ui-components from shadcn to make diffs easier
-/components/ui/
+# Generated files
+*.generated.*
+*.min.js
+*.min.css
+.frontic
+.frontic-local
+
+# UI components (shadcn)
+app/components/ui
+
+# IDE/Editor
+.idea
+.vscode
+.claude

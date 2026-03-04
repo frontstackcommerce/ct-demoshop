@@ -1,23 +1,26 @@
 // @ts-check
-import withNuxt from './.nuxt/eslint.config.mjs'
-import eslintConfigPrettier from 'eslint-config-prettier'
 import vueI18n from '@intlify/eslint-plugin-vue-i18n'
+import eslintConfigPrettier from 'eslint-config-prettier'
+import { withNuxt } from './.nuxt/eslint.config.mjs'
 
-const config = withNuxt(
+export default withNuxt(
   eslintConfigPrettier,
   ...vueI18n.configs.recommended,
   {
     rules: {
-      'vue/block-lang': [
-        'error',
-        {
-          script: {
-            lang: 'ts',
-          },
-        },
-      ],
       '@intlify/vue-i18n/no-missing-keys': 'error',
       '@intlify/vue-i18n/no-dynamic-keys': 'error',
+      '@intlify/vue-i18n/valid-message-syntax': 'error',
+      '@intlify/vue-i18n/no-duplicate-keys-in-locale': 'error',
+      '@intlify/vue-i18n/no-missing-keys-in-other-locales': 'warn',
+      '@intlify/vue-i18n/key-format-style': [
+        'error',
+        'kebab-case',
+        {
+          allowArray: false,
+          splitByDots: true,
+        },
+      ],
       '@intlify/vue-i18n/no-unused-keys': [
         'warn',
         {
@@ -29,43 +32,94 @@ const config = withNuxt(
         'error',
         {
           ignoreText: [
+            // Punctuation & operators
             '+',
-            '@',
-            'x',
             '-',
+            '*',
+            '/',
+            '=',
+            '@',
+            '#',
+            '&',
+            '|',
+            // Brackets & parens
             '(',
             ')',
             '[',
             ']',
             '[]',
             '[?]',
-            '/',
+            '{',
+            '}',
+            // Punctuation
             ',',
             '.',
-            '•',
             ':',
-            '←',
+            ';',
+            '!',
+            '?',
             '"',
+            "'",
+            '...',
+            // Symbols & decorative
+            '•',
+            '—',
+            '–',
+            '©',
+            '®',
+            '™',
+            // Arrows & UI symbols
+            '←',
+            '→',
+            '↑',
+            '↓',
+            '›',
+            '‹',
+            '×',
+            '✕',
+            '✓',
+            '●',
+            '○',
+            // Units (common in UI)
+            '%',
+            'px',
+            'em',
+            'rem',
+            'x',
+            // Currency
+            '€',
+            '$',
+            '£',
+            // Whitespace variants
+            ' ',
+            '~',
+            // Triangle arrows (used in UI controls)
+            '▼',
+            '▲',
           ],
         },
       ],
     },
     settings: {
       'vue-i18n': {
-        localeDir: './i18n/locales/*.{json,json5,yaml,yml}', // extension is glob formatting!
-
-        // Specify the version of `vue-i18n` you are using.
-        // If not specified, the message will be parsed twice.
+        localeDir: './i18n/locales/*.{json,json5,yaml,yml}',
         messageSyntaxVersion: '^9.0.0',
       },
     },
   },
   {
-    ignores: ['app/components/ui/**/*.{vue,ts}', '.frontstack', '.frontstack-local'],
+    // Global ignores - mockups, UI components (shadcn), debug tools, e2e tests, content files
+    ignores: ['app/components/ui/**/*.{vue,ts}', 'content/**/*', '.frontic/**/*'],
   },
   {
     files: ['**/*.ts', '**/*.vue'],
     rules: {
+      'vue/no-unused-properties': [
+        'error',
+        {
+          groups: ['props'],
+        },
+      ],
       'vue/multi-word-component-names': 'off',
       'vue/no-multiple-template-root': 'off',
       'func-call-spacing': 'off',
@@ -79,6 +133,8 @@ const config = withNuxt(
       '@typescript-eslint/no-unused-vars': [
         'error',
         {
+          argsIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
           caughtErrors: 'none',
           destructuredArrayIgnorePattern: '^_',
           ignoreRestSiblings: true,
@@ -107,7 +163,7 @@ const config = withNuxt(
           order: ['script', 'template', 'style'],
         },
       ],
-      // Warn about unnecessary imports
+      // Warn about unnecessary imports (Nuxt auto-imports)
       'no-restricted-imports': [
         'warn',
         {
@@ -163,17 +219,13 @@ const config = withNuxt(
               message: 'Composables are auto-imported by Nuxt. You can remove this import.',
             },
             {
-              group: ['~/stores/*', '@/stores/*'],
-              message: 'Stores are auto-imported by Nuxt. You can remove this import.',
-            },
-            {
               group: ['~/types/*', '@/types/*'],
               message: 'Types are auto-imported by Nuxt. You can remove this import.',
             },
           ],
         },
       ],
-      // Add Vue best practices
+      // Vue best practices
       'vue/component-name-in-template-casing': ['error', 'PascalCase'],
       'vue/component-definition-name-casing': ['error', 'PascalCase'],
       'vue/match-component-file-name': [
@@ -206,11 +258,12 @@ const config = withNuxt(
       ],
       'no-console': ['warn', { allow: ['warn', 'error'] }],
       'no-debugger': 'warn',
-      'no-alert': 'warn',
+      'no-alert': 'error',
       'prefer-const': 'warn',
       'no-var': 'error',
       eqeqeq: ['error', 'always'],
+      'vue/no-v-html': 'off',
+      '@intlify/vue-i18n/no-v-html': 'off',
     },
-  }
+  },
 )
-export default config

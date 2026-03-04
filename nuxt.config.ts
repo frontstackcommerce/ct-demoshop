@@ -1,112 +1,103 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 import tailwindcss from '@tailwindcss/vite'
 
+// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: '2025-07-15',
+
+  components: [
+    {
+      path: '~/components/shared',
+      pathPrefix: false,
+    },
+  ],
+
+  content: {
+    build: {
+      markdown: {
+        highlight: false,
+      },
+    },
+    experimental: {
+      sqliteConnector: 'native',
+    },
+  },
+
+  css: ['~/assets/css/tailwind.css'],
 
   devtools: { enabled: false },
 
-  vite: {
-    plugins: [tailwindcss()],
-  },
-
-  css: ['./app/assets/css/tailwind.css'],
-
-  modules: [
-    'nuxt-lucide-icons',
-    '@pinia/nuxt',
-    '@pinia/colada-nuxt',
-    '@nuxtjs/i18n',
-    '@nuxt/image',
-    '@nuxt/eslint',
-    '@nuxtjs/device',
-    'vue-sonner/nuxt',
-    'shadcn-nuxt',
-    '@nuxt/fonts',
-  ],
-
-  image: {
-    domains: ['storage.googleapis.com', 'placehold.co', 'a.storyblok.com'],
-  },
-
-  lucide: {
-    namePrefix: 'Icon',
-  },
-
-  shadcn: {
-    /**
-     * Prefix for all the imported component.
-     * @default "Ui"
-     */
-    prefix: '',
-    /**
-     * Directory that the component lives in.
-     * Will respect the Nuxt aliases.
-     * @link https://nuxt.com/docs/api/nuxt-config#alias
-     * @default "@/components/ui"
-     */
-    componentDir: '@/components/ui',
-  },
-
-  fonts: {
-    families: [
-      // Clean sans-serif for contemporary minimal look
-      { name: 'Inter', provider: 'google' },
-      // Keep Playfair Display as optional accent
-      { name: 'Playfair Display', provider: 'google' },
-    ],
-    defaults: {
-      weights: [300, 400, 500, 600, 700],
-      styles: ['normal', 'italic'],
-      subsets: ['latin', 'latin-ext'],
-    },
-    // Performance optimizations
-    experimental: {
-      processCSSVariables: true,
+  eslint: {
+    config: {
+      standalone: true,
     },
   },
 
   i18n: {
     locales: [
       {
-        code: 'us',
-        file: 'en-us.json',
-      },
-      {
-        code: 'uk',
-        file: 'en-us.json',
-      },
-      {
-        code: 'eu',
-        file: 'en-us.json',
+        code: 'en',
+        name: 'English',
+        language: 'en-US',
+        dir: 'ltr',
+        file: 'en.json',
       },
       {
         code: 'de',
-        file: 'de-de.json',
+        name: 'German',
+        language: 'de-DE',
+        dir: 'ltr',
+        file: 'de.json',
       },
     ],
-    strategy: 'prefix_except_default',
-    defaultLocale: 'eu',
-    detectBrowserLanguage: false,
+    defaultLocale: 'en',
   },
 
-  runtimeConfig: {
-    public: {
-      shopDomain: 'localhost:3000',
-    },
-    commercetools: {
-      apiHost: '',
-      authHost: '',
-      projectKey: '',
-      clientId: '',
-      clientSecret: '',
-      scopes: '',
+  // Image optimization (auto-uses Vercel provider in production)
+  image: {
+    quality: 80,
+    format: ['webp', 'avif'],
+  },
+
+
+
+  modules: [
+    '@nuxt/eslint',
+    '@nuxt/fonts',
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    '@nuxt/image',
+    'nuxt-og-image',
+    'vue-sonner/nuxt',
+    '@frontic/nuxt',
+  ],
+
+  // OG Image generation for social cards
+  ogImage: {
+    defaults: {
+      cacheMaxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
     },
   },
 
   routeRules: {
-    // all routes (by default) will be revalidated every 60 seconds, in the background
     '/**': { isr: 60 },
-    '/api/cart/**': { prerender: false, isr: false },
+    '/api/**': { prerender: false, isr: false },
+  },
+
+  runtimeConfig: {
+    public: {},
+  },
+
+  site: {
+    url: 'https://www.demo-shop.com',
+    name: 'Nuxt Storefront',
+  },
+
+  vueSonner: {
+    css: false,
+  },
+
+  vite: {
+    // @ts-expect-error - Vite/Rollup version mismatch in plugin types
+    plugins: [tailwindcss()],
   },
 })

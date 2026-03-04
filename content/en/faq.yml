@@ -1,0 +1,16 @@
+title:
+  line1: Questions,
+  line2: Answered.
+items:
+  - question: How long does shipping take?
+    answer: Standard shipping takes 3-5 business days. Express shipping is available at checkout and delivers within 1-2 business days. Free shipping on all orders over $75.
+  - question: What is your return policy?
+    answer: We offer hassle-free returns within 30 days of delivery. Items must be unused and in original packaging. Start a return from your account or contact our support team.
+  - question: What payment methods do you accept?
+    answer: We accept all major credit cards (Visa, Mastercard, Amex), PayPal, Apple Pay, Google Pay, and Klarna for buy-now-pay-later. All payments are processed securely.
+  - question: Do you ship internationally?
+    answer: Yes, we ship to over 30 countries. International shipping times vary by destination, typically 7-14 business days. Import duties and taxes may apply depending on your country.
+  - question: How can I track my order?
+    answer: Once your order ships, you'll receive a confirmation email with a tracking number. You can also check your order status anytime from your account dashboard.
+  - question: Can I change or cancel my order?
+    answer: You can modify or cancel your order within 1 hour of placing it. After that, orders enter processing and can no longer be changed. Contact us immediately if you need help.
