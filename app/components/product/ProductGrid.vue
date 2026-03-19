@@ -5,6 +5,15 @@ const props = defineProps<{
 }>()
 
 const columns = computed(() => props.columns || 4)
+
+// Quick View state
+const quickViewOpen = ref(false)
+const quickViewProduct = ref<ProductCard | null>(null)
+
+function openQuickView(product: ProductCard) {
+  quickViewProduct.value = product
+  quickViewOpen.value = true
+}
 </script>
 
 <template>
@@ -18,8 +27,15 @@ const columns = computed(() => props.columns || 4)
       }"
     >
       <div v-for="product in products" :key="product.key">
-        <ProductCard :product="product" />
+        <ProductCard :product="product" @quick-view="openQuickView" />
       </div>
     </div>
+
+    <!-- Shared Quick View Modal -->
+    <ProductQuickView
+      v-if="quickViewProduct"
+      v-model:open="quickViewOpen"
+      :product="quickViewProduct"
+    />
   </div>
 </template>

@@ -1,6 +1,12 @@
 <script setup lang="ts">
+import { Eye } from 'lucide-vue-next'
+
 const props = defineProps<{
   product: ProductCard
+}>()
+
+const emit = defineEmits<{
+  quickView: [product: ProductCard]
 }>()
 
 const firstImage = computed(() => props.product.variants?.[0]?.images?.[0]?.src)
@@ -32,7 +38,19 @@ onMounted(() => {
           :alt="product.name"
           class="absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105"
         />
-        
+
+        <!-- Quick View Button -->
+        <div class="absolute inset-x-0 bottom-0 p-3 sm:translate-y-full sm:opacity-0 sm:group-hover:translate-y-0 sm:group-hover:opacity-100 transition-all duration-300 ease-out">
+          <Button
+            variant="default"
+            size="sm"
+            class="w-full gap-2 backdrop-blur-sm"
+            @click.prevent.stop="emit('quickView', product)"
+          >
+            <Eye class="size-4" />
+            Quick View
+          </Button>
+        </div>
       </div>
       
       <!-- Variant swatches -->
