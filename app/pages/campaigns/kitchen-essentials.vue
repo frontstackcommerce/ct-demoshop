@@ -269,11 +269,6 @@ const carouselProducts = computed(() => products.value?.slice(8, 12) || [])
                   :alt="product.name"
                   class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <!-- Quick Add Overlay -->
-                <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-300" />
-                <button class="absolute bottom-4 left-4 right-4 bg-background/95 backdrop-blur-sm py-3 text-sm font-medium opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  {{ $t('actions.quickView') }}
-                </button>
               </div>
               <div>
                 <p class="text-xs text-muted-foreground tracking-wider uppercase mb-1">{{ product.brand || 'CT Demo Shop' }}</p>

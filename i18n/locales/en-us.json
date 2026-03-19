@@ -18,8 +18,6 @@
     "viewProduct": "View Product",
     "viewCollection": "View Collection",
     "exploreCollection": "Explore Collection",
-    "quickView": "Quick View",
-    "closeQuickView": "Close Quick View",
     "viewFullDetails": "View Full Details",
     "subscribe": "Subscribe",
     "ourStory": "Our Story",
@@ -445,13 +443,6 @@
         "highlight": "Shop all essentials under €100"
       }
     }
-  },
-  "quickView": {
-    "loading": "Loading product...",
-    "taxIncluded": "Tax included. Free shipping over €150.",
-    "freeShipping": "Free Shipping",
-    "easyReturns": "Easy Returns",
-    "warranty": "2yr Warranty"
   },
   "listing": {
     "counter": "No Result | 1 Result | {count} Results",

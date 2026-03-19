@@ -33,18 +33,6 @@ onMounted(() => {
           class="absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105"
         />
         
-        <!-- Quick view overlay -->
-        <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-500" />
-        
-        <!-- Quick add button - appears on hover -->
-        <div class="absolute bottom-4 left-4 right-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-          <Button 
-            variant="default" 
-            class="w-full bg-background/95 backdrop-blur-sm text-foreground hover:bg-background text-xs tracking-wider uppercase h-10"
-          >
-            Quick View
-          </Button>
-        </div>
       </div>
       
       <!-- Variant swatches -->
