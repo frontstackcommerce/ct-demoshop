@@ -125,6 +125,18 @@ async function handleAddToCart(variant: ProductVariant, quantity: number) {
               </p>
             </div>
 
+            <!-- BOPIS Banner -->
+            <div
+              v-if="product.bopis"
+              class="flex items-start gap-4 bg-shade border border-border p-4"
+            >
+              <IconMapPin class="size-5 shrink-0 text-muted-foreground mt-0.5" />
+              <div>
+                <span class="text-sm font-medium text-foreground">Buy Online, Pick Up In Store</span>
+                <span class="block text-xs text-muted-foreground mt-0.5">Available for in-store pickup</span>
+              </div>
+            </div>
+
             <!-- Variant Selector -->
             <div
               v-if="Array.isArray(product.variants) && product.variants.length > 1"

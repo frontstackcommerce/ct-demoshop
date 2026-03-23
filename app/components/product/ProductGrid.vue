@@ -79,28 +79,41 @@ const closeQuickView = () => {
 }
 
 // Group products by row with quick view insertion points
+const BOPIS_BANNER_POSITION = 3
+
 const productsWithQuickView = computed(() => {
-  const result: Array<{ type: 'product'; product: ProductCard; index: number } | { type: 'quickview'; productKey: string }> = []
-  
+  const result: Array<
+    | { type: 'product'; product: ProductCard; index: number }
+    | { type: 'quickview'; productKey: string }
+    | { type: 'bopis-banner' }
+  > = []
+
   let currentRow = -1
-  
+  let bopisInserted = false
+
   props.products.forEach((product, index) => {
     const row = getProductRow(index, currentColumns.value)
-    
+
     // If we've moved to a new row and the previous row had the quick view, insert it
     if (row !== currentRow && currentRow === quickViewRowIndex.value && quickViewProductKey.value) {
       result.push({ type: 'quickview', productKey: quickViewProductKey.value })
     }
-    
+
+    // Insert BOPIS banner after the 3rd product (index 2, so before index 3)
+    if (!bopisInserted && index === BOPIS_BANNER_POSITION) {
+      result.push({ type: 'bopis-banner' })
+      bopisInserted = true
+    }
+
     currentRow = row
     result.push({ type: 'product', product, index })
   })
-  
+
   // Handle quick view for the last row
   if (currentRow === quickViewRowIndex.value && quickViewProductKey.value) {
     result.push({ type: 'quickview', productKey: quickViewProductKey.value })
   }
-  
+
   return result
 })
 
@@ -125,19 +138,19 @@ provide('quickView', {
         'grid-cols-2': columns === 2
       }"
     >
-      <template v-for="item in productsWithQuickView" :key="item.type === 'product' ? item.product.key : 'quickview'">
+      <template v-for="item in productsWithQuickView" :key="item.type === 'product' ? item.product.key : item.type === 'quickview' ? 'quickview' : 'bopis-banner'">
         <!-- Product Card -->
         <div v-if="item.type === 'product'">
-          <ProductCardWithQuickView 
-            :product="item.product" 
+          <ProductCardWithQuickView
+            :product="item.product"
             :index="item.index"
             :is-active="isQuickViewOpen(item.product.key)"
             @open-quick-view="openQuickView(item.product.key, item.index)"
           />
         </div>
-        
+
         <!-- Quick View Panel (spans full width) -->
-        <div 
+        <div
           v-else-if="item.type === 'quickview'"
           id="quick-view-panel"
           class="col-span-full -mx-6 lg:-mx-12"
@@ -147,12 +160,27 @@ provide('quickView', {
             'col-span-2': columns === 2
           }"
         >
-          <ProductQuickView 
+          <ProductQuickView
             :product-key="item.productKey"
             :product-link="item.link?.path"
             :is-open="true"
             @close="closeQuickView"
           />
+        </div>
+
+        <!-- BOPIS Promotional Banner (spans full width) -->
+        <div
+          v-else-if="item.type === 'bopis-banner'"
+          class="col-span-full bg-shade border border-border p-6 sm:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6"
+        >
+          <IconMapPin class="size-6 text-muted-foreground shrink-0" />
+          <div class="flex-1 min-w-0">
+            <span class="text-sm font-medium tracking-wide uppercase text-foreground">Buy Online, Pick Up In Store</span>
+            <p class="text-sm text-muted-foreground font-light mt-1">Skip the wait — order now and collect at your nearest store</p>
+          </div>
+          <NuxtLink to="/stores" class="text-sm text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors whitespace-nowrap">
+            Learn more
+          </NuxtLink>
         </div>
       </template>
     </div>
