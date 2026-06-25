@@ -33,6 +33,11 @@ onMounted(() => {
           class="absolute inset-0 size-full object-cover opacity-0 transition-all duration-700 ease-out group-hover:opacity-100 group-hover:scale-105"
         />
         
+        <!-- Sale badge -->
+        <div v-if="product.sale" class="absolute top-3 left-3 z-10 bg-discount text-discount-foreground text-[10px] font-semibold tracking-widest uppercase px-2 py-1">
+          Sale
+        </div>
+
         <!-- Quick view overlay -->
         <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/5 transition-colors duration-500" />
         
@@ -76,7 +81,7 @@ onMounted(() => {
         <p v-if="product.brand" class="text-xs text-muted-foreground tracking-wide uppercase">
           {{ product.brand }}
         </p>
-        <p v-if="product.price?.amount" class="text-sm font-medium text-foreground pt-1">
+        <p v-if="product.price?.amount" class="text-sm font-medium pt-1" :class="product.sale ? 'text-discount' : 'text-foreground'">
           {{ formatPrice(product.price) }}
         </p>
       </div>

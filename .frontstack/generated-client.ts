@@ -1,6 +1,6 @@
 /**
  * This file was automatically generated using the
- * frontstack CLI, please do not edit it manually!
+ * Frontic CLI, please do not edit it manually!
  */
 
 import { ofetch } from 'ofetch'
@@ -12,9 +12,26 @@ import type { Query } from './query-types'
 type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE'
 
 /**
- * Interface describing the frontstack client API
+ * Global configuration options for the Frontic client
  */
-export interface FrontstackClient {
+export interface ClientConfig {
+  /**
+   * @description Proxy URL
+   *
+   * Optionally, provide a proxy URL path that will be concatenated with the original API path.
+   * For example, if proxyUrl is '/api' and the original request is to '/block',
+   * the request will be sent to '/api/block'.
+   * The original target URL is passed in the 'fs-target-url' header for the proxy to forward to.
+   * This is useful to prevent CORS issues when making requests from a browser.
+   * Can be overridden per-request via RequestOptions.
+   */
+  proxyUrl?: string
+}
+
+/**
+ * Interface describing the Frontic client API
+ */
+export interface FronticClient {
   /**
    * Fetch a block with a key
    *
@@ -81,22 +98,26 @@ export interface FrontstackClient {
    * Fetch a context by its token
    * @param token The token of the context
    * @example 'ae0d4981-c363-4d5a-a49e-1f053d49f2f7'
+   * @param config Further configuration options
    *
    * @returns The context and token
    */
   context: (
-    token: ContextToken
+    token: ContextToken,
+    config?: RequestOptions
   ) => Promise<Context>;
 
   /**
    * Fetch a list of contexts
    * @param token The token of the context to fetch
    * @example 'ae0d4981-c363-4d5a-a49e-1f053d49f2f7'
+   * @param config Further configuration options
    *
    * @returns The list of contexts and the token
    */
   contextList: (
-    token?: ContextToken
+    token?: ContextToken,
+    config?: RequestOptions
   ) => Promise<[ContextOption[], ContextToken]>;
 
   /**
@@ -105,6 +126,7 @@ export interface FrontstackClient {
    * @example { region: 'uk', locale: 'en-GB' }
    * @param token The token of the context to update
    * @example 'ae0d4981-c363-4d5a-a49e-1f053d49f2f7'
+   * @param config Further configuration options
    *
    * @returns The updated context
    */
@@ -113,7 +135,8 @@ export interface FrontstackClient {
       region: string
       locale: string
     },
-    token: ContextToken
+    token: ContextToken,
+    config?: RequestOptions
   ) => Promise<Context>;
 }
 
@@ -140,9 +163,11 @@ const endpoints: Endpoints = {
   ProductReviews: '/listing/product/reviews',
   ProductSearch: '/listing/product/search',
   ProductVariant: '/block/product/variant/{key}',
+  SuperSearch: '/listing/super/search',
+  VariantSearch: '/listing/variant/search',
 }
 
-const invoke = async (path: string, method: Method, payload: any, headers: any) => {
+const invoke = async (path: string, method: Method, payload: any, headers: any, proxyUrl?: string) => {
   const _headers: any = {
     'Content-Type': 'application/json',
     'Accept': 'application/json',
@@ -158,6 +183,21 @@ const invoke = async (path: string, method: Method, payload: any, headers: any) 
     body: payload
   }
 
+  // If proxy URL is provided, concatenate it with the original path
+  if (proxyUrl) {
+    // Parse the original full URL to extract just the pathname
+    const url = new URL(path)
+    const originalPath = url.pathname
+
+    // Store the original full URL in header for the proxy to use
+    headers['fs-target-url'] = path
+
+    // Concatenate proxy URL with the original path
+    // Remove trailing slash from proxyUrl and leading slash is already in originalPath
+    const normalizedProxyUrl = proxyUrl.endsWith('/') ? proxyUrl.slice(0, -1) : proxyUrl
+    path = normalizedProxyUrl + originalPath
+  }
+
   return await ofetch.raw(path, options)
 }
 
@@ -167,124 +207,168 @@ const servers = [
 ]
 
 /**
- * frontstack Client
+ * Create a Frontic client with optional global configuration
+ *
+ * @param config Global configuration options for the client
+ * @example
+ * const client = createClient({ proxyUrl: '/api/frontic' })
+ *
+ * @returns A configured Frontic client instance
  */
-const client: FrontstackClient = {
-  /**
-   * Fetch a block with a key
-   */
-  block: async (name, key, config) => {
-    if(!(name in endpoints)) {
-      throw new Error(`Block ${name} not found`)
+const createClient = (config?: ClientConfig): FronticClient => {
+  const globalConfig = config || {}
+
+  return {
+    /**
+     * Fetch a block with a key
+     */
+    block: async (name, key, config) => {
+      if(!(name in endpoints)) {
+        throw new Error(`Block ${name} not found`)
+      }
+      let endpoint: string = `${servers[0].url}${endpoints[name]}`;
+
+      // Replace '{key}' in the endpoint
+      endpoint = endpoint.replace('{key}', key);
+
+      // No additional parameters needed for blocks
+      let payload = { param: {} };
+
+      let headers: Record<string, string> = {}
+
+      if(config?.requestUrl !== undefined) {
+        headers['fs-request-url'] = config.requestUrl
+      }
+      if (config?.contextKey !== undefined) {
+        headers["fs-context"] = config.contextKey;
+      }
+      if (config?.contextDomain !== undefined) {
+        headers["fs-domain"] = config.contextDomain;
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      return (await invoke(endpoint, 'POST', payload, headers, proxyUrl))._data
+    },
+
+    /**
+     * Fetch a listing with parameters and optional query options
+     */
+    listing: async (name, parameters, config) => {
+      if(!(name in endpoints)) {
+        throw new Error(`Listing ${name} not found`)
+      }
+
+      let endpoint: string = `${servers[0].url}${endpoints[name]}`;
+
+      // Merge listing parameters with query
+      let payload = config && 'query' in config ? { param: {...parameters}, ...config.query } : { param: {...parameters} }
+
+      let headers: Record<string, string> = {}
+
+      if(config?.requestUrl !== undefined) {
+        headers['fs-request-url'] = config.requestUrl
+      }
+      if (config?.contextKey !== undefined) {
+        headers["fs-context"] = config.contextKey;
+      }
+      if (config?.contextDomain !== undefined) {
+        headers["fs-domain"] = config.contextDomain;
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      return (await invoke(endpoint, 'POST', payload, headers, proxyUrl))._data
+    },
+
+    /**
+     * Fetch a page by its slug
+     */
+    page: async (slug, config) => {
+      let endpoint: string = `${servers[0].url}/page/${slug}`;
+
+      let headers: Record<string, string> = {}
+
+      if(config?.requestUrl !== undefined) {
+        headers['fs-request-url'] = config.requestUrl
+      }
+      if (config?.contextKey !== undefined) {
+        headers["fs-context"] = config.contextKey;
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      return (await invoke(endpoint, 'GET', null, headers, proxyUrl))._data
+    },
+
+    /**
+     * Fetch a context by its token
+     */
+    context: async (token, config) => {
+      let endpoint: string = `${servers[0].url}/context/token`;
+
+      let headers: Record<string, string> = {
+        'fs-context': token
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      return (await invoke(endpoint, 'GET', null, headers, proxyUrl))._data
+    },
+
+    /**
+     * Fetch a list of contexts
+     */
+    contextList: async (token, config) => {
+      let endpoint: string = `${servers[0].url}/context`;
+
+      const requestHeaders: Record<string, string> = {}
+
+      if (token) {
+        requestHeaders["fs-context"] = token;
+      }
+      if (config?.contextDomain !== undefined) {
+        requestHeaders["fs-domain"] = config.contextDomain;
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      const {
+        _data,
+        headers: responseHeaders
+      } = await invoke(endpoint, 'GET', null, requestHeaders, proxyUrl)
+
+      return [_data, responseHeaders.get('fs-context')!]
+    },
+
+    /**
+     * Update a context
+     */
+    contextUpdate: async (context, token, config) => {
+      let endpoint: string = `${servers[0].url}/context`;
+
+      let headers: Record<string, string> = {
+        'fs-context': token
+      }
+
+      // Use per-request proxyUrl if provided, otherwise use global config
+      const proxyUrl = config?.proxyUrl ?? globalConfig.proxyUrl
+
+      return (await invoke(endpoint, 'PATCH', context, headers, proxyUrl))._data
     }
-    let endpoint: string = `${servers[0].url}${endpoints[name]}`;
-
-    // Replace '{key}' in the endpoint
-    endpoint = endpoint.replace('{key}', key);
-
-    // No additional parameters needed for blocks
-    let payload = { param: {} };
-
-    let headers: Record<string, string> = {}
-
-    if(config?.requestUrl !== undefined) {
-      headers['fs-request-url'] = config.requestUrl
-    }
-    if (config?.contextKey !== undefined) {
-      headers["fs-context"] = config.contextKey;
-    }
-
-    return (await invoke(endpoint, 'POST', payload, headers))._data
-  },
-
-  /**
-   * Fetch a listing with parameters and optional query options
-   */
-  listing: async (name, parameters, config) => {
-    if(!(name in endpoints)) {
-      throw new Error(`Listing ${name} not found`)
-    }
-
-    let endpoint: string = `${servers[0].url}${endpoints[name]}`;
-
-    // Merge listing parameters with query
-    let payload = config && 'query' in config ? { param: {...parameters}, ...config.query } : { param: {...parameters} }
-
-    let headers: Record<string, string> = {}
-
-    if(config?.requestUrl !== undefined) {
-      headers['fs-request-url'] = config.requestUrl
-    }
-    if (config?.contextKey !== undefined) {
-      headers["fs-context"] = config.contextKey;
-    }
-
-    return (await invoke(endpoint, 'POST', payload, headers))._data
-  },
-
-  /**
-   * Fetch a page by its slug
-   */
-  page: async (slug, config) => {
-    let endpoint: string = `${servers[0].url}/page/${slug}`;
-
-    let headers: Record<string, string> = {}
-
-    if(config?.requestUrl !== undefined) {
-      headers['fs-request-url'] = config.requestUrl
-    }
-    if (config?.contextKey !== undefined) {
-      headers["fs-context"] = config.contextKey;
-    }
-
-    return (await invoke(endpoint, 'GET', null, headers))._data
-  },
-
-  /**
-   * Fetch a context by its token
-   */
-  context: async (token) => {
-    let endpoint: string = `${servers[0].url}/context/token`;
-
-    let headers: Record<string, string> = {
-      'fs-context': token
-    }
-
-    return (await invoke(endpoint, 'GET', null, headers))._data
-  },
-
-  /**
-   * Fetch a list of contexts
-   */
-  contextList: async (token) => {
-    let endpoint: string = `${servers[0].url}/context`;
-
-    const requestHeaders: Record<string, string> = {}
-
-    if (token) {
-      requestHeaders["fs-context"] = token;
-    }
-
-    const {
-      _data,
-      headers: responseHeaders
-    } = await invoke(endpoint, 'GET', null, requestHeaders)
-
-    return [_data, responseHeaders.get('fs-context')!]
-  },
-
-  /**
-   * Update a context
-   */
-  contextUpdate: async (context, token) => {
-    let endpoint: string = `${servers[0].url}/context`;
-
-    let headers: Record<string, string> = {
-      'fs-context': token
-    }
-
-    return (await invoke(endpoint, 'PATCH', context, headers))._data
   }
 }
 
+/**
+ * Default client instance (without global configuration)
+ * For global configuration (e.g. proxy URL), use createClient() instead
+ */
+const client = createClient()
+
 export default client
+export { createClient, client }

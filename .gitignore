@@ -27,3 +27,6 @@ logs
 
 # Frontstack files
 .frontstack-local
+
+# Frontic Local (auto-generated, do not commit)
+.frontic-local/
