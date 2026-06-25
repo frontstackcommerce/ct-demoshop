@@ -204,17 +204,7 @@ const activeCategory = computed(() => {
     >
       <div v-if="isSearchOpen" class="absolute top-full left-0 right-0 bg-background border-t border-border/40 shadow-2xl shadow-black/5 z-10">
         <div class="mx-auto max-w-2xl px-6 py-10">
-          <div class="relative">
-            <input
-              type="text"
-              placeholder="What are you looking for?"
-              class="w-full h-14 px-0 text-xl bg-transparent border-0 border-b-2 border-foreground/20 focus:border-foreground focus:outline-none transition-colors placeholder:text-muted-foreground"
-            />
-            <button class="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground transition-colors">
-              <IconArrowRight class="size-5" />
-            </button>
-          </div>
-          <div class="mt-8">
+          <div>
             <p class="text-xs text-muted-foreground tracking-wider uppercase mb-4">Popular searches</p>
             <div class="flex flex-wrap gap-2">
               <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
@@ -233,6 +223,16 @@ const activeCategory = computed(() => {
                 Lighting
               </button>
             </div>
+          </div>
+          <div class="relative mt-8">
+            <input
+              type="text"
+              placeholder="What are you looking for?"
+              class="w-full h-14 px-0 text-xl bg-transparent border-0 border-b-2 border-foreground/20 focus:border-foreground focus:outline-none transition-colors placeholder:text-muted-foreground"
+            />
+            <button class="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground transition-colors">
+              <IconArrowRight class="size-5" />
+            </button>
           </div>
         </div>
       </div>
