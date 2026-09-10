@@ -2,10 +2,14 @@
 import { onClickOutside, onKeyStroke } from '@vueuse/core'
 
 const { fullTree } = useShopMenu()
+const { t } = useI18n()
+const { searchTerm, listing, status } = useProductSearch()
 
 const activeMenu = ref<string | null>(null)
 const isSearchOpen = ref(false)
 const navRef = ref<HTMLElement | null>(null)
+
+const popularSearches = t('search.suggestions').split(',')
 
 // Close menu when clicking outside
 onClickOutside(navRef, () => {
@@ -31,6 +35,14 @@ function closeMenu() {
 function openSearch() {
   activeMenu.value = null
   isSearchOpen.value = true
+}
+
+function closeSearch() {
+  isSearchOpen.value = false
+}
+
+function selectPopularSearch(term: string) {
+  searchTerm.value = term.trim()
 }
 
 // Get the active category data
@@ -204,35 +216,78 @@ const activeCategory = computed(() => {
     >
       <div v-if="isSearchOpen" class="absolute top-full left-0 right-0 bg-background border-t border-border/40 shadow-2xl shadow-black/5 z-10">
         <div class="mx-auto max-w-2xl px-6 py-10">
-          <div class="relative">
+          <form class="relative" @submit.prevent>
             <input
+              v-model="searchTerm"
               type="text"
-              placeholder="What are you looking for?"
+              :placeholder="$t('search.placeholder')"
               class="w-full h-14 px-0 text-xl bg-transparent border-0 border-b-2 border-foreground/20 focus:border-foreground focus:outline-none transition-colors placeholder:text-muted-foreground"
             />
-            <button class="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground transition-colors">
-              <IconArrowRight class="size-5" />
+            <button
+              v-if="searchTerm.length > 0"
+              type="button"
+              class="absolute right-0 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-foreground transition-colors"
+              :aria-label="$t('navigation.close')"
+              @click="searchTerm = ''"
+            >
+              <IconX class="size-5" />
             </button>
-          </div>
-          <div class="mt-8">
-            <p class="text-xs text-muted-foreground tracking-wider uppercase mb-4">Popular searches</p>
+            <IconArrowRight v-else class="absolute right-0 top-1/2 -translate-y-1/2 size-5 text-muted-foreground" />
+          </form>
+
+          <!-- Popular searches -->
+          <div v-if="!searchTerm.length" class="mt-8">
+            <p class="text-xs text-muted-foreground tracking-wider uppercase mb-4">
+              {{ $t('search.popular') }}
+            </p>
             <div class="flex flex-wrap gap-2">
-              <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
-                Sofas
-              </button>
-              <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
-                Chairs
-              </button>
-              <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
-                Tables
-              </button>
-              <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
-                Rugs
-              </button>
-              <button class="px-4 py-2 text-sm bg-shade hover:bg-shade-200 transition-colors">
-                Lighting
+              <button
+                v-for="suggestion in popularSearches"
+                :key="suggestion"
+                type="button"
+                class="px-4 py-2 text-sm capitalize bg-shade hover:bg-shade-200 transition-colors"
+                @click="selectPopularSearch(suggestion)"
+              >
+                {{ suggestion.trim() }}
               </button>
             </div>
+          </div>
+
+          <!-- Live results -->
+          <div v-else class="mt-8">
+            <p class="text-xs text-muted-foreground tracking-wider uppercase mb-4">
+              <span v-if="status === 'pending'">{{ $t('search.searching') }}</span>
+              <span v-else-if="listing?.items?.length">
+                {{ $t('search.counter', { count: listing.total, term: searchTerm }) }}
+              </span>
+              <span v-else>{{ $t('search.no-results', { term: searchTerm }) }}</span>
+            </p>
+
+            <div v-if="status === 'pending'" class="grid grid-cols-2 gap-4 md:grid-cols-4">
+              <ProductCardSkeleton v-for="index in 4" :key="index" />
+            </div>
+            <div v-else-if="listing?.items?.length" class="grid grid-cols-2 gap-4 md:grid-cols-4">
+              <ProductCard
+                v-for="product in listing.items.slice(0, 8)"
+                :key="product.key"
+                :product="product"
+                @click="closeSearch"
+              />
+            </div>
+            <p v-else class="text-sm text-muted-foreground py-6">
+              {{ $t('search.empty-suggestion') }}
+            </p>
+
+            <NuxtLinkLocale
+              v-if="listing?.items && listing.items.length > 0"
+              to="/search"
+              class="mt-8 flex w-full justify-center"
+              @click="closeSearch"
+            >
+              <Button color="secondary">
+                {{ $t('search.search-listing', { count: listing.total }) }}
+              </Button>
+            </NuxtLinkLocale>
           </div>
         </div>
       </div>
