@@ -36,7 +36,7 @@ const handleRemove = async (cartItemId: string) => {
         <ScrollArea class="h-[calc(100vh-10rem)] py-2">
           <CartItem
             v-for="item in lineItems"
-            :key="item.key"
+            :key="item.id"
             :item="item"
             @update="handleUpdate"
             @remove="handleRemove"
