@@ -132,7 +132,7 @@ const activeCategory = computed(() => {
                   class="text-sm text-primary hover:text-primary/80 transition-colors flex items-center gap-2 group"
                   @click="closeMenu"
                 >
-                  Shop all {{ activeCategory.name }}
+                  {{ $t('navigation.shop-all', { category: activeCategory.name }) }}
                   <IconArrowRight class="size-4 transition-transform group-hover:translate-x-1" />
                 </NuxtLink>
               </div>
@@ -164,7 +164,7 @@ const activeCategory = computed(() => {
                         class="inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 transition-colors mt-1"
                         @click="closeMenu"
                       >
-                        View all
+                        {{ $t('navigation.view-all') }}
                         <IconArrowRight class="size-3" />
                       </NuxtLink>
                     </li>

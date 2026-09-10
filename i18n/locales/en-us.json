@@ -476,7 +476,9 @@
     "search": "Search",
     "checkout": "Checkout",
     "goto-checkout": "Checkout Now",
-    "continue-shopping": "Continue Shopping"
+    "continue-shopping": "Continue Shopping",
+    "shop-all": "Shop all {category}",
+    "view-all": "View all"
   },
   "product": {
     "featured": "Featured",

@@ -464,7 +464,9 @@
     "search": "Suchen",
     "checkout": "Zur Kasse",
     "goto-checkout": "Zur Kasse",
-    "continue-shopping": "Weiter Einkaufen"
+    "continue-shopping": "Weiter Einkaufen",
+    "shop-all": "Alle {category} entdecken",
+    "view-all": "Alle anzeigen"
   },
   "product": {
     "featured": "Empfohlen",
