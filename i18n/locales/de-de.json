@@ -464,7 +464,9 @@
     "search": "Suchen",
     "checkout": "Zur Kasse",
     "goto-checkout": "Zur Kasse",
-    "continue-shopping": "Weiter Einkaufen"
+    "continue-shopping": "Weiter Einkaufen",
+    "shop-all": "Alle {category} entdecken",
+    "view-all": "Alle anzeigen"
   },
   "product": {
     "featured": "Empfohlen",
@@ -542,7 +544,10 @@
     "no-results": "Keine Ergebnisse gefunden für \"{term}\"",
     "placeholder": "Durchsuche unseren Shop",
     "suggestions": "stuhl, bett, sofa",
-    "search-listing": "Alle {count} Ergebnisse anzeigen"
+    "search-listing": "Alle {count} Ergebnisse anzeigen",
+    "popular": "Beliebte Suchen",
+    "searching": "Suche läuft...",
+    "empty-suggestion": "Versuche einen anderen Suchbegriff oder entdecke unsere beliebten Suchen."
   },
   "social": {
     "description": "Tagge {'@'}flagshipstore auf Instagram für die Chance, dein Bild hier zu sehen.",
