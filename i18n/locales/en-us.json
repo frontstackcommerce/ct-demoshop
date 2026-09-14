@@ -322,8 +322,13 @@
       "title": "Feel the comfort of your home",
       "description": "Curated pieces that transform spaces into sanctuaries of modern living.",
       "button": "Shop Now",
-      "imageAlt": "Comfortable living room",
-      "scroll": "Scroll"
+      "scroll": "Scroll",
+      "slide-dining-room-alt": "Warm dining room with wooden furniture",
+      "slide-bedroom-alt": "Cozy bedroom with soft warm lighting",
+      "slide-furniture-alt": "Modern furniture collection in a bright living space",
+      "carousel-previous": "Previous slide",
+      "carousel-next": "Next slide",
+      "carousel-goto-slide": "Go to slide {number}"
     },
     "promo": {
       "label": "Limited Time",
