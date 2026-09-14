@@ -58,23 +58,48 @@ onMounted(() => {
     isLoaded.value = true
   })
 })
+
+const heroSlides = computed(() => [
+  {
+    src: '/images/hero-dining-room.webp',
+    alt: t('home.hero.slide-dining-room-alt'),
+    loading: 'eager' as const,
+    fetchPriority: 'high' as const,
+    width: 1672,
+    height: 941,
+  },
+  {
+    src: '/images/hero-bedroom.webp',
+    alt: t('home.hero.slide-bedroom-alt'),
+    loading: 'lazy' as const,
+    width: 1672,
+    height: 941,
+  },
+  {
+    src: '/images/hero-furniture.webp',
+    alt: t('home.hero.slide-furniture-alt'),
+    loading: 'lazy' as const,
+    width: 1536,
+    height: 1024,
+  },
+])
+
+const heroCarousel = useTemplateRef('heroCarousel')
 </script>
 
 <template>
   <div class="min-h-screen">
     <!-- Hero Section - Centered -->
-    <section class="relative h-[100svh] min-h-[600px] max-h-[900px] overflow-hidden bg-foreground">
-      <!-- Background Image -->
-      <div class="absolute inset-0">
-        <NuxtImg 
-          src="https://a.storyblok.com/f/282508/1536x1024/b44eabb6eb/furniture.png"
-          :alt="$t('home.hero.imageAlt')" 
-          class="h-full w-full object-cover"
-          loading="eager"
-        />
-        <div class="absolute inset-0 bg-black/50" />
-      </div>
-      
+    <section
+      class="relative h-[100svh] min-h-[600px] max-h-[900px] overflow-hidden bg-foreground"
+      @mouseenter="heroCarousel?.pause()"
+      @mouseleave="heroCarousel?.resume()"
+      @focusin="heroCarousel?.focusPause()"
+      @focusout="heroCarousel?.focusResume()"
+    >
+      <!-- Background Carousel -->
+      <HomeHeroCarousel ref="heroCarousel" :slides="heroSlides" />
+
       <!-- Hero Content - Centered both horizontally and vertically -->
       <div class="relative h-full flex items-center justify-center">
         <div class="w-full px-6 lg:px-12">

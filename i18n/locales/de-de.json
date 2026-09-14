@@ -317,8 +317,13 @@
       "title": "Fühl Dich wohl in Deinem Zuhause",
       "description": "Kuratierte Stücke, die Räume in Oasen des modernen Lebens verwandeln.",
       "button": "Jetzt einkaufen",
-      "imageAlt": "Gemütlich eingerichtetes Wohnzimmer",
-      "scroll": "Scrollen"
+      "scroll": "Scrollen",
+      "slide-dining-room-alt": "Warmes Esszimmer mit Holzmöbeln",
+      "slide-bedroom-alt": "Gemütliches Schlafzimmer mit warmem Licht",
+      "slide-furniture-alt": "Moderne Möbelkollektion in einem hellen Wohnraum",
+      "carousel-previous": "Vorherige Folie",
+      "carousel-next": "Nächste Folie",
+      "carousel-goto-slide": "Zu Folie {number} wechseln"
     },
     "promo": {
       "label": "Zeitlich begrenzt",
