@@ -38,6 +38,7 @@
     "previous": "Previous"
   },
   "cart": {
+    "total": "Total",
     "discount": {
       "placeholder": "Enter discount code",
       "submit": "Redeem Discount",
@@ -173,12 +174,13 @@
     }
   },
   "control": {
+    "title": "Refine",
     "button": "Filter & Sort",
     "filters": {
       "title": "Filter"
     },
     "pagination": {
-      "showed": "{count} of {total} products viewed",
+      "showed": "Showing {count} of {total} products",
       "next": "Load more",
       "add-filter": "Filter & Sort",
       "edit-filter": "Adjust filter",
@@ -294,6 +296,7 @@
   "product": {
     "featured": "Featured",
     "sku": "SKU",
+    "tax-included": "Tax included",
     "buy": {
       "add-to-cart": "Add to Cart"
     },

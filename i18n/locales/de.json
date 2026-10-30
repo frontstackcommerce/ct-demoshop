@@ -34,6 +34,7 @@
     "previous": "Vorherige"
   },
   "cart": {
+    "total": "Gesamt",
     "discount": {
       "placeholder": "Rabattcode eingeben",
       "submit": "Rabatt einlösen",
@@ -169,12 +170,13 @@
     "title": "Wähle deinen Online Store"
   },
   "control": {
+    "title": "Verfeinern",
     "button": "Filter & Sortieren",
     "filters": {
       "title": "Filter"
     },
     "pagination": {
-      "showed": "{count} von {total} Produkten angesehen",
+      "showed": "{count} von {total} Produkten",
       "next": "Mehr anzeigen",
       "add-filter": "Filter & Sortieren",
       "edit-filter": "Filter bearbeiten",
@@ -290,6 +292,7 @@
   "product": {
     "featured": "Empfohlen",
     "sku": "Artikelnr.",
+    "tax-included": "Inkl. MwSt.",
     "buy": {
       "add-to-cart": "In den Warenkorb"
     },
